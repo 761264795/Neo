@@ -14,17 +14,17 @@ declare Param_cur cursor for select * from @ReportParams
    fetch Param_cur into @ParamName,@ParamValue
      while(@@FETCH_STATUS=0)
        begin
-         if UPPER(@ParamName)=UPPER('MaterialNumber')
+         if UPPER(@ParamName)=UPPER('MaterialNumber')--零件号
             set @WhereStr=@WhereStr+' and m.fnumber like ''%'+@ParamValue+'%'''
-         if UPPER(@ParamName)=UPPER('BeginWIP')
+         if UPPER(@ParamName)=UPPER('BeginWIP')--WIP单号 从
             set @WhereStr=@WhereStr+' and r.FCompanyNumber >='''+@ParamValue+''''
-         if UPPER(@ParamName)=UPPER('EndWIP')
+         if UPPER(@ParamName)=UPPER('EndWIP')--WIP单号 至
             set @WhereStr=@WhereStr+' and r.FCompanyNumber <='''+@ParamValue+''''
-         if UPPER(@ParamName)=UPPER('BeginDate')
+         if UPPER(@ParamName)=UPPER('BeginDate')--账单日期 从
             set @WhereStr=@WhereStr+' and re.CFSettleDate >=cast('''+@ParamValue+''' as datetime)'
-         if UPPER(@ParamName)=UPPER('EndDate')
+         if UPPER(@ParamName)=UPPER('EndDate')--账单日期 至
             set @WhereStr=@WhereStr+' and re.CFSettleDate <cast('''+@ParamValue+''' as datetime)+1'
-         if UPPER(@ParamName)=UPPER('ExtRptCurrentOrgUnitID')
+         if UPPER(@ParamName)=UPPER('ExtRptCurrentOrgUnitID')--当前用户登录的组织ID
             set @WhereStr=@WhereStr+' and r.FOrgUnitID =(case when ''00000000-0000-0000-0000-000000000000CCE7AED4''='''+@ParamValue+''' then r.FOrgUnitID else '''+@ParamValue+''' end)'
 	     fetch next from Param_cur into @ParamName,@ParamValue
 	   end

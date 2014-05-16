@@ -16,35 +16,38 @@ declare Param_cur cursor for select * from @ReportParams
    fetch Param_cur into @ParamName,@ParamValue
      while(@@FETCH_STATUS=0)
        begin
-         if UPPER(@ParamName)=UPPER('ExtRptCurrentUserInfoID')--当前用户，必需条件
+         if UPPER(@ParamName)=UPPER('ExtRptCurrentUserInfoID')--当前用户ID，必需条件
             set @ExtRptCurrentUserInfoID=''''+@ParamValue+''''
-         if UPPER(@ParamName)=UPPER('FNumber')
+         if UPPER(@ParamName)=UPPER('FNumber')--维修工单号
             set @WhereStr=@WhereStr+' and r.fnumber like ''%'+@ParamValue+'%'''
-         if UPPER(@ParamName)=UPPER('FPlateNum')
+         if UPPER(@ParamName)=UPPER('FPlateNum')--车牌号
             set @WhereStr=@WhereStr+' and v.FPlateNum like ''%'+@ParamValue+'%'''
-         if UPPER(@ParamName)=UPPER('FVin')
+         if UPPER(@ParamName)=UPPER('FVin')--底盘号
             set @WhereStr=@WhereStr+' and v.FVin like ''%'+@ParamValue+'%'''
-         if UPPER(@ParamName)=UPPER('FSaler')
+         if UPPER(@ParamName)=UPPER('FSaler')--业务员
             set @WhereStr=@WhereStr+' and r.CFSaler like ''%'+@ParamValue+'%'''
-         if UPPER(@ParamName)=UPPER('GW')
+         if UPPER(@ParamName)=UPPER('GW')--服务顾问
             set @WhereStr=@WhereStr+' and p.FName_L2 like ''%'+@ParamValue+'%'''
-         if UPPER(@ParamName)=UPPER('JS')
+         if UPPER(@ParamName)=UPPER('JS')--维修技师
             set @WhereStr=@WhereStr+' and j.FName_l2 like ''%'+@ParamValue+'%'''
-         if UPPER(@ParamName)=UPPER('JBeginDate')
+         if UPPER(@ParamName)=UPPER('JBeginDate')--进厂时间 从
             set @WhereStr=@WhereStr+' and r.FComeTime >=cast('''+@ParamValue+''' as datetime)'
-         if UPPER(@ParamName)=UPPER('JEndDate')
+         if UPPER(@ParamName)=UPPER('JEndDate')--进厂时间 至
             set @WhereStr=@WhereStr+' and r.FComeTime <cast('''+@ParamValue+''' as datetime)+1'
-         if UPPER(@ParamName)=UPPER('CFI')
+         if UPPER(@ParamName)=UPPER('CFI')--账单状态（I,X,H）
             set @WhereStr=@WhereStr+' and re.cfi = '''+@ParamValue+''''
-         if UPPER(@ParamName)=UPPER('CFGaBillStatus')
+         if UPPER(@ParamName)=UPPER('CFGaBillStatus')--单据状态（未结算，部分结算，全部结算）
             set @WhereStr=@WhereStr+' and r.CFGaBillStatus = '''+@ParamValue+''''
-         if UPPER(@ParamName)=UPPER('BA')
+         if UPPER(@ParamName)=UPPER('BA')--业务部门（F7数据来源：
+                                     --Select a.fid,a.fnumber,a.fname_l2 
+                                     --  from t_pm_OrgrRange r,t_org_admin a
+                                     -- where r.forgid=a.fid and r.ftype=20 and r.fuserid='当前用户ID'）
             set @WhereStr=@WhereStr+' and pn.orgfullnumber like ''%'+@ParamValue+'%'''
-         if UPPER(@ParamName)=UPPER('BeginDate')
+         if UPPER(@ParamName)=UPPER('BeginDate')--结账日期 从
             set @WhereStr=@WhereStr+' and re.CFSettleDate >=cast('''+@ParamValue+''' as datetime)'
-         if UPPER(@ParamName)=UPPER('EndDate')
+         if UPPER(@ParamName)=UPPER('EndDate')--结账日期 至
             set @WhereStr=@WhereStr+' and re.CFSettleDate <cast('''+@ParamValue+''' as datetime)+1'
-         if UPPER(@ParamName)=UPPER('ExtRptCurrentOrgUnitID')
+         if UPPER(@ParamName)=UPPER('ExtRptCurrentOrgUnitID')--当前用户登录的组织ID
             set @WhereStr=@WhereStr+' and r.FOrgUnitID =(case when ''00000000-0000-0000-0000-000000000000CCE7AED4''='''+@ParamValue+''' then r.FOrgUnitID else '''+@ParamValue+''' end)'
 	     fetch next from Param_cur into @ParamName,@ParamValue
 	   end
