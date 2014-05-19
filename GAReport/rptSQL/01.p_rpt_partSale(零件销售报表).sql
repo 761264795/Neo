@@ -1,10 +1,13 @@
-create procedure [dbo].[p_rpt_partSale1]
+if exists (select 1 from sysobjects where name=UPPER('p_rpt_partSale') and xtype='P')
+	drop procedure p_rpt_partSale;
+go
+create procedure p_rpt_partSale
   @MaterialNumber varchar(100),
-  @BeginWIP varchar(44),
-  @EndWIP varchar(44),
-  @BeginDate datetime,
-  @EndDate datetime,
-  @ExtRptCurrentOrgUnitID varchar(44),
+  @BeginWIP varchar(100),
+  @EndWIP varchar(100),
+  @BeginDate varchar(100),
+  @EndDate varchar(100),
+  @ExtRptCurrentOrgUnitID varchar(100),
   @ReturnValue int = 1 output,
   @ErrMsg varchar(400) output
 as
