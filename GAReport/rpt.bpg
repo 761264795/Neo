@@ -9,25 +9,15 @@ MAKE = $(ROOT)\bin\make.exe -$(MAKEFLAGS) -f$**
 DCC = $(ROOT)\bin\dcc32.exe $**
 BRCC = $(ROOT)\bin\brcc32.exe $**
 #------------------------------------------------------------------------------
-PROJECTS = ReportServer.exe GAReportServer.exe GAReportClient.exe FzReport.exe \
-  RoleRight.exe
+PROJECTS = GAReport.exe ReportServer.exe
 #------------------------------------------------------------------------------
 default: $(PROJECTS)
 #------------------------------------------------------------------------------
 
-ReportServer.exe: ..\..\..\F\MyERP\02_源码\01_I3ERP\Source\ReportServer\ReportServer.dpr
+GAReport.exe: ReportClient\GAReport.dpr
   $(DCC)
 
-GAReportServer.exe: Server\GAReportServer.dpr
-  $(DCC)
-
-GAReportClient.exe: Client\GAReportClient.dpr
-  $(DCC)
-
-FzReport.exe: ..\..\..\F\MyERP\02_源码\01_I3ERP\Source\ReportClient\FzReport.dpr
-  $(DCC)
-
-RoleRight.exe: F:\work\LBI权限\Client\RoleRight.dpr
+ReportServer.exe: ReportServer\ReportServer.dpr
   $(DCC)
 
 

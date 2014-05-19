@@ -12,10 +12,10 @@ unit FZReportServer_TLB;
 // ************************************************************************ //
 
 // PASTLWTR : 1.2
-// File generated on 2014-05-15 14:34:08 from Type Library described below.
+// File generated on 2014-05-19 10:03:54 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: I:\F\MyERP\02_ิดย๋\01_I3ERP\Source\ReportServer\ReportServer.tlb (1)
+// Type Lib: E:\GA2\NeoDev\GAReport\ReportServer\ReportServer.tlb (1)
 // LIBID: {ECA706C9-DCB4-465B-AC43-8A9ACE70EA8F}
 // LCID: 0
 // Helpfile: 

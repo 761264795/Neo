@@ -1190,18 +1190,18 @@ begin
           list.DelimitedText := trim(ProcText.Text);
 
 //          sql := '{call  ' +trim(cbPackage_name.Text)+'.'+ trim(Proc_Name.Text)+'(';
-          sql := 'call ' + trim(Proc_Name.Text) + ' (';
+          sql := 'execute  ' + trim(Proc_Name.Text) + ' ';
           if list.Count > 0 then
           begin
             for i := 0 to list.Count - 1 do
             begin
-              sql := sql + ' null,';
+              sql := sql + ' :' + list[i] + ',';
             end;
             sql := Copy(sql, 1, Length(sql) - 1);
           end;
           Close;
 //          CommandText:=sql+')}';
-          CommandText:=sql+')';
+          CommandText:=sql+' ';
 
           saveLog(CommandText);
           DMPub.SocketConn.AppServer.openReport(CommandText,1,cr,errormsg);   //从服务器获取数据
@@ -1503,7 +1503,7 @@ begin
     DMPub.db_Query.CommandText:=//'SELECT argument_name  FROM all_arguments  where  IN_OUT=''IN'' and object_name='''+trim(proc_name.Text)+''' order by position';
       'Select parameter.name as argument_name from sys.procedures Pr ' +
       'left join sys.parameters parameter on Pr.object_id = parameter.object_id ' +
-      'Where Pr.Type = ''P'' and Pr.Name = ''' + trim(proc_name.Text) + ''' and parameter.is_output = 0';
+      'Where Pr.Type = ''P'' and Pr.Name = ''' + trim(proc_name.Text) + '''';// and parameter.is_output = 0';
     DMPub.db_Query.Open;
     if not DMPub.db_Query.IsEmpty then
     begin

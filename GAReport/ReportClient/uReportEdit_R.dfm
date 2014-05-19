@@ -1106,7 +1106,7 @@ object ReportEditFrm: TReportEditFrm
           Top = 0
           Width = 839
           Height = 249
-          ActivePage = TabSheet3
+          ActivePage = TabSheet4
           Align = alClient
           Images = TreeImg
           TabOrder = 0

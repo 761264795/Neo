@@ -945,6 +945,7 @@ object DHDM: TDHDM
     CommandTimeout = 0
     EnableBCD = False
     Parameters = <>
+    Prepared = True
     Left = 856
     Top = 424
   end

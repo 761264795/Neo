@@ -905,11 +905,16 @@ begin
         sql.Clear;
         Parameters.Clear;
         sql.Add(_sql);
-        if Copy(_sql,1,1)='{'  then
-        ExecSQL;
-        Open;
+        if (Copy(_sql,1,1)='{') or (Copy(_sql,1,7)='execute')  then
+        begin
+          Open;
+//          ExecSQL;
+        end
+        else
+          Open;
         //Gio.AddShow(' 用户:('+user_name+') IP:('+ip_address +') 报表打开成功!',0);
       end;
+      if R_FindQry.RecordCount > 0 then
       SXML:= RecordsetToXMLString(R_FindQry.Recordset);
       //Gio.AddShow(' 用户:('+user_name+') IP:('+ip_address +') 记录体转STRING成功!',0);
       R_FindQry.Close;
