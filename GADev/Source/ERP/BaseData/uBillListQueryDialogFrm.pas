@@ -60,7 +60,7 @@ type
     cdsQuerySchemeEntryLEFTBRACKET: TWideStringField;
     cdsQuerySchemeEntryRIGHTBRACKET: TWideStringField;
     cdsQuerySchemeEntryCOMPARE: TWideStringField;
-    cdsQuerySchemeEntryCOMPAREVALUE: TWideStringField;
+    cdsQuerySchemeEntryCOMPAREVALUE: TMemoField;
     cdsQuerySchemeEntryLOGIC: TWideStringField;
     cxGridDBTableView1FID: TcxGridDBColumn;
     cxGridDBTableView1FPARENTID: TcxGridDBColumn;

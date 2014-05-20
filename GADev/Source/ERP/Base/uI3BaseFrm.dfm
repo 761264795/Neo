@@ -1,5 +1,5 @@
 object I3BaseFrm: TI3BaseFrm
-  Left = 192
+  Left = 342
   Top = 160
   Width = 928
   Height = 480

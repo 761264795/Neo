@@ -1,7 +1,7 @@
 inherited OtherBillBaseEditFrm: TOtherBillBaseEditFrm
-  Left = 177
+  Left = 342
   Top = 100
-  Width = 1044
+  Width = 1024
   Height = 573
   Caption = #38750#20379#24212#38142#21333#25454#22522#31867
   OldCreateOrder = True
@@ -12,13 +12,13 @@ inherited OtherBillBaseEditFrm: TOtherBillBaseEditFrm
   object p_bt: TPanel [0]
     Left = 0
     Top = 504
-    Width = 1028
+    Width = 1008
     Height = 30
     Align = alBottom
     Color = 16511980
     TabOrder = 4
     DesignSize = (
-      1028
+      1008
       30)
     object Label1: TLabel
       Left = 1

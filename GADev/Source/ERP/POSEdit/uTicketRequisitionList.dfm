@@ -1,4 +1,6 @@
 inherited TicketRequisitionList: TTicketRequisitionList
+  Left = 203
+  Top = 23
   Caption = #24320#31080#36890#30693#21333#21015#34920
   OldCreateOrder = True
   PixelsPerInch = 96

@@ -2,8 +2,8 @@ object CliDM: TCliDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 349
-  Top = 139
+  Left = 488
+  Top = 84
   Height = 531
   Width = 931
   object SckCon: TSocketConnection
@@ -229,7 +229,7 @@ object CliDM: TCliDM
       'SELECT FOBJECTTYPE, FNUMBER, FNAME, FALIAS_L2'
       'FROM T_UserRoleOrg'
       'WHERE USERID=:USERID')
-    Left = 8
+    Left = 24
     Top = 168
     object qryUserRoleFOBJECTTYPE: TStringField
       FieldName = 'FOBJECTTYPE'

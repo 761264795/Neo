@@ -1,6 +1,6 @@
 inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
-  Left = 345
-  Top = 166
+  Left = 719
+  Top = 120
   Width = 780
   Height = 496
   Caption = #21333#25454#21015#34920#21160#24577#26465#20214#35774#32622
@@ -12,7 +12,7 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
     Left = 105
     Top = 38
     Width = 659
-    Height = 420
+    Height = 419
     Align = alClient
     BevelOuter = bvLowered
     Ctl3D = True
@@ -20,7 +20,7 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
     TabOrder = 2
     object PlBt: TPanel
       Left = 1
-      Top = 376
+      Top = 375
       Width = 657
       Height = 43
       Align = alBottom
@@ -137,7 +137,7 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
       Left = 1
       Top = 1
       Width = 657
-      Height = 375
+      Height = 374
       ActivePage = cxTabSheet1
       Align = alClient
       Color = 16511980
@@ -146,7 +146,7 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
       ParentColor = False
       Style = 10
       TabOrder = 0
-      ClientRectBottom = 375
+      ClientRectBottom = 374
       ClientRectRight = 657
       ClientRectTop = 0
       object cxTabSheet2: TcxTabSheet
@@ -165,7 +165,7 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
           Left = 0
           Top = 0
           Width = 657
-          Height = 375
+          Height = 374
           Align = alClient
           BevelOuter = bvNone
           Font.Charset = DEFAULT_CHARSET
@@ -416,7 +416,7 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
     Left = 0
     Top = 38
     Width = 105
-    Height = 420
+    Height = 419
     Align = alLeft
     BevelInner = bvLowered
     BevelOuter = bvNone
@@ -426,7 +426,7 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
       Left = 1
       Top = 1
       Width = 103
-      Height = 418
+      Height = 417
       Cursor = crHandPoint
       Align = alClient
       BiDiMode = bdLeftToRight
@@ -2514,9 +2514,10 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
       DisplayLabel = #27604#36739#31526
       FieldName = 'COMPARE'
     end
-    object cdsQuerySchemeEntryCOMPAREVALUE: TWideStringField
+    object cdsQuerySchemeEntryCOMPAREVALUE: TMemoField
       DisplayLabel = #27604#36739#20540
       FieldName = 'COMPAREVALUE'
+      BlobType = ftMemo
       Size = 3000
     end
     object cdsQuerySchemeEntryLOGIC: TWideStringField
