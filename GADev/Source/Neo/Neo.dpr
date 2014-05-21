@@ -14,7 +14,6 @@ uses
   Pub_Fun in '..\Comm\Pub_Fun.pas',
   CommonConstPublic in '..\ERP\STReport\CommonConstPublic.pas',
   uBaseEditFrm in '..\ERP\Base\uBaseEditFrm.pas' {STBaseEdit},
-  uPOSEditFrm in '..\ERP\POSEdit\uPOSEditFrm.pas' {FrmPOSEdit},
   Frm_TranUpDate in '..\ERP\Frm_TranUpDate.pas' {FM_TranUpDate},
   dSLPFrm in '..\ERP\POSEdit\dSLPFrm.pas' {dSLPForm},
   Frm_ChangePwd in '..\ERP\Frm_ChangePwd.pas' {FM_ChangePwd},
@@ -288,7 +287,9 @@ uses
   uMoveIssueBillQuery in '..\ERP\OtherBill\uMoveIssueBillQuery.pas' {MoveIssueBillQuery},
   uBillEditStocktransferfrm in '..\ERP\OtherBill\uBillEditStocktransferfrm.pas' {FM_BillEditStockTransFerForm},
   uRepairWOEditFrm in 'rsm\uRepairWOEditFrm.pas' {RepairWOEditFrm},
-  uRepairManFrm in 'rsm\uRepairManFrm.pas' {RepairManFrm};
+  uRepairManFrm in 'rsm\uRepairManFrm.pas' {RepairManFrm},
+  uPOSEdit in '..\ERP\POSEdit\uPOSEdit.pas' {frmPOSEdit1},
+  uPOSEditFrm in '..\ERP\POSEdit\uPOSEditFrm.pas' {FrmPOSEdit};
 
 {$R *.res}
 {$I- } //不产生I/O异常类而是把错误代码返回到预定义变量IOResult中
@@ -300,9 +301,11 @@ begin
   else
   begin
     Application.Initialize;
-    Application.Title := 'I3鞋服ERP系统';
-    Application.CreateForm(TCliDM, CliDM);
+    Application.Title := 'GA集团ERP系统';
+  Application.CreateForm(TCliDM, CliDM);
   Application.CreateForm(TFMCliMain, FMCliMain);
+  Application.CreateForm(TfrmPOSEdit1, frmPOSEdit1);
+  Application.CreateForm(TFrmPOSEdit, FrmPOSEdit);
   Application.Run;
   end;
 end.

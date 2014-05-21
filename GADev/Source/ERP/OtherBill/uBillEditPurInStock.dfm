@@ -7,15 +7,15 @@ inherited FM_BillEditPurInStock: TFM_BillEditPurInStock
   PixelsPerInch = 96
   TextHeight = 12
   inherited pnlDetail: TPanel
-    Height = 323
+    Height = 331
     TabOrder = 4
     inherited cxPageDetail: TcxPageControl
-      Height = 323
+      Height = 331
       OnChange = cxPageDetailChange
-      ClientRectBottom = 323
+      ClientRectBottom = 331
       inherited cxTabDetail: TcxTabSheet
         inherited cxGrid1: TcxGrid
-          Height = 275
+          Height = 283
           inherited dbgList2: TcxGridDBTableView
             DataController.Summary.FooterSummaryItems = <
               item
@@ -314,7 +314,7 @@ inherited FM_BillEditPurInStock: TFM_BillEditPurInStock
       end
       inherited cxTabTractDetail: TcxTabSheet
         inherited cxGrid4: TcxGrid
-          Height = 278
+          Height = 286
           inherited cxgridDetial: TcxGridDBTableView
             object cxgridDetialFSEQ: TcxGridDBColumn
               Caption = #24207#21495
@@ -457,7 +457,7 @@ inherited FM_BillEditPurInStock: TFM_BillEditPurInStock
     end
   end
   inherited p_bt: TPanel
-    Top = 639
+    Top = 647
     TabOrder = 2
   end
   inherited pnl_top: TPanel
@@ -521,7 +521,6 @@ inherited FM_BillEditPurInStock: TFM_BillEditPurInStock
             Left = 736
             Top = 28
             DataBinding.DataField = 'CFINPUTWAY'
-            Properties.OnChange = cxdblookupInputwayPropertiesChange
             TabOrder = 5
             Width = 177
           end
@@ -708,7 +707,7 @@ inherited FM_BillEditPurInStock: TFM_BillEditPurInStock
     end
   end
   inherited pnlStock: TPanel
-    Top = 505
+    Top = 513
   end
   inherited girdList: TDBGrid
     Left = 366

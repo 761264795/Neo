@@ -11,8 +11,8 @@ inherited BatchCancelAllocationFrm: TBatchCancelAllocationFrm
   object Panel1: TPanel [0]
     Left = 0
     Top = 0
-    Width = 445
-    Height = 195
+    Width = 453
+    Height = 202
     Align = alClient
     Color = 16511980
     TabOrder = 0
@@ -183,14 +183,14 @@ inherited BatchCancelAllocationFrm: TBatchCancelAllocationFrm
   end
   object Panel2: TPanel [1]
     Left = 0
-    Top = 195
-    Width = 445
+    Top = 202
+    Width = 453
     Height = 51
     Align = alBottom
     Color = 16511980
     TabOrder = 1
     DesignSize = (
-      445
+      453
       51)
     object btn_Alter: TcxButton
       Left = 255

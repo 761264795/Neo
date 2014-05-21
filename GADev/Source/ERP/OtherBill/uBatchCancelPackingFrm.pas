@@ -163,7 +163,7 @@ begin
      ShowMsg(Self.Handle,'请先扫描条形码!    ',[]);
      Abort;
   end;
-  if MessageBox(Handle, PChar('确认按以下条件删除装箱单内数据?'), 'I3提示', MB_YESNO) = IDNO then Abort;
+  if MessageBox(Handle, PChar('确认按以下条件删除装箱单内数据?'), 'GA集团ERP提示', MB_YESNO) = IDNO then Abort;
   try
     if not  CliDM.ConnectSckCon(ErrMsg)    then Exit;
     _SQL := ' delete from CT_PAC_PACKINGENTRY a where exists (select 1 from CT_PAC_PACKING b '

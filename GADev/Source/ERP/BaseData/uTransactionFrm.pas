@@ -772,7 +772,7 @@ begin
     ShowMsg(Self.Handle ,'已经启用的事务不能删除!    ',[]);
     Exit;
   end;
-  if MessageBox(Handle, PChar('确认删除当前事务配置信息？'), 'I3提示', MB_YESNO or MB_YESNO) = IDNO then Exit;
+  if MessageBox(Handle, PChar('确认删除当前事务配置信息？'), 'GA集团ERP提示', MB_YESNO or MB_YESNO) = IDNO then Exit;
   if CliDM.E_DelBaseData('T_BD_Transaction',cdsMater.fieldbyname('FID').AsString,ErrMsg) then
   begin
     GetTransactionList(True);
@@ -837,7 +837,7 @@ begin
   if not CHK_Data then Exit;
   Result := CliDM.ConnectSckCon(ErrMsg);
   if not Result then Exit;
-  if MessageBox(Handle, PChar('您确认要手动执行事务？'), 'I3提示', MB_YESNO or MB_YESNO) = IDNO then Exit;
+  if MessageBox(Handle, PChar('您确认要手动执行事务？'), 'GA集团ERP提示', MB_YESNO or MB_YESNO) = IDNO then Exit;
   try
     Gio.AddShow('手动开始执行事务开始.....');
     FID := cdsMater.fieldbyname('FID').AsString;

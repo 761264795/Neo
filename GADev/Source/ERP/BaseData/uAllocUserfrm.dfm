@@ -149,7 +149,7 @@ inherited FM_AllocUserRole: TFM_AllocUserRole
     Left = 0
     Top = 27
     Width = 792
-    Height = 439
+    Height = 442
     Align = alClient
     Color = 16511980
     TabOrder = 1
@@ -180,7 +180,7 @@ inherited FM_AllocUserRole: TFM_AllocUserRole
       Left = 1
       Top = 30
       Width = 790
-      Height = 408
+      Height = 411
       Align = alClient
       TabOrder = 1
       LookAndFeel.Kind = lfOffice11
@@ -230,26 +230,22 @@ inherited FM_AllocUserRole: TFM_AllocUserRole
     OnCalcFields = cdsuserRoleCalcFields
     Left = 280
     Top = 147
-    object cdsuserRoleFUSERID: TWideStringField
-      FieldName = 'FUSERID'
-      Size = 44
-    end
-    object cdsuserRoleFROLEID: TWideStringField
-      FieldName = 'FROLEID'
-      Size = 44
-    end
-    object cdsuserRoleFORGID: TWideStringField
-      FieldName = 'FORGID'
-      Size = 44
-    end
     object cdsuserRoleCFRoleName: TStringField
       FieldKind = fkCalculated
       FieldName = 'CFUserName'
       Size = 100
       Calculated = True
     end
-    object cdsuserRoleFID: TWideStringField
-      FieldName = 'FID'
+    object cdsuserRoleFUserID: TStringField
+      FieldName = 'FUserID'
+      Size = 44
+    end
+    object cdsuserRoleFRoleID: TStringField
+      FieldName = 'FRoleID'
+      Size = 44
+    end
+    object cdsuserRoleFOrgID: TStringField
+      FieldName = 'FOrgID'
       Size = 44
     end
   end

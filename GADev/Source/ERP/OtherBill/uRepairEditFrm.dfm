@@ -27,7 +27,7 @@ inherited RepairEditFrm: TRepairEditFrm
   object Panel1: TPanel [1]
     Left = 0
     Top = 53
-    Width = 1028
+    Width = 1036
     Height = 88
     Align = alTop
     Color = 16511980
@@ -197,16 +197,16 @@ inherited RepairEditFrm: TRepairEditFrm
   object Panel2: TPanel [2]
     Left = 0
     Top = 141
-    Width = 1028
-    Height = 363
+    Width = 1036
+    Height = 371
     Align = alClient
     Color = 16511980
     TabOrder = 6
     object cxGrid1: TcxGrid
       Left = 1
       Top = 1
-      Width = 1026
-      Height = 361
+      Width = 1034
+      Height = 369
       Align = alClient
       TabOrder = 0
       LookAndFeel.Kind = lfOffice11

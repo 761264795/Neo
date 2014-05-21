@@ -2601,7 +2601,7 @@ begin
     end;
     if mPage.ActivePageIndex = 2 then
     begin
-      if MessageBox(Handle, PChar('确认生成配货单?'), 'I3提示', MB_YESNO) = IDNO then Exit;
+      if MessageBox(Handle, PChar('确认生成配货单?'), 'GA集团ERP提示', MB_YESNO) = IDNO then Exit;
       CreateBill(cdsDetailedDetail);
     end;
   finally

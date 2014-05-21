@@ -126,21 +126,6 @@ object FMLotin: TFMLotin
     Transparent = True
     Visible = False
   end
-  object Label1: TLabel
-    Left = 316
-    Top = 356
-    Width = 291
-    Height = 18
-    AutoSize = False
-    Caption = #29256#26435#25152#26377':'#28145#22323#24066#33406#23578#31185#25216#26377#38480#20844#21496'(2010-2013)'
-    Font.Charset = GB2312_CHARSET
-    Font.Color = clBlack
-    Font.Height = -13
-    Font.Name = #24494#36719#38597#40657
-    Font.Style = []
-    ParentFont = False
-    Transparent = True
-  end
   object edtUserID: TEdit
     Left = 331
     Top = 162
@@ -151,6 +136,7 @@ object FMLotin: TFMLotin
     MaxLength = 50
     ParentCtl3D = False
     TabOrder = 0
+    Text = 'user'
     OnKeyDown = edtUserIDKeyDown
   end
   object edtUserPwd: TEdit
@@ -164,6 +150,7 @@ object FMLotin: TFMLotin
     ParentCtl3D = False
     PasswordChar = '*'
     TabOrder = 1
+    Text = 'kduser'
     OnKeyDown = edtUserPwdKeyDown
   end
   object actList: TActionList

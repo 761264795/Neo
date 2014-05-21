@@ -11,7 +11,7 @@ inherited ServiceAttributeAllocationFrm: TServiceAttributeAllocationFrm
   object Panel1: TPanel [0]
     Left = 0
     Top = 0
-    Width = 938
+    Width = 946
     Height = 38
     Align = alTop
     Color = 16511980
@@ -34,23 +34,23 @@ inherited ServiceAttributeAllocationFrm: TServiceAttributeAllocationFrm
   object Panel2: TPanel [1]
     Left = 0
     Top = 38
-    Width = 938
-    Height = 496
+    Width = 946
+    Height = 503
     Align = alClient
     BevelOuter = bvNone
     Color = 16511980
     TabOrder = 1
     object Splitter1: TSplitter
-      Left = 589
+      Left = 597
       Top = 0
-      Height = 496
+      Height = 503
       Align = alRight
     end
     object Panel3: TPanel
-      Left = 592
+      Left = 600
       Top = 0
       Width = 346
-      Height = 496
+      Height = 503
       Align = alRight
       BevelOuter = bvNone
       Color = 16511980
@@ -169,7 +169,7 @@ inherited ServiceAttributeAllocationFrm: TServiceAttributeAllocationFrm
         Left = 0
         Top = 26
         Width = 346
-        Height = 470
+        Height = 477
         Align = alClient
         TabOrder = 1
         LookAndFeel.Kind = lfOffice11
@@ -214,8 +214,8 @@ inherited ServiceAttributeAllocationFrm: TServiceAttributeAllocationFrm
     object Panel5: TPanel
       Left = 0
       Top = 0
-      Width = 589
-      Height = 496
+      Width = 597
+      Height = 503
       Align = alClient
       BevelOuter = bvNone
       Color = 16511980
@@ -223,8 +223,8 @@ inherited ServiceAttributeAllocationFrm: TServiceAttributeAllocationFrm
       object cxGrid1: TcxGrid
         Left = 0
         Top = 56
-        Width = 589
-        Height = 440
+        Width = 597
+        Height = 447
         Align = alClient
         TabOrder = 0
         LookAndFeel.Kind = lfOffice11
@@ -300,13 +300,13 @@ inherited ServiceAttributeAllocationFrm: TServiceAttributeAllocationFrm
       object Panel7: TPanel
         Left = 0
         Top = 0
-        Width = 589
+        Width = 597
         Height = 56
         Align = alTop
         Color = 16511980
         TabOrder = 1
         DesignSize = (
-          589
+          597
           56)
         object Label3: TLabel
           Left = 5
@@ -411,14 +411,14 @@ inherited ServiceAttributeAllocationFrm: TServiceAttributeAllocationFrm
   end
   object Panel8: TPanel [2]
     Left = 0
-    Top = 534
-    Width = 938
+    Top = 541
+    Width = 946
     Height = 38
     Align = alBottom
     Color = 16511980
     TabOrder = 2
     DesignSize = (
-      938
+      946
       38)
     object Label2: TLabel
       Left = 5

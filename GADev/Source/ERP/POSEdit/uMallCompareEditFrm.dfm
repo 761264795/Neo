@@ -6,7 +6,7 @@ inherited MallCompareEditFrm: TMallCompareEditFrm
   PixelsPerInch = 96
   TextHeight = 12
   inherited p_bt: TPanel
-    Top = 581
+    Top = 588
     inherited cxFCreatorName: TcxDBMaskEdit
       DataBinding.DataSource = dsMaster
     end
@@ -30,13 +30,13 @@ inherited MallCompareEditFrm: TMallCompareEditFrm
   object Panel1: TPanel [1]
     Left = 0
     Top = 53
-    Width = 1028
+    Width = 1036
     Height = 173
     Align = alTop
     Color = 16511980
     TabOrder = 5
     DesignSize = (
-      1028
+      1036
       173)
     object Label2: TLabel
       Left = 14
@@ -558,22 +558,22 @@ inherited MallCompareEditFrm: TMallCompareEditFrm
   object Panel2: TPanel [2]
     Left = 0
     Top = 226
-    Width = 1028
-    Height = 355
+    Width = 1036
+    Height = 362
     Align = alClient
     Color = 16511980
     TabOrder = 6
     object EntryPage: TcxPageControl
       Left = 1
       Top = 1
-      Width = 1026
-      Height = 353
+      Width = 1034
+      Height = 360
       ActivePage = cxTabSheet1
       Align = alClient
       Style = 10
       TabOrder = 0
-      ClientRectBottom = 353
-      ClientRectRight = 1026
+      ClientRectBottom = 360
+      ClientRectRight = 1034
       ClientRectTop = 18
       object cxTabSheet1: TcxTabSheet
         Caption = #38144#21806#26126#32454
@@ -581,8 +581,8 @@ inherited MallCompareEditFrm: TMallCompareEditFrm
         object cxGrid1: TcxGrid
           Left = 0
           Top = 0
-          Width = 1026
-          Height = 335
+          Width = 1034
+          Height = 342
           Align = alClient
           TabOrder = 0
           LookAndFeel.Kind = lfOffice11

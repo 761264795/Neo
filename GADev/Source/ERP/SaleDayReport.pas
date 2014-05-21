@@ -46,7 +46,7 @@ var
   SaleDayReportFrm: TSaleDayReportFrm;
 
 implementation
- uses FrmCliDM,DateUtils,uPOSEditFrm;
+ uses FrmCliDM,DateUtils;
 {$R *.dfm}
 
 { TSaleDayReportFrm }
@@ -205,7 +205,7 @@ begin
   biilNum := cdsList.fieldbyname('bill_no').AsString;
   FID:=CliDM.Get_QueryReturn('select fid from CT_BIL_RetailPos a where a.fnumber='''+biilNum+'''',ErrMsg);
   if FID='' then Exit;
-  EditPOSFrm(FID);
+  //EditPOSFrm(FID);
 end;
 
 procedure TSaleDayReportFrm.dbgListCellDblClick(

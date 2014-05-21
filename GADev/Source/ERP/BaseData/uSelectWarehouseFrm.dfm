@@ -6,13 +6,13 @@ inherited SelectWarehouseFrm: TSelectWarehouseFrm
   inherited Pl: TPanel
     inherited Panel1: TPanel
       inherited Splitter2: TSplitter
-        Left = 522
+        Left = 530
       end
       inherited cxGrid1: TcxGrid
-        Width = 522
+        Width = 530
       end
       inherited Panel2: TPanel
-        Left = 525
+        Left = 533
         Width = 269
         inherited cxGrid3: TcxGrid
           Width = 237

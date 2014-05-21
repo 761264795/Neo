@@ -259,7 +259,7 @@ end;
 procedure TBatchCancelAllocationFrm.btn_AlterClick(Sender: TObject);
 begin
   inherited;
-  if MessageBox(Handle, PChar('确认开始取消配货(Y/N)?'), 'I3提示', MB_YESNO) = IDNO then Exit;
+  if MessageBox(Handle, PChar('确认开始取消配货(Y/N)?'), 'GA集团ERP提示', MB_YESNO) = IDNO then Exit;
   if Self.FMaterialFID = '' then
   begin
     ShowMsg(self.Handle,'请先选择物料！         ',[]);

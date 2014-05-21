@@ -38,7 +38,6 @@ type
     cdsOrgListFID: TStringField;
     cdsOrgListFnumber: TStringField;
     cdsOrgListFname_l2: TStringField;
-    Label1: TLabel;
     procedure lblOKMouseEnter(Sender: TObject);
     procedure lblOKMouseLeave(Sender: TObject);
     procedure lblCancelMouseEnter(Sender: TObject);
@@ -136,7 +135,7 @@ var FilePath,ErrMsg,ORGID,UserCode : string;
 begin
   inherited;
   LoginCount := 0;
-  edtUserID.Text := UserInfo.BeforeUserID;
+  //edtUserID.Text := UserInfo.BeforeUserID;
   FilePath := ExtractFilePath(paramstr(0))+'\Img\login.jpg';
   if not LoadImage(FilePath,imgLogin) then  Gio.AddShow('Í¼Æ¬Â·¾¶²»´æÔÚ£º'+FilePath);
   FilePath := ExtractFilePath(paramstr(0))+'\Img\Login_imgOk1.bmp';

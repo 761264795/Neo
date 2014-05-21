@@ -1215,7 +1215,7 @@ procedure TBillQueryFrm.SpeedButton6Click(Sender: TObject);
 var _SQL,ErrMsg:string;
 begin
   inherited;
-  if MessageBox(Handle, PChar('您确定要清除个人方案吗？'), 'I3提示', MB_YESNO or MB_YESNO) = IDNO then Exit;
+  if MessageBox(Handle, PChar('您确定要清除个人方案吗？'), 'GA集团ERP提示', MB_YESNO or MB_YESNO) = IDNO then Exit;
   try
     if not CliDM.ConnectSckCon(ErrMsg) then Exit;
     _SQL := 'delete from T_BD_BillQueryScheme where FBillTypeID ='+Quotedstr(cdsMater.fieldbyname('FBILLTYPEID').AsString) ;

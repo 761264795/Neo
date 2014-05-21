@@ -7,10 +7,10 @@ uses
   Windows, Messages, Graphics, Controls, Forms, TLHelp32, ADODB2000,ExtCtrls,
   Registry, DBClient,Math,ADODB_TLB,ADOInt,Dialogs,inifiles,ActiveX, MMSystem,DCPbase64,types,md5,winsock;
 var
-  HintTitle:  string = 'I3鞋服ERP提示';
-  WarnTitle:  string = 'I3鞋服ERP提示';
-  ErrorTitle: string = 'I3鞋服ERP提示';
-  AskTitle:   string = 'I3鞋服ERP提示';
+  HintTitle:  string = 'GA集团ERP提示';
+  WarnTitle:  string = 'GA集团ERP提示';
+  ErrorTitle: string = 'GA集团ERP提示';
+  AskTitle:   string = 'GA集团ERP提示';
 type
   TRoundToRange = -37..37;
 const

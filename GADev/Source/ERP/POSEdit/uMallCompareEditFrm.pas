@@ -397,7 +397,7 @@ begin
     ShowMsg(Self.Handle,'单据已审核,不能删除',[]);
     Abort;
   end;
-  if  MessageBox(Handle, PChar('确认删除此商场对账单？'), 'I3提示', MB_YESNO) = IDNO then Abort;
+  if  MessageBox(Handle, PChar('确认删除此商场对账单？'), 'GA集团ERP提示', MB_YESNO) = IDNO then Abort;
   FID :=  cdsMaster.fieldbyname('FID').AsString;
   SQL_1 := 'delete from CT_BIL_MallCompare where fid='+Quotedstr(FID);
   SQL_2 := 'delete from CT_BIL_MallCompareEntry where FPARENTID='+Quotedstr(FID);

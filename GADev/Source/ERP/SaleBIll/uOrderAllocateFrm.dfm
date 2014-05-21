@@ -11,7 +11,7 @@ inherited OrderAllocateFrm: TOrderAllocateFrm
   object Panel1: TPanel [0]
     Left = 0
     Top = 0
-    Width = 985
+    Width = 993
     Height = 38
     Align = alTop
     Color = 16511980
@@ -34,15 +34,15 @@ inherited OrderAllocateFrm: TOrderAllocateFrm
   object Panel2: TPanel [1]
     Left = 0
     Top = 38
-    Width = 985
-    Height = 520
+    Width = 993
+    Height = 527
     Align = alClient
     Color = 16511980
     TabOrder = 1
     object Splitter1: TSplitter
       Left = 1
       Top = 153
-      Width = 983
+      Width = 991
       Height = 3
       Cursor = crVSplit
       Align = alTop
@@ -50,7 +50,7 @@ inherited OrderAllocateFrm: TOrderAllocateFrm
     object Panel4: TPanel
       Left = 1
       Top = 1
-      Width = 983
+      Width = 991
       Height = 152
       Align = alTop
       BevelOuter = bvNone
@@ -63,10 +63,10 @@ inherited OrderAllocateFrm: TOrderAllocateFrm
         Caption = #35843#20837#21333#20449#24687
         TabOrder = 1
         DesignSize = (
-          983
+          991
           80)
         Height = 80
-        Width = 983
+        Width = 991
         object cxLabel9: TcxLabel
           Left = 9
           Top = 24
@@ -226,10 +226,10 @@ inherited OrderAllocateFrm: TOrderAllocateFrm
         Caption = #35843#20986#21333#20449#24687
         TabOrder = 0
         DesignSize = (
-          983
+          991
           72)
         Height = 72
-        Width = 983
+        Width = 991
         object cxLabel8: TcxLabel
           Left = 9
           Top = 24
@@ -374,14 +374,14 @@ inherited OrderAllocateFrm: TOrderAllocateFrm
     object cxPageEntry: TcxPageControl
       Left = 1
       Top = 156
-      Width = 983
-      Height = 363
+      Width = 991
+      Height = 370
       ActivePage = cxTabSheet2
       Align = alClient
       Style = 10
       TabOrder = 1
-      ClientRectBottom = 363
-      ClientRectRight = 983
+      ClientRectBottom = 370
+      ClientRectRight = 991
       ClientRectTop = 18
       object cxTabSheet1: TcxTabSheet
         Caption = #25955#30721
@@ -527,8 +527,8 @@ inherited OrderAllocateFrm: TOrderAllocateFrm
         object cxGrid2: TcxGrid
           Left = 0
           Top = 0
-          Width = 983
-          Height = 345
+          Width = 991
+          Height = 352
           Align = alClient
           TabOrder = 0
           LookAndFeel.Kind = lfOffice11
@@ -969,14 +969,14 @@ inherited OrderAllocateFrm: TOrderAllocateFrm
   end
   object Panel3: TPanel [2]
     Left = 0
-    Top = 558
-    Width = 985
+    Top = 565
+    Width = 993
     Height = 38
     Align = alBottom
     Color = 16511980
     TabOrder = 2
     DesignSize = (
-      985
+      993
       38)
     object btn_Alter: TcxButton
       Left = 808

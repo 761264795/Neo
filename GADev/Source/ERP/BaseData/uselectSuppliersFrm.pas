@@ -94,7 +94,11 @@ begin
     valList.BeginUpdate;
     if _IsEdit then
     begin
-      _sqlList:='select  case A.FUsedStatus when 0 then ''Î´ÉóºË'' when 1 then ''ÉóºË'' when 2 then ''½ûÓÃ'' else null end as ×´Ì¬,'
+      if chkTop100.Checked then
+        _sqlList:=' Select Top 100 '
+      else
+        _sqlList:=' Select ';
+      _sqlList:= _sqlList + ' case A.FUsedStatus when 0 then ''Î´ÉóºË'' when 1 then ''ÉóºË'' when 2 then ''½ûÓÃ'' else null end as ×´Ì¬,'
               +' A.FID,a.fnumber,a.fname_l2,a.FHELPCODE, '
               +' b.fname_l2 as CFControlUnit,a.Fcontactperson,a.FMOBILE,a.FPHONE,a.FEMAIL,a.CFQQNum, ' 
               +' a.FTAXRATE,a.CFWeiXinNum ,u.fname_l2 as CFCreatorName,pu.fname_l2 as CFlastUpdate,a.FISINTERNALCOMPANY ,g.fname_l2 as CFInnerCompanyName   '
@@ -113,24 +117,32 @@ begin
     begin
       if Trim(self.FOrgUnitID) <> '' then
       begin
-        _sqlList:='select  A.FID,a.fnumber,a.fname_l2,a.FHELPCODE from T_BD_Supplier a'
-          +' left join t_Bd_Suppliergroupdetail md on a.fid  =md.fSupplierid  '
-          +' left join T_BD_CSSPGroup mg on md.fSuppliergroupid  =mg.fid   '
-          +' inner join T_BD_SupplierPurchaseInfo pInfo on pInfo.FSupplierID=a.fid and pInfo.FPurchaseOrgID='+Quotedstr(self.FOrgUnitID)
-          +' where md.fSuppliergroupstandardid = '
-          + quotedstr(adsTree.fieldbyname('sfid').AsString);
+        if chkTop100.Checked then
+          _sqlList:=' Select Top 100 '
+        else
+          _sqlList:=' Select ';
+        _sqlList:= _sqlList + ' A.FID,a.fnumber,a.fname_l2,a.FHELPCODE from T_BD_Supplier a'
+            +' left join t_Bd_Suppliergroupdetail md on a.fid  =md.fSupplierid  '
+            +' left join T_BD_CSSPGroup mg on md.fSuppliergroupid  =mg.fid   '
+            +' inner join T_BD_SupplierPurchaseInfo pInfo on pInfo.FSupplierID=a.fid and pInfo.FPurchaseOrgID='+Quotedstr(self.FOrgUnitID)
+            +' where md.fSuppliergroupstandardid = '
+            + quotedstr(adsTree.fieldbyname('sfid').AsString);
       end
       else
       begin
-        _sqlList:='select  A.FID,a.fnumber,a.fname_l2,a.FHELPCODE from T_BD_Supplier a'
-          +' left join t_Bd_Suppliergroupdetail md on a.fid  =md.fSupplierid  '
-          +' left join T_BD_CSSPGroup mg on md.fSuppliergroupid  =mg.fid  where md.fSuppliergroupstandardid = '
-          +quotedstr(adsTree.fieldbyname('sfid').AsString);
+        if chkTop100.Checked then
+          _sqlList:=' Select Top 100 '
+        else
+          _sqlList:=' Select ';
+        _sqlList:= _sqlList + ' A.FID,a.fnumber,a.fname_l2,a.FHELPCODE from T_BD_Supplier a'
+            +' left join t_Bd_Suppliergroupdetail md on a.fid  =md.fSupplierid  '
+            +' left join T_BD_CSSPGroup mg on md.fSuppliergroupid  =mg.fid  where md.fSuppliergroupstandardid = '
+            +quotedstr(adsTree.fieldbyname('sfid').AsString);
       end;
       if Self.FSelecttWhereStr <> '' then
       _sqlList := _sqlList  +' and ' +self.FSelecttWhereStr;
     end;
-    if chkTop100.Checked then   _sqlList:=_sqlList+' and rownum <=100 ' ;
+//    if chkTop100.Checked then   _sqlList:=_sqlList+' and rownum <=100 ' ;
     if MgNumber<>'' then   _sqlList:=_sqlList+ ' and mg.flongnumber like '''+longNumber+'%'''
     else
     begin
@@ -142,6 +154,11 @@ begin
     try
       CliDM.ConnectSckCon(ErrMsg);
       CliDM.Get_OpenSQL(adsList,_sqlList,ErrMsg);
+      if ErrMsg<>'' then
+      begin
+        showmsg(self.Handle,'¹©Ó¦ÉÌ×ÊÁÏ²éÑ¯³ö´í:'+ErrMsg,[]);
+        Abort;
+      end;
     finally
       CliDM.CloseSckCon;
     end;
@@ -184,6 +201,7 @@ begin
   finally
     valList.EndUpdate;
     Screen.Cursor:=crDefault;
+
   end;
 end;
 

@@ -69,11 +69,6 @@ type
     cxTabSheet2: TcxTabSheet;
     cdsExistsList: TClientDataSet;
     dsExistsList: TDataSource;
-    cdsExistsListFID: TWideStringField;
-    cdsExistsListFPARENTID: TWideStringField;
-    cdsExistsListFPermID: TWideStringField;
-    cdsExistsListfname_l2: TWideStringField;
-    cdsExistsListFimgIndex: TFloatField;
     ExistsTreecxDBTreeListColumn2: TcxDBTreeListColumn;
     ExistsTreecxDBTreeListColumn3: TcxDBTreeListColumn;
     ExistsTreecxDBTreeListColumn4: TcxDBTreeListColumn;
@@ -107,8 +102,13 @@ type
     cdsRolePermFCONTROLUNITID: TWideStringField;
     cxLabel1: TcxLabel;
     txt_FBranchName: TcxButtonEdit;
-    cdsExistsListftype: TIntegerField;
     TreeListcxDBTreeListColumn5: TcxDBTreeListColumn;
+    cdsExistsListFID: TStringField;
+    cdsExistsListFPARENTID: TStringField;
+    cdsExistsListFPermID: TStringField;
+    cdsExistsListfname_l2: TWideStringField;
+    cdsExistsListFimgIndex: TIntegerField;
+    cdsExistsListftype: TIntegerField;
     procedure FormShow(Sender: TObject);
     procedure spt_ExitClick(Sender: TObject);
     procedure txt_FBranchNamePropertiesButtonClick(Sender: TObject;
@@ -230,13 +230,13 @@ begin
     Screen.Cursor := crHourGlass;
     _sql := '';
     if LoginType = 0 then
-    _sql := ' select a.FID,FPARENTID,FPermID,b.fname_l2,FimgIndex,a.ftype  from T_PM_RolePerm a  '
+    _sql := ' select a.FID,FPARENTID,FPermID,b.fname_l2,isnull(FimgIndex, 0) as FimgIndex,a.ftype  from T_PM_RolePerm a  '
           + ' left join (select FID,Fnumber,Fname_l2,Fimgageindex as FimgIndex  from t_Db_Mainmenuitem  union '
           + ' select FID,Fnumber,FNAME_L2,122 as FimgIndex from  CT_BD_PermissionsItem) b'
           + ' on a.fpermid=b.fid where a.FRoleID='+QuotedStr(Self.UserorRoleFID)+' order by b.fnumber '
     else
     if LoginType = 1 then
-    _sql := ' select a.FID,FPARENTID,FPermID,b.fname_l2,FimgIndex,a.ftype from T_PM_UserPerm a  '
+    _sql := ' select a.FID,FPARENTID,FPermID,b.fname_l2,isnull(FimgIndex, 0) as FimgIndex,a.ftype from T_PM_UserPerm a  '
           + ' left join (select FID,Fnumber,Fname_l2,Fimgageindex as FimgIndex  from t_Db_Mainmenuitem  union '
           + ' select FID,Fnumber,FNAME_L2,122 as FimgIndex from  CT_BD_PermissionsItem) b'
           + ' on a.fpermid=b.fid where a.FuserID='+QuotedStr(Self.UserorRoleFID)+' and a.FBranchID='+QuotedStr(Self.FBranchID)+' order by b.fnumber '

@@ -6,7 +6,7 @@ uses
   SysUtils, Classes, Controls, Forms,
   uSelecDataBaseFrm, 
   
-  DB, 
+  DB,
   
   
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, 
@@ -95,7 +95,11 @@ begin
     valList.BeginUpdate;
     if _IsEdit then
     begin
-      _sqlList:='select   case A.FUsedStatus when 0 then ''Î´ÉóºË'' when 1 then ''ÉóºË'' when 2 then ''½ûÓÃ'' else null end as ×´Ì¬,'
+      if chkTop100.Checked then
+        _sqlList:=' Select Top 100 '
+      else
+        _sqlList:=' Select ';
+      _sqlList:= _sqlList + ' case A.FUsedStatus when 0 then ''Î´ÉóºË'' when 1 then ''ÉóºË'' when 2 then ''½ûÓÃ'' else null end as ×´Ì¬,'
               +'  A.FID,a.fnumber,a.fname_l2, '
               +'  a.FHELPCODE,a.FTAXRATE,R.Fname_L2 as CFCustLevel,a.CFSETTLEDAY,a.Fcontactperson,a.FMOBILE,a.FPHONE,a.FEMAIL,a.CFQQNum,'
               +' a.CFWeiXinNum,a.FISINTERNALCOMPANY,g.fname_l2 as CFInternalcompanyNmae ,E.Fname_L2 as CFZoneName,   '
@@ -120,24 +124,32 @@ begin
     begin
       if Trim(Self.FOrgUnitID) <> '' then
       begin
-        _sqlList:='select distinct A.FID,a.fnumber,a.fname_l2 from T_BD_Customer a'
-          +' left join t_Bd_Customergroupdetail md on a.fid  =md.fcustomerid  '
-          +' left join T_BD_CSSPGroup mg on md.fcustomergroupid  =mg.fid '
-          +' inner join T_BD_CustomerSaleInfo sinfo on sinfo.FCustomerID=a.fid and FSaleOrgID='+Quotedstr(Self.FOrgUnitID)
-          +' where A.FUsedStatus=1 and   md.fcustomergroupstandardid = '
-          +quotedstr(adsTree.fieldbyname('sfid').AsString);
+       if chkTop100.Checked then
+          _sqlList:=' Select distinct Top 100 '
+        else
+          _sqlList:=' Select distinct ';
+        _sqlList:= _sqlList + ' A.FID,a.fnumber,a.fname_l2 from T_BD_Customer a'
+            +' left join t_Bd_Customergroupdetail md on a.fid  =md.fcustomerid  '
+            +' left join T_BD_CSSPGroup mg on md.fcustomergroupid  =mg.fid '
+            +' inner join T_BD_CustomerSaleInfo sinfo on sinfo.FCustomerID=a.fid and FSaleOrgID='+Quotedstr(Self.FOrgUnitID)
+            +' where A.FUsedStatus=1 and   md.fcustomergroupstandardid = '
+            +quotedstr(adsTree.fieldbyname('sfid').AsString);
       end
       else
       begin
-        _sqlList:='select distinct A.FID,a.fnumber,a.fname_l2 from T_BD_Customer a'
-          +' left join t_Bd_Customergroupdetail md on a.fid  =md.fcustomerid  '
-          +' left join T_BD_CSSPGroup mg on md.fcustomergroupid  =mg.fid  where A.FUsedStatus=1 and   md.fcustomergroupstandardid = '
-          +quotedstr(adsTree.fieldbyname('sfid').AsString);
+        if chkTop100.Checked then
+          _sqlList:=' Select distinct Top 100 '
+        else
+          _sqlList:=' Select distinct ';
+        _sqlList:= _sqlList + ' A.FID,a.fnumber,a.fname_l2 from T_BD_Customer a'
+            +' left join t_Bd_Customergroupdetail md on a.fid  =md.fcustomerid  '
+            +' left join T_BD_CSSPGroup mg on md.fcustomergroupid  =mg.fid  where A.FUsedStatus=1 and   md.fcustomergroupstandardid = '
+            +quotedstr(adsTree.fieldbyname('sfid').AsString);
       end;
       if Self.FSelecttWhereStr <> '' then
       _sqlList := _sqlList  +' and ' +self.FSelecttWhereStr;
     end;
-    if chkTop100.Checked then   _sqlList:=_sqlList+' and rownum <=100 ' ;
+//    if chkTop100.Checked then   _sqlList:=_sqlList+' and rownum <=100 ' ;
     if MgNumber<>'' then   _sqlList:=_sqlList+ ' and mg.flongnumber like '''+longNumber+'%'''
     else
     begin

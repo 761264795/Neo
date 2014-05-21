@@ -44,6 +44,7 @@ var
   I3BaseFrm: TI3BaseFrm;
 
 implementation
+uses FrmCliMain;
 
 {$R *.dfm}
 function TI3BaseFrm.SetStyle(Frm:TControl):String;
@@ -229,7 +230,8 @@ end;
 procedure TI3BaseFrm.FormCreate(Sender: TObject);
 begin
   Self.DoubleBuffered := True;
-  StyleName := 'Office2007Green';
+  //StyleName := 'Office2007Green';
+  StyleName := FMCliMain.cxComboBox1.Text;
   sKing     := lfOffice11;
   SetStyle(self);
 end;

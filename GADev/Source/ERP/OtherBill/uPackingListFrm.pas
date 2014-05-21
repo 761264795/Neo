@@ -900,7 +900,7 @@ procedure TPackingListFrm.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
-  if MessageBox(Handle, PChar('确认退出装箱单?'), 'I3提示', MB_YESNO) = IDNO then Abort;
+  if MessageBox(Handle, PChar('确认退出装箱单?'), 'GA集团ERP提示', MB_YESNO) = IDNO then Abort;
   SetUserInipar;
 end;
 
@@ -1530,7 +1530,7 @@ begin
     ShowMsg(self.Handle,'源单已审核不允许修改装箱单',[]);
     Abort;
   end;
-  if MessageBox(Handle, PChar('确认删除装箱单?'), 'I3提示', MB_YESNO) = IDNO then Abort;
+  if MessageBox(Handle, PChar('确认删除装箱单?'), 'GA集团ERP提示', MB_YESNO) = IDNO then Abort;
   DelBill;
 end;
 
@@ -1995,7 +1995,7 @@ begin
     txt_sp.SetFocus;
     Abort;
   end;
-  if Application.MessageBox('确认开始导入条码文件?(Y/N)','I3提示',MB_YESNO)=id_no then Abort;
+  if Application.MessageBox('确认开始导入条码文件?(Y/N)','GA集团ERP提示',MB_YESNO)=id_no then Abort;
   try
     FileList:=TStringList.Create;
     rowlist:=TStringList.Create;

@@ -266,7 +266,7 @@ procedure TRemindConfigFrm.btn_DelClick(Sender: TObject);
 begin
   inherited;
   if not cdsMater.Active then exit;
-  if MessageBox(Handle, PChar('您确定要删除此提醒配置信息吗？'), 'I3提示', MB_YESNO) = IDNO then exit;
+  if MessageBox(Handle, PChar('您确定要删除此提醒配置信息吗？'), 'GA集团ERP提示', MB_YESNO) = IDNO then exit;
   if cdsMater.FieldByName('FState').AsInteger = 0 then
   begin
     ShowMsg(Handle, '配置信息已禁用，不允许删除！',[]);

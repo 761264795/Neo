@@ -7,8 +7,8 @@ inherited TicketRequisitionFrm: TTicketRequisitionFrm
   PixelsPerInch = 96
   TextHeight = 12
   inherited p_bt: TPanel
-    Top = 547
-    Width = 1033
+    Top = 555
+    Width = 1041
     TabOrder = 6
     inherited cxFCreatorName: TcxDBMaskEdit
       DataBinding.DataField = 'cxFCreatorName'
@@ -36,13 +36,13 @@ inherited TicketRequisitionFrm: TTicketRequisitionFrm
   object Panel1: TPanel [1]
     Left = 0
     Top = 53
-    Width = 1033
+    Width = 1041
     Height = 325
     Align = alTop
     Color = 16511980
     TabOrder = 1
     DesignSize = (
-      1033
+      1041
       325)
     object Label2: TLabel
       Left = 14
@@ -1061,14 +1061,14 @@ inherited TicketRequisitionFrm: TTicketRequisitionFrm
   object EntryPage: TcxPageControl [2]
     Left = 0
     Top = 378
-    Width = 1033
-    Height = 169
+    Width = 1041
+    Height = 177
     ActivePage = cxTabSheet1
     Align = alClient
     Style = 10
     TabOrder = 3
-    ClientRectBottom = 169
-    ClientRectRight = 1033
+    ClientRectBottom = 177
+    ClientRectRight = 1041
     ClientRectTop = 18
     object cxTabSheet1: TcxTabSheet
       Caption = #20854#23427#36153#29992
@@ -1076,8 +1076,8 @@ inherited TicketRequisitionFrm: TTicketRequisitionFrm
       object cxGrid1: TcxGrid
         Left = 0
         Top = 0
-        Width = 952
-        Height = 151
+        Width = 960
+        Height = 159
         Align = alClient
         TabOrder = 0
         LookAndFeel.Kind = lfOffice11
@@ -1146,10 +1146,10 @@ inherited TicketRequisitionFrm: TTicketRequisitionFrm
         end
       end
       object Panel2: TPanel
-        Left = 952
+        Left = 960
         Top = 0
         Width = 81
-        Height = 151
+        Height = 159
         Align = alRight
         Color = 16511980
         TabOrder = 1

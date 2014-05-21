@@ -1177,7 +1177,7 @@ procedure TMaterialEditFrm.SpeedButton1Click(Sender: TObject);
 begin
   inherited;
   if cdsMater.State in DB.dsEditModes then
-  if  MessageBox(Handle, PChar('数据已修改,是否保存？'), 'I3提示', MB_YESNO) = IDYES then
+  if  MessageBox(Handle, PChar('数据已修改,是否保存？'), 'GA集团ERP提示', MB_YESNO) = IDYES then
   begin
     ST_Save;
     Abort;

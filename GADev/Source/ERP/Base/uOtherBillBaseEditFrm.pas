@@ -452,7 +452,7 @@ begin
   inherited;
   if  (BillStatus.IsChange) then
   begin
-    if  MessageBox(Handle, PChar('数据已修改,确认退出？'), 'I3提示', MB_YESNO) = IDNO then Abort;
+    if  MessageBox(Handle, PChar('数据已修改,确认退出？'), 'GA集团ERP提示', MB_YESNO) = IDNO then Abort;
   end;
   if BillStatus.IsEdit then
   begin

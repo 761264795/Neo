@@ -12,7 +12,7 @@ inherited FM_RoleEditForm: TFM_RoleEditForm
   object Panel1: TPanel [0]
     Left = 0
     Top = 0
-    Width = 650
+    Width = 658
     Height = 25
     Align = alTop
     BevelOuter = bvNone
@@ -21,7 +21,7 @@ inherited FM_RoleEditForm: TFM_RoleEditForm
     object Image2: TImage
       Left = 0
       Top = 0
-      Width = 650
+      Width = 658
       Height = 25
       Align = alClient
       Stretch = True
@@ -198,8 +198,8 @@ inherited FM_RoleEditForm: TFM_RoleEditForm
   object Panel2: TPanel [1]
     Left = 0
     Top = 25
-    Width = 650
-    Height = 436
+    Width = 658
+    Height = 444
     Align = alClient
     Color = 16511980
     Ctl3D = False
@@ -208,7 +208,7 @@ inherited FM_RoleEditForm: TFM_RoleEditForm
     object Panel3: TPanel
       Left = 1
       Top = 1
-      Width = 648
+      Width = 656
       Height = 139
       Align = alTop
       BevelOuter = bvNone
@@ -268,8 +268,8 @@ inherited FM_RoleEditForm: TFM_RoleEditForm
     object Panel4: TPanel
       Left = 1
       Top = 140
-      Width = 648
-      Height = 295
+      Width = 656
+      Height = 303
       Align = alClient
       Color = 16511980
       Ctl3D = True
@@ -278,7 +278,7 @@ inherited FM_RoleEditForm: TFM_RoleEditForm
       object Panel5: TPanel
         Left = 1
         Top = 1
-        Width = 646
+        Width = 654
         Height = 26
         Align = alTop
         BevelOuter = bvNone
@@ -420,15 +420,15 @@ inherited FM_RoleEditForm: TFM_RoleEditForm
       object cxPageCtlUserPower: TcxPageControl
         Left = 1
         Top = 27
-        Width = 646
-        Height = 267
+        Width = 654
+        Height = 275
         ActivePage = cxTabSheet1
         Align = alClient
         LookAndFeel.Kind = lfOffice11
         Style = 10
         TabOrder = 1
-        ClientRectBottom = 267
-        ClientRectRight = 646
+        ClientRectBottom = 275
+        ClientRectRight = 654
         ClientRectTop = 18
         object cxTabSheet1: TcxTabSheet
           Caption = #25480#26435#20179#24211
@@ -436,8 +436,8 @@ inherited FM_RoleEditForm: TFM_RoleEditForm
           object cxGrid1: TcxGrid
             Left = 0
             Top = 0
-            Width = 646
-            Height = 249
+            Width = 654
+            Height = 257
             Align = alClient
             TabOrder = 0
             LookAndFeel.Kind = lfOffice11
@@ -510,8 +510,8 @@ inherited FM_RoleEditForm: TFM_RoleEditForm
           object cxGrid2: TcxGrid
             Left = 0
             Top = 0
-            Width = 646
-            Height = 249
+            Width = 654
+            Height = 257
             Align = alClient
             TabOrder = 0
             LookAndFeel.Kind = lfOffice11

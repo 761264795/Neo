@@ -12,14 +12,14 @@ inherited MaterialEditFrm: TMaterialEditFrm
   object p_top: TPanel [0]
     Left = 0
     Top = 0
-    Width = 929
+    Width = 937
     Height = 25
     Align = alTop
     TabOrder = 0
     object Image1: TImage
       Left = 1
       Top = 1
-      Width = 927
+      Width = 935
       Height = 23
       Align = alClient
       Stretch = True
@@ -600,7 +600,7 @@ inherited MaterialEditFrm: TMaterialEditFrm
   object TopPl: TPanel [1]
     Left = 0
     Top = 25
-    Width = 929
+    Width = 937
     Height = 37
     Align = alTop
     Color = 16511980
@@ -698,8 +698,8 @@ inherited MaterialEditFrm: TMaterialEditFrm
   object Panel4: TPanel [2]
     Left = 0
     Top = 62
-    Width = 929
-    Height = 584
+    Width = 937
+    Height = 591
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel4'
@@ -709,7 +709,7 @@ inherited MaterialEditFrm: TMaterialEditFrm
       Left = 0
       Top = 0
       Width = 224
-      Height = 584
+      Height = 591
       Align = alLeft
       Color = 16511980
       TabOrder = 0
@@ -977,8 +977,8 @@ inherited MaterialEditFrm: TMaterialEditFrm
     object Panel5: TPanel
       Left = 224
       Top = 0
-      Width = 705
-      Height = 584
+      Width = 713
+      Height = 591
       Align = alClient
       BevelOuter = bvNone
       Caption = 'Panel5'
@@ -986,15 +986,15 @@ inherited MaterialEditFrm: TMaterialEditFrm
       object Panel1: TPanel
         Left = 0
         Top = 0
-        Width = 705
-        Height = 369
+        Width = 713
+        Height = 376
         Align = alClient
         TabOrder = 0
         object Top_PgControl: TcxPageControl
           Left = 1
           Top = 1
-          Width = 703
-          Height = 367
+          Width = 711
+          Height = 374
           ActivePage = Mater_1_Pg
           Align = alClient
           Color = 16511980
@@ -1003,8 +1003,8 @@ inherited MaterialEditFrm: TMaterialEditFrm
           ParentColor = False
           Style = 10
           TabOrder = 0
-          ClientRectBottom = 367
-          ClientRectRight = 703
+          ClientRectBottom = 374
+          ClientRectRight = 711
           ClientRectTop = 0
           object Mater_1_Pg: TcxTabSheet
             Caption = #25104#21697#23646#24615
@@ -1012,8 +1012,8 @@ inherited MaterialEditFrm: TMaterialEditFrm
             object Panel3: TPanel
               Left = 0
               Top = 0
-              Width = 703
-              Height = 367
+              Width = 711
+              Height = 374
               Align = alClient
               BevelOuter = bvNone
               Color = 16511980
@@ -2492,23 +2492,23 @@ inherited MaterialEditFrm: TMaterialEditFrm
               StyleFocused.LookAndFeel.Kind = lfOffice11
               StyleHot.LookAndFeel.Kind = lfOffice11
               TabOrder = 0
-              Height = 367
-              Width = 703
+              Height = 374
+              Width = 711
             end
           end
         end
       end
       object Panel2: TPanel
         Left = 0
-        Top = 369
-        Width = 705
+        Top = 376
+        Width = 713
         Height = 215
         Align = alBottom
         TabOrder = 1
         object Down_PgControl: TcxPageControl
           Left = 1
           Top = 1
-          Width = 703
+          Width = 711
           Height = 213
           ActivePage = cxTabSheet1
           Align = alClient
@@ -2519,7 +2519,7 @@ inherited MaterialEditFrm: TMaterialEditFrm
           TabOrder = 0
           OnChange = Down_PgControlChange
           ClientRectBottom = 213
-          ClientRectRight = 703
+          ClientRectRight = 711
           ClientRectTop = 18
           object cxTabSheet1: TcxTabSheet
             Caption = #29289#26009#20998#31867
@@ -2527,7 +2527,7 @@ inherited MaterialEditFrm: TMaterialEditFrm
             object cxGrid1: TcxGrid
               Left = 0
               Top = 0
-              Width = 703
+              Width = 711
               Height = 195
               Align = alClient
               BevelOuter = bvNone
@@ -3107,10 +3107,10 @@ inherited MaterialEditFrm: TMaterialEditFrm
             Caption = #22270#29255
             ImageIndex = 41
             DesignSize = (
-              703
+              711
               195)
             object SpeedButton2: TSpeedButton
-              Left = 283
+              Left = 291
               Top = 129
               Width = 75
               Height = 24
@@ -3155,7 +3155,7 @@ inherited MaterialEditFrm: TMaterialEditFrm
               OnClick = SpeedButton2Click
             end
             object SpeedButton3: TSpeedButton
-              Left = 283
+              Left = 291
               Top = 160
               Width = 75
               Height = 24

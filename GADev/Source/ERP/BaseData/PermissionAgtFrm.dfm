@@ -11,7 +11,7 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
   object Splitter1: TSplitter [0]
     Left = 0
     Top = 182
-    Width = 860
+    Width = 868
     Height = 2
     Cursor = crVSplit
     Align = alTop
@@ -19,7 +19,7 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
   object p_top: TPanel [1]
     Left = 0
     Top = 0
-    Width = 860
+    Width = 868
     Height = 25
     Align = alTop
     BevelOuter = bvNone
@@ -27,7 +27,7 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
     object Image1: TImage
       Left = 0
       Top = 0
-      Width = 860
+      Width = 868
       Height = 25
       Align = alClient
       Stretch = True
@@ -116,7 +116,7 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
   object p_Tops: TPanel [2]
     Left = 0
     Top = 25
-    Width = 860
+    Width = 868
     Height = 157
     Align = alTop
     BevelOuter = bvNone
@@ -125,13 +125,13 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
     object p_btnAddDel: TPanel
       Left = 0
       Top = 0
-      Width = 860
+      Width = 868
       Height = 29
       Align = alTop
       Color = 16511980
       TabOrder = 0
       DesignSize = (
-        860
+        868
         29)
       object btn_NewRow: TSpeedButton
         Left = 706
@@ -245,7 +245,7 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
     object cxGrid2: TcxGrid
       Left = 0
       Top = 29
-      Width = 860
+      Width = 868
       Height = 128
       Align = alClient
       TabOrder = 1
@@ -291,8 +291,8 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
   object Panel1: TPanel [3]
     Left = 0
     Top = 184
-    Width = 860
-    Height = 450
+    Width = 868
+    Height = 457
     Align = alClient
     BevelOuter = bvNone
     Color = 16511980
@@ -301,13 +301,13 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
       Left = 416
       Top = 0
       Width = 2
-      Height = 450
+      Height = 457
     end
     object Panel2: TPanel
       Left = 418
       Top = 0
-      Width = 442
-      Height = 450
+      Width = 450
+      Height = 457
       Align = alClient
       BevelOuter = bvNone
       Color = 16511980
@@ -316,7 +316,7 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
         Left = 0
         Top = 0
         Width = 33
-        Height = 450
+        Height = 457
         Align = alLeft
         BevelOuter = bvNone
         Color = 16511980
@@ -399,14 +399,14 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
       object cxPageControl2: TcxPageControl
         Left = 33
         Top = 0
-        Width = 409
-        Height = 450
+        Width = 417
+        Height = 457
         ActivePage = cxTabSheet2
         Align = alClient
         Style = 10
         TabOrder = 1
-        ClientRectBottom = 450
-        ClientRectRight = 409
+        ClientRectBottom = 457
+        ClientRectRight = 417
         ClientRectTop = 18
         object cxTabSheet2: TcxTabSheet
           Caption = #24050#25480#26435
@@ -414,8 +414,8 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
           object ExistsTree: TcxDBTreeList
             Left = 0
             Top = 0
-            Width = 409
-            Height = 432
+            Width = 417
+            Height = 439
             Align = alClient
             Bands = <
               item
@@ -485,7 +485,7 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
       Left = 0
       Top = 0
       Width = 416
-      Height = 450
+      Height = 457
       Align = alLeft
       Color = 16511980
       TabOrder = 0
@@ -493,12 +493,12 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
         Left = 1
         Top = 1
         Width = 414
-        Height = 448
+        Height = 455
         ActivePage = cxTabSheet1
         Align = alClient
         Style = 10
         TabOrder = 0
-        ClientRectBottom = 448
+        ClientRectBottom = 455
         ClientRectRight = 414
         ClientRectTop = 18
         object cxTabSheet1: TcxTabSheet
@@ -508,7 +508,7 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
             Left = 0
             Top = 0
             Width = 414
-            Height = 430
+            Height = 437
             Align = alClient
             Bands = <
               item
@@ -643,24 +643,26 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
     OnNewRecord = cdsExistsListNewRecord
     Left = 547
     Top = 341
-    object cdsExistsListFPermID: TWideStringField
-      FieldName = 'FPermID'
-      Size = 80
-    end
-    object cdsExistsListFID: TWideStringField
+    object cdsExistsListFID: TStringField
       FieldName = 'FID'
-      Size = 80
+      Size = 44
     end
-    object cdsExistsListFPARENTID: TWideStringField
+    object cdsExistsListFPARENTID: TStringField
       FieldName = 'FPARENTID'
-      Size = 80
+      Size = 44
+    end
+    object cdsExistsListFPermID: TStringField
+      FieldName = 'FPermID'
+      Size = 44
     end
     object cdsExistsListfname_l2: TWideStringField
       FieldName = 'fname_l2'
-      Size = 80
+      ReadOnly = True
+      Size = 255
     end
-    object cdsExistsListFimgIndex: TFloatField
+    object cdsExistsListFimgIndex: TIntegerField
       FieldName = 'FimgIndex'
+      ReadOnly = True
     end
     object cdsExistsListftype: TIntegerField
       FieldName = 'ftype'

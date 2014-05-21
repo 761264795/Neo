@@ -2120,7 +2120,7 @@ begin
       ShowMsg(Self.Handle,'价格类型不能为空',[]);
       Exit;
     end;
-    if MessageBox(Handle, PChar('确认生成配货单?'), 'I3提示', MB_YESNO) = IDNO then Exit;
+    if MessageBox(Handle, PChar('确认生成配货单?'), 'GA集团ERP提示', MB_YESNO) = IDNO then Exit;
     CreateBill(cdsDetailDataList);
   end;
 

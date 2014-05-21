@@ -1137,7 +1137,7 @@ procedure TOrderAllocateFrm.btn_AlterClick(Sender: TObject);
 begin
   inherited;
   if not CHK_Data then Exit;
-  if MessageBox(Handle, PChar('确认调拨?'), 'I3提示', MB_YESNO) = IDNO then Exit;
+  if MessageBox(Handle, PChar('确认调拨?'), 'GA集团ERP提示', MB_YESNO) = IDNO then Exit;
   CreateBill;
 end;
 
@@ -1369,7 +1369,7 @@ begin
         cdsNotPack.EmptyDataSet;
         cdsPack.EmptyDataSet;
       end;
-      if MessageBox(Handle, PChar('订单调拨提交成功！产生新的销售订单号为:'+cdsmaster.fieldbyname('fnumber').AsString+'是否打开单据(Y/N)?'), 'I3提示', MB_YESNO) = IDNO then Exit;
+      if MessageBox(Handle, PChar('订单调拨提交成功！产生新的销售订单号为:'+cdsmaster.fieldbyname('fnumber').AsString+'是否打开单据(Y/N)?'), 'GA集团ERP提示', MB_YESNO) = IDNO then Exit;
       //打开单据
       tmpEditForm :=TEditFormPar.Create;
       tmpEditForm.BillFID := cdsmaster.fieldbyname('fid').AsString;

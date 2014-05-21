@@ -11,7 +11,7 @@ inherited BatchAlterOrderColorFrm: TBatchAlterOrderColorFrm
   object Panel1: TPanel [0]
     Left = 0
     Top = 0
-    Width = 981
+    Width = 989
     Height = 41
     Align = alTop
     Color = 16511980
@@ -34,8 +34,8 @@ inherited BatchAlterOrderColorFrm: TBatchAlterOrderColorFrm
   object Panel2: TPanel [1]
     Left = 0
     Top = 41
-    Width = 981
-    Height = 535
+    Width = 989
+    Height = 542
     Align = alClient
     BevelOuter = bvNone
     Color = 16511980
@@ -43,13 +43,13 @@ inherited BatchAlterOrderColorFrm: TBatchAlterOrderColorFrm
     object TPanel
       Left = 0
       Top = 0
-      Width = 981
+      Width = 989
       Height = 36
       Align = alTop
       Color = 16511980
       TabOrder = 0
       DesignSize = (
-        981
+        989
         36)
       object btn_Query: TcxButton
         Left = 800
@@ -159,14 +159,14 @@ inherited BatchAlterOrderColorFrm: TBatchAlterOrderColorFrm
     end
     object pl_Create: TPanel
       Left = 0
-      Top = 482
-      Width = 981
+      Top = 489
+      Width = 989
       Height = 53
       Align = alBottom
       Color = 16511980
       TabOrder = 1
       DesignSize = (
-        981
+        989
         53)
       object btn_Alter: TcxButton
         Left = 747
@@ -203,14 +203,14 @@ inherited BatchAlterOrderColorFrm: TBatchAlterOrderColorFrm
     object EntryPage: TcxPageControl
       Left = 0
       Top = 36
-      Width = 981
-      Height = 446
+      Width = 989
+      Height = 453
       ActivePage = cxTabSheet1
       Align = alClient
       Style = 10
       TabOrder = 2
-      ClientRectBottom = 446
-      ClientRectRight = 981
+      ClientRectBottom = 453
+      ClientRectRight = 989
       ClientRectTop = 18
       object cxTabSheet1: TcxTabSheet
         Caption = #38144#21806#35746#21333#25968#25454
@@ -218,8 +218,8 @@ inherited BatchAlterOrderColorFrm: TBatchAlterOrderColorFrm
         object cxGrid1: TcxGrid
           Left = 0
           Top = 23
-          Width = 981
-          Height = 405
+          Width = 989
+          Height = 412
           Align = alClient
           TabOrder = 0
           LookAndFeel.Kind = lfOffice11
@@ -335,7 +335,7 @@ inherited BatchAlterOrderColorFrm: TBatchAlterOrderColorFrm
         object Panel3: TPanel
           Left = 0
           Top = 0
-          Width = 981
+          Width = 989
           Height = 23
           Align = alTop
           BevelOuter = bvNone
@@ -378,8 +378,8 @@ inherited BatchAlterOrderColorFrm: TBatchAlterOrderColorFrm
           Style.Font.Style = []
           Style.IsFontAssigned = True
           TabOrder = 0
-          Height = 428
-          Width = 981
+          Height = 435
+          Width = 989
         end
       end
     end

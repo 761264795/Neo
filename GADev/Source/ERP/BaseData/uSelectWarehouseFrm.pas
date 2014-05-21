@@ -82,22 +82,32 @@ begin
     longNumber:=Trim(adsTree.FieldByName('flongnumber').AsString);
     valList.BeginUpdate;
     if _IsEdit then
-    _sqlList:=' select  case A.FWhState when ''0'' then ''未审核'' when ''1'' then ''审核'' when ''2'' then ''禁用'' else null end as 状态,'
-             +' A.FID,a.fnumber,a.fname_l2, stgunit.fname_l2 as 所属机构,shopCst.fname_l2 as 对应商场,'
-             +' srank.fname_l2 as 店铺等级,saleag.fname_l2 as 销售区域,Area.fname_l2 区域,outCst.fname_l2 as 出库客户,'
-             +' baseunit.fname_l2 as 创建机构'
-             +' from T_DB_WAREHOUSE a left join t_org_storage b on a.fstorageorgid=b.fid '
-             +' left join t_org_storage stgunit on  stgunit.fid = a.fstorageorgid '      // --库存组织
-             +' left join T_BD_Customer shopCst on shopCst.Fid = a.CFCustomerID  '        // --对应商场
-             +' left join CT_SBA_ShopRank srank on srank.fid = a.CFShopRankID  '          // --店铺等级
-             +' left join CT_BD_Salesrange saleag on saleag.fid = a.CFSalesrangeID '      // --销售区域
-             +' left join T_BD_Area Area on Area.Fid = a.Cfareaid '                       // --区域
-             +' left join T_BD_Customer outCst on outCst.fid=a.CFIssueCustomerID  '       // --出库客户
-             +' left join t_org_baseunit baseunit on  baseunit.fid = a.FCreateBranch'     // --创建组织
-             +' where 1=1  '
+    begin
+      if chkTop100.Checked then
+        _sqlList:=' Select Top 100 '
+      else
+        _sqlList:=' Select ';
+      _sqlList:= _sqlList + ' case A.FWhState when ''0'' then ''未审核'' when ''1'' then ''审核'' when ''2'' then ''禁用'' else null end as 状态,'
+               +' A.FID,a.fnumber,a.fname_l2, stgunit.fname_l2 as 所属机构,shopCst.fname_l2 as 对应商场,'
+               +' srank.fname_l2 as 店铺等级,saleag.fname_l2 as 销售区域,Area.fname_l2 区域,outCst.fname_l2 as 出库客户,'
+               +' baseunit.fname_l2 as 创建机构'
+               +' from T_DB_WAREHOUSE a left join t_org_storage b on a.fstorageorgid=b.fid '
+               +' left join t_org_storage stgunit on  stgunit.fid = a.fstorageorgid '      // --库存组织
+               +' left join T_BD_Customer shopCst on shopCst.Fid = a.CFCustomerID  '        // --对应商场
+               +' left join CT_SBA_ShopRank srank on srank.fid = a.CFShopRankID  '          // --店铺等级
+               +' left join CT_BD_Salesrange saleag on saleag.fid = a.CFSalesrangeID '      // --销售区域
+               +' left join T_BD_Area Area on Area.Fid = a.Cfareaid '                       // --区域
+               +' left join T_BD_Customer outCst on outCst.fid=a.CFIssueCustomerID  '       // --出库客户
+               +' left join t_org_baseunit baseunit on  baseunit.fid = a.FCreateBranch'     // --创建组织
+               +' where 1=1  ';
+    end
     else
     begin
-      _sqlList:='select A.FID,a.fnumber,a.fname_l2  '
+      if chkTop100.Checked then
+        _sqlList:=' Select Top 100 '
+      else
+        _sqlList:=' Select ';
+      _sqlList:= _sqlList + ' A.FID,a.fnumber,a.fname_l2  '
              +' from T_DB_WAREHOUSE a left join t_org_storage b on a.fstorageorgid=b.fid'
              +' where A.FWhState = 1  '  ;
       if Self.FSelecttWhereStr <> '' then
@@ -108,7 +118,7 @@ begin
       if  mType=3 then _sqlList:=_sqlList+' and cfofficestock=1 ' ;
       if  mType=4 then _sqlList:=_sqlList+' and cfofficestock<>1 ' ;
     end;
-    if chkTop100.Checked then   _sqlList:=_sqlList+' and rownum <=100 ' ;
+
     if MgNumber<>'' then   _sqlList:=_sqlList+ ' and b.flongnumber like '''+longNumber+'%'''
     else
     begin
@@ -120,11 +130,16 @@ begin
     try
       CliDM.ConnectSckCon(ErrMsg);
       CliDM.Get_OpenSQL(adsList,_sqlList,ErrMsg);
+      if ErrMsg<>'' then
+      begin
+        showmsg(self.Handle,self.Caption + '资料查询出错:'+ErrMsg,[]);
+        Abort;
+      end;
     finally
       CliDM.CloseSckCon;
     end;
 
-    if  vallist.ColumnCount=0 then
+    if vallist.ColumnCount=0 then
     begin
       vallist.ClearItems;
       vallist.DataController.CreateAllItems();

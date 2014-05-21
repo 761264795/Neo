@@ -1,6 +1,6 @@
 
 unit FrmCliMain;
-//所有界面的底色值  $00FBF3EC,必需统一  
+//所有界面的底色值  $00FBF3EC,必需统一
 interface
 
 uses
@@ -10,12 +10,12 @@ uses
   ADODB, cxPC, dxStatusBar, 
   dxNavBarCollns, 
   ActnList, 
-  Menus, Buttons, 
-  
-  
+  Menus, Buttons,
+
+
   
   IdIcmpClient, 
-  
+
   cxDBRichEdit, cxDBEdit,
   cxLabel, cxGridLevel, 
   cxGridCustomTableView, cxGridDBTableView, cxGrid,
@@ -40,7 +40,8 @@ uses
   dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinPumpkin, dxSkinSeven,
   dxSkinSharp, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
   dxSkinSummer2008, dxSkinsDefaultPainters, dxSkinsdxStatusBarPainter,
-  dxSkinscxPCPainter, dxSkinsdxBarPainter,uI3BaseFrm;
+  dxSkinscxPCPainter, dxSkinsdxBarPainter,uI3BaseFrm, ComCtrls, RzListVw,
+  RzGroupBar, dxSkinValentine, dxSkinXmas2008Blue;
 
 
 type TFormClass   =   class   of   TListFormBaseFrm;
@@ -57,27 +58,11 @@ type
     ADOStoredProc1: TADOStoredProc;
     P_top: TPanel;
     dxStatusBar1: TdxStatusBar;
-    mainPg: TcxPageControl;
-    cxTabSheet1: TcxTabSheet;
     Image1: TImage;
-    Splitter1: TSplitter;
-    Image2: TImage;
-    Image3: TImage;
-    Image4: TImage;
-    Image5: TImage;
-    lb_retrun: TLabel;
-    lb_set: TLabel;
-    lb_help: TLabel;
-    lb_exit: TLabel;
     Image7: TImage;
     lblUserInifo: TLabel;
-    lb_DRP: TLabel;
     ImageList1: TImageList;
-    img_MsgBox: TImage;
-    lb_Lmsg: TLabel;
     Image11: TImage;
-    Image12: TImage;
-    lb_msg: TLabel;
     tmrDownData: TTimer;
     cdsQry: TClientDataSet;
     actList: TActionList;
@@ -88,77 +73,15 @@ type
     Pm_exit: TMenuItem;
     Saveimg: TSaveDialog;
     OpenDg: TOpenDialog;
-    P_MsgBox: TPanel;
-    lb_POS: TLabel;
     ICMP: TIdIcmpClient;
     tmrPing: TTimer;
-    cxGrid1: TcxGrid;
-    NMGrid: TcxGridDBTableView;
-    cxGrid1Level1: TcxGridLevel;
-    cxGrid2: TcxGrid;
-    OMGrid: TcxGridDBTableView;
-    cxGridLevel1: TcxGridLevel;
-    Panel2: TPanel;
-    cxLabel2: TcxLabel;
-    cxLabel3: TcxLabel;
-    Panel1: TPanel;
-    cxtxBT: TcxDBTextEdit;
-    cxLabel1: TcxLabel;
-    GroupBox3: TGroupBox;
-    cxGrid3: TcxGrid;
-    cxAttachmentlist: TcxGridDBTableView;
-    cxGridLevel2: TcxGridLevel;
-    GroupBox4: TGroupBox;
-    cxDBRichEdit1: TcxDBRichEdit;
-    pnl1: TPanel;
-    cxpgcntrl1: TcxPageControl;
-    cxtbsht1: TcxTabSheet;
-    cxtbsht2: TcxTabSheet;
-    img1: TImage;
-    pnl2: TPanel;
-    btn1: TcxButton;
-    pnl3: TPanel;
-    img2: TImage;
-    pnl6: TPanel;
-    img6: TImage;
-    spl1: TSplitter;
     dsNewMessage: TClientDataSet;
     dsOldMessage: TClientDataSet;
     dsNew: TDataSource;
     dsOld: TDataSource;
     dsATTACHMEN: TClientDataSet;
     ds_ATTACHMEN: TDataSource;
-    cxAttachmentlistColumn1: TcxGridDBColumn;
-    cxAttachmentlistColumn2: TcxGridDBColumn;
-    cxAttachmentlistColumn3: TcxGridDBColumn;
-    NMGridColumn1: TcxGridDBColumn;
-    NMGridColumn2: TcxGridDBColumn;
-    NMGridColumn3: TcxGridDBColumn;
-    NMGridColumn4: TcxGridDBColumn;
-    OMGridColumn1: TcxGridDBColumn;
-    OMGridColumn2: TcxGridDBColumn;
-    OMGridColumn3: TcxGridDBColumn;
-    OMGridColumn4: TcxGridDBColumn;
-    Image6: TImage;
-    Label1: TLabel;
     autoRefInfo: TTimer;
-    bt_send: TSpeedButton;
-    bt_rec: TSpeedButton;
-    bt_fFead: TSpeedButton;
-    bt_nRead: TSpeedButton;
-    cxtbsht3: TcxTabSheet;
-    LeftPanel: TPanel;
-    lb_RSM: TLabel;
-    Label10: TLabel;
-    lb_Database: TLabel;
-    Label14: TLabel;
-    lb_System: TLabel;
-    Label17: TLabel;
-    lb_report: TLabel;
-    Label19: TLabel;
-    lb_BI: TLabel;
-    Panel3: TPanel;
-    lb_ModelName: TLabel;
     dsMenu: TDataSource;
     cdsMenu: TClientDataSet;
     cdsMenuFID: TStringField;
@@ -166,11 +89,6 @@ type
     cdsMenuFNAME_L2: TWideStringField;
     cdsMenuFPARENTID: TStringField;
     cdsMenuFImgageIndex: TIntegerField;
-    TreeList: TcxDBTreeList;
-    cxDBTreeList1cxDBTreeListColumn1: TcxDBTreeListColumn;
-    cxDBTreeList1cxDBTreeListColumn2: TcxDBTreeListColumn;
-    cxDBTreeList1cxDBTreeListColumn3: TcxDBTreeListColumn;
-    cxDBTreeList1cxDBTreeListColumn6: TcxDBTreeListColumn;
     TreePm: TPopupMenu;
     N1: TMenuItem;
     cxStyleRepository1: TcxStyleRepository;
@@ -179,52 +97,20 @@ type
     cxStyle2: TcxStyle;
     cxStyleRepository3: TcxStyleRepository;
     cxStyle3: TcxStyle;
-    Image8: TImage;
     Image10: TImage;
     Txt_helpCode: TcxTextEdit;
     Image13: TImage;
-    dBegin: TcxDateEdit;
-    Dend: TcxDateEdit;
-    Panel4: TPanel;
-    Panel5: TPanel;
-    Panel6: TPanel;
-    Image14: TImage;
-    cxLabel4: TcxLabel;
-    Label2: TLabel;
-    Panel7: TPanel;
-    Panel8: TPanel;
-    Panel9: TPanel;
-    ScrollBox1: TScrollBox;
-    lb_Leftmove: TLabel;
-    lb_Rigthmove: TLabel;
     N_AddMain: TMenuItem;
-    lb_APP: TLabel;
-    cxGrid4: TcxGrid;
-    cxTX: TcxGridDBTableView;
-    cxGridLevel3: TcxGridLevel;
-    cxSMSPage: TcxPageControl;
-    cxTabSheet2: TcxTabSheet;
-    cxTabSheet3: TcxTabSheet;
-    btnRefresh: TSpeedButton;
-    cxMM_tel: TcxMemo;
-    cxMM_DES: TcxMemo;
     cdsTX: TClientDataSet;
     dsTX: TDataSource;
     cdsTXFID: TStringField;
     cdsTXFitem: TStringField;
     cdsTXFValue: TStringField;
-    cxTXFID: TcxGridDBColumn;
-    cxTXFitem: TcxGridDBColumn;
-    cxTXFValue: TcxGridDBColumn;
     cxStyleRepository4: TcxStyleRepository;
     cxStyle4: TcxStyle;
-    Label3: TLabel;
-    Label4: TLabel;
     pm_Down: TPopupMenu;
     N_DownFile: TMenuItem;
     SaveDg: TSaveDialog;
-    spt_AppEdit: TSpeedButton;
-    SpeedButton2: TSpeedButton;
     cdsMenufHelpCode: TWideStringField;
     dsFilterMenu: TDataSource;
     cdsFilterMenu: TClientDataSet;
@@ -234,25 +120,6 @@ type
     cxGridLevel4: TcxGridLevel;
     cxStyleRepository5: TcxStyleRepository;
     cxStyle5: TcxStyle;
-    pct_LeftPge: TcxPageControl;
-    ts_App: TcxTabSheet;
-    ts_report: TcxTabSheet;
-    ReportTree: TcxDBTreeList;
-    TreeListcxDBTreeListColumn2: TcxDBTreeListColumn;
-    TreeListcxDBTreeListColumn1: TcxDBTreeListColumn;
-    TreeListcxDBTreeListColumn3: TcxDBTreeListColumn;
-    TreeListcxDBTreeListColumn4: TcxDBTreeListColumn;
-    TreeListcxDBTreeListColumn5: TcxDBTreeListColumn;
-    TreeListcxDBTreeListColumn6: TcxDBTreeListColumn;
-    TreeListcxDBTreeListColumn7: TcxDBTreeListColumn;
-    TreeListcxDBTreeListColumn8: TcxDBTreeListColumn;
-    TreeListcxDBTreeListColumn9: TcxDBTreeListColumn;
-    TreeListcxDBTreeListColumn10: TcxDBTreeListColumn;
-    TreeListcxDBTreeListColumn11: TcxDBTreeListColumn;
-    TreeListcxDBTreeListColumn12: TcxDBTreeListColumn;
-    TreeListcxDBTreeListColumn13: TcxDBTreeListColumn;
-    TreeListcxDBTreeListColumn14: TcxDBTreeListColumn;
-    TreeListcxDBTreeListColumn15: TcxDBTreeListColumn;
     dsType: TDataSource;
     cdsType: TClientDataSet;
     cdsTypeID: TStringField;
@@ -271,6 +138,89 @@ type
     cdsTypeFLASTUPDATEUSERID: TStringField;
     cdsTypeFLONGNUMBER: TStringField;
     cdsQueryFind: TADODataSet;
+    cdsTxQuery: TClientDataSet;
+    StringField1: TStringField;
+    StringField2: TStringField;
+    StringField3: TStringField;
+    cdsMsgQuery: TClientDataSet;
+    MainMenu1: TMainMenu;
+    S1: TMenuItem;
+    H1: TMenuItem;
+    T1: TMenuItem;
+    N2: TMenuItem;
+    R1: TMenuItem;
+    X1: TMenuItem;
+    A1: TMenuItem;
+    N3: TMenuItem;
+    
+    cxComboBox1: TcxComboBox;
+    cxLabel5: TcxLabel;
+    mainPg: TcxPageControl;
+    cxTabSheet1: TcxTabSheet;
+    Splitter1: TSplitter;
+    LeftPanel: TPanel;
+    Panel3: TPanel;
+    Image15: TImage;
+    lb_ModelName: TLabel;
+    pct_LeftPge: TcxPageControl;
+    ts_App: TcxTabSheet;
+    TreeList: TcxDBTreeList;
+    cxDBTreeList1cxDBTreeListColumn1: TcxDBTreeListColumn;
+    cxDBTreeList1cxDBTreeListColumn2: TcxDBTreeListColumn;
+    cxDBTreeList1cxDBTreeListColumn3: TcxDBTreeListColumn;
+    cxDBTreeList1cxDBTreeListColumn6: TcxDBTreeListColumn;
+    ts_report: TcxTabSheet;
+    ReportTree: TcxDBTreeList;
+    TreeListcxDBTreeListColumn2: TcxDBTreeListColumn;
+    TreeListcxDBTreeListColumn1: TcxDBTreeListColumn;
+    TreeListcxDBTreeListColumn4: TcxDBTreeListColumn;
+    TreeListcxDBTreeListColumn3: TcxDBTreeListColumn;
+    TreeListcxDBTreeListColumn5: TcxDBTreeListColumn;
+    TreeListcxDBTreeListColumn6: TcxDBTreeListColumn;
+    TreeListcxDBTreeListColumn7: TcxDBTreeListColumn;
+    TreeListcxDBTreeListColumn8: TcxDBTreeListColumn;
+    TreeListcxDBTreeListColumn9: TcxDBTreeListColumn;
+    TreeListcxDBTreeListColumn10: TcxDBTreeListColumn;
+    TreeListcxDBTreeListColumn11: TcxDBTreeListColumn;
+    TreeListcxDBTreeListColumn12: TcxDBTreeListColumn;
+    TreeListcxDBTreeListColumn13: TcxDBTreeListColumn;
+    TreeListcxDBTreeListColumn14: TcxDBTreeListColumn;
+    TreeListcxDBTreeListColumn15: TcxDBTreeListColumn;
+    pnl1: TPanel;
+    spl1: TSplitter;
+    Panel5: TPanel;
+    Panel6: TPanel;
+    Image14: TImage;
+    spt_AppEdit: TSpeedButton;
+    cxLabel4: TcxLabel;
+    Panel9: TPanel;
+    lb_Leftmove: TLabel;
+    lb_Rigthmove: TLabel;
+    Label9: TLabel;
+    Label11: TLabel;
+    ImgBottom: TImage;
+    ScrollBox1: TScrollBox;
+    lb_APP: TLabel;
+    P_MsgBox: TPanel;
+    pnl3: TPanel;
+    img2: TImage;
+    lb_Lmsg: TLabel;
+    SpeedButton2: TSpeedButton;
+    Panel7: TPanel;
+    cxGrid4: TcxGrid;
+    cxTX: TcxGridDBTableView;
+    cxTXFID: TcxGridDBColumn;
+    cxTXFitem: TcxGridDBColumn;
+    cxTXFValue: TcxGridDBColumn;
+    cxGridLevel3: TcxGridLevel;
+    pnl6: TPanel;
+    img_MsgBox: TImage;
+    Label2: TLabel;
+    btnRefresh: TSpeedButton;
+    Panel8: TPanel;
+    cxSMSPage: TcxPageControl;
+    cxTabSheet3: TcxTabSheet;
+    cxMM_DES: TcxMemo;
     Panel10: TPanel;
     Label8: TLabel;
     lb_SyCount: TLabel;
@@ -278,16 +228,68 @@ type
     lb_SmsCount: TLabel;
     Label6: TLabel;
     lb_fcCount: TLabel;
+    cxTabSheet2: TcxTabSheet;
+    cxMM_tel: TcxMemo;
     Panel11: TPanel;
     Label7: TLabel;
-    cdsTxQuery: TClientDataSet;
-    StringField1: TStringField;
-    StringField2: TStringField;
-    StringField3: TStringField;
-    cdsMsgQuery: TClientDataSet;
-    Image15: TImage;
-    lbl1: TLabel;
-    procedure dxBarButton5Click(Sender: TObject);
+    Panel13: TPanel;
+    RzGroupBar1: TRzGroupBar;
+    RzGroup3: TRzGroup;
+    cxDBTreeList1: TcxDBTreeList;
+    cxDBTreeListColumn1: TcxDBTreeListColumn;
+    cxDBTreeListColumn2: TcxDBTreeListColumn;
+    cxDBTreeListColumn3: TcxDBTreeListColumn;
+    cxDBTreeListColumn4: TcxDBTreeListColumn;
+    RzGroup1: TRzGroup;
+    RzGroup2: TRzGroup;
+    RzGroup4: TRzGroup;
+    RzGroup6: TRzGroup;
+    cxTabSheet4: TcxTabSheet;
+    Panel2: TPanel;
+    cxpgcntrl1: TcxPageControl;
+    cxtbsht1: TcxTabSheet;
+    cxGrid1: TcxGrid;
+    NMGrid: TcxGridDBTableView;
+    NMGridColumn1: TcxGridDBColumn;
+    NMGridColumn2: TcxGridDBColumn;
+    NMGridColumn3: TcxGridDBColumn;
+    NMGridColumn4: TcxGridDBColumn;
+    cxGrid1Level1: TcxGridLevel;
+    Panel12: TPanel;
+    img6: TImage;
+    bt_send: TSpeedButton;
+    bt_rec: TSpeedButton;
+    bt_fFead: TSpeedButton;
+    bt_nRead: TSpeedButton;
+    cxLabel2: TcxLabel;
+    cxLabel3: TcxLabel;
+    btn1: TcxButton;
+    dBegin: TcxDateEdit;
+    Dend: TcxDateEdit;
+    cxtbsht2: TcxTabSheet;
+    cxGrid2: TcxGrid;
+    OMGrid: TcxGridDBTableView;
+    OMGridColumn1: TcxGridDBColumn;
+    OMGridColumn2: TcxGridDBColumn;
+    OMGridColumn3: TcxGridDBColumn;
+    OMGridColumn4: TcxGridDBColumn;
+    cxGridLevel1: TcxGridLevel;
+    cxtbsht3: TcxTabSheet;
+    Panel4: TPanel;
+    GroupBox4: TGroupBox;
+    cxDBRichEdit1: TcxDBRichEdit;
+    Panel1: TPanel;
+    img1: TImage;
+    cxtxBT: TcxDBTextEdit;
+    cxLabel1: TcxLabel;
+    GroupBox3: TGroupBox;
+    cxGrid3: TcxGrid;
+    cxAttachmentlist: TcxGridDBTableView;
+    cxAttachmentlistColumn1: TcxGridDBColumn;
+    cxAttachmentlistColumn2: TcxGridDBColumn;
+    cxAttachmentlistColumn3: TcxGridDBColumn;
+    cxGridLevel2: TcxGridLevel;
+    RzGroup5: TRzGroup;procedure dxBarButton5Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -299,9 +301,7 @@ type
     procedure Label5MouseEnter(Sender: TObject);
     procedure Label5MouseLeave(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure lb_msgClick(Sender: TObject);
     procedure lb_msgBoxExitClick(Sender: TObject);
-    procedure lb_exitClick(Sender: TObject);
     procedure lb_retrunClick(Sender: TObject);
     procedure mainPgCanClose(Sender: TObject; var ACanClose: Boolean);
     procedure mainPgDblClick(Sender: TObject);
@@ -318,7 +318,6 @@ type
     procedure lb_GDcountMouseEnter(Sender: TObject);
     procedure lb_GDcountMouseLeave(Sender: TObject);
     procedure btnRefreshClick(Sender: TObject);
-    procedure lb_helpClick(Sender: TObject);
     procedure actChangePassExecute(Sender: TObject);
     procedure actSysConfigExecute(Sender: TObject);
     procedure tmrPingTimer(Sender: TObject);
@@ -336,7 +335,6 @@ type
       ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
       AShift: TShiftState; var AHandled: Boolean);
     procedure mainNavFindEnvironClick(Sender: TObject);
-    procedure Label1Click(Sender: TObject);
     procedure autoRefInfoTimer(Sender: TObject);
     procedure bt_sendClick(Sender: TObject);
     procedure bt_recClick(Sender: TObject);
@@ -386,6 +384,14 @@ type
       ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
       AShift: TShiftState; var AHandled: Boolean);
     procedure dxStatusBar1Panels2DblClick(Sender: TObject);
+    procedure Label9Click(Sender: TObject);
+    procedure Label11Click(Sender: TObject);
+    procedure X1Click(Sender: TObject);
+    procedure R1Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure T1Click(Sender: TObject);
+    procedure RzGroup3Open(Sender: TObject);
+
   private
     bmp: Tbitmap;
     SizeNameList,WarList: TStringList;
@@ -627,7 +633,7 @@ begin
       UserInfo.Is_SysOnline := False;
       Gio.AddShow('连接POS服务器错误：'+E.Message);
       Self.OnActivate := nil;
-      MessageBox(Handle, PChar('连接服务器发生错误:'+e.Message), 'I3提示', MB_OK OR MB_ICONINFORMATION);
+      MessageBox(Handle, PChar('连接服务器发生错误:'+e.Message), 'GA集团ERP提示', MB_OK OR MB_ICONINFORMATION);
       Application.Terminate;
       Abort;
     end;
@@ -712,7 +718,7 @@ end;
 procedure TFMCliMain.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
-  CanClose := MessageBox(Handle, PChar('您确定要退出系统吗？'), 'I3提示', MB_YESNO or MB_ICONQUESTION) = IDYES;
+  CanClose := MessageBox(Handle, PChar('您确定要退出系统吗？'), 'GA集团ERP提示', MB_YESNO or MB_ICONQUESTION) = IDYES;
   AppSaveToIni;
 end;
 
@@ -774,7 +780,7 @@ begin
   onLine:=ExtractFilePath(paramstr(0)) + UserInfo.LoginUser+'\onLine\';
   if not DirectoryExists(onLine) then
   CreateDir(onLine);
-  TreeList.Images := CliDM.ImageList16;
+  cxDBTreeList1.Images := CliDM.ImageList16;
   dxStatusBar1.Images := CliDM.ImageList16;
   ReportTree.Images := CliDM.ImageList16;
   GetData(0);
@@ -783,7 +789,11 @@ begin
   Txt_helpCode.SelLength:=1;
   Txt_helpCode.SelStart :=1;
   setTreeListExp;
-  FromIinLoadAPP;                                 
+  RzGroupBar1
+  SetLevelVisible(0);
+  cxDBTreeList1.Parent := RzGroup3;
+  FromIinLoadAPP;
+  ImgBottom.Picture.LoadFromFile(userinfo.ExePath+'Img\mainbottom.jpg');
   GetTxItem;
   FilterGrid.Width := Image10.Width;
   FilterGrid.Left := Image10.Left;
@@ -797,19 +807,9 @@ begin
   P_MsgBox.Visible:=not P_MsgBox.Visible;
 end;
 
-procedure TFMCliMain.lb_msgClick(Sender: TObject);
-begin
-  AlterOrg;
-end;
-
 procedure TFMCliMain.lb_msgBoxExitClick(Sender: TObject);
 begin
   setMsgBox;
-end;
-
-procedure TFMCliMain.lb_exitClick(Sender: TObject);
-begin
-  Self.Close;
 end;
 
 procedure TFMCliMain.lb_retrunClick(Sender: TObject);
@@ -820,13 +820,14 @@ end;
 procedure TFMCliMain.mainPgCanClose(Sender: TObject;
   var ACanClose: Boolean);
 begin
-  if mainPg.ActivePageIndex=0 then  ACanClose:=False;
+  if (mainPg.ActivePageIndex=0) or (mainPg.ActivePageIndex=1) then
+    ACanClose:=False;
 end;
 
 procedure TFMCliMain.mainPgDblClick(Sender: TObject);
 begin
-  if mainPg.ActivePageIndex<>0 then
-  mainPg.ActivePage.Free;
+  if (mainPg.ActivePageIndex<>0) and (mainPg.ActivePageIndex<>1) then
+    mainPg.ActivePage.Free;
 end;
 
 procedure TFMCliMain.kingdeeURLClick(Sender: TObject);
@@ -1179,20 +1180,6 @@ begin
 
 end;
 
-procedure TFMCliMain.lb_helpClick(Sender: TObject);
-var toFileName:string;
-begin
-  toFileName:=ExtractFilePath(Application.ExeName)+'help.chm';
-  if not FileExists(toFileName)  then
-  begin
-    ShowMsg(Handle, '没有找到帮助文件(help.chm)!',[]);
-    Exit;
-  end;
-  shellexecute(handle,'open',pchar(toFileName),nil,nil,sw_shownormal);
-end;
-
-
-
 procedure TFMCliMain.actChangePassExecute(Sender: TObject);
 begin
   Change_UserPWD(UserInfo.LoginUser_FID); //修改密码
@@ -1463,12 +1450,6 @@ begin
   Show_Environ(0);
 end;
 
-procedure TFMCliMain.Label1Click(Sender: TObject);
-begin
-  Application.Terminate;
-  shellexecute(handle,'open',pchar(ExtractFilePath(paramstr(0)) + 'I3ERP.exe'),nil,nil,sw_shownormal);
-end;
-
 procedure TFMCliMain.autoRefInfoTimer(Sender: TObject);
 begin
   if Gio<>nil then Gio.AddShow('开始刷新主界面信息...');
@@ -1608,22 +1589,25 @@ begin
   begin
     pct_LeftPge.ActivePage := ts_App;
   end;
-  //分销
-  if TreeList.FindNodeByKeyValue('09B44D8B988C46B2BF01BF2CA6277124') <> nil then
-  TreeList.FindNodeByKeyValue('09B44D8B988C46B2BF01BF2CA6277124').Visible:= PageIndex=1;
+  //精品配件管理
+  if cxDBTreeList1.FindNodeByKeyValue('C027DCAB748446C8AD582A4BE1BD6643') <> nil then
+    cxDBTreeList1.FindNodeByKeyValue('C027DCAB748446C8AD582A4BE1BD6643').Visible:= PageIndex=2;
   //维修管理
-  if TreeList.FindNodeByKeyValue('FEF922B057E7499E9E6C0744614984EF') <> nil then
-  TreeList.FindNodeByKeyValue('FEF922B057E7499E9E6C0744614984EF').Visible:= PageIndex=0;
+  if cxDBTreeList1.FindNodeByKeyValue('579DB090DCA04F3A976C7BAF69BE5ACC') <> nil then
+    cxDBTreeList1.FindNodeByKeyValue('579DB090DCA04F3A976C7BAF69BE5ACC').Visible:= PageIndex=1;
+  //财务结算
+  if cxDBTreeList1.FindNodeByKeyValue('32F1BEC0545D47D9910326CD40D2A65E') <> nil then
+    cxDBTreeList1.FindNodeByKeyValue('32F1BEC0545D47D9910326CD40D2A65E').Visible:= PageIndex=3;
 
   //基础数据
-  if TreeList.FindNodeByKeyValue('93874DC7099E4EA6854FBA6B3A3FC247') <> nil then
-  TreeList.FindNodeByKeyValue('93874DC7099E4EA6854FBA6B3A3FC247').Visible:= PageIndex=2;
+  if cxDBTreeList1.FindNodeByKeyValue('93874DC7099E4EA6854FBA6B3A3FC247') <> nil then
+    cxDBTreeList1.FindNodeByKeyValue('93874DC7099E4EA6854FBA6B3A3FC247').Visible:= PageIndex=0;
   //系统平台
-  if TreeList.FindNodeByKeyValue('B5BDD16D4B51432BB25896E194F8CABD') <> nil then
-  TreeList.FindNodeByKeyValue('B5BDD16D4B51432BB25896E194F8CABD').Visible:= PageIndex=3;
-  //决策支持
-  if TreeList.FindNodeByKeyValue('A8B718420D9146C082FF61559509F3FC') <> nil then
-  TreeList.FindNodeByKeyValue('A8B718420D9146C082FF61559509F3FC').Visible:= PageIndex=5;
+  if cxDBTreeList1.FindNodeByKeyValue('B5BDD16D4B51432BB25896E194F8CABD') <> nil then
+    cxDBTreeList1.FindNodeByKeyValue('B5BDD16D4B51432BB25896E194F8CABD').Visible:= PageIndex=5;
+  //报表中心
+  if cxDBTreeList1.FindNodeByKeyValue('77B024488BF64CE5AEAEB46BC386D470') <> nil then
+    cxDBTreeList1.FindNodeByKeyValue('77B024488BF64CE5AEAEB46BC386D470').Visible:= PageIndex=4;
 
   mainPg.ActivePageIndex := 0;
 end;
@@ -1968,13 +1952,19 @@ begin
       Exit;
     end;
     //数据表导出导入
-    if (FromKey='AEBF3A69AD844C9A95AF226B79B1A116') then   //采购订单列表
+    if (FromKey='AEBF3A69AD844C9A95AF226B79B1A116') then   
     begin
       opt.Caption := title;
       CreatePageList(TExportMainFrm,opt) ;
       Exit;
     end;
 
+    if (FromKey='831DB7B482464BB791BFB10F87F36AF6') then    //采购订单列表
+    begin
+      opt.Caption := title;
+      CreatePageList(TFM_BillListPurOrder,opt) ;
+      Exit;
+    end;
     //------------------------维修管理  begin----------------------------------------
     if (Fromkey='B8A7F8006BE147789E286AEDE4E4061F') then
     begin
@@ -1987,7 +1977,20 @@ begin
     //------------------------维修管理- end -----------------------------------------------------
 
 
+    //采购入库单
+    if (FromKey = '0BC41C7E61F04D8F9B273E80A4EDCA4B') then
+    begin
+      opt.Caption := title;
+      CreatePageList(TFM_BillListPurInStock, opt);
+      Exit;
+    end;                                  
 
+    if (FromKey = 'C5D203C14BB74410A20372827F98C75E') then
+    begin
+//      opt.Caption := title;
+      CreateModalFrom(TFM_BillEditPurInStock);
+      Exit;
+    end;
 
     //----------------------------------------------------------------------------
     //报表相关
@@ -2044,54 +2047,64 @@ end;
 
 procedure TFMCliMain.setTreeListExp;
 begin
+  //精品配件管理
+  if cxDBTreeList1.FindNodeByKeyValue('C027DCAB748446C8AD582A4BE1BD6643') <> nil then
+    cxDBTreeList1.FindNodeByKeyValue('C027DCAB748446C8AD582A4BE1BD6643').Expanded:= True;
   //维修管理
-  if TreeList.FindNodeByKeyValue('7D94339304B74E3DA6558617175A6616') <> nil then
-  TreeList.FindNodeByKeyValue('7D94339304B74E3DA6558617175A6616').Expanded := True;
-    //分销
-  if TreeList.FindNodeByKeyValue('09B44D8B988C46B2BF01BF2CA6277124') <> nil then
-  TreeList.FindNodeByKeyValue('09B44D8B988C46B2BF01BF2CA6277124').Expanded := True;
-  
+  if cxDBTreeList1.FindNodeByKeyValue('579DB090DCA04F3A976C7BAF69BE5ACC') <> nil then
+    cxDBTreeList1.FindNodeByKeyValue('579DB090DCA04F3A976C7BAF69BE5ACC').Expanded:= True;
+  //财务结算
+  if cxDBTreeList1.FindNodeByKeyValue('32F1BEC0545D47D9910326CD40D2A65E') <> nil then
+    cxDBTreeList1.FindNodeByKeyValue('32F1BEC0545D47D9910326CD40D2A65E').Expanded:= True;
+
   //基础数据
-  if TreeList.FindNodeByKeyValue('93874DC7099E4EA6854FBA6B3A3FC247') <> nil then
-  TreeList.FindNodeByKeyValue('93874DC7099E4EA6854FBA6B3A3FC247').Expanded := True;
+  if cxDBTreeList1.FindNodeByKeyValue('93874DC7099E4EA6854FBA6B3A3FC247') <> nil then
+    cxDBTreeList1.FindNodeByKeyValue('93874DC7099E4EA6854FBA6B3A3FC247').Expanded:= True;
   //系统平台
-  if TreeList.FindNodeByKeyValue('B5BDD16D4B51432BB25896E194F8CABD') <> nil then
-  TreeList.FindNodeByKeyValue('B5BDD16D4B51432BB25896E194F8CABD').Expanded := True;
-  //报表分析
-  if TreeList.FindNodeByKeyValue('73AB11AEF29741A1B6289406D4C7C0FD') <> nil then
-  TreeList.FindNodeByKeyValue('73AB11AEF29741A1B6289406D4C7C0FD').Expanded := True;
-  //决策支持
-  if TreeList.FindNodeByKeyValue('A8B718420D9146C082FF61559509F3FC') <> nil then
-  TreeList.FindNodeByKeyValue('A8B718420D9146C082FF61559509F3FC').Expanded := True;
+  if cxDBTreeList1.FindNodeByKeyValue('B5BDD16D4B51432BB25896E194F8CABD') <> nil then
+    cxDBTreeList1.FindNodeByKeyValue('B5BDD16D4B51432BB25896E194F8CABD').Expanded:= True;
+  //报表中心
+  if cxDBTreeList1.FindNodeByKeyValue('77B024488BF64CE5AEAEB46BC386D470') <> nil then
+    cxDBTreeList1.FindNodeByKeyValue('77B024488BF64CE5AEAEB46BC386D470').Expanded:= True;
 end;
 
 procedure TFMCliMain.CreateSpeedButton(_Caption, _Frmkey: String;isADDSt:Boolean=True);
-var sbt : TSpeedButton;
-    leftWidth,i:Integer;
+var
+  sbt : TSpeedButton;
+  leftWidth,i,iCount:Integer;
+const
+  sptWidth = 90;
+  sptHeight = 90;
+  SpaceWidth = 10;
 begin
-  for i:=0 to ScrollBox1.ComponentCount -1 do
+  iCount := ScrollBox1.ComponentCount;
+  for i:=0 to iCount-1 do
   begin
     if ScrollBox1.Components[i].Name = 'ST_'+ _Frmkey then
     Exit;
   end;
   lb_APP.Visible := False;
-  leftWidth := ScrollBox1.ComponentCount*82;
+  leftWidth := ScrollBox1.ComponentCount*sptWidth;
   sbt := TSpeedButton.Create(ScrollBox1);
   sbt.Parent := ScrollBox1;
   if isADDSt then
-  sbt.Name :='ST_'+_Frmkey
+    sbt.Name :='ST_'+_Frmkey
   else
   sbt.Name :=_Frmkey;
-  sbt.Width := 82;
-  sbt.Height := 75;
+  sbt.Width := sptWidth;
+  sbt.Height := sptHeight;
   sbt.Top := 4;
   sbt.Left := leftWidth;
+//  if ScrollBox1.Width < sptWidth * iCount then
+  sbt.Top := (sptWidth * iCount div ScrollBox1.Width) * (sptHeight + SpaceWidth);
+  sbt.Left := (sptWidth * iCount mod ScrollBox1.Width) div sptWidth * (sptWidth + SpaceWidth);
   sbt.Layout := blGlyphTop;
-  if Length(_Caption)>10 then
-  sbt.Caption := Copy(_Caption,1,10)+'...'
+  if Length(_Caption)>12 then
+    sbt.Caption := Copy(_Caption,1,12)+'...'
   else
   sbt.Caption := _Caption;
   sbt.Flat := True;
+  sbt.Font.Name := '宋体';
   sbt.Font.Size := 9;
   sbt.Hint := _Caption;
   sbt.ShowHint := True;
@@ -2732,7 +2745,7 @@ end;
 procedure TFMCliMain.AlterOrg;
 var i,pCount:Integer;
 begin
-  if MessageBox(Handle, PChar('切换组织将首先关闭主控台以外的页签或窗口,您确认执行此操作?(Y/N)'), 'I3提示', MB_YESNO) = IDNO then Exit;
+  if MessageBox(Handle, PChar('切换组织将首先关闭主控台以外的页签或窗口,您确认执行此操作?(Y/N)'), 'GA集团ERP提示', MB_YESNO) = IDNO then Exit;
   CloseAllPopupWindows(Application.MainForm.Handle);
   if not IsAllClose(Application.MainForm.Handle) then
   begin
@@ -2740,11 +2753,11 @@ begin
     Exit;
   end;
   pCount := mainPg.PageCount -1;
-  for i := pCount  downto  1 do
+  for i := pCount  downto  2 do
   begin
     mainPg.Pages[i].Free;
   end;
-  with Select_Branch('','',-1) do
+  with Select_Branch('','',2) do
   begin
     if not IsEmpty() then
     begin
@@ -2762,6 +2775,64 @@ begin
   inherited;
   AlterOrg;
 end;
+procedure TFMCliMain.Label9Click(Sender: TObject);
+var
+  i:Integer;
+begin
+  for i:=1 to 40 do
+  begin
+    Sleep(1);
+    ScrollBox1.ScrollBy(0,-2);
+    Application.ProcessMessages;
+  end;
+end;
+
+procedure TFMCliMain.Label11Click(Sender: TObject);
+var
+  i:Integer;
+begin
+  for i:=1 to 41 do
+  begin
+    Sleep(1);
+    ScrollBox1.ScrollBy(0,2);
+    Application.ProcessMessages;
+  end;
+end;
+
+procedure TFMCliMain.X1Click(Sender: TObject);
+begin
+  Self.Close;
+end;
+
+procedure TFMCliMain.R1Click(Sender: TObject);
+begin
+  Application.Terminate;
+  shellexecute(handle,'open',pchar(Application.ExeName),nil,nil,sw_shownormal);
+end;
+
+procedure TFMCliMain.N3Click(Sender: TObject);
+var toFileName:string;
+begin
+  toFileName:=ExtractFilePath(Application.ExeName)+'help.chm';
+  if not FileExists(toFileName)  then
+  begin
+    ShowMsg(Handle, '没有找到帮助文件(help.chm)!',[]);
+    Exit;
+  end;
+  shellexecute(handle,'open',pchar(toFileName),nil,nil,sw_shownormal);
+end;
+
+procedure TFMCliMain.T1Click(Sender: TObject);
+begin
+  AlterOrg;
+end;
+
+procedure TFMCliMain.RzGroup3Open(Sender: TObject);
+begin
+  SetLevelVisible((sender as TRzGroup).Tag);
+  cxDBTreeList1.Parent := TRzGroup(Sender);
+end;
+
 initialization
  RegisterClasses([TIcon, TBitmap, TJPEGImage, TMetafile]);
 end.

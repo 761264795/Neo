@@ -25,14 +25,13 @@ type
     btn_Exit: TSpeedButton;
     dsUserRole: TDataSource;
     cdsuserRole: TClientDataSet;
-    cdsuserRoleFUSERID: TWideStringField;
-    cdsuserRoleFROLEID: TWideStringField;
-    cdsuserRoleFORGID: TWideStringField;
     cdsuserRoleCFRoleName: TStringField;
     cxgridUserRoleCFRoleName: TcxGridDBColumn;
     cdsTmpUser: TClientDataSet;
     cxgridUserRoleColumn1: TcxGridDBColumn;
-    cdsuserRoleFID: TWideStringField;
+    cdsuserRoleFUserID: TStringField;
+    cdsuserRoleFRoleID: TStringField;
+    cdsuserRoleFOrgID: TStringField;
     procedure btn_ExitClick(Sender: TObject);
     procedure btn_NewRowClick(Sender: TObject);
     procedure cdsuserRoleAfterInsert(DataSet: TDataSet);

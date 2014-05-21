@@ -11,7 +11,7 @@ inherited MallCompareFrm: TMallCompareFrm
   object Panel1: TPanel [0]
     Left = 0
     Top = 0
-    Width = 827
+    Width = 835
     Height = 41
     Align = alTop
     Color = 16511980
@@ -34,8 +34,8 @@ inherited MallCompareFrm: TMallCompareFrm
   object Panel2: TPanel [1]
     Left = 0
     Top = 41
-    Width = 827
-    Height = 484
+    Width = 835
+    Height = 491
     Align = alClient
     BevelOuter = bvNone
     Color = 16511980
@@ -43,13 +43,13 @@ inherited MallCompareFrm: TMallCompareFrm
     object TPanel
       Left = 0
       Top = 0
-      Width = 827
+      Width = 835
       Height = 36
       Align = alTop
       Color = 16511980
       TabOrder = 0
       DesignSize = (
-        827
+        835
         36)
       object btn_Query: TcxButton
         Left = 646
@@ -164,14 +164,14 @@ inherited MallCompareFrm: TMallCompareFrm
     end
     object pl_Create: TPanel
       Left = 0
-      Top = 431
-      Width = 827
+      Top = 438
+      Width = 835
       Height = 53
       Align = alBottom
       Color = 16511980
       TabOrder = 1
       DesignSize = (
-        827
+        835
         53)
       object cxGroupBox1: TcxGroupBox
         Left = 1
@@ -234,14 +234,14 @@ inherited MallCompareFrm: TMallCompareFrm
     object EntryPage: TcxPageControl
       Left = 0
       Top = 36
-      Width = 827
-      Height = 395
+      Width = 835
+      Height = 402
       ActivePage = cxTabSheet1
       Align = alClient
       Style = 10
       TabOrder = 2
-      ClientRectBottom = 395
-      ClientRectRight = 827
+      ClientRectBottom = 402
+      ClientRectRight = 835
       ClientRectTop = 18
       object cxTabSheet1: TcxTabSheet
         Caption = #21487#23545#36134#24215#38138
@@ -249,8 +249,8 @@ inherited MallCompareFrm: TMallCompareFrm
         object cxGrid1: TcxGrid
           Left = 0
           Top = 0
-          Width = 827
-          Height = 352
+          Width = 835
+          Height = 359
           Align = alClient
           TabOrder = 0
           LookAndFeel.Kind = lfOffice11
@@ -323,8 +323,8 @@ inherited MallCompareFrm: TMallCompareFrm
         end
         object Panel3: TPanel
           Left = 0
-          Top = 352
-          Width = 827
+          Top = 359
+          Width = 835
           Height = 25
           Align = alBottom
           Color = 16511980
@@ -382,8 +382,8 @@ inherited MallCompareFrm: TMallCompareFrm
           Style.Font.Style = []
           Style.IsFontAssigned = True
           TabOrder = 0
-          Height = 377
-          Width = 827
+          Height = 384
+          Width = 835
         end
       end
     end

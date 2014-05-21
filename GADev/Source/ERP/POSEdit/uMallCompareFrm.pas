@@ -289,7 +289,7 @@ begin
     ShowMsg(self.Handle,'没有数据可以生成对账单!     ',[]);
     Exit;
   end;
-  if  MessageBox(Handle, PChar('确认开始生成对账单？'), 'I3提示', MB_YESNO) = IDNO then Abort;
+  if  MessageBox(Handle, PChar('确认开始生成对账单？'), 'GA集团ERP提示', MB_YESNO) = IDNO then Abort;
   try
     btn_CreateBill.Enabled := False;
     EntryPage.ActivePageIndex := 1;

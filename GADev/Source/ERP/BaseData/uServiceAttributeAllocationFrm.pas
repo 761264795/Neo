@@ -588,7 +588,7 @@ begin
     ShowMsg(self.Handle,'一次性分配不能超过1000个机构！   ',[]);
     Exit;
   end;
-  if MessageBox(Handle, PChar('确认开始分配业务属性(Y/N)?'), 'I3提示', MB_YESNO) = IDNO then Exit;
+  if MessageBox(Handle, PChar('确认开始分配业务属性(Y/N)?'), 'GA集团ERP提示', MB_YESNO) = IDNO then Exit;
   try
     if cdsMaterial.State in DB.dsEditModes then cdsMaterial.Post;
     cdsMaterial.DisableControls;
