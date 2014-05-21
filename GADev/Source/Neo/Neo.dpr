@@ -305,9 +305,6 @@ begin
     Application.Title := 'GA集团ERP系统';
   Application.CreateForm(TCliDM, CliDM);
   Application.CreateForm(TFMCliMain, FMCliMain);
-  Application.CreateForm(TfrmPOSEdit1, frmPOSEdit1);
-  Application.CreateForm(TFrmPOSEdit, FrmPOSEdit);
-  Application.CreateForm(TRepairWOListFrm, RepairWOListFrm);
   Application.Run;
   end;
 end.
