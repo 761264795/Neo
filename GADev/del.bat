@@ -1,1 +1,1 @@
-Del /s/q *.dcu;*.ddp;*.~*;*.#??;*.$*;*.vss;*vcc;*.scc;*.vcx
+Del /s/q *.ddp;*.~*;*.#??;*.$*;*.vss;*vcc;*.scc;*.vcx
