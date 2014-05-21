@@ -1,20 +1,21 @@
 inherited RepairManFrm: TRepairManFrm
-  Left = 382
-  Top = 95
-  Width = 808
-  Height = 426
+  Top = 195
+  Width = 930
+  Height = 425
+  BorderIcons = [biSystemMenu]
   Caption = #36865#20462#20154
+  FormStyle = fsStayOnTop
   PixelsPerInch = 96
   TextHeight = 12
   inherited p_bt: TPanel
-    Top = 357
-    Width = 792
+    Top = 356
+    Width = 914
     Visible = False
   end
   object Panel1: TPanel [1]
     Left = 0
     Top = 53
-    Width = 792
+    Width = 914
     Height = 92
     Align = alTop
     TabOrder = 5
@@ -48,7 +49,7 @@ inherited RepairManFrm: TRepairManFrm
       Top = 61
       Caption = #22320#22336
     end
-    object cxDBTextEdit1: TcxDBTextEdit
+    object cxdbTxtNumber: TcxDBTextEdit
       Left = 72
       Top = 4
       DataBinding.DataField = 'FNumber'
@@ -56,7 +57,7 @@ inherited RepairManFrm: TRepairManFrm
       TabOrder = 6
       Width = 153
     end
-    object cxDBTextEdit2: TcxDBTextEdit
+    object cxdbTxtName: TcxDBTextEdit
       Left = 360
       Top = 4
       DataBinding.DataField = 'CFName'
@@ -64,7 +65,7 @@ inherited RepairManFrm: TRepairManFrm
       TabOrder = 7
       Width = 153
     end
-    object cxDBTextEdit3: TcxDBTextEdit
+    object cxdbTxtTel: TcxDBTextEdit
       Left = 548
       Top = 4
       DataBinding.DataField = 'CFTel'
@@ -72,7 +73,7 @@ inherited RepairManFrm: TRepairManFrm
       TabOrder = 8
       Width = 153
     end
-    object c350521198310159013: TcxDBTextEdit
+    object cxdbTxtIDNumber: TcxDBTextEdit
       Left = 72
       Top = 24
       DataBinding.DataField = 'CFIdNumber'
@@ -80,7 +81,7 @@ inherited RepairManFrm: TRepairManFrm
       TabOrder = 9
       Width = 153
     end
-    object cxDBTextEdit5: TcxDBTextEdit
+    object cxdbTxtEmail: TcxDBTextEdit
       Left = 360
       Top = 24
       DataBinding.DataField = 'CFEmail'
@@ -88,7 +89,7 @@ inherited RepairManFrm: TRepairManFrm
       TabOrder = 10
       Width = 153
     end
-    object cxDBMemo1: TcxDBMemo
+    object cxdbMemoAddr: TcxDBMemo
       Left = 72
       Top = 44
       DataBinding.DataField = 'CFAddr'
@@ -101,14 +102,13 @@ inherited RepairManFrm: TRepairManFrm
   object cxGrid1: TcxGrid [2]
     Left = 0
     Top = 145
-    Width = 792
-    Height = 212
+    Width = 914
+    Height = 211
     Align = alClient
     TabOrder = 6
     object cxGrid1DBTableView1: TcxGridDBTableView
-      OnDblClick = cxGrid1DBTableView1DblClick
       NavigatorButtons.ConfirmDelete = False
-      OnCanSelectRecord = cxGrid1DBTableView1CanSelectRecord
+      OnCellDblClick = cxGrid1DBTableView1CellDblClick
       OnFocusedRecordChanged = cxGrid1DBTableView1FocusedRecordChanged
       DataController.DataSource = dsList
       DataController.Summary.DefaultGroupSummaryItems = <>
@@ -139,7 +139,7 @@ inherited RepairManFrm: TRepairManFrm
       object cxdbColAddr: TcxGridDBColumn
         Caption = #22320#22336
         DataBinding.FieldName = 'CFAddr'
-        Width = 364
+        Width = 224
       end
       object cxdbColIDNumber: TcxGridDBColumn
         Caption = #36523#20221#35777#21495
@@ -166,6 +166,10 @@ inherited RepairManFrm: TRepairManFrm
     inherited actSaveBill: TAction
       OnExecute = actSaveBillExecute
     end
+    object actUndo: TAction
+      Caption = 'actUndo'
+      OnExecute = actUndoExecute
+    end
   end
   inherited dxBarManager1: TdxBarManager
     Categories.ItemsVisibles = (
@@ -177,6 +181,91 @@ inherited RepairManFrm: TRepairManFrm
       0
       53
       0)
+    inherited dxBarManager1Bar2: TdxBar
+      ItemLinks = <
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'barbtnNew'
+        end
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'dxBarbtnEdit'
+        end
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'btn_Save'
+        end
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'btn_DelBill'
+        end
+        item
+          Visible = True
+          ItemName = 'btn_undo'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarSubItem1'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxBarBtnFirst'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarBtnPrior'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarbtnNext'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarbtnlast'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxBarbtnUP'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarbtnDown'
+        end
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'dxBarbtnPull'
+        end
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'dxbarbtnPush'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'btn_Print'
+        end
+        item
+          BeginGroup = True
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'dxBarButton9'
+        end>
+    end
     inherited dxBarButton3: TdxBarButton
       Visible = ivNever
     end
@@ -258,8 +347,26 @@ inherited RepairManFrm: TRepairManFrm
     inherited btn_Print: TdxBarButton
       Visible = ivNever
     end
+    object dxBarButton1: TdxBarButton
+      Caption = 'New Button'
+      Category = 0
+      Hint = 'New Button'
+      Visible = ivAlways
+    end
+    object dxBarButton2: TdxBarButton
+      Caption = 'New Button'
+      Category = 0
+      Hint = 'New Button'
+      Visible = ivAlways
+    end
+    object btn_undo: TdxBarButton
+      Action = actUndo
+      Caption = #25764#28040
+      Category = 0
+    end
   end
   inherited cdsMaster: TClientDataSet
+    OnNewRecord = cdsMasterNewRecord
     Left = 96
     Top = 104
     object cdsMasterFNumber: TWideStringField
@@ -361,6 +468,7 @@ inherited RepairManFrm: TRepairManFrm
     Top = 104
   end
   inherited cdsDetail: TClientDataSet
+    OnNewRecord = cdsDetailNewRecord
     Left = 264
     Top = 104
     object cdsDetailFSeq: TIntegerField

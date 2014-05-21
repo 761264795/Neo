@@ -493,7 +493,7 @@ uses FrmCliDM, FrmLogin, Pub_Fun, uPOSEditFrm,uDayBalanceFrm
   ,uOtherBillBaseEditFrm,uTicketRequisitionList,uTicketRequisition,uBillPromotion
   ,uMallCompareListFrm,uMallCompareFrm,uBatchCancelAllocationFrm,uBatchAlterOrderColorFrm
   ,uBatchCloseOrderFrm,uOrderAllocateFrm,uBillListPromtion,uRepairListFrm,uRepairEditFrm,
-  uBatchAddOrderMaterialFrm,uMaterDataSelectHelper,uRepairWOEditFrm;
+  uBatchAddOrderMaterialFrm,uMaterDataSelectHelper,uRepairWOEditFrm,uRepairWoListFrm;
 
 var RTL:TQueryThread;
 {$R *.dfm}
@@ -1965,11 +1965,16 @@ begin
       Exit;
     end;
     //------------------------Œ¨–ﬁπ‹¿Ì  begin----------------------------------------
-    if (Fromkey='B8A7F8006BE147789E286AEDE4E4061F') then
+    if (Fromkey='D78CE9D874144BAFBE1E772E8A87C119') then
     begin
       OpenOtherBillEditFrom(RepairWOEditFrm,TRepairWOEditFrm,tmpOtherEditForm) ;
       Exit;
+    end;
 
+    if Fromkey = '56C22177C2CD48BEA11904A9D63560D3' then
+    begin
+      opt.Caption := title;
+      CreatePageList(TRepairWOListFrm,opt)
     end;
 
 

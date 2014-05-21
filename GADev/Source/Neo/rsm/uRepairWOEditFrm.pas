@@ -11,9 +11,52 @@ uses
   cxDBLookupComboBox, cxCalc, cxMemo, cxCalendar, cxStyles, cxCustomData,
   cxFilter, cxData, cxDataStorage, cxDBData, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGridLevel, cxGridCustomView, cxGrid,
-  Menus, cxLookAndFeelPainters, cxButtons;
+  Menus, cxLookAndFeelPainters, cxButtons, dxSkinsCore, dxSkinBlack,
+  dxSkinBlue, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide,
+  dxSkinFoggy, dxSkinGlassOceans, dxSkiniMaginary, dxSkinLilian,
+  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMoneyTwins,
+  dxSkinOffice2007Black, dxSkinOffice2007Blue, dxSkinOffice2007Green,
+  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinPumpkin, dxSkinSeven,
+  dxSkinSharp, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
+  dxSkinSummer2008, dxSkinsDefaultPainters, dxSkinValentine,
+  dxSkinXmas2008Blue, dxSkinsdxBarPainter, dxSkinscxPCPainter;
 
 type
+  TOprtPermCls = class
+      oprtRetailLine: boolean; //零售行操作权限
+      oprtRepairLine: boolean; //维修行操作权限
+      OprtRetailItemspName: boolean; //操作配件行说明权限
+      oprtRetailPrice: boolean; //操作配件行价格
+      oprtRetailBelowCost:boolean; //配件低于成本价销售
+      oprtRepairTaxPrice: boolean; //操作维修行价格字段
+
+      constructor Create;
+      procedure GetPerm;
+      function hashPerm(permNum: string):Boolean;
+
+  end;
+
+  TDiscountRateCls = class
+    repairDiscountRate: Double;
+    retailDiscountRate: Double;
+
+    maxRepairDiscountRate: Double;
+    maxRetailDiscountRate: Double;
+
+    procedure GetDiscountRate;
+    procedure GetMaxDiscountRate;
+
+  end;
+  TRepairItemTxtCls = class
+    brandId:string;
+    brandName:string;
+    repairItemForTxtId:string;
+
+    constructor Create(brandId:string;brandName:string);
+    procedure GetRepairItemForTxt;
+
+  end;
+
   TRepairWOEditFrm = class(TOtherBillBaseEditFrm)
     panelHead: TPanel;
     cxlbl1: TcxLabel;
@@ -88,7 +131,6 @@ type
     cxdbColWipLineNo: TcxGridDBColumn;
     cxdbColIsDelete: TcxGridDBColumn;
     cxLabel6: TcxLabel;
-    cxTxtEngineNum: TcxTextEdit;
     cxLabel7: TcxLabel;
     cxLabel8: TcxLabel;
     cxLabel9: TcxLabel;
@@ -96,12 +138,7 @@ type
     cxLabel11: TcxLabel;
     cxLabel12: TcxLabel;
     cxLabel13: TcxLabel;
-    cxTxtOwner: TcxTextEdit;
-    cxTxtBrand: TcxTextEdit;
-    cxTxtSerise: TcxTextEdit;
-    cxTxtCompany: TcxTextEdit;
     cxLabel14: TcxLabel;
-    cxEditSupplier: TcxButtonEdit;
     cxdbMemoRemark: TcxDBMemo;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -254,14 +291,12 @@ type
     cxBtnlAllocateLine: TcxButton;
     cxBtnRemoveLine: TcxButton;
     cdsMasterCFGaBillStatusName: TStringField;
-    cxlkpcomboxRepairType: TcxLookupComboBox;
     cdsRepairWay: TClientDataSet;
     cdsRepairWayFNumber: TStringField;
     cdsRepairWayFName: TStringField;
     dsRepairWay: TDataSource;
     cxmemoRemarkList: TcxMemo;
     cdsDetailCFRepairPkgName: TWideStringField;
-    cdsDetailCFWName: TWideStringField;
     cdsDetailCFPersonName: TWideStringField;
     cdsDetailCFGiftDeptName: TWideStringField;
     cdsDetailCFSupplierName: TWideStringField;
@@ -430,6 +465,23 @@ type
     cdsMastercustomerAccountName: TWideStringField;
     cdsMasterbizPersonName: TWideStringField;
     cdsMastersupplierName: TWideStringField;
+    cxdbTxtEngineNum: TcxDBTextEdit;
+    cxdbTxtOwner: TcxDBTextEdit;
+    cxdbTxtBrand: TcxDBTextEdit;
+    cxdbTxtSerise: TcxDBTextEdit;
+    cxdbTxtCompany: TcxDBTextEdit;
+    cdsMasterFEngineNum: TWideStringField;
+    cdsMastercustomerName: TWideStringField;
+    cdsMasterbrandName: TWideStringField;
+    cdsMasterseriesName: TWideStringField;
+    cdsMastercompanyName: TWideStringField;
+    cdsMasterFPlateDate: TDateTimeField;
+    cxdblkpcmbxRepairType: TcxDBLookupComboBox;
+    cxdbEditSupplier: TcxDBButtonEdit;
+    cxdbColSettlementObject: TcxGridDBColumn;
+    cdsDetailCFWName: TWideStringField;
+    cdsMasterbrandNum: TWideStringField;
+    cdsDetailCFTypeCode: TWideStringField;
     procedure FormCreate(Sender: TObject);
     procedure actSaveBillExecute(Sender: TObject);
     procedure actDeleteExecute(Sender: TObject);
@@ -442,9 +494,6 @@ type
     procedure cxdbEditBizTypePropertiesButtonClick(Sender: TObject;
       AButtonIndex: Integer);
     procedure cxdbEditAccountCodePropertiesButtonClick(Sender: TObject;
-      AButtonIndex: Integer);
-    procedure cxlkpcomboxRepairTypePropertiesChange(Sender: TObject);
-    procedure cxEditSupplierPropertiesButtonClick(Sender: TObject;
       AButtonIndex: Integer);
     procedure cxEditItemSPPropertiesButtonClick(Sender: TObject;
       AButtonIndex: Integer);
@@ -466,8 +515,6 @@ type
       AButtonIndex: Integer);
     procedure cxdbColGiftDeptPropertiesButtonClick(Sender: TObject;
       AButtonIndex: Integer);
-    procedure cxdbColRepairWayPropertiesEditValueChanged(Sender: TObject);
-    procedure cxdbColRepairWayPropertiesChange(Sender: TObject);
     procedure cdsDetailBeforeDelete(DataSet: TDataSet);
     procedure cdsDetailBeforePost(DataSet: TDataSet);
     procedure cxdbColSupplierPropertiesButtonClick(Sender: TObject;
@@ -482,27 +529,75 @@ type
     procedure cdsMasterFSupplierIDChange(Sender: TField);
     procedure cxdbEditSenderPropertiesButtonClick(Sender: TObject;
       AButtonIndex: Integer);
+    procedure actEditExecute(Sender: TObject);
+    procedure cxdbEditSAKeyPress(Sender: TObject; var Key: Char);
+    procedure cxdblkpcmbxRepairTypePropertiesChange(Sender: TObject);
+    procedure cxdbEditSupplierPropertiesButtonClick(Sender: TObject;
+      AButtonIndex: Integer);
+    procedure cdsDetailCFWIDChange(Sender: TField);
+    procedure cdsDetailCFRepairPkgIDChange(Sender: TField);
+    procedure cdsDetailCFSupplierIDChange(Sender: TField);
+    procedure cdsDetailCFGiftDeptIDChange(Sender: TField);
+    procedure cdsDetailCFPersonIDChange(Sender: TField);
+    procedure cdsDetailCFRepairWayChange(Sender: TField);
+    procedure cxGrid1DBTableView1CustomDrawCell(
+      Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
+      AViewInfo: TcxGridTableDataCellViewInfo; var ADone: Boolean);
+    procedure cdsDetailCFQtyChange(Sender: TField);
+    procedure cxGrid1DBTableView1Editing(Sender: TcxCustomGridTableView;
+      AItem: TcxCustomGridTableItem; var AAllow: Boolean);
+    procedure cdsDetailCFPriceChange(Sender: TField);
+    procedure cdsDetailCFDiscountRateChange(Sender: TField);
+    procedure cdsDetailCFTaxPriceChange(Sender: TField);
+    procedure cdsDetailCFTaxAmountChange(Sender: TField);
+    procedure cdsDetailCFAmountChange(Sender: TField);
+    procedure cdsDetailCFTaxRateChange(Sender: TField);
+    procedure cxComboxTPropertiesChange(Sender: TObject);
+    procedure cxGrid1DBTableView1CellClick(Sender: TcxCustomGridTableView;
+      ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+      AShift: TShiftState; var AHandled: Boolean);
+    procedure cdsDetailCFIsCTChange(Sender: TField);
   private
     { Private declarations }
     procedure GetVehicleRepairRemarkList;
-    procedure DefaultValueForAddnew;
+    procedure AddLineForRepairItem(var DataSet:TClientDataSet);
+    procedure AddLineForMaterial(var DataSet: TClientDataSet);
+    procedure CalItemSpEntryAmount(var DataSet: TClientDataSet);
+    function GetColumnIndexByName(CXGridView: TcxGridDBTableView;FieldName:string):Integer;
+    function GetMaterialCost(materialId: string): Double;
+    function GetRepairItemWorkTimeQty(repairItemId: string):Double;
+    function GetWorkTimeStdPrice(brandID:string):Double;
+    function GetRelatedSp(repairItemId:String): TClientDataSet;
+    function CheckAllowMaxDiscount: Boolean;
+
+
   public
     { Public declarations }
      procedure Open_Bill(BillFID:string); override;      //打开单据编辑界面
      function ST_Save:Boolean;override;
      function Chk_Data: Boolean;
-
   end;
+
 
 var
   RepairWOEditFrm: TRepairWOEditFrm;
+  personID: string;
+  repairItemTxtCls: TRepairItemTxtCls;
+  oprtPermCls: TOprtPermCls;
+  discountrateCls: TDiscountRateCls;
+  userType:string;
+
 
 implementation
 
 {$R *.dfm}
 uses
-  FrmCliDM,Pub_Fun,uMaterDataSelectHelper, Math,uRepairManFrm;
+  FrmCliDM,Pub_Fun,uMaterDataSelectHelper, Math,uRepairManFrm,DateUtils,
+  StrUtils;
 procedure TRepairWOEditFrm.FormCreate(Sender: TObject);
+var
+  sql,errmsg: string;
+
 begin
   sBillTypeID := 'HM+nytJ+S7izjFHd2/madkY+1VI=';
   sBillFlag := 'RWO';
@@ -541,7 +636,17 @@ begin
   cdsGABillStatus.FieldByName('FName').AsString := '全部结算';
   cdsGABillStatus.Post;
 
+  sql := Format('select fpersonid from t_pm_user where fid=%s',[QuotedStr(UserInfo.LoginUser_FID)]);
+  personID :=  VarToStr(CliDM.Get_QueryReturn(sql,errmsg));
 
+  sql := Format('select CFUserType from T_PM_User where FID=%s',[QuotedStr(UserInfo.LoginUser_FID)]);
+  userType := VarToStr(CliDM.Get_QueryReturn(sql,errmsg));
+  if (userType ='') then
+  begin
+    ShowMessage('当前用户必须先设置账户类别,否则不能使用维修工单');
+    Abort;
+  end;
+  RepairWOEditFrm := Self;
 end;
 
 procedure TRepairWOEditFrm.Open_Bill(BillFID: string);
@@ -551,15 +656,15 @@ var OpenTables: array[0..3] of string;
     strsql : string;
     vehicleID: string;
 begin
-  BillFID := 'uRBA6d4u20qnmcybDElrtn6h9S0=';
+  //BillFID := 'uRBA6d4u20qnmcybDElrtn6h9S0=';
   strsql := ' select * from T_ATS_RepairWO where FID='+quotedstr(BillFID);
   OpenTables[0] := strsql;
 
   strsql := 'select a.*,aa.FName_l2 FCreatorName,ab.FName_l2 CFModifierName,ac.FName_l2 FAuditorName,'+
-            'b.FPlateNum,b.FVIN,b.FEngineNum,c.FName_l2 modelName, ' +
-            'd.fname_l2 customerName,e.fname_l2 brandName,f.FName_l2 seriesName,'+
+            'b.FPlateNum,b.FVIN,b.FEngineNum,b.FPlateDate,c.FName_l2 modelName, ' +
+            'd.fname_l2 customerName,e.fname_l2 brandName,e.FNumber brandNum,f.FName_l2 seriesName,'+
             'g.FName_l2 repairBizTypeName,h.FName_L2 saName,i.FName_l2 customerAccountName,' +
-            'j.FName_l2 bizPersonName,k.FName_L2 supplierName ' +
+            'j.FName_l2 bizPersonName,k.FName_L2 supplierName,l.FName_L2 companyName ' +
             'from T_ATS_RepairWO a ' +
             'left join t_pm_user aa on aa.fid=a.FCreatorID ' +
             'left join t_pm_user ab on ab.fid=a.FLastUpdateUserID ' +
@@ -574,6 +679,7 @@ begin
             'left join CT_RS_CustomerAccount i on i.fid=a.CFCustomerAccountI ' +
             'left join T_BD_Person j on j.FID=a.CFBizPersonID ' +
             'left join T_BD_Supplier k on k.FID=a.FSupplierID ' +
+            'left join T_ORG_Admin l on l.FID=a.FOrgUnitID ' +
             'where a.FID='+quotedstr(BillFID);
   OpenTables[1] := strsql;
 
@@ -581,7 +687,7 @@ begin
   OpenTables[2] := strsql;
 
   strsql := 'select a.*,b.FNumber CFRepairPkgNum,b.FName_l2 CFRepairPkgName, ' +
-        'c.FNumber CFWNum, c.FName_l2 CFWName,' +
+        'c.FNumber CFWNum, c.FName_l2 CFWName,c.CFTypeCode,' +
         'd.FNumber CFPersonNum,d.FName_L2 CFPersonName,' +
         'e.FNumber CFGiftDeptNum,e.FName_L2 CFGiftDeptName,' +
         'f.FNumber CFSupplierNum,f.FName_L2 CFSupplierName ' +
@@ -614,12 +720,13 @@ begin
   end;
   if BillFID='' then
   begin
+    BillStatus.IsEdit := True;
     try
       with cdsMaster do
       begin
         Append;
       end;
-      BillStatus.IsEdit := True
+
     except
       on E : Exception do
       begin
@@ -632,7 +739,33 @@ begin
     BillStatus.IsEdit := False;
   end;
 
+  if cdsMaster.FieldByName('FBrandID').AsString <> '' then
+    repairItemTxtCls := TRepairItemTxtCls.Create(cdsMaster.FieldByName('FBrandID').AsString,cdsMaster.FieldByName('brandName').AsString);
 
+  //获取相关操作权限
+  oprtPermCls := TOprtPermCls.Create;
+
+  //获取折扣率相关信息
+  discountrateCls := TDiscountRateCls.Create;
+  discountrateCls.GetMaxDiscountRate;
+
+  if (oprtPermCls.oprtRetailLine) and (not oprtPermCls.oprtRepairLine) then
+  begin
+    cxComboxT.Enabled := false;
+    cxComBoxT.Text := 'P';
+
+  end else if (not oprtPermCls.oprtRetailLine) and (oprtPermCls.oprtRepairLine) then
+  begin
+    cxComboxT.Enabled := false;
+    cxComBoxT.Text := 'L';
+  end else if (oprtPermCls.oprtRetailLine) and (oprtPermCls.oprtRepairLine) then
+  begin
+
+  end else
+  begin
+    cxComboxT.Enabled := false;
+    cxComBoxT.Text := '';
+  end;
 
   inherited;
 end;
@@ -739,21 +872,29 @@ begin
   with DataSet do
   begin
     FieldByName('FID').AsString := CliDM.GetEASSID('7EA1F52D');
-    FieldByName('FCREATETIME').AsDateTime := Now;
+    FieldByName('FCREATETIME').AsDateTime := CliDM.Get_ServerTime;
     FieldByName('FNUMBER').AsString := 'number001';//CliDM.GetSCMBillNum(sBillTypeID,UserInfo.Branch_Flag,sBillFlag,true,ErrMsg);
     FieldByName('CFGaBillStatus').AsInteger := 1;  //保存状态
     FieldByName('CFIsPrintedSettle').AsInteger := 0;
 
     FieldByName('FBIZDATE').AsDateTime := CliDM.Get_ServerTime;
     FieldByName('FCREATORID').AsString := UserInfo.LoginUser_FID;
+    FieldByName('FCreatorName').AsString := UserInfo.LoginUser_Name;
 
     FieldByName('FLASTUPDATEUSERID').AsString := UserInfo.LoginUser_FID;
     FieldByName('FLASTUPDATETIME').AsDateTime := CliDM.Get_ServerTime;
     FieldByName('FControlUnitID').AsString := UserInfo.FCONTROLUNITID;    //控制单元，从服务器获取
+    FieldByName('FOrgUnitID').AsString := UserInfo.Branch_ID;
+    FieldByName('companyName').AsString := userInfo.Branch_Name;
+    FieldByName('FSAID').AsString := personID;
+    FieldByName('CFBizPersonID').AsString := personID;
+    FieldByName('FComeTime').AsDateTime :=  CliDM.Get_ServerTime;
+    FieldByName('FIntendDeliveryTime').AsDateTime :=  IncHour(CliDM.Get_ServerTime,2);
+
 
 
   end;
-
+  {新增初始值}
   sql :=  Format('select fid from T_ATS_Vehicle where FOrgUnitID=%s and FPlateNum=%s',
         [QuotedStr(UserInfo.Branch_ID),QuotedStr('00001')]);
   tmpId :=  CliDM.Get_QueryReturn(sql,errmsg);
@@ -763,7 +904,6 @@ begin
     Abort;
   end;
   DataSet.FieldByName('fvehicleid').AsString := tmpId;
-  GetVehicleRepairRemarkList;
 
   sql := Format('select fid from CT_RS_RepairWOBizType where fnumber=%s',['0001']);
   tmpId := CliDM.Get_QueryReturn(sql,ErrMsg);
@@ -774,7 +914,16 @@ begin
   end;
   DataSet.FieldByName('CFRepairBizTypeID').AsString := tmpId;
 
-  cxlkpcomboxRepairType.ItemIndex := 0;
+  sql := Format('select fid from CT_RS_CustomerAccount where fnumber=%s and CFOrgUnitId=%s',[QuotedStr('C0000001'),QuotedStr(UserInfo.Branch_ID)]);
+  tmpId := CliDM.Get_QueryReturn(sql,ErrMsg);
+  if tmpId = '' then
+  begin
+    ShowMsg(Self.Handle,'未设置默认账户代码C0000001!  ',[]);
+    Abort;
+  end;
+  DataSet.FieldByName('CFCustomerAccountI').AsString := tmpId;
+
+  cxdblkpcmbxRepairType.ItemIndex := 0;
 
 end;
 
@@ -788,68 +937,13 @@ begin
   if cdsGABillStatus.Locate('FNumber',tmpID,[]) then
       DataSet.FieldByName('gaBillStatusName').AsString :=  cdsGABillStatus.FieldByName('FName').AsString;
 
-
-
-      // DataSet.FieldByName('CFPlateNum').AsString := 'abc';
-     // DataSet.FieldByName('FCompanyNumber').AsString := 'edf';
-  {
-  with DataSet do
-  begin
-    gabillstatus := FieldByName('CFGaBillStatus').AsString;
-    if (gabillstatus = '1') then FieldByName('CFGaBillStatusName').AsString := '未结算';
-
-    repairbiztypeId := FieldByName('CFRepairBizTypeID').AsString;
-    if repairbiztypeId = '' then
-    begin
-        FieldByName('CFRepairBizTypeName').AsString := '';
-    end
-    else
-    begin
-      sql := 'select fid,fname_l2,fnumber from CT_RS_RepairWOBizType where fid=' + QuotedStr(repairbiztypeId);
-      if not CliDM.Get_OpenSQL(STBaseEditDataSet,sql,errmsg) then
-      begin
-        ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
-        Self.Close;
-      end
-      else
-      begin
-         FieldByName('CFRepairBizTypeName').AsString := STBaseEditDataSet.FieldByName('fname_l2').AsString
-      end;
-    end;
-
-    tmpID := FieldByName('CFRepairBizTypeID').AsString;
-    if tmpID <> '' then
-    begin
-      sql := 'select fname_l2 from CT_RS_RepairWOBizType where fid=' + QuotedStr(tmpId);
-      FieldByName('CFRepairBizTypeName').AsString := CliDM.Get_QueryReturn(sql,errmsg);
-    end;
-    tmpID := FieldByName('CFCustomerAccountI').AsString;
-    if tmpID <> '' then
-    begin
-      sql := 'select fname_l2 from CT_RS_CustomerAccount where fid=' + QuotedStr(tmpId);
-      FieldByName('CFAccountCodeName').AsString := CliDM.Get_QueryReturn(sql,errmsg);
-    end;
-
-    //业务员
-    tmpID := FieldByName('CFBizPersonID').AsString;
-    if tmpID <> '' then
-    begin
-      sql := 'select fname_l2 from t_bd_person where fid=' + QuotedStr(tmpId);
-      FieldByName('CFBizPersonName').AsString := CliDM.Get_QueryReturn(sql,errmsg);
-    end;
-    
-  end;
-
-
-  //获取维修历史
- // GetVehicleRepairRemarkList;
-   }
 end;
 
 procedure TRepairWOEditFrm.cxdbEditPlateNumPropertiesButtonClick(
   Sender: TObject; AButtonIndex: Integer);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   with Select_BaseDataEx('车辆','','select top 100 fid,fnumber,fname_l2 from T_ATS_Vehicle where FOrgUnitID=' + QuotedStr('zfcAAAAAABjM567U')) do
   begin
     if not IsEmpty then
@@ -865,6 +959,7 @@ procedure TRepairWOEditFrm.cxdbEditVinPropertiesButtonClick(
   Sender: TObject; AButtonIndex: Integer);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   with Select_BaseDataEx('车辆','','select top 100 fid,fnumber,fname_l2 from T_ATS_Vehicle where FOrgUnitID=' + QuotedStr('zfcAAAAAABjM567U')) do
   begin
     if not IsEmpty then
@@ -880,6 +975,7 @@ procedure TRepairWOEditFrm.cxdbEditBizTypePropertiesButtonClick(
   Sender: TObject; AButtonIndex: Integer);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   with Select_BaseData('CT_RS_RepairWOBizType','业务类型','','') do
   begin
     if not IsEmpty then
@@ -895,6 +991,7 @@ procedure TRepairWOEditFrm.cxdbEditAccountCodePropertiesButtonClick(
   Sender: TObject; AButtonIndex: Integer);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   with Select_BaseData('CT_RS_CustomerAccount','账户代码','','') do
   begin
     if not IsEmpty then
@@ -907,35 +1004,6 @@ begin
 
 end;
 
-procedure TRepairWOEditFrm.cxlkpcomboxRepairTypePropertiesChange(
-  Sender: TObject);
-begin
-  inherited;
-  cxEditSupplier.Enabled := cxlkpcomboxRepairType.EditValue = '2';
-  cdsMaster.Edit;
-  cdsMaster.FieldByName('FSupplierID').AsString := '';
-  cdsMaster.Post;
-  cxEditSupplier.Text := '';
-
-end;
-
-procedure TRepairWOEditFrm.cxEditSupplierPropertiesButtonClick(
-  Sender: TObject; AButtonIndex: Integer);
-begin
-  inherited;
-  with Select_BaseDataEx('供应商','','select top 100 fid,fname_l2,fnumber from t_bd_supplier') do
-  begin
-    if not IsEmpty then
-    begin
-      cdsMaster.Edit;
-      cdsMaster.FieldByName('FSupplierID').AsString := FieldByName('FID').AsString;
-      cdsMaster.Post;
-      cxEditSupplier.Text := FieldByName('FName_l2').AsString;
-    end;
-  end;
-
-end;
-
 procedure TRepairWOEditFrm.cxEditItemSPPropertiesButtonClick(
   Sender: TObject; AButtonIndex: Integer);
 var
@@ -943,62 +1011,18 @@ var
     cdsTmp: TClientDataSet;
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
+
   sTType := cxComboxT.EditValue;
-
-  if sTType = 'L' then
+  if sTType = 'P' then
   begin
-    cdsTmp := Select_BaseDataEx('维修项目','','select top 100 fid,fname_l2,fnumber from t_ats_repairitem') ;
-  end
-  else if sTType = 'P' then    //物料
+    AddLineForMaterial(cdsDetail);
+  end else if sTType = 'L' then
   begin
-    cdsTmp :=  Select_BaseDataEx('配件','','select top 100 fid,fname_l2,fnumber from T_bd_material');
+    AddLineForRepairItem(cdsDetail);
   end;
-
-  with cdsTmp do
-  begin
-    if not IsEmpty then
-    begin
-      sItemSpID := FieldByName('FID').AsString;
-      sItemSpNum := FieldByName('FNumber').AsString;
-      sItemSpName := FieldByName('FName_l2').AsString;
-    end;
-  end;
-  cxEditItemSP.Text := sItemSpNum;
-
-  cdsDetail.Append;
-
-  cdsDetail.FieldByName('FID').AsString := CliDM.GetEASSID('FF1F0E1A');
-  cdsDetail.FieldByName('FSEQ').AsInteger := cdsDetail.RecordCount +1;
-  cdsDetail.FieldByName('FParentID').AsString := cdsMaster.FieldByName('FID').AsString;
-  cdsDetail.FieldByName('CFT').AsString := cxComboxT.EditText;
-  cdsDetail.FieldByName('CFItemspNum').AsString := sItemSpNum;
-  cdsDetail.FieldByName('CFItemspName').AsString := sItemSpName;
-
-  if (sTType = 'L') then
-  begin
-    cdsDetail.FieldByName('CFRepairItemID').AsString := sItemSpID;
-  end else if (sTType='P') then
-  begin
-    cdsDetail.FieldByName('CFMaterialID').AsString := sItemSpID;
-
-  end;
-  cdsDetail.FieldByName('CFQty').AsFloat := 1;
-  cdsDetail.FieldByName('CFPrice').AsFloat := 1;
-  cdsDetail.FieldByName('CFDiscountRate').AsInteger := 0;
-  cdsDetail.FieldByName('CFAmount').AsFloat := 0;
-  cdsDetail.FieldByName('CFI').AsString := 'X';
-  cdsDetail.FieldByName('CFISCT').AsInteger := 0;
-  cdsDetail.FieldByName('CFUnIssueQty').AsFloat := 1;
-  cdsDetail.FieldByName('CFIssueQty').AsFloat := 0;
-  cdsDetail.FieldByName('CFTaxRate').AsFloat := 17.00;
-
-  cdsDetail.FieldByName('CFCostAmount').AsFloat := 0;
-  cdsDetail.FieldByName('CFISDELETE').AsInteger := 0;
-  cdsDetail.FieldByName('CFTaxPrice').AsFloat := 1;
-  cdsDetail.FieldByName('CFTaxAmount').AsFloat := 1;
-
-
-  cdsDetail.Post;
+  if cdsDetail.State in db.dsEditModes then
+   cdsDetail.Post;
 
 
 end;
@@ -1006,8 +1030,8 @@ end;
 procedure TRepairWOEditFrm.cxBtnRemoveLineClick(Sender: TObject);
 begin
   inherited;
-
-    if not cdsDetail.IsEmpty then cdsDetail.Delete;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
+  if not cdsDetail.IsEmpty then cdsDetail.Delete;
 
 end;
 
@@ -1019,22 +1043,20 @@ var
 begin
   vehicleID := cdsMasterFVehicleID.Value;
   id := cdsMasterFID.Value;
-  if vehicleID <> '' then
-  begin
+
   cdsTmp := TClientDataSet.Create(nil);
-   sql := 'select CFRemark from CT_ATS_VehicleRepairRemark ' +
+  sql := 'select CFRemark from CT_ATS_VehicleRepairRemark ' +
           'where FParentID=' + QuotedStr(vehicleID) +
           ' and CFRepairWOID<>' + QuotedStr(id) +
           ' order by CFCreateTime desc';
-   if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+   if CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
    begin
       while not cdsTmp.Eof  do
       begin
         sRemarkList := sRemarkList + cdsTmp.FieldByName('CFRemark').AsString + ',';
         cdsTmp.Next;
       end
-   end
-  end;
+   end;
   cxmemoRemarkList.Text := sRemarkList;
 end;
 
@@ -1042,6 +1064,7 @@ procedure TRepairWOEditFrm.cxdbEditPlateNumKeyPress(Sender: TObject;
   var Key: Char);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   if Key <> #8 then  Key := #0
   else
   begin
@@ -1055,6 +1078,7 @@ procedure TRepairWOEditFrm.cxdbEditVinKeyPress(Sender: TObject;
   var Key: Char);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   if Key <> #8 then  Key := #0
   else
   begin
@@ -1068,6 +1092,7 @@ procedure TRepairWOEditFrm.cxdbEditBizTypeKeyPress(Sender: TObject;
   var Key: Char);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   if Key <> #8 then  Key := #0
   else
   begin
@@ -1081,6 +1106,7 @@ procedure TRepairWOEditFrm.cxdbEditSAPropertiesButtonClick(Sender: TObject;
   AButtonIndex: Integer);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   with Select_BaseData('t_bd_person','服务顾问','','') do
   begin
     if not IsEmpty then
@@ -1096,6 +1122,7 @@ procedure TRepairWOEditFrm.cxdbEditAccountCodeKeyPress(Sender: TObject;
   var Key: Char);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   if Key <> #8 then  Key := #0
   else
   begin
@@ -1109,6 +1136,7 @@ procedure TRepairWOEditFrm.cxdbEditBizPersonPropertiesButtonClick(
   Sender: TObject; AButtonIndex: Integer);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   with Select_BaseData('t_bd_person','业务员','','') do
   begin
     if not IsEmpty then
@@ -1124,6 +1152,7 @@ procedure TRepairWOEditFrm.cxdbEditBizPersonKeyPress(Sender: TObject;
   var Key: Char);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   if Key <> #8 then  Key := #0
   else
   begin
@@ -1137,12 +1166,12 @@ procedure TRepairWOEditFrm.cxdbColRepairPkgPropertiesButtonClick(
   Sender: TObject; AButtonIndex: Integer);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   with Select_BaseData('CT_RS_RepairPackage','套餐','','') do
   begin
     if not IsEmpty then
     begin
       cdsDetail.Edit;
-      cdsDetail.FieldByName('CFRepairPkgName').AsString := FieldByName('FName_l2').AsString;
       cdsDetail.FieldByName('CFRepairPkgID').AsString := FieldByName('FID').AsString;
       cdsDetail.Post;
     end;
@@ -1153,12 +1182,12 @@ procedure TRepairWOEditFrm.cxdbColWPropertiesButtonClick(Sender: TObject;
   AButtonIndex: Integer);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   with Select_BaseData('CT_RS_W','W','','') do
   begin
     if not IsEmpty then
     begin
       cdsDetail.Edit;
-      cdsDetail.FieldByName('CFWName').AsString := FieldByName('FName_l2').AsString;
       cdsDetail.FieldByName('CFWID').AsString := FieldByName('FID').AsString;
       cdsDetail.Post;
     end;
@@ -1169,12 +1198,12 @@ procedure TRepairWOEditFrm.cxdbColPersonPropertiesButtonClick(
   Sender: TObject; AButtonIndex: Integer);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   with Select_BaseData('T_BD_Person','维修技师','','') do
   begin
     if not IsEmpty then
     begin
       cdsDetail.Edit;
-      cdsDetail.FieldByName('CFPersonName').AsString := FieldByName('FName_l2').AsString;
       cdsDetail.FieldByName('CFPersonID').AsString := FieldByName('FID').AsString;
       cdsDetail.Post;
     end;
@@ -1185,37 +1214,16 @@ procedure TRepairWOEditFrm.cxdbColGiftDeptPropertiesButtonClick(
   Sender: TObject; AButtonIndex: Integer);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   with Select_BaseData('T_ORG_Admin','赠送部门','','') do
   begin
     if not IsEmpty then
     begin
       cdsDetail.Edit;
-      cdsDetail.FieldByName('CFGiftDeptName').AsString := FieldByName('FName_l2').AsString;
       cdsDetail.FieldByName('CFGiftDeptID').AsString := FieldByName('FID').AsString;
       cdsDetail.Post;
     end;
   end;
-end;
-
-procedure TRepairWOEditFrm.cxdbColRepairWayPropertiesEditValueChanged(
-  Sender: TObject);
-begin
-  inherited;
-  if not (cdsDetail.State in DB.dsEditModes) then
-   cdsDetail.Edit;
-  cdsDetail.FieldByName('CFRepairWay').AsString := cdsRepairWayEntry.FieldByName('FNumber').AsString;
-  cdsDetail.FieldByName('CFRepairWayName').AsString := cdsRepairWayEntry.FieldByName('FName').AsString;
-//  cdsDetail.Post;
-end;
-
-procedure TRepairWOEditFrm.cxdbColRepairWayPropertiesChange(
-  Sender: TObject);
-begin
-  inherited;
-  cdsDetail.Edit;
-  cdsDetail.FieldByName('CFRepairWay').AsString := cdsRepairWayEntry.FieldByName('FNumber').AsString;
-  cdsDetail.FieldByName('CFRepairWayName').AsString := cdsRepairWayEntry.FieldByName('FName').AsString;
-  cdsDetail.Post;
 end;
 
 procedure TRepairWOEditFrm.cdsDetailBeforeDelete(DataSet: TDataSet);
@@ -1251,6 +1259,7 @@ procedure TRepairWOEditFrm.cxdbColSupplierPropertiesButtonClick(
   Sender: TObject; AButtonIndex: Integer);
 begin
   inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
   with Select_BaseDataEx('供应商','','select top 100 fid,fname_l2,fnumber from t_bd_supplier') do
   begin
     if not IsEmpty then
@@ -1263,32 +1272,94 @@ begin
   end;
 end;
 
-procedure TRepairWOEditFrm.DefaultValueForAddnew;
-var
-  sql,errmsg: string;
-  vehicleId: string;
-
-begin
- 
-
-end;
 procedure TRepairWOEditFrm.cdsMasterFVehicleIDChange(Sender: TField);
 var
   vehicleid,sql,errmsg:string;
   cdsTmp: TClientDataSet;
+  repairMan,repairTel,repairAddr:string;
 begin
   inherited;
   cdsTmp := TClientDataSet.Create(nil);
-   vehicleid :=Sender.AsString;
-    if vehicleid <> '' then
+  vehicleid :=Sender.AsString;
+
+  sql := 'select a.FPlateNum,a.FVIN,a.FEngineNum,b.fname_l2 modelname,c.fname_l2 customerName,'+
+      'd.fname_l2 brandName,d.FNumber brandNum,e.fname_l2 seriesName,a.FPlateDate,a.FBrandID,a.FCustomerID from T_ATS_Vehicle a ' +
+        'left join t_ats_model b on b.fid=a.FModelID ' +
+        'left join t_ats_customer c on c.fid=a.FCustomerID  ' +
+        'left join t_ats_brand d on d.fid=a.FBrandID '+
+        'left join t_ats_series e on e.fid=a.FSeriesID ' +
+        'where a.FID=' + QuotedStr(vehicleid);
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+    ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
+    Self.Close;
+  end
+  else
+  begin
+      cdsMaster.FieldByName('FPlateNum').AsString := cdsTmp.FieldByName('FPlateNum').AsString;
+      cdsMaster.FieldByName('FVIN').AsString := cdsTmp.FieldByName('FVIN').AsString;
+      cdsMaster.FieldByName('CFFirstBookInDate').AsDateTime :=  cdsTmp.FieldByName('FPlateDate').AsDateTime;
+
+      cdsMaster.FieldByName('FBrandID').AsString := cdsTmp.FieldByName('FBrandID').AsString;
+      cdsMaster.FieldByName('brandName').AsString := cdsTmp.FieldByName('brandName').AsString;
+      cdsMaster.FieldByName('FCustomerID').AsString := cdsTmp.FieldByName('FCustomerID').AsString;
+      cdsMaster.FieldByName('customerName').AsString := cdsTmp.FieldByName('customerName').AsString;
+
+      cdsMaster.FieldByName('seriesName').AsString := cdsTmp.FieldByName('seriesName').AsString;
+      cdsMaster.FieldByName('modelname').AsString := cdsTmp.FieldByName('modelname').AsString;
+      cdsMaster.FieldByName('FEngineNum').AsString := cdsTmp.FieldByName('FEngineNum').AsString;
+
+      if cdsMaster.FieldByName('FBrandID').AsString <> '' then
+        repairItemTxtCls := TRepairItemTxtCls.Create(cdsTmp.FieldByName('FBrandID').AsString,cdsTmp.FieldByName('brandName').AsString);
+
+      GetVehicleRepairRemarkList;
+  end;
+
+  //初始上次里程数
+  sql := Format('select isnull(max(FMile),0)+1 as FMile from T_ATS_RepairWO where FVehicleID=%s',[QuotedStr(vehicleid)]);
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+    ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
+    Self.Close;
+  end
+  else
+  begin
+     cdsMaster.FieldByName('FMile').AsInteger := cdsTmp.FieldByName('FMile').AsInteger;
+  end;
+
+  //初始送修人
+  sql := Format('SELECT b.fid, b.fnumber, b.cfname, b.cftel, b.cfemail,b.cfidnumber,b.cfzipcode,b.cfaddr, a.fid fentryId ' +
+			 'FROM ct_rs_repairmanentry a ' +
+       'LEFT JOIN ct_rs_repairman b ON a.fparentid = b.fid ' +
+       'where a.cfvehicleid=%s',[QuotedStr(vehicleid)]);
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+    ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
+    Self.Close;
+  end
+  else
+  begin
+    if not cdsTmp.Eof then
     begin
-      sql := 'select a.FPlateNum,a.FVIN,a.FEngineNum,b.fname_l2 modelname,c.fname_l2 customerName,'+
-          'd.fname_l2 brandName,e.fname_l2 seriesName,a.FPlateDate from T_ATS_Vehicle a ' +
-	          'left join t_ats_model b on b.fid=a.FModelID ' +
-            'left join t_ats_customer c on c.fid=a.FCustomerID  ' +
-            'left join t_ats_brand d on d.fid=a.FBrandID '+
-            'left join t_ats_series e on e.fid=a.FSeriesID ' +
-            'where a.FID=' + QuotedStr(vehicleid);
+       repairMan := cdsTmp.FieldByName('cfname').AsString;
+       repairTel := cdsTmp.FieldByName('cftel').AsString;
+       repairAddr := cdsTmp.FieldByName('cfaddr').AsString;
+       cdsTmp.Next;
+       if  cdsTmp.Eof then
+       begin
+           cdsMaster.FieldByName('FRepairSender').AsString := repairMan;
+           cdsMaster.FieldByName('FTel').AsString := repairTel;
+           cdsMaster.FieldByName('CFCustomerInfo').AsString := repairMan + ' ' + repairTel + #13 + repairTel;
+       end else
+       begin
+           cxdbEditSenderPropertiesButtonClick(nil,0);
+
+       end;
+    end else
+    begin
+      sql := Format('select b.FNumber, b.FName_l2, b.FPhone, b.FEmail,b.FPapersNum,b.FZipCode,b.FAddress from T_ATS_Vehicle a '+
+					  'left join T_ATS_Customer b on a.FCustomerID=b.FID ' +
+					  'where a.FID=%s',[QuotedStr(vehicleid)]);
       if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
       begin
         ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
@@ -1296,17 +1367,23 @@ begin
       end
       else
       begin
-          cdsMaster.FieldByName('FPlateNum').AsString := cdsTmp.FieldByName('FPlateNum').AsString;
-          cdsMaster.FieldByName('FVIN').AsString := cdsTmp.FieldByName('FVIN').AsString;
-         // cdsMaster.FieldByName('FFirstBookInDate').AsString :=  cdsTmp.FieldByName('FPlateDate').AsString;
-         cdsMaster.FieldByName('modelname').AsString := cdsTmp.FieldByName('modelname').AsString;
-          cxTxtEngineNum.Text := cdsTmp.FieldByName('FEngineNum').AsString;
-          cxTxtOwner.Text := cdsTmp.FieldByName('customerName').AsString;
-          cxTxtBrand.Text := cdsTmp.FieldByName('brandName').AsString;
-          cxTxtSerise.Text := cdsTmp.FieldByName('seriesName').AsString;
-         GetVehicleRepairRemarkList;
+         repairMan := cdsTmp.FieldByName('FName_l2').AsString;
+         repairTel := cdsTmp.FieldByName('FPhone').AsString;
+         repairAddr := cdsTmp.FieldByName('FAddress').AsString;
+         if repairMan = '无名称' then repairMan := '现结客户';
+         if repairTel = '无名称' then repairTel := '';
+         cdsMaster.FieldByName('FRepairSender').AsString := repairMan;
+         cdsMaster.FieldByName('FTel').AsString := repairTel;
+         cdsMaster.FieldByName('CFCustomerInfo').AsString := repairMan + ' ' + repairTel + #13 + repairTel;
+
       end;
     end;
+
+  end;
+
+
+  cdsMaster.Post;
+  cdsMaster.Edit;
 
 end;
 
@@ -1376,18 +1453,20 @@ begin
   begin
       cdsMaster.FieldByName('saName').AsString := cdsTmp.FieldByName('FName_l2').AsString;
   end;
-
+  cdsMaster.Post;
+  cdsMaster.Edit;
 end;
 
-procedure TRepairWOEditFrm.cdsMasterCFCustomerAccountIChange(
-  Sender: TField);
+procedure TRepairWOEditFrm.cdsMasterCFCustomerAccountIChange(Sender: TField);
 var
     sql,errmsg: string;
     cdsTmp:TClientDataSet;
+    typeCode: string;
+    iType:String;
 begin
   inherited;
   cdsTmp := TClientDataSet.Create(nil);
-  sql := Format('select fname_l2 from CT_RS_CustomerAccount where fid=%s',[QuotedStr(sender.AsString)]);
+  sql := Format('select fname_l2,CFRepairSaleType,CFRetailSaleType,CFTypeCode from CT_RS_CustomerAccount where fid=%s',[QuotedStr(sender.AsString)]);
   if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
   begin
     ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
@@ -1395,8 +1474,51 @@ begin
   end
   else
   begin
-      cdsMaster.FieldByName('customerAccountName').AsString := cdsTmp.FieldByName('FName_l2').AsString;
+      if not cdsTmp.Eof then
+      begin
+        cdsMaster.FieldByName('customerAccountName').AsString := cdsTmp.FieldByName('FName_l2').AsString;
+
+        if userType = 'Repair' then
+        begin
+            cdsMaster.FieldByName('CFSaleType').AsString := cdsTmp.FieldByName('CFRepairSaleType').AsString;
+        end else if userType = 'Retail' then
+        begin
+            cdsMaster.FieldByName('CFSaleType').AsString := cdsTmp.FieldByName('CFRetailSaleType').AsString;
+        end;
+        typeCode := cdsTmp.FieldByName('CFTypeCode').AsString;
+        cdsDetail.First;
+        while not cdsDetail.Eof do
+        begin
+           iType := cdsDetail.FieldByName('CFI').AsString;
+           if iType = 'X' then
+           begin
+            cdsDetail.Next;
+            continue;
+          end;
+           
+           if typeCode = cdsDetail.FieldByName('CFCodeType').AsString then
+           begin
+              cdsDetail.FieldByName('CFI').AsString := 'I';
+           end else
+           begin
+             cdsDetail.FieldByName('CFI').AsString := 'H';
+           end;
+           
+
+          cdsDetail.Next;
+        end;
+
+
+
+      end;
+
+
+
   end;
+
+  cdsMaster.Post;
+  cdsMaster.Edit;
+
 
 end;
 
@@ -1417,7 +1539,8 @@ begin
   begin
       cdsMaster.FieldByName('bizPersonName').AsString := cdsTmp.FieldByName('FName_l2').AsString;
   end;
-
+  cdsMaster.Post;
+  cdsMaster.Edit;
 end;
 
 procedure TRepairWOEditFrm.cdsMasterFSupplierIDChange(Sender: TField);
@@ -1437,6 +1560,8 @@ begin
   begin
       cdsMaster.FieldByName('supplierName').AsString := cdsTmp.FieldByName('FName_l2').AsString;
   end;
+  cdsMaster.Post;
+  cdsMaster.Edit;
 end;
 
 procedure TRepairWOEditFrm.cxdbEditSenderPropertiesButtonClick(
@@ -1444,9 +1569,10 @@ procedure TRepairWOEditFrm.cxdbEditSenderPropertiesButtonClick(
 var
   rManFrm: TRepairManFrm;
   vehicleID: string;
-  cdsTmp: TClientDataSet;
+  repairMainInfo: TRepairManInfo;
 begin
   inherited;
+
   vehicleID := cdsMaster.FieldByName('fvehicleid').AsString;
   if vehicleID = '' then
   begin
@@ -1457,20 +1583,1021 @@ begin
     rManFrm := TRepairManFrm.Create(Self);
     rManFrm.QueryRepairManForVehicle(vehicleID);
     rManFrm.ShowModal;
-    cdsTmp := rManFrm.getRepairManInfo;
-    if cdsTmp =nil then
+    repairMainInfo := rManFrm.getRepairManInfo;
+    if repairMainInfo = nil then
     begin
-       //cdsMaster.FieldByName('FRepairSender').AsString := '';
-      // cdsMaster.FieldByName('FTel').AsString := '';
+
     end else
     begin
-      // cdsMaster.FieldByName('FRepairSender').AsString := cdsTmp.FieldByName('CFName').AsString;
-      // cdsMaster.FieldByName('FTel').AsString := cdsTmp.FieldByName('CFTel').AsString;
+       if cdsMaster.State in db.dsEditModes then
+       begin
+         cdsMaster.FieldByName('FRepairSender').AsString := repairMainInfo.name;
+         cdsMaster.FieldByName('FTel').AsString := repairMainInfo.tel;
+         cdsMaster.FieldByName('CFCustomerInfo').AsString := repairMainInfo.name + ' ' + repairMainInfo.tel + #13 + repairMainInfo.addr;
+       end;
+
     end;
 
   finally
     rManFrm.Free;
+    rManFrm := nil;
   end;
 end;
+
+procedure TRepairWOEditFrm.actEditExecute(Sender: TObject);
+begin
+  inherited;
+  cdsMaster.Edit;
+end;
+
+procedure TRepairWOEditFrm.cxdbEditSAKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
+  if Key <> #8 then  Key := #0
+  else
+  begin
+    cdsMaster.Edit;
+    cdsMaster.FieldByName('FSAID').AsString := '';
+    cdsMaster.Post;
+  end;
+end;
+
+procedure TRepairWOEditFrm.cxdblkpcmbxRepairTypePropertiesChange(
+  Sender: TObject);
+begin
+  inherited;
+  cxdbEditSupplier.Enabled := cxdblkpcmbxRepairType.EditValue = '2';
+  cdsMaster.Edit;
+  cdsMaster.FieldByName('FSupplierID').AsString := '';
+  cdsMaster.Post;
+end;
+
+procedure TRepairWOEditFrm.cxdbEditSupplierPropertiesButtonClick(
+  Sender: TObject; AButtonIndex: Integer);
+begin
+  inherited;
+  if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
+  with Select_BaseDataEx('供应商','','select top 100 fid,fname_l2,fnumber from t_bd_supplier') do
+  begin
+    if not IsEmpty then
+    begin
+      cdsMaster.Edit;
+      cdsMaster.FieldByName('FSupplierID').AsString := FieldByName('FID').AsString;
+      cdsMaster.Post;
+    end;
+  end;
+end;
+
+procedure TRepairWOEditFrm.AddLineForRepairItem(var DataSet:TClientDataSet);
+var
+  sql,errmsg:string;
+  cdsTmp,cdsRelatedSp:TClientDataSet;
+  workTimeQty,workTimeStdPrice,discountrate,initFactTaxPrice:Double;
+  taxPrice:Double;
+
+  repairItemEntryId:string;
+begin
+  cdsRelatedSp := TClientDataSet.Create(nil);
+
+  cdsTmp := Select_BaseDataEx('维修项目','',Format('select top 100 fid,fname_l2,fnumber,cfprice from t_ats_repairitem where FBrandID=%s and FOrgUnitId=%s',
+        [QuotedStr(cdsMaster.FieldByName('FBrandId').AsString),QuotedStr(userInfo.Branch_ID)])) ;
+  if cdsTmp.IsEmpty then Exit;
+  DataSet.Append;
+  cxEditItemSP.Text :=  cdsTmp.FieldByName('fnumber').AsString;
+  repairItemEntryId := CliDM.GetEASSID('FF1F0E1A');
+  DataSet.FieldByName('FID').AsString := repairItemEntryId;
+  DataSet.FieldByName('FSEQ').AsInteger := DataSet.RecordCount +1;
+  DataSet.FieldByName('FParentID').AsString := cdsMaster.FieldByName('FID').AsString;
+  DataSet.FieldByName('CFT').AsString := 'L';
+
+
+  DataSet.FieldByName('CFRepairItemID').AsString := cdsTmp.FieldByName('fid').AsString;
+  DataSet.FieldByName('CFItemspName').AsString := cdsTmp.FieldByName('fname_l2').AsString;
+  DataSet.FieldByName('CFItemspNum').AsString := cdsTmp.FieldByName('fnumber').AsString;
+  if DataSet.RecordCount >= 1 then
+  begin
+      cdsDetail_Save.First;
+      DataSet.FieldByName('CFWID').AsString := cdsDetail_Save.FieldByName('CFWID').AsString;
+    //  DataSet.FieldByName('CFSettlementObject').AsString :=  cdsDetail_Save.FieldByName('CFSettlementObject').AsString;
+  end;
+  workTimeQty := GetRepairItemWorkTimeQty(DataSet.FieldByName('CFRepairItemID').AsString);
+  DataSet.FieldByName('CFWorktimeQty').AsFloat := workTimeQty;
+  workTimeStdPrice := GetWorkTimeStdPrice(cdsMaster.FieldByName('FBrandID').AsString);
+  DataSet.FieldByName('CFWorktimePrice').AsFloat := workTimeStdPrice;
+  DataSet.FieldByName('CFWorktimeCost').AsFloat := workTimeQty * workTimeStdPrice;
+
+  DataSet.FieldByName('CFQty').AsFloat := 1;
+  DataSet.FieldByName('CFTaxRate').AsFloat := 17;
+  discountrateCls.GetDiscountRate;
+  DataSet.FieldByName('CFDiscountRate').AsFloat := discountrateCls.repairDiscountRate;
+  DataSet.FieldByName('CFI').AsString := 'I';
+  DataSet.FieldByName('CFRepairWay').AsString := cxdblkpcmbxRepairType.EditValue;
+  DataSet.FieldByName('CFSupplierID').AsString := cdsMaster.FieldByName('FSupplierID').AsString;
+
+  //带出关联配件
+  cdsRelatedSp := GetRelatedSp(DataSet.FieldByName('CFRepairItemID').AsString);
+
+  //默认Txt\DJQ
+  if DataSet.FieldByName('CFRepairItemID').AsString = repairItemTxtCls.repairItemForTxtId then
+  begin
+    DataSet.FieldByName('CFPrice').AsFloat := 0;
+  end else
+  begin
+    taxPrice := cdsTmp.FieldByName('CFPrice').AsFloat;
+    if taxPrice <> 0 then
+    begin
+       DataSet.FieldByName('CFPrice').AsFloat := Pub_Fun.USimpleRoundTo(taxPrice / 1.17);
+    end else
+    begin
+       if cdsRelatedSp.Eof then  //无关联配件时
+       begin
+          //未设参考售价时,默认39，否则为0
+          DataSet.FieldByName('CFPrice').AsFloat := 39;
+       end else
+       begin
+          DataSet.FieldByName('CFPrice').AsFloat := 0;
+       end;
+    end;
+  end;
+
+  if LeftStr(DataSet.FieldByName('CFItemspNum').AsString,4) = 'FDJQ' then
+  begin
+     DataSet.FieldByName('CFQty').AsFloat := -1;
+  end;
+
+  CalItemSpEntryAmount(DataSet);
+ // 关联配件时,带出关联配件
+
+  while not cdsRelatedSp.Eof do
+  begin
+    DataSet.Append;
+    DataSet.FieldByName('FID').AsString := CliDM.GetEASSID('FF1F0E1A');
+    DataSet.FieldByName('FSEQ').AsInteger := DataSet.RecordCount +1;
+    DataSet.FieldByName('FParentID').AsString := cdsMaster.FieldByName('FID').AsString;
+    DataSet.FieldByName('CFT').AsString := 'P';
+    DataSet.FieldByName('CFMaterialID').AsString := cdsRelatedSp.FieldByName('FMaterialID').AsString;
+    DataSet.FieldByName('CFItemspName').AsString := cdsRelatedSp.FieldByName('materialName').AsString;
+    DataSet.FieldByName('CFItemspNum').AsString := cdsRelatedSp.FieldByName('materialNum').AsString;
+
+    DataSet.FieldByName('CFQty').AsFloat := cdsRelatedSp.FieldByName('CFQty').AsFloat;
+    DataSet.FieldByName('CFPrice').AsFloat :=  cdsRelatedSp.FieldByName('CFPrice').AsFloat;
+    DataSet.FieldByName('CFDiscountRate').AsFloat :=  cdsRelatedSp.FieldByName('CFDiscountRate').AsFloat;
+    DataSet.FieldByName('CFTaxRate').AsFloat := 17;
+    DataSet.FieldByName('CFI').AsString := 'I';
+
+     //获取成本金额
+    DataSet.FieldByName('CFCostAmount').AsFloat := GetMaterialCost(DataSet.FieldByName('CFMaterialID').AsString);
+    DataSet.FieldByName('CFUnissueQty').AsFloat := DataSet.FieldByName('CFQty').AsFloat;
+
+    CalItemSpEntryAmount(DataSet);
+      //默认首次计算出初始的实际含税单价
+    taxprice := DataSet.FieldByName('CFTaxPrice').AsFloat;
+    discountrate := Dataset.fieldByName('CFDiscountRate').AsFloat;
+    initFactTaxPrice := Pub_Fun.USimpleRoundTo(taxprice * (1 - discountrate / 100.0));
+    DataSet.FieldByName('CFInitFactPrice').AsFloat := initFactTaxPrice;
+  
+    DataSet.FieldByName('CFRelateItemEntryId').AsString := repairItemEntryId;
+    if DataSet.RecordCount >= 1 then
+    begin
+      cdsDetail_Save.First;
+      DataSet.FieldByName('CFWID').AsString := cdsDetail_Save.FieldByName('CFWID').AsString;
+    //  DataSet.FieldByName('CFSettlementObject').AsString :=  cdsDetail_Save.FieldByName('CFSettlementObject').AsString;
+    end;
+    DataSet.FieldByName('CFRepairWay').AsString := cxdblkpcmbxRepairType.EditValue;
+    DataSet.FieldByName('CFSupplierID').AsString := cdsMaster.FieldByName('FSupplierID').AsString;
+    cdsRelatedSp.Next;
+  end;
+
+
+    //焦点放于数量
+  cxGrid1.SetFocus;
+  cxdbColQty.FocusWithSelection;
+  cxEditItemSP.Text := '';
+
+
+end;
+procedure TRepairWOEditFrm.AddLineForMaterial(var DataSet: TClientDataSet);
+var
+  sql,errmsg:string;
+  cdsTmp:TClientDataSet;
+  tmpIdx: Integer;
+  price,taxprice,discountrate,initFactTaxPrice: Double;
+begin
+  cdsTmp :=  Select_BaseDataEx('配件','','select top 100 fid,fname_l2,fnumber from T_bd_material');
+  if cdsTmp.IsEmpty then Exit;
+
+
+  DataSet.Append;
+  cxEditItemSP.Text :=  cdsTmp.FieldByName('fnumber').AsString;
+
+  DataSet.FieldByName('FID').AsString := CliDM.GetEASSID('FF1F0E1A');
+  DataSet.FieldByName('FSEQ').AsInteger := DataSet.RecordCount +1;
+  DataSet.FieldByName('FParentID').AsString := cdsMaster.FieldByName('FID').AsString;
+  DataSet.FieldByName('CFT').AsString := 'P';
+
+  DataSet.FieldByName('CFMaterialID').AsString := cdsTmp.FieldByName('fid').AsString;
+  DataSet.FieldByName('CFItemspName').AsString := cdsTmp.FieldByName('fname_l2').AsString;
+  DataSet.FieldByName('CFItemspNum').AsString := cdsTmp.FieldByName('fnumber').AsString;
+
+
+  if DataSet.RecordCount >= 1 then
+  begin
+      cdsDetail_Save.First;
+      DataSet.FieldByName('CFWID').AsString := cdsDetail_Save.FieldByName('CFWID').AsString;
+    //  DataSet.FieldByName('CFSettlementObject').AsString :=  cdsDetail_Save.FieldByName('CFSettlementObject').AsString;
+  end;
+
+  sql := Format('select isnull(FPrice,0) from T_BD_MaterialSales where FMaterialID=%s and FOrgUnit=%s',
+                [QuotedStr(cdsTmp.FieldByName('fid').AsString),QuotedStr(UserInfo.Branch_ID)]);
+  price := Double(Clidm.Get_QueryReturn(sql,errmsg));
+  DataSet.FieldByName('CFPrice').AsFloat := price;
+  DataSet.FieldByName('CFQty').AsFloat := 1;
+  DataSet.FieldByName('CFTaxRate').AsFloat := 17;
+  discountrateCls.GetDiscountRate;
+  DataSet.FieldByName('CFDiscountRate').AsFloat := discountrateCls.retailDiscountRate;
+  DataSet.FieldByName('CFI').AsString := 'I';
+
+  DataSet.FieldByName('CFRepairWay').AsString := cxdblkpcmbxRepairType.EditValue;
+  DataSet.FieldByName('CFSupplierID').AsString := cdsMaster.FieldByName('FSupplierID').AsString;
+
+
+  CalItemSpEntryAmount(DataSet);
+
+  //默认首次计算出初始的实际含税单价
+  taxprice := DataSet.FieldByName('CFTaxPrice').AsFloat;
+  discountrate := Dataset.fieldByName('CFDiscountRate').AsFloat;
+  initFactTaxPrice := Pub_Fun.USimpleRoundTo(taxprice * (1 - discountrate / 100.0));
+  DataSet.FieldByName('CFInitFactPrice').AsFloat := initFactTaxPrice;
+  //获取成本金额
+  DataSet.FieldByName('CFCostAmount').AsFloat := GetMaterialCost(DataSet.FieldByName('CFMaterialID').AsString);
+  //焦点放于数量
+  cxGrid1.SetFocus;
+  cxdbColQty.FocusWithSelection;
+  cxEditItemSP.Text := '';
+
+
+end;
+procedure TRepairWOEditFrm.CalItemSpEntryAmount(var DataSet: TClientDataSet);
+var
+  tType:string;
+  qty,price,taxprice,amount,taxamount,discountrate,discount,taxrate,tax,issueqty,unissueqyt:Double;
+  event: TFieldNotifyEvent;
+begin
+  tType := DataSet.FieldByName('CFT').AsString;
+  qty := DataSet.FieldByName('CFQty').AsFloat;
+  price := DataSet.FieldByName('CFPrice').AsFloat;
+  discountrate := DataSet.FieldByName('CFDiscountRate').AsFloat;
+  taxrate := DataSet.FieldByName('CFTaxRate').AsFloat;
+  issueqty := DataSet.FieldByName('CFIssueQty').AsFloat;
+
+  taxprice := Pub_Fun.USimpleRoundTo(price * (1 + taxrate/100.0));
+  amount := Pub_Fun.USimpleRoundTo(qty * price * (1 - discountrate/100.0));
+  taxamount :=  Pub_Fun.USimpleRoundTo(qty * taxprice * (1-discountrate/100.0));
+
+  event := DataSet.FieldByName('CFTaxPrice').OnChange;
+  DataSet.FieldByName('CFTaxPrice').OnChange := nil;
+  DataSet.FieldByName('CFTaxPrice').AsFloat := taxPrice;
+  DataSet.FieldByName('CFTaxPrice').OnChange := event;
+
+  event := DataSet.FieldByName('CFAmount').OnChange;
+  DataSet.FieldByName('CFAmount').OnChange := nil;
+  DataSet.FieldByName('CFAmount').AsFloat := amount;
+  DataSet.FieldByName('CFAmount').OnChange := event;
+
+  event := DataSet.FieldByName('CFTaxAmount').OnChange;
+  DataSet.FieldByName('CFTaxAmount').OnChange := nil;
+  DataSet.FieldByName('CFTaxAmount').AsFloat := taxamount;
+  DataSet.FieldByName('CFTaxAmount').OnChange := event;
+
+  if tType = 'P' then
+  begin
+     DataSet.FieldByName('CFUnIssueQty').AsFloat := qty - issueqty;
+  end else if tType = 'L' then
+  begin
+     DataSet.FieldByName('CFIssueQty').AsString := '';
+     DataSet.FieldByName('CFUnIssueQty').AsString := '';
+  end;
+
+end;
+function TRepairWOEditFrm.GetColumnIndexByName(CXGridView: TcxGridDBTableView; FieldName:string):Integer;
+var
+  i:integer;
+begin
+  for i := 0 to CXGridView.ColumnCount do
+  begin
+    if CXGridView.Columns[i].DataBinding.FieldName = FieldName then
+    begin
+      Result := -1;
+      Continue;
+      Exit;
+
+    end;
+  end;
+
+
+  Result := -1;
+end;
+procedure TRepairWOEditFrm.cdsDetailCFWIDChange(Sender: TField);
+var
+    sql,errmsg: string;
+    cdsTmp:TClientDataSet;
+begin
+  inherited;
+  cdsTmp := TClientDataSet.Create(nil);
+  sql := Format('select FNumber,CFSettleObject,CFTypeCode from CT_RS_W where fid=%s',[QuotedStr(sender.AsString)]);
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+    ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
+    Self.Close;
+  end
+  else
+  begin
+      cdsDetail.FieldByName('CFWNum').AsString := cdsTmp.FieldByName('FNumber').AsString;
+      cdsDetail.FieldByName('CFSettlementObject').AsString := cdsTmp.FieldByName('CFSettleObject').AsString;
+      cdsDetail.FieldByName('CFTypeCode').AsString := cdsTmp.FieldByName('CFTypeCode').AsString;
+  end;
+  cdsDetail.Post;
+  cdsDetail.Edit;
+end;
+
+procedure TRepairWOEditFrm.cdsDetailCFRepairPkgIDChange(Sender: TField);
+var
+    sql,errmsg: string;
+    cdsTmp:TClientDataSet;
+begin
+  inherited;
+  cdsTmp := TClientDataSet.Create(nil);
+  sql := Format('select FNumber from CT_RS_RepairPackage where fid=%s',[QuotedStr(sender.AsString)]);
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+    ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
+    Self.Close;
+  end
+  else
+  begin
+      cdsDetail.FieldByName('CFRepairPkgNum').AsString := cdsTmp.FieldByName('FNumber').AsString;
+  end;
+  cdsDetail.Post;
+  cdsDetail.Edit;
+end;
+
+procedure TRepairWOEditFrm.cdsDetailCFSupplierIDChange(Sender: TField);
+var
+    sql,errmsg: string;
+    cdsTmp:TClientDataSet;
+begin
+  inherited;
+  cdsTmp := TClientDataSet.Create(nil);
+  sql := Format('select fname_l2 from T_BD_Supplier where fid=%s',[QuotedStr(sender.AsString)]);
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+    ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
+    Self.Close;
+  end
+  else
+  begin
+      cdsDetail.FieldByName('CFSupplierName').AsString := cdsTmp.FieldByName('FName_l2').AsString;
+  end;
+  cdsDetail.Post;
+  cdsDetail.Edit;
+end;
+
+procedure TRepairWOEditFrm.cdsDetailCFGiftDeptIDChange(Sender: TField);
+var
+    sql,errmsg: string;
+    cdsTmp:TClientDataSet;
+begin
+  inherited;
+  cdsTmp := TClientDataSet.Create(nil);
+  sql := Format('select fname_l2 from T_ORG_Admin where fid=%s',[QuotedStr(sender.AsString)]);
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+    ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
+    Self.Close;
+  end
+  else
+  begin
+      cdsDetail.FieldByName('CFGiftDeptName').AsString := cdsTmp.FieldByName('FName_l2').AsString;
+  end;
+  cdsDetail.Post;
+  cdsDetail.Edit;
+end;
+
+procedure TRepairWOEditFrm.cdsDetailCFPersonIDChange(Sender: TField);
+var
+    sql,errmsg: string;
+    cdsTmp:TClientDataSet;
+begin
+  inherited;
+  cdsTmp := TClientDataSet.Create(nil);
+  sql := Format('select fname_l2 from T_BD_Person where fid=%s',[QuotedStr(sender.AsString)]);
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+    ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
+    Self.Close;
+  end
+  else
+  begin
+      cdsDetail.FieldByName('CFPersonName').AsString := cdsTmp.FieldByName('FName_l2').AsString;
+  end;
+  cdsDetail.Post;
+  cdsDetail.Edit;
+end;
+
+procedure TRepairWOEditFrm.cdsDetailCFRepairWayChange(Sender: TField);
+begin
+  inherited;
+
+  if Sender.AsString = '0' then
+  begin
+    cdsDetail.FieldByName('CFSupplierID').AsString := '';
+  end;
+  cdsDetail.Post;
+  cdsDetail.Edit;
+end;
+
+procedure TRepairWOEditFrm.cxGrid1DBTableView1CustomDrawCell(
+  Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
+  AViewInfo: TcxGridTableDataCellViewInfo; var ADone: Boolean);
+var
+  tType: String;
+begin
+  inherited;
+  tType := AViewInfo.GridRecord.Values[cxdbColT.Index];
+  if (AViewInfo.Item.Name = cxdbColUnIssueQty.Name) and (tType = 'P') then
+  begin
+     if AViewInfo.GridRecord.Values[cxdbColUnIssueQty.Index] = 0 then
+       ACanvas.Brush.Color := TColor(-16777201)
+     else
+        ACanvas.Brush.Color := clRed;
+
+  end
+
+end;
+
+procedure TRepairWOEditFrm.cdsDetailCFQtyChange(Sender: TField);
+var
+  event: TFieldNotifyEvent;
+  oldQty: double;
+  isCT: integer;
+begin
+  inherited;
+  event := Sender.OnChange;
+  Sender.OnChange := nil;
+  oldQty := Sender.OldValue;
+  CalItemSpEntryAmount(cdsDetail);
+  isCT := cdsDetail.FieldByName('CFISCT').AsInteger;
+  Sender.OnChange := event;
+  if isCT = 1 then   //拆退业务
+  begin
+     if Sender.AsFloat > 0 then
+     begin
+        ShowMessage('拆退数量不能大于0');
+        cdsDetail.Cancel;
+        abort;
+     end;
+  end else
+  begin
+
+  end;
+  cdsDetail.Post;
+  cdsDetail.Edit;
+end;
+
+procedure TRepairWOEditFrm.cxGrid1DBTableView1Editing(
+  Sender: TcxCustomGridTableView; AItem: TcxCustomGridTableItem;
+  var AAllow: Boolean);
+begin
+  inherited;
+  if AItem.Name = cxdbColSupplier.Name then
+  begin
+      AAllow :=  cdsDetail.FieldByName('CFRepairWay').AsString = '2';
+  end;
+end;
+
+procedure TRepairWOEditFrm.cdsDetailCFPriceChange(Sender: TField);
+begin
+  inherited;
+  CalItemSpEntryAmount(cdsDetail);
+  if not CheckAllowMaxDiscount then exit;
+  cdsDetail.Post;
+  cdsDetail.Edit;
+end;
+
+function TRepairWOEditFrm.CheckAllowMaxDiscount: boolean;
+var
+  event: TNotifyEvent;
+  discountRate,taxPrice,factPrice,initFactPrice,costAmount:double;
+  tType: string;
+  isCT : integer;
+begin
+  inherited;
+//  CalItemSpEntryAmount(cdsDetail);
+
+  discountRate := cdsDetailCFDiscountRate.AsFloat;
+  initFactPrice := cdsDetailCFInitFactPrice.AsFloat;
+  taxPrice := cdsDetailCFTaxPrice.AsFloat;
+  factPrice := Pub_Fun.USimpleRoundTo(taxPrice * (1-discountRate/100.0));
+  tType := cdsDetailCFT.AsString;
+  isCT := cdsDetailCFIsCT.AsInteger;
+  costAmount := cdsDetailCFCostAmount.AsFloat;
+  if ('L' = tType) and (initFactPrice <> factPrice) and (discountRate > discountrateCls.maxRepairDiscountRate) then
+  begin
+    ShowMessage(Format('折扣不能高于折扣权限[%n]！',[discountrateCls.maxRepairDiscountRate]));
+    cdsDetail.Cancel;
+    Result := false;
+    Exit;
+  end else if ('P' = tType) and (initFactPrice <> factPrice) and (discountRate > discountrateCls.maxRetailDiscountRate) then
+  begin
+    ShowMessage(Format('折扣不能高于折扣权限[%n]！',[discountrateCls.maxRetailDiscountRate]));
+    cdsDetail.Cancel;
+    Result := false;
+    Exit;
+  end;
+  if (tType = 'P') and (initFactPrice <>factPrice) and (isCT <> 1) and (factPrice < costAmount) then
+  begin
+
+    ShowMessage(Format('[%s]不能低于成本价出售！',[cdsDetailCFItemspName.AsString]));
+    cdsDetail.Cancel;
+    Result := false;
+    Exit;
+  end;
+  Result := true;
+end;
+
+procedure TRepairWOEditFrm.cdsDetailCFDiscountRateChange(Sender: TField);
+begin
+  inherited;
+  CalItemSpEntryAmount(cdsDetail);
+  if not CheckAllowMaxDiscount then exit;
+
+  cdsDetail.Post;
+  cdsDetail.Edit;
+
+end;
+
+procedure TRepairWOEditFrm.cdsDetailCFTaxPriceChange(Sender: TField);
+var
+  taxPrice,taxrate,price: double;
+  event:TFieldNotifyEvent;
+begin
+  inherited;
+  taxPrice := Sender.AsFloat;
+  taxrate := cdsDetail.FieldByName('CFTaxRate').AsFloat;
+  price := Pub_Fun.USimpleRoundTo(taxPrice / (1 + taxrate/100.0));
+
+  event := cdsDetail.FieldByName('CFPrice').OnChange;
+  cdsDetail.FieldByName('CFPrice').OnChange := nil;
+  cdsDetail.FieldByName('CFPrice').AsFloat := price;
+  cdsDetail.FieldByName('CFPrice').OnChange := event;
+
+  CalItemSpEntryAmount(cdsDetail);
+
+  if not CheckAllowMaxDiscount then exit;
+
+  event := cdsDetail.FieldByName('CFTaxPrice').OnChange;
+  cdsDetail.FieldByName('CFTaxPrice').OnChange := nil;
+  cdsDetail.FieldByName('CFTaxPrice').AsFloat := taxPrice;
+  cdsDetail.FieldByName('CFTaxPrice').OnChange := event;
+
+  cdsDetail.Post;
+  cdsDetail.Edit;
+end;
+
+procedure TRepairWOEditFrm.cdsDetailCFTaxAmountChange(Sender: TField);
+var
+  taxamount,price,taxrate,qty:Double;
+  event:TFieldNotifyEvent;
+begin
+  inherited;
+  taxamount := sender.AsFloat;
+  taxrate := cdsDetail.FieldByName('CFTaxRate').AsFloat;
+  qty := cdsDetail.FieldByName('CFQty').AsFloat;
+  price := Pub_Fun.USimpleRoundTo(taxamount / (qty * (1 + taxrate / 100.0)));
+
+  event := cdsDetail.FieldByName('CFPrice').OnChange;
+  cdsDetail.FieldByName('CFPrice').OnChange := nil;
+  cdsDetail.FieldByName('CFPrice').AsFloat := price;
+  cdsDetail.FieldByName('CFPrice').OnChange := event;
+  CalItemSpEntryAmount(cdsDetail);
+  if not CheckAllowMaxDiscount then exit;
+
+  event := cdsDetail.FieldByName('CFTaxAmount').OnChange;
+  cdsDetail.FieldByName('CFTaxAmount').OnChange := nil;
+  cdsDetail.FieldByName('CFTaxAmount').AsFloat := taxamount;
+  cdsDetail.FieldByName('CFTaxAmount').OnChange := event;
+
+  cdsDetail.Post;
+  cdsDetail.Edit;
+end;
+
+procedure TRepairWOEditFrm.cdsDetailCFAmountChange(Sender: TField);
+var
+  amount,price,taxrate,qty:Double;
+  event:TFieldNotifyEvent;
+begin
+  inherited;
+  amount := sender.AsFloat;
+  taxrate := cdsDetail.FieldByName('CFTaxRate').AsFloat;
+  qty := cdsDetail.FieldByName('CFQty').AsFloat;
+  price := Pub_Fun.USimpleRoundTo(amount / qty);
+
+  event := cdsDetail.FieldByName('CFPrice').OnChange;
+  cdsDetail.FieldByName('CFPrice').OnChange := nil;
+  cdsDetail.FieldByName('CFPrice').AsFloat := price;
+  cdsDetail.FieldByName('CFPrice').OnChange := event;
+
+  CalItemSpEntryAmount(cdsDetail);
+
+  event := cdsDetail.FieldByName('CFAmount').OnChange;
+  cdsDetail.FieldByName('CFAmount').OnChange := nil;
+  cdsDetail.FieldByName('CFAmount').AsFloat := amount;
+  cdsDetail.FieldByName('CFAmount').OnChange := event;
+
+ if not CheckAllowMaxDiscount then exit;
+
+
+  cdsDetail.Post;
+  cdsDetail.Edit;
+end;
+
+procedure TRepairWOEditFrm.cdsDetailCFTaxRateChange(Sender: TField);
+begin
+  inherited;
+  CalItemSpEntryAmount(cdsDetail);
+  if not CheckAllowMaxDiscount then exit;
+  cdsDetail.Post;
+  cdsDetail.Edit;
+end;
+
+
+
+function TRepairWOEditFrm.GetMaterialCost(materialID: String): Double;
+var
+  sql,errmsg:string;
+  cdsTmp: TClientDataSet;
+  costPrice: double;
+begin
+  cdsTmp := TClientDataSet.Create(nil);
+  if materialID = '' then
+  begin
+    Result := 0;
+    exit;
+  end;
+  sql := Format('select isnull(CFCostPrice,0) FCostPrice from T_BD_MaterialInventory where FMaterialID=%s and FOrgUnit=%s',
+                [QuotedStr(materialId),QuotedStr(UserInfo.Branch_ID)]);
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+    ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
+    Abort;
+  end;
+  if not cdsTmp.Eof then
+  begin
+    costPrice := cdsTmp.FieldByName('FCostPrice').AsFloat;
+  end else
+  begin
+    sql := Format('select isnull(FPrice,0) FPrice from T_BD_MaterialPurchasing where FMaterialID=%s and FOrgUnit=%s',
+                  [QuotedStr(materialId),QuotedStr(UserInfo.Branch_ID)]);
+    if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+    begin
+      ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
+      Abort;
+    end else
+    begin
+      if not cdsTmp.Eof then
+      begin
+        costPrice := cdsTmp.FieldByName('FPrice').AsFloat * 1.17;
+      end;
+    end;
+
+  end;
+  Result := costPrice;
+
+end;
+
+procedure TRepairWOEditFrm.cxComboxTPropertiesChange(Sender: TObject);
+begin
+  inherited;
+  cxEditItemSP.Text := '';
+end;
+
+function TRepairWOEditFrm.GetRepairItemWorkTimeQty(repairItemId: string): double;
+var
+  sql,errmsg:string;
+  cdsTmp: TClientDataSet;
+  stdWorkTime: Double;
+begin
+  cdsTmp := TClientDataSet.Create(nil);
+  if repairitemId = '' then
+  begin
+    Result := 0;
+    Exit;
+  end;
+  sql := Format('select isnull(FStdWorkTime,0) FStdWorkTime from T_ATS_RepairItemEntry where FParentId=%s',
+        [QuotedStr(repairItemId)]);
+
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+    ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
+    Abort;
+  end else
+  begin
+    if not cdsTmp.Eof then
+    begin
+      stdWorkTime := cdsTmp.FieldByName('FStdWorkTime').AsFloat;
+    end;
+  end;
+  Result := stdWorkTime;
+end;
+function TRepairWOEditFrm.GetWorkTimeStdPrice(brandID:string):Double;
+var
+  sql,errmsg:string;
+  cdsTmp: TClientDataSet;
+  workTimeStdPrice: double;
+begin
+  cdsTmp := TClientDataSet.Create(nil);
+  if brandID = '' then
+  begin
+    Result := 0;
+    Exit;
+  end;
+  sql := Format('select FWorkTimeStandardPrice from T_ATS_WorkTimeStdPrice where FOrgUnitID=%s and FBrandID=%s',
+        [QuotedStr(userInfo.Controlunitid),QuotedStr(brandID)]);
+
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+    ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
+    Abort;
+  end else
+  begin
+    if not cdsTmp.Eof then
+    begin
+      workTimeStdPrice := cdsTmp.FieldByName('FWorkTimeStandardPrice').AsFloat;
+    end;
+  end;
+  Result := workTimeStdPrice;
+end;
+
+function TRepairWOEditFrm.GetRelatedSp(repairItemId:string): TClientDataSet;
+var
+  sql,errmsg:string;
+  cdsTmp:TClientDataSet;
+begin
+  cdsTmp := TClientDataSet.Create(nil);
+  sql := Format('select a.FMaterialID,b.FNumber materialNum,b.FName_l2 materialName,' +
+            'a.FUnitID,c.FNumber unitNum,c.FName_l2 unitName, '+
+            'a.FBaseUnitID,d.FNumber baseUnitNum,d.FName_L2 baseUnitName, '+
+            'a.CFQty,a.CFPrice,a.CFDiscountRate '+
+            'from T_ATS_RepairItemSpEntry a '+
+            'left join t_bd_material b on b.fid=a.FMaterialID '+
+            'left join T_BD_MeasureUnit c on c.fid=a.FUnitID '+
+            'left join T_BD_MeasureUnit d on d.fid=a.FBaseUnitID '+
+            'where FParentID=%s',[QuotedStr(repairItemId)]);
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+    ShowMessage('打开数据出错:'+ErrMsg);
+    Abort;
+  end else
+  begin
+    Result := cdsTmp;
+  end;
+
+end;
+
+
+
+procedure TRepairItemTxtCls.GetRepairItemForTxt;
+var
+  sql,errmsg:string;
+  cdsTmp:TClientDataSet;
+begin
+  cdsTmp := TClientDataSet.Create(nil);
+  if brandName = 'BMW' then
+  begin
+     sql := Format('select fid,FName_l2,FNumber from T_ATS_RepairItem where fnumber=%s and FOrgUnitID=%s',
+              [QuotedStr('TXT-1'),QuotedStr(UserInfo.Branch_ID)]);
+  end else if brandName = 'MINI' then
+  begin
+     sql := Format('select fid,FName_l2,FNumber from T_ATS_RepairItem where fnumber=%s and FOrgUnitID=%s',
+              [QuotedStr('TXT-2'),QuotedStr(UserInfo.Branch_ID)]);
+  end else
+  begin
+    ShowMessage('取默认TXT维修项目，品牌不能为空:'+ErrMsg);
+    Abort;
+  end;
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+    ShowMessage('打开数据出错:'+ErrMsg);
+    Abort;
+  end else
+  begin
+    if not cdsTmp.Eof then
+    begin
+      repairItemForTxtId := cdsTmp.FieldByName('FID').AsString;
+    end;
+  end;
+end;
+
+constructor TRepairItemTxtCls.Create(brandId:string;brandName:string);
+begin
+  self.brandId := brandId;
+  self.brandName := brandName;
+  GetRepairItemForTxt;
+end;
+
+
+constructor TOprtPermCls.Create;
+begin
+  oprtRetailLine := false; //零售行操作权限
+  oprtRepairLine := false; //维修行操作权限
+  OprtRetailItemspName := false; //操作配件行说明权限
+  oprtRetailPrice := false; //操作配件行价格
+  oprtRetailBelowCost := false; //配件低于成本价销售
+  oprtRepairTaxPrice := false; //操作维修行价格字段
+  GetPerm;
+end;
+
+procedure TOprtPermCls.GetPerm;
+begin
+  oprtRetailLine := hashPerm('oprtRetailLine');
+  oprtRepairLine := hashPerm('oprtRepairLine'); //维修行操作权限
+  OprtRetailItemspName := hashPerm('oprtRetailItemspName'); //操作配件行说明权限
+  oprtRetailPrice := hashPerm('oprtRetailPrice'); //操作配件行价格
+  oprtRetailBelowCost := hashPerm('oprtRetailBelowCost'); //配件低于成本价销售
+  oprtRepairTaxPrice := hashPerm('oprtRepairTaxPrice'); //操作维修行价格字段
+
+end;
+
+function TOprtPermCls.hashPerm(permNum:string):boolean;
+var
+  sql,errmsg:string;
+  cdsTmp:TClientDataSet;
+begin
+  cdsTmp := TClientDataSet.Create(nil);
+  sql := Format('select 1 from T_PM_UserOrgPerm a ' +
+                'left join T_PM_PermItem b on b.FID=a.FPermItemId ' +
+                'where b.FNumber=%s and a.FOwner=%s and a.FOrgID=%s',
+                [QuotedStr(permNum),QuotedStr(UserInfo.LoginUser_FID),QuotedStr(UserInfo.Branch_ID)]);
+  sql := sql + ' union ';
+  sql := sql + Format('select 1 from T_PM_RolePerm a ' +
+                      'left join T_PM_PermItem b on b.FID=a.FPermItemId ' +
+                      'left join T_PM_UserRoleOrg c on c.FRoleID=a.FRoleId ' +
+                      'where b.FNumber=%s and c.FUserId=%s and c.FOrgId=%s',
+                [QuotedStr(permNum),QuotedStr(UserInfo.LoginUser_FID),QuotedStr(UserInfo.Branch_ID)]);
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+    ShowMessage('打开数据出错:'+ErrMsg);
+    Abort;
+  end else
+  begin
+    Result := not cdsTmp.Eof
+  end;
+end;
+
+procedure TDiscountRateCls.GetDiscountRate;
+var
+  sql,errmsg:string;
+  cdsTmp: TClientDataSet;
+  customerAccountId,customerId,cometime: string;
+
+begin
+  cdsTmp := TClientDataSet.Create(nil);
+
+  customerAccountId := RepairWOEditFrm.cdsMaster.FieldByName('CFCustomerAccountI').AsString;
+  if customerAccountId = '' then
+  begin
+    Exit;
+  end;
+
+  sql := Format('select isnull(CFRetailDiscountRate,0) CFRetailDiscountRate,isnull(CFRepairDiscountRate,0) CFRepairDiscountRate ' +
+                'from CT_RS_CustomerAccount where FID=%s',[QuotedStr(customerAccountId)]);
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+    ShowMessage('打开数据出错:'+ErrMsg);
+    Abort;
+  end;
+  if not cdsTmp.Eof then
+  begin
+     repairDiscountRate := cdsTmp.FieldByName('CFRepairDiscountRate').AsFloat;
+     retailDiscountRate := cdsTmp.FieldByName('CFRetailDiscountRate').AsFloat;
+  end;
+  if (repairDiscountRate = 0) or (retailDiscountRate = 0) then
+  begin
+     customerId := RepairWOEditFrm.cdsMaster.FieldByName('CFCustomerAccountI').AsString;
+     cometime := RepairWOEditFrm.cdsMaster.FieldByName('FComeTime').AsString;
+     if (customerId = '') or (cometime = '') then
+     begin
+        Exit;
+     end;
+
+
+    sql := Format('select top 1 isnull(b.CFRetailDiscountRate,0) CFRetailDiscountRate,isnull(b.CFRepairDiscountRate,0) CFRepairDiscountRate ' +
+                  'from CT_BD_CustomerDiscount a ' +
+					        'left join CT_BD_CustomerDiscountEntry b on a.fid=b.FParentID ' +
+					        'where b.CFAtsCustomerID=%s and convert(varchar(10),a.CFEffectiveDate,120) <=%s '+
+					        'and convert(varchar(10),a.CFExpirationDate,120) >=%s and a.CFSaleOrgUnitID=%s and a.FBaseStatus=''4'' order by a.FAuditTime DESC',
+                  [QuotedStr(customerId),QuotedStr(cometime),QuotedStr(cometime),QuotedStr(userInfo.Branch_ID)]);
+    if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+    begin
+      ShowMessage('打开数据出错:'+ErrMsg);
+      Abort;
+    end;
+    if repairDiscountRate = 0 then
+       repairDiscountRate := cdsTmp.FieldByName('CFRepairDiscountRate').AsFloat;
+    if retailDiscountRate = 0 then
+       retailDiscountRate := cdsTmp.FieldByName('CFRetailDiscountRate').AsFloat;
+  end;
+end;
+
+procedure TDiscountRateCls.GetMaxDiscountRate;
+var
+  sql,errmsg:string;
+  cdsTmp:TClientDataSet;
+begin
+  cdsTmp := TClientDataSet.Create(nil);
+  sql := Format('select isnull(CFMaxRepairDiscountRate,0) maxRepairDiscountRate, isnull(CFMaxRetailDiscountRate,0) maxRetailDiscountRate ' +
+          'from T_PM_User where FID=%s',[QuotedStr(UserInfo.LoginUser_FID)]);
+  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
+  begin
+     ShowMessage('打开数据出错:'+ErrMsg);
+     Abort;
+  end else
+  begin
+     if not cdsTmp.Eof then
+     begin
+        maxRepairDiscountRate := cdsTmp.FieldByName('maxRepairDiscountRate').AsFloat;
+        maxRetailDiscountRate := cdsTmp.FieldByName('maxRetailDiscountRate').AsFloat;
+
+     end;
+  end;
+
+end;
+procedure TRepairWOEditFrm.cxGrid1DBTableView1CellClick(
+  Sender: TcxCustomGridTableView;
+  ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+  AShift: TShiftState; var AHandled: Boolean);
+var
+  iType,newIType: string;
+  wID,newWID: string;
+  id: string;
+begin
+  inherited;
+  if  ACellViewInfo.Item.Name = cxdbColI.Name then
+  begin
+     id := cdsDetail.FieldByName('FID').AsString;
+     iType := ACellViewInfo.GridRecord.Values[cxdbColI.Index];
+     if iType = 'I' then
+     begin
+        newIType := 'H';
+     end else if iType = 'H' then
+     begin
+        newIType := 'I';
+     end else
+     begin
+       Exit;
+     end;
+
+     wID := cdsDetail.FieldByName('CFWID').AsString;
+     if wID = '' then exit;
+       cdsDetail.First;
+     while not cdsDetail.Eof do
+     begin
+        cdsDetail.Edit;
+        newWID := cdsDetail.FieldByName('CFWID').AsString;
+        if newWID = '' then
+        begin
+          cdsDetail.Next;
+          continue;
+        end;
+        if cdsDetail.FieldByName('CFI').AsString = 'X' then
+        begin
+          cdsDetail.Next;
+          continue;
+        end;
+
+        if newWID=wID then
+          cdsDetail.FieldByName('CFI').AsString := newIType;
+        cdsDetail.Post;
+        cdsDetail.Next;
+
+     end;
+     cdsDetail.Locate('FID',id,[]);
+  end;
+end;
+
+procedure TRepairWOEditFrm.cdsDetailCFIsCTChange(Sender: TField);
+begin
+  inherited;
+  if Sender.AsFloat = 1 then
+  begin
+    cdsDetail.FieldByName('CFQty').AsFloat := -1;
+  end;
+  cdsDetail.Post;
+  cdsDetail.Edit;
+end;
+
+
 
 end.

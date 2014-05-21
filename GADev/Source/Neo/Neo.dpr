@@ -289,7 +289,8 @@ uses
   uRepairWOEditFrm in 'rsm\uRepairWOEditFrm.pas' {RepairWOEditFrm},
   uRepairManFrm in 'rsm\uRepairManFrm.pas' {RepairManFrm},
   uPOSEdit in '..\ERP\POSEdit\uPOSEdit.pas' {frmPOSEdit1},
-  uPOSEditFrm in '..\ERP\POSEdit\uPOSEditFrm.pas' {FrmPOSEdit};
+  uPOSEditFrm in '..\ERP\POSEdit\uPOSEditFrm.pas' {FrmPOSEdit},
+  uRepairWOListFrm in 'rsm\uRepairWOListFrm.pas' {RepairWOListFrm};
 
 {$R *.res}
 {$I- } //不产生I/O异常类而是把错误代码返回到预定义变量IOResult中
@@ -306,6 +307,7 @@ begin
   Application.CreateForm(TFMCliMain, FMCliMain);
   Application.CreateForm(TfrmPOSEdit1, frmPOSEdit1);
   Application.CreateForm(TFrmPOSEdit, FrmPOSEdit);
+  Application.CreateForm(TRepairWOListFrm, RepairWOListFrm);
   Application.Run;
   end;
 end.

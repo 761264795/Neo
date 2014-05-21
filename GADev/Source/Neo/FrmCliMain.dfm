@@ -1,6 +1,6 @@
 object FMCliMain: TFMCliMain
-  Left = 186
-  Top = 34
+  Left = 121
+  Top = 68
   Width = 1174
   Height = 699
   Caption = 'GA'#38598#22242'ERP'#31995#32479
@@ -23,8 +23,8 @@ object FMCliMain: TFMCliMain
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   DesignSize = (
-    1166
-    648)
+    1158
+    640)
   PixelsPerInch = 96
   TextHeight = 13
   object Image11: TImage
@@ -74,18 +74,18 @@ object FMCliMain: TFMCliMain
   object P_top: TPanel
     Left = 0
     Top = 0
-    Width = 1166
+    Width = 1158
     Height = 65
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
     DesignSize = (
-      1166
+      1158
       65)
     object Image1: TImage
       Left = 0
       Top = 0
-      Width = 1166
+      Width = 1158
       Height = 65
       Align = alClient
       Picture.Data = {
@@ -2191,8 +2191,8 @@ object FMCliMain: TFMCliMain
   end
   object dxStatusBar1: TdxStatusBar
     Left = 0
-    Top = 628
-    Width = 1166
+    Top = 620
+    Width = 1158
     Height = 20
     Images = CliDM.ImageList16
     Panels = <
@@ -2246,7 +2246,7 @@ object FMCliMain: TFMCliMain
     Height = 225
     Cursor = crHandPoint
     Anchors = [akTop, akRight]
-    TabOrder = 3
+    TabOrder = 2
     Visible = False
     LevelTabs.Style = 8
     LookAndFeel.Kind = lfOffice11
@@ -2286,9 +2286,9 @@ object FMCliMain: TFMCliMain
   object mainPg: TcxPageControl
     Left = 0
     Top = 65
-    Width = 1166
-    Height = 563
-    ActivePage = cxTabSheet1
+    Width = 1158
+    Height = 555
+    ActivePage = cxTabSheet4
     Align = alClient
     Color = 15856372
     Font.Charset = GB2312_CHARSET
@@ -2306,8 +2306,8 @@ object FMCliMain: TFMCliMain
     TabOrder = 7
     OnCanClose = mainPgCanClose
     OnDblClick = mainPgDblClick
-    ClientRectBottom = 563
-    ClientRectRight = 1166
+    ClientRectBottom = 555
+    ClientRectRight = 1158
     ClientRectTop = 25
     object cxTabSheet1: TcxTabSheet
       Caption = #24212#29992#20013#24515
@@ -2316,7 +2316,7 @@ object FMCliMain: TFMCliMain
         Left = 241
         Top = 0
         Width = 2
-        Height = 538
+        Height = 530
       end
       object LeftPanel: TPanel
         Left = 0
@@ -3256,8 +3256,8 @@ object FMCliMain: TFMCliMain
       object pnl1: TPanel
         Left = 243
         Top = 0
-        Width = 923
-        Height = 538
+        Width = 915
+        Height = 530
         Align = alClient
         BevelOuter = bvNone
         Caption = 'pnl1'
@@ -3265,7 +3265,7 @@ object FMCliMain: TFMCliMain
         object spl1: TSplitter
           Left = 0
           Top = 151
-          Width = 923
+          Width = 915
           Height = 2
           Cursor = crVSplit
           Align = alTop
@@ -3273,8 +3273,8 @@ object FMCliMain: TFMCliMain
         object Panel5: TPanel
           Left = 0
           Top = 153
-          Width = 923
-          Height = 385
+          Width = 915
+          Height = 377
           Align = alClient
           BevelOuter = bvNone
           Color = 16511980
@@ -3282,19 +3282,19 @@ object FMCliMain: TFMCliMain
           object Panel6: TPanel
             Left = 0
             Top = 0
-            Width = 923
+            Width = 915
             Height = 27
             Align = alTop
             BevelOuter = bvNone
             Color = clSkyBlue
             TabOrder = 0
             DesignSize = (
-              923
+              915
               27)
             object Image14: TImage
               Left = 0
               Top = 0
-              Width = 923
+              Width = 915
               Height = 27
               Align = alClient
               Picture.Data = {
@@ -3927,7 +3927,7 @@ object FMCliMain: TFMCliMain
               Stretch = True
             end
             object spt_AppEdit: TSpeedButton
-              Left = 880
+              Left = 872
               Top = 3
               Width = 41
               Height = 22
@@ -3963,8 +3963,8 @@ object FMCliMain: TFMCliMain
           object Panel9: TPanel
             Left = 0
             Top = 27
-            Width = 923
-            Height = 358
+            Width = 915
+            Height = 350
             Align = alClient
             BevelOuter = bvNone
             Color = 16511980
@@ -3973,7 +3973,7 @@ object FMCliMain: TFMCliMain
               Left = 0
               Top = 14
               Width = 12
-              Height = 188
+              Height = 48
               Cursor = crHandPoint
               Align = alLeft
               Caption = #13#10#13#10#13#10'<<'
@@ -3989,10 +3989,10 @@ object FMCliMain: TFMCliMain
               OnMouseLeave = lb_LeftmoveMouseLeave
             end
             object lb_Rigthmove: TLabel
-              Left = 911
+              Left = 903
               Top = 14
               Width = 12
-              Height = 188
+              Height = 48
               Cursor = crHandPoint
               Align = alRight
               Caption = #13#10#13#10#13#10'>>'
@@ -4004,7 +4004,7 @@ object FMCliMain: TFMCliMain
             object Label9: TLabel
               Left = 0
               Top = 0
-              Width = 923
+              Width = 14
               Height = 14
               Align = alTop
               Alignment = taCenter
@@ -4019,8 +4019,8 @@ object FMCliMain: TFMCliMain
             end
             object Label11: TLabel
               Left = 0
-              Top = 202
-              Width = 923
+              Top = 194
+              Width = 14
               Height = 14
               Align = alBottom
               Alignment = taCenter
@@ -4035,8 +4035,8 @@ object FMCliMain: TFMCliMain
             end
             object ImgBottom: TImage
               Left = 0
-              Top = 216
-              Width = 923
+              Top = 208
+              Width = 915
               Height = 142
               Align = alBottom
               Picture.Data = {
@@ -10306,8 +10306,8 @@ object FMCliMain: TFMCliMain
             object ScrollBox1: TScrollBox
               Left = 12
               Top = 14
-              Width = 899
-              Height = 188
+              Width = 891
+              Height = 180
               HorzScrollBar.Visible = False
               VertScrollBar.Visible = False
               Align = alClient
@@ -10321,11 +10321,11 @@ object FMCliMain: TFMCliMain
               OnDragDrop = ScrollBox1DragDrop
               OnDragOver = ScrollBox1DragOver
               DesignSize = (
-                899
-                188)
+                891
+                180)
               object lb_APP: TLabel
                 Left = 272
-                Top = 62
+                Top = 59
                 Width = 204
                 Height = 21
                 Alignment = taCenter
@@ -10345,7 +10345,7 @@ object FMCliMain: TFMCliMain
         object P_MsgBox: TPanel
           Left = 0
           Top = 0
-          Width = 923
+          Width = 915
           Height = 151
           Align = alTop
           BevelOuter = bvNone
@@ -10361,19 +10361,19 @@ object FMCliMain: TFMCliMain
           object pnl3: TPanel
             Left = 0
             Top = 0
-            Width = 919
+            Width = 911
             Height = 151
             Align = alClient
             BevelOuter = bvNone
             Color = 16511980
             TabOrder = 0
             DesignSize = (
-              919
+              911
               151)
             object img2: TImage
               Left = 0
               Top = 0
-              Width = 919
+              Width = 911
               Height = 27
               Align = alTop
               Picture.Data = {
@@ -11007,7 +11007,7 @@ object FMCliMain: TFMCliMain
               Transparent = True
             end
             object lb_Lmsg: TLabel
-              Left = 393
+              Left = 385
               Top = 3
               Width = 88
               Height = 23
@@ -11025,7 +11025,7 @@ object FMCliMain: TFMCliMain
               Transparent = True
             end
             object SpeedButton2: TSpeedButton
-              Left = 876
+              Left = 868
               Top = 3
               Width = 41
               Height = 22
@@ -11044,7 +11044,7 @@ object FMCliMain: TFMCliMain
             object Panel7: TPanel
               Left = 0
               Top = 27
-              Width = 919
+              Width = 911
               Height = 124
               Align = alClient
               BevelOuter = bvNone
@@ -11053,7 +11053,7 @@ object FMCliMain: TFMCliMain
               object cxGrid4: TcxGrid
                 Left = 0
                 Top = 0
-                Width = 919
+                Width = 911
                 Height = 124
                 Cursor = crHandPoint
                 Align = alClient
@@ -11119,7 +11119,7 @@ object FMCliMain: TFMCliMain
             end
           end
           object pnl6: TPanel
-            Left = 919
+            Left = 911
             Top = 0
             Width = 4
             Height = 151
@@ -12042,7 +12042,7 @@ object FMCliMain: TFMCliMain
         Left = 0
         Top = 0
         Width = 241
-        Height = 538
+        Height = 530
         Align = alLeft
         Ctl3D = False
         ParentCtl3D = False
@@ -12051,7 +12051,7 @@ object FMCliMain: TFMCliMain
           Left = 1
           Top = 1
           Width = 239
-          Height = 536
+          Height = 528
           GradientColorStyle = gcsMSOffice
           GradientColorStart = clBtnFace
           GradientColorStop = clBtnShadow
@@ -12067,7 +12067,7 @@ object FMCliMain: TFMCliMain
             CaptionImageIndex = 49
             Items = <>
             Opened = True
-            OpenedHeight = 386
+            OpenedHeight = 378
             DividerVisible = False
             OnOpen = RzGroup3Open
             BiDiMode = bdLeftToRight
@@ -12078,7 +12078,7 @@ object FMCliMain: TFMCliMain
               Left = 0
               Top = 30
               Width = 239
-              Height = 356
+              Height = 348
               Align = alClient
               Bands = <
                 item
@@ -12236,14 +12236,14 @@ object FMCliMain: TFMCliMain
       object Panel2: TPanel
         Left = 0
         Top = 0
-        Width = 1166
-        Height = 538
+        Width = 1158
+        Height = 530
         Align = alClient
         TabOrder = 0
         object cxpgcntrl1: TcxPageControl
           Left = 1
           Top = 1
-          Width = 1164
+          Width = 1156
           Height = 321
           ActivePage = cxtbsht1
           Align = alTop
@@ -12254,7 +12254,7 @@ object FMCliMain: TFMCliMain
           TabPosition = tpBottom
           OnChange = cxpgcntrl1Change
           ClientRectBottom = 303
-          ClientRectRight = 1164
+          ClientRectRight = 1156
           ClientRectTop = 0
           object cxtbsht1: TcxTabSheet
             Caption = #26410#35835#28040#24687
@@ -12262,7 +12262,7 @@ object FMCliMain: TFMCliMain
             object cxGrid1: TcxGrid
               Left = 0
               Top = 26
-              Width = 1164
+              Width = 1156
               Height = 277
               Align = alClient
               TabOrder = 1
@@ -12318,18 +12318,18 @@ object FMCliMain: TFMCliMain
             object Panel12: TPanel
               Left = 0
               Top = 0
-              Width = 1164
+              Width = 1156
               Height = 26
               Align = alTop
               BevelOuter = bvNone
               TabOrder = 0
               DesignSize = (
-                1164
+                1156
                 26)
               object img6: TImage
                 Left = 0
                 Top = 0
-                Width = 1164
+                Width = 1156
                 Height = 26
                 Align = alClient
                 Picture.Data = {
@@ -13151,7 +13151,7 @@ object FMCliMain: TFMCliMain
                 OnClick = bt_nReadClick
               end
               object cxLabel2: TcxLabel
-                Left = 863
+                Left = 855
                 Top = 7
                 Anchors = [akTop, akRight]
                 AutoSize = False
@@ -13162,7 +13162,7 @@ object FMCliMain: TFMCliMain
                 Width = 54
               end
               object cxLabel3: TcxLabel
-                Left = 1003
+                Left = 995
                 Top = 6
                 Anchors = [akTop, akRight]
                 Caption = #33267
@@ -13170,7 +13170,7 @@ object FMCliMain: TFMCliMain
                 Visible = False
               end
               object btn1: TcxButton
-                Left = 1107
+                Left = 1099
                 Top = 2
                 Width = 53
                 Height = 23
@@ -13218,7 +13218,7 @@ object FMCliMain: TFMCliMain
                 LookAndFeel.SkinName = 'Office2007Black'
               end
               object dBegin: TcxDateEdit
-                Left = 917
+                Left = 909
                 Top = 4
                 Anchors = [akTop, akRight]
                 EditValue = 40452d
@@ -13227,7 +13227,7 @@ object FMCliMain: TFMCliMain
                 Width = 86
               end
               object Dend: TcxDateEdit
-                Left = 1019
+                Left = 1011
                 Top = 4
                 Anchors = [akTop, akRight]
                 EditValue = 42278d
@@ -13296,8 +13296,8 @@ object FMCliMain: TFMCliMain
         object Panel4: TPanel
           Left = 1
           Top = 322
-          Width = 1164
-          Height = 215
+          Width = 1156
+          Height = 207
           Align = alClient
           BevelOuter = bvNone
           Caption = 'Panel4'
@@ -13305,8 +13305,8 @@ object FMCliMain: TFMCliMain
           object GroupBox4: TGroupBox
             Left = 0
             Top = 0
-            Width = 846
-            Height = 215
+            Width = 838
+            Height = 207
             Align = alClient
             Caption = #28040#24687#20869#23481
             Color = 16511980
@@ -13337,25 +13337,25 @@ object FMCliMain: TFMCliMain
               StyleHot.LookAndFeel.NativeStyle = False
               StyleHot.LookAndFeel.SkinName = ''
               TabOrder = 1
-              Height = 177
-              Width = 842
+              Height = 169
+              Width = 834
             end
             object Panel1: TPanel
               Left = 2
               Top = 14
-              Width = 842
+              Width = 834
               Height = 22
               Align = alTop
               BevelOuter = bvNone
               Color = clSkyBlue
               TabOrder = 0
               DesignSize = (
-                842
+                834
                 22)
               object img1: TImage
                 Left = 0
                 Top = 0
-                Width = 842
+                Width = 834
                 Height = 22
                 Align = alClient
                 Picture.Data = {
@@ -13996,7 +13996,7 @@ object FMCliMain: TFMCliMain
                 Properties.ReadOnly = True
                 Style.Color = 16511980
                 TabOrder = 1
-                Width = 18
+                Width = 10
               end
               object cxLabel1: TcxLabel
                 Left = 5
@@ -14014,10 +14014,10 @@ object FMCliMain: TFMCliMain
             end
           end
           object GroupBox3: TGroupBox
-            Left = 846
+            Left = 838
             Top = 0
             Width = 318
-            Height = 215
+            Height = 207
             Align = alRight
             Caption = #38468#20214#21015#34920'('#21491#38190#19979#36733')'
             Color = 16511980
@@ -14028,7 +14028,7 @@ object FMCliMain: TFMCliMain
               Left = 2
               Top = 14
               Width = 314
-              Height = 199
+              Height = 191
               Align = alClient
               PopupMenu = pm_Down
               TabOrder = 0
