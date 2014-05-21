@@ -329,4 +329,3 @@ create table CT_BD_LockBill
   FIslock       numeric(2) default 0,
   constraint PK_LockBill primary key (FID)
 )
-

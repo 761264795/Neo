@@ -8,9 +8,17 @@ values('ghdAwNqbv0+zhXuyMiuLUEY+1VI=','5ohTIazISXWuuI3De7xxJBO33n8=','2014-05-12
 	'00000000-0000-0000-0000-000000000000CCE7AED4','','ÀÕ–ﬁ»À','','GA001',
 	'','ÀÕ–ﬁ»À','','ÀÕ–ﬁ»À',
 11,1,'CT_RS_RepairMan','CT_RS_RepairManEntry','')
-
+GO
 --========================add by cjx ===========================================================
 update t_Org_Baseunit set FImgageIndex=0 
 where FImgageIndex is null
+GO
 
+update T_DB_MainMenuItem  set FImgageIndex=714 
+where not exists(select 1 from T_DB_MainMenuItem b where b.FParentID=T_DB_MainMenuItem.fid)
+GO
+
+update T_DB_MainMenuItem  set FImgageIndex=715
+where exists(select 1 from T_DB_MainMenuItem b where b.FParentID=T_DB_MainMenuItem.fid)
+GO
 --========================add by cjx end===========================================================

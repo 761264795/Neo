@@ -53,7 +53,7 @@ BEGIN
   END
   RETURN  @l_result
 END
-
+GO
 -- È¡µÃFID×Ö¶ÎÖµ
 -- SELECT DBO.FN_Newbosid('F5E0059F')  LwTtR3Q9a0WJ2fbls19eUPXgBZ8=
 create FUNCTION [dbo].[FN_Newbosid](@typeString VARCHAR(8))
@@ -113,3 +113,4 @@ BEGIN
   END
   RETURN @l_result
 END
+GO
