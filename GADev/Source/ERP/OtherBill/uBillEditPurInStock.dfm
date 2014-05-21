@@ -1,21 +1,27 @@
 inherited FM_BillEditPurInStock: TFM_BillEditPurInStock
-  Left = 348
-  Top = 45
+  Left = 87
+  Top = 11
+  Width = 1135
   Height = 708
   Caption = #37319#36141#20837#24211#21333#32534#36753
   OldCreateOrder = True
   PixelsPerInch = 96
   TextHeight = 12
   inherited pnlDetail: TPanel
-    Height = 331
+    Width = 1119
+    Height = 323
     TabOrder = 4
     inherited cxPageDetail: TcxPageControl
-      Height = 331
+      Width = 1119
+      Height = 323
+      ActivePage = cxTabTractDetail
       OnChange = cxPageDetailChange
-      ClientRectBottom = 331
+      ClientRectBottom = 323
+      ClientRectRight = 1119
       inherited cxTabDetail: TcxTabSheet
         inherited cxGrid1: TcxGrid
-          Height = 283
+          Width = 1119
+          Height = 275
           inherited dbgList2: TcxGridDBTableView
             DataController.Summary.FooterSummaryItems = <
               item
@@ -298,6 +304,7 @@ inherited FM_BillEditPurInStock: TFM_BillEditPurInStock
           end
         end
         inherited Panel3: TPanel
+          Width = 1119
           inherited lblStockQty: TcxLabel
             Style.IsFontAssigned = True
           end
@@ -314,7 +321,8 @@ inherited FM_BillEditPurInStock: TFM_BillEditPurInStock
       end
       inherited cxTabTractDetail: TcxTabSheet
         inherited cxGrid4: TcxGrid
-          Height = 286
+          Width = 1119
+          Height = 278
           inherited cxgridDetial: TcxGridDBTableView
             object cxgridDetialFSEQ: TcxGridDBColumn
               Caption = #24207#21495
@@ -437,6 +445,7 @@ inherited FM_BillEditPurInStock: TFM_BillEditPurInStock
           end
         end
         inherited Panel4: TPanel
+          Width = 1119
           inherited lblStock_DetailQty: TcxLabel
             Style.IsFontAssigned = True
           end
@@ -457,12 +466,15 @@ inherited FM_BillEditPurInStock: TFM_BillEditPurInStock
     end
   end
   inherited p_bt: TPanel
-    Top = 647
+    Top = 639
+    Width = 1119
     TabOrder = 2
   end
   inherited pnl_top: TPanel
+    Width = 1119
     inherited pnlCodeSM: TPanel
       Top = 108
+      Width = 1117
       Height = 20
       inherited cxCodeText: TcxTextEdit
         Style.IsFontAssigned = True
@@ -472,11 +484,20 @@ inherited FM_BillEditPurInStock: TFM_BillEditPurInStock
       end
     end
     inherited HeadPageCtrl: TcxPageControl
+      Width = 1117
       Height = 107
       ClientRectBottom = 107
+      ClientRectRight = 1117
       inherited cxTabBaseInfo: TcxTabSheet
         inherited pnlTop: TPanel
+          Width = 1117
           Height = 107
+          inherited im_Audit: TImage
+            Left = 1043
+          end
+          inherited img_NewBill: TImage
+            Left = 1043
+          end
           inherited lbDescription: TLabel
             Left = 7
             Top = 84
@@ -487,6 +508,12 @@ inherited FM_BillEditPurInStock: TFM_BillEditPurInStock
           inherited Label5: TLabel
             Left = 669
             Top = 6
+          end
+          inherited imgTJ: TImage
+            Left = 1043
+          end
+          inherited imgGB: TImage
+            Left = 1043
           end
           inherited txDescription: TcxDBTextEdit
             Top = 78
@@ -707,7 +734,25 @@ inherited FM_BillEditPurInStock: TFM_BillEditPurInStock
     end
   end
   inherited pnlStock: TPanel
-    Top = 513
+    Top = 505
+    Width = 1119
+    inherited Panel2: TPanel
+      Width = 606
+      inherited cxpageReceive: TcxPageControl
+        Width = 604
+        ClientRectRight = 604
+        inherited cxTabRecStock: TcxTabSheet
+          inherited cxGrid5: TcxGrid
+            Width = 601
+          end
+        end
+        inherited cxTabRecSale: TcxTabSheet
+          inherited cxGrid6: TcxGrid
+            Width = 604
+          end
+        end
+      end
+    end
   end
   inherited girdList: TDBGrid
     Left = 366

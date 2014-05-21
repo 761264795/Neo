@@ -15,7 +15,12 @@ uses
   TeEngine, TeeProcs, Chart, DbChart, cxHyperLinkEdit, ADODB,cxCalc,cxProgressBar,uBillListQueryDialogFrm
   ,FrmCliMain, dxSkinsCore, dxSkinOffice2007Black, dxSkinOffice2007Blue,
   dxSkinOffice2007Green, dxSkinOffice2007Pink, dxSkinOffice2007Silver,uPrintTemplateSelectFrm,
-  dxSkinscxPCPainter;
+  dxSkinscxPCPainter, dxSkinBlack, dxSkinBlue, dxSkinCaramel, dxSkinCoffee,
+  dxSkinDarkRoom, dxSkinDarkSide, dxSkinFoggy, dxSkinGlassOceans,
+  dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky,
+  dxSkinMcSkin, dxSkinMoneyTwins, dxSkinPumpkin, dxSkinSeven, dxSkinSharp,
+  dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
+  dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue;
 type
   TSumval=class
      rowno:Integer;

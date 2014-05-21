@@ -18,7 +18,13 @@ uses
   cxControls, cxGridCustomView,StrUtils, dxSkinsCore,
   dxSkinOffice2007Black, dxSkinOffice2007Blue, dxSkinOffice2007Green,
   dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinscxPCPainter,
-  dxSkinsdxBarPainter,FrmCliDM,uPrintTemplateSelectFrm, cxSpinEdit,DateUtils;
+  dxSkinsdxBarPainter,FrmCliDM,uPrintTemplateSelectFrm, cxSpinEdit,DateUtils,
+  dxSkinBlack, dxSkinBlue, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom,
+  dxSkinDarkSide, dxSkinFoggy, dxSkinGlassOceans, dxSkiniMaginary,
+  dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin,
+  dxSkinMoneyTwins, dxSkinPumpkin, dxSkinSeven, dxSkinSharp, dxSkinSilver,
+  dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
+  dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue;
 
 
 type

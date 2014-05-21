@@ -1,66 +1,66 @@
 inherited VipBaseListListFrm: TVipBaseListListFrm
-  Left = 279
-  Top = 155
+  Left = 101
+  Top = 251
   Width = 980
   Caption = #26410#21457#21345#20250#21592#26597#35810'('#20165#30331#35760#30340#20250#21592')'
   OldCreateOrder = True
   OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 12
   object pnTop: TPanel [0]
     Left = 0
     Top = 0
     Width = 964
-    Height = 29
+    Height = 27
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
     DesignSize = (
       964
-      29)
+      27)
     object Image1: TImage
       Left = 0
       Top = 0
       Width = 964
-      Height = 29
+      Height = 27
       Align = alClient
     end
     object lbBegin: TLabel
-      Left = 8
-      Top = 8
-      Width = 201
-      Height = 13
+      Left = 7
+      Top = 7
+      Width = 186
+      Height = 12
       AutoSize = False
       Caption = #25163#26426#21495#30721'/'#20250#21592#22995#21517
       Font.Charset = GB2312_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -12
       Font.Name = #23435#20307
       Font.Style = [fsBold]
       ParentFont = False
       Transparent = True
     end
     object Label1: TLabel
-      Left = 494
-      Top = 10
-      Width = 465
-      Height = 15
+      Left = 456
+      Top = 9
+      Width = 429
+      Height = 14
       Anchors = [akTop, akRight]
       AutoSize = False
       Caption = #25552#31034':'#19981#36755#26465#20214#21487#26597#35810#24403#21069#24215#38138#30331#35760#30340#25152#26377#26410#21457#21345#20250#21592','#20854#23427#24215#38138#30340#26410#21457#21345#20250#21592#21482#20801#35768#21333#20010#26597#35810'!'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
-      Font.Height = -11
+      Font.Height = -9
       Font.Name = #23435#20307
       Font.Style = []
       ParentFont = False
       Transparent = True
     end
     object btOK: TcxButton
-      Left = 418
+      Left = 386
       Top = 2
-      Width = 74
-      Height = 25
+      Width = 68
+      Height = 23
       Anchors = [akTop, akRight]
       Caption = #26597#35810
       TabOrder = 0
@@ -86,13 +86,13 @@ inherited VipBaseListListFrm: TVipBaseListListFrm
       NumGlyphs = 2
     end
     object cxStyle: TcxTextEdit
-      Left = 136
+      Left = 126
       Top = 4
       Anchors = [akLeft, akTop, akRight]
       ParentFont = False
       Style.Font.Charset = GB2312_CHARSET
       Style.Font.Color = clWindowText
-      Style.Font.Height = -13
+      Style.Font.Height = -12
       Style.Font.Name = #23435#20307
       Style.Font.Style = []
       Style.LookAndFeel.Kind = lfOffice11
@@ -101,14 +101,14 @@ inherited VipBaseListListFrm: TVipBaseListListFrm
       StyleFocused.LookAndFeel.Kind = lfOffice11
       StyleHot.LookAndFeel.Kind = lfOffice11
       TabOrder = 1
-      Width = 280
+      Width = 258
     end
   end
   object cxGrid2: TcxGrid [1]
     Left = 0
-    Top = 29
+    Top = 27
     Width = 964
-    Height = 433
+    Height = 434
     Align = alClient
     PopupMenu = PopupMenu1
     TabOrder = 1

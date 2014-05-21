@@ -11,7 +11,16 @@ uses
   cxLabel, cxCalendar, cxDBEdit, cxTextEdit, cxCheckBox, dxGDIPlusClasses,
   cxContainer, cxMaskEdit, StdCtrls, Grids, DBGrids, cxGridLevel,
   cxControls, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
-  cxGridDBTableView, cxGrid, cxPC,Math, cxSpinEdit;
+  cxGridDBTableView, cxGrid, cxPC,Math, cxSpinEdit, dxSkinsCore,
+  dxSkinBlack, dxSkinBlue, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom,
+  dxSkinDarkSide, dxSkinFoggy, dxSkinGlassOceans, dxSkiniMaginary,
+  dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin,
+  dxSkinMoneyTwins, dxSkinOffice2007Black, dxSkinOffice2007Blue,
+  dxSkinOffice2007Green, dxSkinOffice2007Pink, dxSkinOffice2007Silver,
+  dxSkinPumpkin, dxSkinSeven, dxSkinSharp, dxSkinSilver, dxSkinSpringTime,
+  dxSkinStardust, dxSkinSummer2008, dxSkinsDefaultPainters,
+  dxSkinValentine, dxSkinXmas2008Blue, dxSkinscxPCPainter,
+  dxSkinsdxBarPainter;
 
 type
   TFM_BillEditBranchPO = class(TFM_BillEditBase)
