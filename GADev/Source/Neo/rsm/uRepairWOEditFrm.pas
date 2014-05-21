@@ -31,8 +31,7 @@ type
       oprtRepairTaxPrice: boolean; //操作维修行价格字段
 
       constructor Create;
-      procedure GetPerm;
-      function hashPerm(permNum: string):Boolean;
+      procedure GetFunctionPermission;
 
   end;
 
@@ -593,7 +592,7 @@ implementation
 {$R *.dfm}
 uses
   FrmCliDM,Pub_Fun,uMaterDataSelectHelper, Math,uRepairManFrm,DateUtils,
-  StrUtils;
+  StrUtils,uUtilsClass;
 procedure TRepairWOEditFrm.FormCreate(Sender: TObject);
 var
   sql,errmsg: string;
@@ -2416,45 +2415,24 @@ begin
   oprtRetailPrice := false; //操作配件行价格
   oprtRetailBelowCost := false; //配件低于成本价销售
   oprtRepairTaxPrice := false; //操作维修行价格字段
-  GetPerm;
+  GetFunctionPermission;
 end;
 
-procedure TOprtPermCls.GetPerm;
-begin
-  oprtRetailLine := hashPerm('oprtRetailLine');
-  oprtRepairLine := hashPerm('oprtRepairLine'); //维修行操作权限
-  OprtRetailItemspName := hashPerm('oprtRetailItemspName'); //操作配件行说明权限
-  oprtRetailPrice := hashPerm('oprtRetailPrice'); //操作配件行价格
-  oprtRetailBelowCost := hashPerm('oprtRetailBelowCost'); //配件低于成本价销售
-  oprtRepairTaxPrice := hashPerm('oprtRepairTaxPrice'); //操作维修行价格字段
-
-end;
-
-function TOprtPermCls.hashPerm(permNum:string):boolean;
+procedure TOprtPermCls.GetFunctionPermission;
 var
-  sql,errmsg:string;
-  cdsTmp:TClientDataSet;
+  permUtils: TPermUtilsCls;
 begin
-  cdsTmp := TClientDataSet.Create(nil);
-  sql := Format('select 1 from T_PM_UserOrgPerm a ' +
-                'left join T_PM_PermItem b on b.FID=a.FPermItemId ' +
-                'where b.FNumber=%s and a.FOwner=%s and a.FOrgID=%s',
-                [QuotedStr(permNum),QuotedStr(UserInfo.LoginUser_FID),QuotedStr(UserInfo.Branch_ID)]);
-  sql := sql + ' union ';
-  sql := sql + Format('select 1 from T_PM_RolePerm a ' +
-                      'left join T_PM_PermItem b on b.FID=a.FPermItemId ' +
-                      'left join T_PM_UserRoleOrg c on c.FRoleID=a.FRoleId ' +
-                      'where b.FNumber=%s and c.FUserId=%s and c.FOrgId=%s',
-                [QuotedStr(permNum),QuotedStr(UserInfo.LoginUser_FID),QuotedStr(UserInfo.Branch_ID)]);
-  if not CliDM.Get_OpenSQL(cdsTmp,sql,errmsg) then
-  begin
-    ShowMessage('打开数据出错:'+ErrMsg);
-    Abort;
-  end else
-  begin
-    Result := not cdsTmp.Eof
-  end;
+  permUtils := TPermUtilsCls.Create;
+
+  oprtRetailLine := permUtils.hasFunctionPermission('oprtRetailLine');
+  oprtRepairLine := permUtils.hasFunctionPermission('oprtRepairLine'); //维修行操作权限
+  OprtRetailItemspName := permUtils.hasFunctionPermission('oprtRetailItemspName'); //操作配件行说明权限
+  oprtRetailPrice := permUtils.hasFunctionPermission('oprtRetailPrice'); //操作配件行价格
+  oprtRetailBelowCost := permUtils.hasFunctionPermission('oprtRetailBelowCost'); //配件低于成本价销售
+  oprtRepairTaxPrice := permUtils.hasFunctionPermission('oprtRepairTaxPrice'); //操作维修行价格字段
+
 end;
+
 
 procedure TDiscountRateCls.GetDiscountRate;
 var
