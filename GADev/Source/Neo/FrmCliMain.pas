@@ -789,7 +789,6 @@ begin
   Txt_helpCode.SelLength:=1;
   Txt_helpCode.SelStart :=1;
   setTreeListExp;
-  RzGroupBar1
   SetLevelVisible(0);
   cxDBTreeList1.Parent := RzGroup3;
   FromIinLoadAPP;

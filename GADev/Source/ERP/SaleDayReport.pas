@@ -16,7 +16,15 @@ uses
   cxButtons, ExtCtrls, cxGridLevel, cxClasses, cxControls,
   cxGridCustomView, cxGridTableView, cxGrid, ActnList, DBClient, cxStyles,
   cxCustomData, cxGraphics, cxFilter, cxData, cxDataStorage, cxEdit,
-  cxLookAndFeelPainters, jpeg;
+  cxLookAndFeelPainters, jpeg, dxSkinsCore, dxSkinBlack, dxSkinBlue,
+  dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide, dxSkinFoggy,
+  dxSkinGlassOceans, dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky,
+  dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMoneyTwins,
+  dxSkinOffice2007Black, dxSkinOffice2007Blue, dxSkinOffice2007Green,
+  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinPumpkin, dxSkinSeven,
+  dxSkinSharp, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
+  dxSkinSummer2008, dxSkinsDefaultPainters, dxSkinValentine,
+  dxSkinXmas2008Blue, dxSkinscxPCPainter;
 
 type
   TSaleDayReportFrm = class(TReportBaseFrm)
@@ -46,7 +54,7 @@ var
   SaleDayReportFrm: TSaleDayReportFrm;
 
 implementation
- uses FrmCliDM,DateUtils;
+ uses FrmCliDM,DateUtils,uPOSEditFrm;
 {$R *.dfm}
 
 { TSaleDayReportFrm }
