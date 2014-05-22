@@ -17,7 +17,7 @@ uses
   cxDBData, jpeg, ExtCtrls, Buttons, cxGridLevel, cxClasses, cxControls,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxContainer, cxTextEdit, StdCtrls, cxButtons,
-  DBClient, cxMaskEdit, cxDropDownEdit;
+  DBClient, cxMaskEdit, cxDropDownEdit, cxLabel;
 
 type
   TSelectDataExFrm = class(TSTBaseEdit)
@@ -49,6 +49,7 @@ type
     edSearch: TEdit;
     cmbName: TcxComboBox;
     cmbTopN: TcxComboBox;
+    cxLabel1: TcxLabel;
     procedure FormShow(Sender: TObject);
     procedure sbSearchClick(Sender: TObject);
     procedure cmbNamePropertiesChange(Sender: TObject);
@@ -268,14 +269,19 @@ var
   filterStr,sqlstr,WhereStr, errmsg: string;
 begin
   case cmbTopN.ItemIndex of
-    0: sqlstr := 'Select Top 100 from (';
-    1: sqlstr := 'Select Top 500 from (';
-    2: sqlstr := 'Select Top 1000 from (';
+    0: sqlstr := 'Select Top 100 * from (';
+    1: sqlstr := 'Select Top 500 * from (';
+    2: sqlstr := 'Select Top 1000 * from (';
     else sqlstr := 'Select * from (';
   end;
   sqlstr := sqlstr + QuerySQL + ') X ';
   if Trim(TextStr) <> '' then
     sqlstr := sqlstr + ' Where ' + cmbCode.Text + ' like ''%' + TextStr + '%''';
+  if not clidm.Get_OpenSQL(QryFind, sqlstr,errmsg) then
+  begin
+    showmessage(errmsg);
+    exit;
+  end;
 //  with QryFind do
 //  begin
 //    if strType='Mat' then   //商品从数据库中获取,解决Filter不稳定
@@ -444,9 +450,9 @@ begin
         end;
       end;
       CreatedataCol;
-      ValList.DataController.CreateAllItems();
+      //ValList.DataController.CreateAllItems();
       selectTv.DataController.CreateAllItems();
-      SetGridStyle;
+      //SetGridStyle;
       if _isRadioSelect=1 then
       begin
         SpeedButton4.Visible:=False;

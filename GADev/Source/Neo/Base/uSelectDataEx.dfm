@@ -1,5 +1,6 @@
 inherited SelectDataExFrm: TSelectDataExFrm
   Caption = #20540#36873#25321#26694
+  OldCreateOrder = True
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 12
@@ -276,7 +277,7 @@ inherited SelectDataExFrm: TSelectDataExFrm
       Left = 143
       Top = 5
       Width = 121
-      Height = 21
+      Height = 20
       ImeName = #20013#25991' - QQ'#20116#31508#36755#20837#27861
       TabOrder = 1
     end
@@ -289,9 +290,10 @@ inherited SelectDataExFrm: TSelectDataExFrm
       Width = 133
     end
     object cmbTopN: TcxComboBox
-      Left = 666
+      Left = 704
       Top = 5
       Anchors = [akTop, akRight]
+      Properties.DropDownListStyle = lsFixedList
       Properties.Items.Strings = (
         '100'#34892
         '500'#34892
@@ -299,7 +301,12 @@ inherited SelectDataExFrm: TSelectDataExFrm
         #20840#37096)
       TabOrder = 3
       Text = '100'#34892
-      Width = 121
+      Width = 83
+    end
+    object cxLabel1: TcxLabel
+      Left = 625
+      Top = 8
+      Caption = #26368#22810#26597#35810#34892#25968
     end
   end
   inherited STBaseEditDataSet: TClientDataSet
