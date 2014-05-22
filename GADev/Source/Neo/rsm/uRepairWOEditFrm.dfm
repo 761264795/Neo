@@ -1,6 +1,6 @@
 inherited RepairWOEditFrm: TRepairWOEditFrm
-  Left = 87
-  Top = 159
+  Left = 282
+  Top = 194
   Width = 1014
   Height = 503
   Caption = #32500#20462#24037#21333
@@ -850,6 +850,83 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
       0
       53
       0)
+    inherited dxBarManager1Bar2: TdxBar
+      ItemLinks = <
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'barbtnNew'
+        end
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'dxBarbtnEdit'
+        end
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'btn_Save'
+        end
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'btn_DelBill'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarSubItem1'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxBarBtnFirst'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarBtnPrior'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarbtnNext'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarbtnlast'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxBarbtnDown'
+        end
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'dxBarbtnPull'
+        end
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'dxbarbtnPush'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'btn_Print'
+        end
+        item
+          BeginGroup = True
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'dxBarButton9'
+        end>
+    end
     inherited dxBarManager1Bar1: TdxBar
       FloatLeft = 1290
       FloatTop = 162

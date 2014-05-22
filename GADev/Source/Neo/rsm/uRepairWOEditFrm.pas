@@ -592,7 +592,7 @@ implementation
 {$R *.dfm}
 uses
   FrmCliDM,Pub_Fun,uMaterDataSelectHelper, Math,uRepairManFrm,DateUtils,
-  StrUtils,uUtilsClass;
+  StrUtils,uUtilsClass,uSelectDataEx;
 procedure TRepairWOEditFrm.FormCreate(Sender: TObject);
 var
   sql,errmsg: string;
@@ -943,7 +943,8 @@ procedure TRepairWOEditFrm.cxdbEditPlateNumPropertiesButtonClick(
 begin
   inherited;
   if not BillStatus.IsNew and not BillStatus.IsEdit then Exit;
-  with Select_BaseDataEx('车辆','','select top 100 fid,fnumber,fname_l2 from T_ATS_Vehicle where FOrgUnitID=' + QuotedStr('zfcAAAAAABjM567U')) do
+  with getDataBaseBySQLEx('车辆','','select fid,fnumber,FVin,FPlateNum,FEngineNum from T_ATS_Vehicle where FOrgUnitID=' + QuotedStr('zfcAAAAAABjM567U'),
+                      'fnumber,FVin,FPlateNum','编码,发动机号,车牌号',0) do
   begin
     if not IsEmpty then
     begin
@@ -2068,12 +2069,79 @@ end;
 procedure TRepairWOEditFrm.cxGrid1DBTableView1Editing(
   Sender: TcxCustomGridTableView; AItem: TcxCustomGridTableItem;
   var AAllow: Boolean);
+var
+  tType: string;
+  itemspNum:string;
+  colName:string;
 begin
   inherited;
-  if AItem.Name = cxdbColSupplier.Name then
+  tType := cdsDetailCFT.AsString;
+  itemspNum := cdsDetailCFItemspNum.AsString;
+  colName := AItem.Name;
+  if colName = cxdbColSupplier.Name then
   begin
       AAllow :=  cdsDetail.FieldByName('CFRepairWay').AsString = '2';
   end;
+  if (colName = cxdbColRepairPkg.Name) or (colName = cxdbColPerson.Name) then
+  begin
+    AAllow := true;
+    Exit;
+  end;
+
+  if (cdsDetailCFI.AsString = 'H') or  (cdsDetailCFI.AsString = 'X') then
+  begin
+      AAllow := false;
+      Exit;
+  end;
+  if (cdsDetailCFIsAPSettle.AsInteger = 1) then
+  begin
+    AAllow := false;
+    Exit;
+  end;
+  if tType = 'L' then //维修项目行
+  begin
+     if not oprtPermCls.oprtRepairLine then
+     begin
+         AAllow := false;
+         Exit;
+     end;
+     if colName = cxdbColIsCT.Name then
+     begin
+        AAllow := false;
+        Exit;
+     end;
+     if (colName = cxdbColTaxPrice.Name) or (colName = cxdbColTaxAmount.Name) or
+       (colName = cxdbColPrice.Name) or (colName = cxdbColAmount.Name) then
+        AAllow := oprtPermCls.oprtRepairTaxPrice;
+
+
+  end else if tType='P' then  //配件行
+  begin
+    if not oprtPermCls.oprtRetailLine then
+     begin
+         AAllow := false;
+         exit;
+     end;
+    if colName = cxdbColItemspName.Name then
+      aallow :=  oprtPermCls.OprtRetailItemspName;
+    if (colName = cxdbColTaxPrice.Name) or (colName = cxdbColTaxAmount.Name) or
+       (colName = cxdbColPrice.Name) or (colName = cxdbColAmount.Name) then
+        AAllow := oprtPermCls.oprtRetailPrice;
+    if cdsDetailCFOriginalEntryId.AsString <> '' then
+    begin
+        if colName = cxdbColDiscountRate.Name then
+            AAllow := true
+        else AAllow := false;
+    end;
+
+
+  end;
+
+
+
+  
+
+
 end;
 
 procedure TRepairWOEditFrm.cdsDetailCFPriceChange(Sender: TField);
