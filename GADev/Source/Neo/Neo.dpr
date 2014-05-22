@@ -291,7 +291,8 @@ uses
   uPOSEdit in '..\ERP\POSEdit\uPOSEdit.pas' {frmPOSEdit1},
   uPOSEditFrm in '..\ERP\POSEdit\uPOSEditFrm.pas' {FrmPOSEdit},
   uRepairWOListFrm in 'rsm\uRepairWOListFrm.pas' {RepairWOListFrm},
-  uUtilsClass in '..\Comm\uUtilsClass.pas';
+  uUtilsClass in '..\Comm\uUtilsClass.pas',
+  uSelectDataEx in 'Base\uSelectDataEx.pas' {SelectDataExFrm};
 
 {$R *.res}
 {$I- } //不产生I/O异常类而是把错误代码返回到预定义变量IOResult中
@@ -306,6 +307,8 @@ begin
     Application.Title := 'GA集团ERP系统';
   Application.CreateForm(TCliDM, CliDM);
   Application.CreateForm(TFMCliMain, FMCliMain);
+  Application.CreateForm(TSCMBillBaseEditFrm1, SCMBillBaseEditFrm1);
+  Application.CreateForm(TSelectDataExFrm, SelectDataExFrm);
   Application.Run;
   end;
 end.
