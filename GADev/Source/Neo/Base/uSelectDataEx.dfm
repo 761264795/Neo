@@ -1,5 +1,5 @@
 inherited SelectDataExFrm: TSelectDataExFrm
-  Caption = #20540#36873#25321#26694
+  Caption = 'F7'#20540#36873#25321#26694
   OldCreateOrder = True
   OnShow = FormShow
   PixelsPerInch = 96

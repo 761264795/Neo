@@ -180,7 +180,6 @@ procedure TSelectDataExFrm.CreatedataCol;
 var i:Integer;
     field:TField;
 begin
-  initCxgrid(showFieldEngList, showFieldChiList, 80);
   adsSelect.Fields.Clear;
   for i:=0 to QryFind.FieldCount-1 do
   begin
@@ -192,6 +191,7 @@ begin
     end;
   end;
   adsSelect.CreateDataSet;
+  initCxgrid(showFieldEngList, showFieldChiList, 80);
 end;
 
 procedure TSelectDataExFrm.CreateParams(var Params: TCreateParams);
@@ -229,7 +229,9 @@ var
   col: TcxGridDBColumn;
 begin
   (ValList.DataController as IcxCustomGridDataController).DeleteAllItems;
+  (selectTv.DataController as IcxCustomGridDataController).DeleteAllItems;
   (ValList.DataController as IcxCustomGridDataController).CreateAllItems(True);
+  (selectTv.DataController as IcxCustomGridDataController).CreateAllItems(True);
   cmbCode.Properties.Items.Clear;
   cmbName.Properties.Items.Clear;
   try
@@ -247,16 +249,27 @@ begin
         col.Caption := fdCList.Strings[i];
         col.Width := ColWidth;
       end;
+      col := selectTv.GetColumnByFieldName(fdEList.Strings[i]);
+      if col <> nil then
+      begin
+        col.Caption := fdCList.Strings[i];
+        col.Width := ColWidth;
+      end;
     end;
     if cmbName.Properties.Items.Count > 0 then
     begin
       cmbCode.ItemIndex := 0;
       cmbName.ItemIndex := 0;
     end;
-    for  i:=0  to  ValList.ColumnCount-1 do
+    for  i:=0 to ValList.ColumnCount-1 do
     begin
        if fdEList.IndexOf(ValList.Columns[i].DataBinding.FieldName)<0  then
          ValList.Columns[i].Visible:=false;
+    end;
+    for  i:=0 to selectTv.ColumnCount-1 do
+    begin
+       if fdEList.IndexOf(selectTv.Columns[i].DataBinding.FieldName)<0  then
+         selectTv.Columns[i].Visible:=false;
     end;
   finally
     fdEList.Free;
@@ -277,10 +290,15 @@ begin
   sqlstr := sqlstr + QuerySQL + ') X ';
   if Trim(TextStr) <> '' then
     sqlstr := sqlstr + ' Where ' + cmbCode.Text + ' like ''%' + TextStr + '%''';
-  if not clidm.Get_OpenSQL(QryFind, sqlstr,errmsg) then
-  begin
-    showmessage(errmsg);
-    exit;
+  try
+    QryFind.DisableControls;
+    if not clidm.Get_OpenSQL(QryFind, sqlstr,errmsg) then
+    begin
+      showmessage(errmsg);
+      exit;
+    end;
+  finally
+    QryFind.EnableControls;
   end;
 //  with QryFind do
 //  begin
@@ -451,7 +469,7 @@ begin
       end;
       CreatedataCol;
       //ValList.DataController.CreateAllItems();
-      selectTv.DataController.CreateAllItems();
+      //selectTv.DataController.CreateAllItems();
       //SetGridStyle;
       if _isRadioSelect=1 then
       begin
