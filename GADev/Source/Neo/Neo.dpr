@@ -307,8 +307,6 @@ begin
     Application.Title := 'GA集团ERP系统';
   Application.CreateForm(TCliDM, CliDM);
   Application.CreateForm(TFMCliMain, FMCliMain);
-  Application.CreateForm(TSCMBillBaseEditFrm1, SCMBillBaseEditFrm1);
-  Application.CreateForm(TSelectDataExFrm, SelectDataExFrm);
   Application.Run;
   end;
 end.
