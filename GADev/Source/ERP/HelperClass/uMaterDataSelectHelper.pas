@@ -5,7 +5,7 @@ unit uMaterDataSelectHelper;
 }
 interface
  uses SysUtils, Classes, Controls, Forms,FrmCliMain,Pub_Fun,ADODB,DB,uSelecDataBaseFrm
-  ,uSelectClientFrm,uselectSuppliersFrm,uSelectWarehouseFrm,uSelectMaterialFrm,uOrgFrm,uSelectData,DBClient;
+  ,uSelectClientFrm,uselectSuppliersFrm,uSelectWarehouseFrm,uSelectMaterialFrm,uOrgFrm,uSelectData,DBClient,uSelectDataEx;
 
  function Select_Customer(oldValue,SelecttWhereStr,SaleOrgID:string;isRadioSelect:Integer=1):TADODataSet;        //选客户
  function Select_Suppliers(oldValue,SelecttWhereStr,PurOrgID:string;isRadioSelect:Integer=1):TADODataSet;       //供应商
@@ -16,12 +16,15 @@ interface
  //FOrgType : 0 行政组织，1 财务组织，2 销售组织 ， 3 库存组织 ，4 采购组织 ，5 成本中心 ，6 HR组织  7 利润中心
  function Select_Branch(oldValue,SelecttWhereStr:string;FOrgType:Integer=0;isRadioSelect:Integer=1):TADODataSet;   //组织选择
 
- function Select_BaseData(FTableName,_FormTitle,_oldVal,_whereStr:string;isRadioSelect:Integer=1):TClientDataSet;  //选择基本资料
+ function Select_BaseData(FTableName,_FormTitle,_oldVal,_whereStr:string;isRadioSelect:Integer=1):TClientDataSet; overload;  //选择基本资料
  function Select_TreeBaseData(FTableName,_FormTitle,_oldVal,WhereStr:string;isRadioSelect:Integer=1):TADODataSet;  //选择树形基本资料
- function Select_BaseDataEx(_FormTitle,_oldVal,_SQL:string;isRadioSelect:Integer=1):TClientDataSet;  //选择基本资料 ,直接传入SQL，必须包含FID,Fnumber,Fname_l2
+ function Select_BaseDataEx(_FormTitle,_oldVal,_SQL:string;isRadioSelect:Integer=1):TClientDataSet; overload;  //选择基本资料 ,直接传入SQL，必须包含FID,Fnumber,Fname_l2
  //根据SQL取树形表数据
  //必需有 FNumber,FName_L2,FID,FParentID ,'''' as cfbranchflag  这些字段
  function Select_TreeDataBySQL(_Caption,_SQLStr,_oldVal:string;_isRadioSelect:Integer=1):TADODataSet;
+ //选择基本资料  showFieldEngList, showFieldChiList  这两个参数分别传要显示的字段名和字段中文名
+ function Select_BaseData(FTableName,_FormTitle,_oldVal,_whereStr,showFieldEngList, showFieldChiList:string;isRadioSelect:Integer=1):TClientDataSet; overload;
+ function Select_BaseDataEx(_FormTitle,_oldVal,_SQL,showFieldEngList, showFieldChiList:string;isRadioSelect:Integer=1):TClientDataSet; overload; //选择基本资料 ,直接传入SQL，必须包含FID,Fnumber,Fname_l2
 implementation
  function Select_Customer(oldValue,SelecttWhereStr,SaleOrgID:string;isRadioSelect:Integer=1):TADODataSet;
  begin
@@ -69,4 +72,15 @@ implementation
  begin
    Result := SelectTreeDataBySQL(_Caption,_SQLStr,_oldVal,_isRadioSelect);
  end;
+
+ function Select_BaseData(FTableName,_FormTitle,_oldVal,_whereStr,showFieldEngList, showFieldChiList:string;isRadioSelect:Integer=1):TClientDataSet;  //选择基本资料
+ begin
+    result :=  getDataBaseSetEx(FTableName,_FormTitle,_oldVal,_whereStr,showFieldEngList, showFieldChiList,isRadioSelect);
+ end;
+
+ function Select_BaseDataEx(_FormTitle,_oldVal,_SQL,showFieldEngList, showFieldChiList:string;isRadioSelect:Integer=1):TClientDataSet;  //选择基本资料 ,直接传入SQL，必须包含FID,Fnumber,Fname_l2
+ begin
+   Result := getDataBaseBySQLEx(_FormTitle,_oldVal,_SQL,showFieldEngList, showFieldChiList,isRadioSelect);
+ end;
+
 end.
