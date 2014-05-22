@@ -3,11 +3,18 @@ unit uUtilsClass;
 interface
 
 type
+  TStringUtilsCls = class
+
+  public
+  
+  end;
+
   TPermUtilsCls = class
 
   public
     function hasFunctionPermission(permNum:string):boolean;
   end;
+
 
 implementation
 
