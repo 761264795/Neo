@@ -44,6 +44,8 @@ type
     procedure AddRule(rule: TRuleDefine); overload;
     procedure SetDefaultRule(ruleNum:string);
     function  GetBeRunRuleNumber:String;
+    function GetRuleCount: Integer;
+    procedure ShowRuleFrm;
 
   end;
 
@@ -109,6 +111,42 @@ end;
 procedure TTransferBillSelFrm.cxBtnCancelClick(Sender: TObject);
 begin
   self.Close;
+end;
+
+
+function TTransferBillSelFrm.GetRuleCount: Integer;
+var
+  iCount : integer;
+begin
+   iCount := 0;
+   cdsRule.First;
+   while not cdsRule.Eof do
+   begin
+      iCount := iCount + 1;
+      cdsRule.Next;
+   end;
+   Result := iCount;
+end;
+
+procedure TTransferBillSelFrm.ShowRuleFrm;
+var
+  count: integer;
+begin
+  count := GetRuleCount;
+  cdsRule.First;
+  if count > 1 then
+  begin
+    if cxLookupComboBox1.EditText = '' then
+       cxLookupComboBox1.ItemIndex := 0;
+    ShowModal;
+  end else if count = 1 then
+  begin
+    ruleNumber := cdsRuleFNumber.AsString;
+  end else if count < 1 then
+  begin
+    ShowMessage('未符合数据的转换规则！');
+    Abort;
+  end;
 end;
 
 end.

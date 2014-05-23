@@ -293,7 +293,9 @@ uses
   uRepairWOListFrm in 'rsm\uRepairWOListFrm.pas' {RepairWOListFrm},
   uUtilsClass in '..\Comm\uUtilsClass.pas',
   uSelectDataEx in 'Base\uSelectDataEx.pas' {SelectDataExFrm},
-  uTransferBillSelDlg in 'Base\uTransferBillSelDlg.pas' {TransferBillSelFrm};
+  uTransferBillSelDlg in 'Base\uTransferBillSelDlg.pas' {TransferBillSelFrm},
+  uTransferBillBaseFrm in 'Base\uTransferBillBaseFrm.pas' {TransferBillBaseFrm},
+  uRepairWoToSaleIssue in 'rsm\uRepairWoToSaleIssue.pas' {RepairWoToSaleIssueFrm};
 
 {$R *.res}
 {$I- } //不产生I/O异常类而是把错误代码返回到预定义变量IOResult中

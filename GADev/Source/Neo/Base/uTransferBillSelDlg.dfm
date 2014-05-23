@@ -1,6 +1,6 @@
 object TransferBillSelFrm: TTransferBillSelFrm
-  Left = 343
-  Top = 265
+  Left = 387
+  Top = 328
   BorderStyle = bsDialog
   Caption = #21333#25454#36716#25442
   ClientHeight = 83
