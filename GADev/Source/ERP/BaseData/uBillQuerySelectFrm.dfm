@@ -12,18 +12,18 @@ inherited BillQuerySelectFrm: TBillQuerySelectFrm
     Left = 0
     Top = 33
     Width = 1
-    Height = 366
+    Height = 373
   end
   object pl: TPanel [1]
     Left = 0
-    Top = 399
-    Width = 651
+    Top = 406
+    Width = 659
     Height = 41
     Align = alBottom
     Color = 16511980
     TabOrder = 0
     DesignSize = (
-      651
+      659
       41)
     object lb: TLabel
       Left = 16
@@ -125,7 +125,7 @@ inherited BillQuerySelectFrm: TBillQuerySelectFrm
   object Panel1: TPanel [2]
     Left = 0
     Top = 0
-    Width = 651
+    Width = 659
     Height = 33
     Align = alTop
     Color = 16511980
@@ -169,8 +169,8 @@ inherited BillQuerySelectFrm: TBillQuerySelectFrm
   object Panel2: TPanel [3]
     Left = 1
     Top = 33
-    Width = 326
-    Height = 366
+    Width = 334
+    Height = 373
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel1'
@@ -178,8 +178,8 @@ inherited BillQuerySelectFrm: TBillQuerySelectFrm
     object cxGrid3: TcxGrid
       Left = 0
       Top = 0
-      Width = 326
-      Height = 366
+      Width = 334
+      Height = 373
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 0
@@ -215,10 +215,6 @@ inherited BillQuerySelectFrm: TBillQuerySelectFrm
         OptionsSelection.HideSelection = True
         OptionsView.GroupByBox = False
         OptionsView.Indicator = True
-        Styles.Background = DMPub.cxStyle2
-        Styles.Content = DMPub.cxStyle2
-        Styles.Header = DMPub.cxStyle1
-        Styles.Indicator = DMPub.cxStyle1
       end
       object cxGridLevel4: TcxGridLevel
         GridView = ValList
@@ -226,10 +222,10 @@ inherited BillQuerySelectFrm: TBillQuerySelectFrm
     end
   end
   object Panel3: TPanel [4]
-    Left = 327
+    Left = 335
     Top = 33
     Width = 324
-    Height = 366
+    Height = 373
     Align = alRight
     BevelOuter = bvNone
     Caption = 'Panel3'
@@ -238,7 +234,7 @@ inherited BillQuerySelectFrm: TBillQuerySelectFrm
       Left = 32
       Top = 0
       Width = 292
-      Height = 366
+      Height = 373
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 0
@@ -269,10 +265,6 @@ inherited BillQuerySelectFrm: TBillQuerySelectFrm
         OptionsData.Inserting = False
         OptionsSelection.HideSelection = True
         OptionsView.GroupByBox = False
-        Styles.Background = DMPub.cxStyle2
-        Styles.Content = DMPub.cxStyle2
-        Styles.Header = DMPub.cxStyle1
-        Styles.Indicator = DMPub.cxStyle1
       end
       object cxGridLevel1: TcxGridLevel
         GridView = selectTv
@@ -282,7 +274,7 @@ inherited BillQuerySelectFrm: TBillQuerySelectFrm
       Left = 0
       Top = 0
       Width = 32
-      Height = 366
+      Height = 373
       Align = alLeft
       BevelOuter = bvNone
       Color = 16511980

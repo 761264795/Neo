@@ -10,7 +10,15 @@ uses
   cxPropertiesStore, ImgList, ComCtrls, ToolWin, ExtCtrls, cxGridLevel,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxClasses,
   cxControls, cxGridCustomView, cxGrid, cxPC, StdCtrls, cxButtons,
-  cxContainer, cxDBEdit, cxCalendar;
+  cxContainer, cxDBEdit, cxCalendar, dxSkinsCore, dxSkinBlack, dxSkinBlue,
+  dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide, dxSkinFoggy,
+  dxSkinGlassOceans, dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky,
+  dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMoneyTwins,
+  dxSkinOffice2007Black, dxSkinOffice2007Blue, dxSkinOffice2007Green,
+  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinPumpkin, dxSkinSeven,
+  dxSkinSharp, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
+  dxSkinSummer2008, dxSkinsDefaultPainters, dxSkinValentine,
+  dxSkinXmas2008Blue, dxSkinscxPCPainter;
 
 type
   TBillListQueryDialogFrm = class(TSTBaseEdit)
@@ -174,7 +182,7 @@ begin
       Abort;
     end;
     _sql :=' select a.* from T_BD_BillQueryFindList a left join T_BD_BillQuery b on a.fparentid=b.fid   '
-          +' where b.fbilltypeid= '+ Quotedstr(FBillTypeID);
+          +' where a.FVisbleOnlyInFastQuery <> 1 and b.fbilltypeid= '+ Quotedstr(FBillTypeID);
     if not CliDM.Get_OpenSQL(cdsBillFindList,_sql,ErrMsg) then
     begin
       ShowMsg(self.Handle,'打开T_BD_BillQueryFindList表失败!'+ErrMsg,[]);
@@ -194,7 +202,7 @@ begin
     end;
     if Trim(cdsBillQuery.FieldByName('FBaseSQL').AsString) = ''    then
     begin
-      ShowMsg(self.Handle,'当前单据列表的配置信息里基本SQL没都配置，请联系管理员！',[]);
+      ShowMsg(self.Handle,'当前单据列表的配置信息里基本SQL没有配置，请联系管理员！',[]);
       Abort;
     end;
     if not cdsMater.IsEmpty then
@@ -935,7 +943,7 @@ begin
         cdsQuerySchemeEntry.First;
         while not cdsQuerySchemeEntry.Eof do
         begin
-          if (cdsQuerySchemeEntry.FieldByName('compareValue').AsString <> '')  then
+          if (cdsQuerySchemeEntry.FieldByName('compareValue').AsString <> '') then
           begin
             if val = '' then
             if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
@@ -944,8 +952,8 @@ begin
               val := ' where (1=1 and  ';
             if (uppercase(trim(cdsQuerySchemeEntry.fieldbyname('FDataType').AsString)) = uppercase('Date')) then
             begin
-              val := ' ' + val + trim(cdsQuerySchemeEntry.FieldByName('LeftBracket').AsString) + 'to_char('
-                      + trim(cdsQuerySchemeEntry.FieldByName('FFieldNameORTableName').AsString) + ',''YYYY-MM-DD'')  '
+              val := ' ' + val + trim(cdsQuerySchemeEntry.FieldByName('LeftBracket').AsString) + 'convert(varchar(10),'
+                      + trim(cdsQuerySchemeEntry.FieldByName('FFieldNameORTableName').AsString) + ',120)  '
                       + GetCp(trim(cdsQuerySchemeEntry.FieldByName('compare').AsString))
                       + ''''+UpperCase(trim(cdsQuerySchemeEntry.FieldByName('compareValue').AsString)) +''''
                       + trim(cdsQuerySchemeEntry.FieldByName('rightBracket').AsString)

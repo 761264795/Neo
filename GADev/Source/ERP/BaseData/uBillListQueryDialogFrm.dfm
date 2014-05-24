@@ -1,6 +1,6 @@
 inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
-  Left = 719
-  Top = 120
+  Left = 455
+  Top = 140
   Width = 780
   Height = 496
   Caption = #21333#25454#21015#34920#21160#24577#26465#20214#35774#32622
@@ -11,8 +11,8 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
   object Pl: TPanel [0]
     Left = 105
     Top = 38
-    Width = 659
-    Height = 419
+    Width = 667
+    Height = 427
     Align = alClient
     BevelOuter = bvLowered
     Ctl3D = True
@@ -20,15 +20,15 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
     TabOrder = 2
     object PlBt: TPanel
       Left = 1
-      Top = 375
-      Width = 657
+      Top = 383
+      Width = 665
       Height = 43
       Align = alBottom
       Color = 16511980
       ParentBackground = False
       TabOrder = 1
       DesignSize = (
-        657
+        665
         43)
       object Label1: TLabel
         Left = 16
@@ -136,8 +136,8 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
     object mainPg: TcxPageControl
       Left = 1
       Top = 1
-      Width = 657
-      Height = 374
+      Width = 665
+      Height = 382
       ActivePage = cxTabSheet1
       Align = alClient
       Color = 16511980
@@ -146,8 +146,8 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
       ParentColor = False
       Style = 10
       TabOrder = 0
-      ClientRectBottom = 374
-      ClientRectRight = 657
+      ClientRectBottom = 382
+      ClientRectRight = 665
       ClientRectTop = 0
       object cxTabSheet2: TcxTabSheet
         Caption = #26465#20214#36807#28388
@@ -164,8 +164,8 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
         object FindGrid: TcxGrid
           Left = 0
           Top = 0
-          Width = 657
-          Height = 374
+          Width = 665
+          Height = 382
           Align = alClient
           BevelOuter = bvNone
           Font.Charset = DEFAULT_CHARSET
@@ -303,7 +303,7 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
   object ToolBar1: TToolBar [1]
     Left = 0
     Top = 0
-    Width = 764
+    Width = 772
     Height = 38
     Anchors = [akLeft]
     ButtonHeight = 35
@@ -416,7 +416,7 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
     Left = 0
     Top = 38
     Width = 105
-    Height = 419
+    Height = 427
     Align = alLeft
     BevelInner = bvLowered
     BevelOuter = bvNone
@@ -426,7 +426,7 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
       Left = 1
       Top = 1
       Width = 103
-      Height = 417
+      Height = 425
       Cursor = crHandPoint
       Align = alClient
       BiDiMode = bdLeftToRight

@@ -15,12 +15,21 @@ uses
   TeEngine, TeeProcs, Chart, DbChart, cxHyperLinkEdit, ADODB,cxCalc,cxProgressBar,uBillListQueryDialogFrm
   ,FrmCliMain, dxSkinsCore, dxSkinOffice2007Black, dxSkinOffice2007Blue,
   dxSkinOffice2007Green, dxSkinOffice2007Pink, dxSkinOffice2007Silver,uPrintTemplateSelectFrm,
+  dxSkinBlack, dxSkinBlue, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom,
+  dxSkinDarkSide, dxSkinFoggy, dxSkinGlassOceans, dxSkiniMaginary,
+  dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin,
+  dxSkinMoneyTwins, dxSkinPumpkin, dxSkinSeven, dxSkinSharp, dxSkinSilver,
+  dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
+  dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue,
+  dxSkinscxPCPainter,
   dxSkinscxPCPainter, dxSkinBlack, dxSkinBlue, dxSkinCaramel, dxSkinCoffee,
   dxSkinDarkRoom, dxSkinDarkSide, dxSkinFoggy, dxSkinGlassOceans,
   dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky,
   dxSkinMcSkin, dxSkinMoneyTwins, dxSkinPumpkin, dxSkinSeven, dxSkinSharp,
   dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
-  dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue;
+  dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue, cxDBEdit,
+  cxLabel;
+
 type
   TSumval=class
      rowno:Integer;
@@ -67,9 +76,6 @@ type
     Panel3: TPanel;
     Panel4: TPanel;
     Panel5: TPanel;
-    Label2: TLabel;
-    txt_Filter: TcxTextEdit;
-    Label3: TLabel;
     Label4: TLabel;
     Image1: TImage;
     lb_Report: TLabel;
@@ -113,8 +119,6 @@ type
     cxGridLevel1: TcxGridLevel;
     cdsReportList: TClientDataSet;
     dsReportList: TDataSource;
-    cdsReportListFID: TWideStringField;
-    cdsReportListFReportName: TWideStringField;
     cxReportFID: TcxGridDBColumn;
     cxReportFReportName: TcxGridDBColumn;
     cdsChart: TClientDataSet;
@@ -146,6 +150,11 @@ type
     cxStyle5: TcxStyle;
     SpeedButton6: TSpeedButton;
     SpeedButton7: TSpeedButton;
+    cdsReportListFID: TWideStringField;
+    cdsReportListFReportName: TStringField;
+    cxButton1: TcxButton;
+    Splitter1: TSplitter;
+    cdsBillFindList: TClientDataSet;
     procedure dbgListDblClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure excel1Click(Sender: TObject);
@@ -187,6 +196,7 @@ type
     procedure spt_PrintClick(Sender: TObject);
     procedure spt_upQueryClick(Sender: TObject);
     procedure spt_DownQueryClick(Sender: TObject);
+    procedure cxButton1Click(Sender: TObject);
   private
     { Private declarations }
     FBill_Sign: string;
@@ -196,6 +206,7 @@ type
     ChartType : Integer;
     procedure SetBill_Sign(const Value: string);
     procedure SetBillKeyFields(const Value: string);
+    procedure OnF7Down(Sender: TObject; AButtonIndex: Integer);
   public
     { Public declarations }
     //单据类型FID（Create时赋值）
@@ -221,6 +232,7 @@ type
     function  getChartField: string;
     procedure LoadGridFormat; //加载网格格式
     procedure GetBillQueryInfo;
+    procedure CreateFastQuery;
     function  getParaRight(para:string):Boolean;
     procedure QueryBillData;
     procedure OpenReport(KeyFID,Title:string);
@@ -237,7 +249,9 @@ var
   FM_BillListBase: TFM_BillListBase;
 
 implementation
-uses FrmCliDM,Pub_Fun,cxGridExportLink,uGridStyleSet,uSysDataSelect,IniFiles,StringUtilClass,Frm_TolZB,uBillUpDownQueryFrm;
+uses FrmCliDM,Pub_Fun,cxGridExportLink,uGridStyleSet,uSysDataSelect,IniFiles,
+    StringUtilClass,Frm_TolZB,uBillUpDownQueryFrm,uBillQuerySelectFrm,
+    uMaterDataSelectHelper,uDrpHelperClase;
 {$R *.dfm}
 
 { TFM_BillListBase }
@@ -285,7 +299,7 @@ procedure TFM_BillListBase.FormCreate(Sender: TObject);
 var i : Integer;
 begin
   inherited;
-  FisOpenFilter := True;
+  //FisOpenFilter := True;
   FilterFieldList := TStringList.Create;
   for i := 0 to Self.ComponentCount -1 do
   begin
@@ -1240,6 +1254,15 @@ begin
     ShowMsg(self.Handle,'打开配置明细表T_BD_BillQueryFieldList出错,'+ErrMsg,[]);
     Exit;
   end;
+
+  _sql :=' select a.* from T_BD_BillQueryFindList a left join T_BD_BillQuery b on a.fparentid=b.fid   '
+        +' where a.FVisbleInFastQuery = 1 and b.fbilltypeid= '+ Quotedstr(self.FBillTypeFID);
+  if not CliDM.Get_OpenSQL(cdsBillFindList,_sql,ErrMsg) then
+  begin
+    ShowMsg(self.Handle,'打开T_BD_BillQueryFindList表失败!'+ErrMsg,[]);
+    Abort;
+  end;
+
 end;
 
 procedure TFM_BillListBase.GridGetDisplayText(
@@ -1277,9 +1300,12 @@ begin
   FilePath := ExtractFilePath(paramstr(0))+'\Img\Tool_bk.jpg';
   if not LoadImage(FilePath,Image2) then  Gio.AddShow('图片路径不存在：'+FilePath);
   inherited;
+  //获取查询配置信息
   GetBillQueryInfo;
+  //创建快速查询面板控件
+  CreateFastQuery;
   if Self.FisOpenFilter then QueryBillData;
-  txt_Filter.SetFocus;
+  //txt_Filter.SetFocus;
 end;
 
 procedure TFM_BillListBase.Btn_QueryClick(Sender: TObject);
@@ -1299,12 +1325,12 @@ procedure TFM_BillListBase.txt_FilterPropertiesChange(Sender: TObject);
 var inputTxt:string;
 begin
   inherited;
-  inputTxt := Trim(txt_Filter.Text);
-  cdsList.Filtered := False;
-  if (inputTxt <> '' ) then
-  cdsList.Filtered := True
-  else
-  cdsList.Filtered := False;
+//  inputTxt := Trim(txt_Filter.Text);
+//  cdsList.Filtered := False;
+//  if (inputTxt <> '' ) then
+//  cdsList.Filtered := True
+//  else
+//  cdsList.Filtered := False;
 end;
 
 procedure TFM_BillListBase.cdsListFilterRecord(DataSet: TDataSet;
@@ -1314,24 +1340,24 @@ procedure TFM_BillListBase.cdsListFilterRecord(DataSet: TDataSet;
   result : Boolean;
 begin
   inherited;
-  inputTxt := UpperCase(Trim(txt_Filter.Text));
-  result := False;
-  if FilterFieldList.Count <> 0 then
-  begin
-    for i := 0 to FilterFieldList.Count -1 do
-    begin
-      if DataSet.FindField(FilterFieldList[i]) <> nil then
-      begin
-        Temp := UpperCase(Trim(DataSet.fieldbyname(FilterFieldList[i]).AsString));
-        if (Pos(inputTxt,Temp) > 0) or (Pos(ChnToPY(inputTxt),Temp) > 0) then
-        begin
-          result := True;
-          Break;
-        end;
-      end;
-    end;
-  end;
-  Accept:=result;
+//  inputTxt := UpperCase(Trim(txt_Filter.Text));
+//  result := False;
+//  if FilterFieldList.Count <> 0 then
+//  begin
+//    for i := 0 to FilterFieldList.Count -1 do
+//    begin
+//      if DataSet.FindField(FilterFieldList[i]) <> nil then
+//      begin
+//        Temp := UpperCase(Trim(DataSet.fieldbyname(FilterFieldList[i]).AsString));
+//        if (Pos(inputTxt,Temp) > 0) or (Pos(ChnToPY(inputTxt),Temp) > 0) then
+//        begin
+//          result := True;
+//          Break;
+//        end;
+//      end;
+//    end;
+//  end;
+//  Accept:=result;
 end;
 
 procedure TFM_BillListBase.spt_ZBFXClick(Sender: TObject);
@@ -1667,6 +1693,432 @@ function TFM_BillListBase.NotScmBillUnAuditBill(BillFID: string;
   var ErrMsg: string): Boolean;
 begin
   //
+end;
+
+procedure TFM_BillListBase.CreateFastQuery;
+var
+  i, iRowIndex, iColIndex: Integer;
+  sDataType: string;
+  ALabel: TLabel;
+  AEdit: TcxTextEdit;
+  ADateEdit: TcxDateEdit;
+  AButtonEdit: TcxButtonEdit;
+  function GetSpaceStr(len: Integer): string;
+  var
+    j: Integer;
+  begin
+    for j := 1 to len do
+    begin
+      Result := Result + '  ';
+    end;
+  end;
+begin
+  if cdsBillFindList.Active and (cdsBillFindList.RecordCount > 0) then
+  begin
+    cdsBillFindList.First;
+    i := 0;
+    while not cdsBillFindList.Eof do
+    begin
+      inc(i);
+      ALabel := TLabel.Create(pnTop);
+      ALabel.Parent := pnTop;
+      ALabel.AutoSize := False;
+      ALabel.ShowHint := True;
+      ALabel.Width := 76;
+      ALabel.Font.Style := [fsUnderline];
+      ALabel.Caption := cdsBillFindList.FieldByName('FFieldCHName').AsString;
+      ALabel.Hint := ALabel.Caption;
+      ALabel.Name := 'lbl' + cdsBillFindList.FieldByName('FID').AsString;
+      if Length(ALabel.Caption) < 6 then
+        ALabel.Caption := ALabel.Caption + GetSpaceStr(6-Length(ALabel.Caption));
+      //计算控件应处在第几列  一行共三列
+      iColIndex := i mod 3;  //1 第一列  2 第二列  0 第三列
+      //计算控件应处在第几行  从第0行开始
+      iRowIndex := i div 3;
+      if iColIndex = 0 then
+        iRowIndex := iRowIndex - 1;
+      case iColIndex of
+        1: ALabel.Left := 16;
+        2: ALabel.Left := 280;
+        0: ALabel.Left := 544;
+      end;
+      ALabel.Top := (iRowIndex + 1) * 16 + iRowIndex * 20;
+      /////////////////////////////////////////////////////////////////////////
+      sDataType := cdsBillFindList.FieldByName('FDataType').AsString;
+      if sDataType = 'Date' then
+      begin
+        ADateEdit := TcxDateEdit.Create(pnTop);
+        ADateEdit.Name := 'dat' + cdsBillFindList.FieldByName('FID').AsString;  //因为name的首字不能为数字，怕FID首字可能为数字，所以全都加前缀
+        ADateEdit.Parent := pnTop;
+        ADateEdit.Left := ALabel.Left + ALabel.Width;
+        ADateEdit.Top := ALabel.Top - 3;
+        ADateEdit.Hint := cdsBillFindList.FieldByName('FFieldNameOrTableName').AsString;
+      end
+      else //String 、int 、float 等数据类型
+      begin
+        if (Trim(cdsBillFindList.FieldByName('FFindValue').AsString) <> '')
+          or (Trim(cdsBillFindList.FieldByName('FDialogType').AsString) <> '') then
+        begin
+          AButtonEdit := TcxButtonEdit.Create(pnTop);
+          AButtonEdit.Name := 'but' + cdsBillFindList.FieldByName('FID').AsString;
+          AButtonEdit.Parent := pnTop;
+          AButtonEdit.Left := ALabel.Left + ALabel.Width;
+          AButtonEdit.Top := ALabel.Top - 3;
+          AButtonEdit.Text := '';
+          AButtonEdit.Hint := cdsBillFindList.FieldByName('FFieldNameOrTableName').AsString;
+          AButtonEdit.Properties.OnButtonClick := OnF7Down;
+        end
+        else
+        begin
+          AEdit := TcxTextEdit.Create(pnTop);
+          AEdit.Name := 'edt' + cdsBillFindList.FieldByName('FID').AsString;
+          AEdit.Parent := pnTop;
+          AEdit.Left := ALabel.Left + ALabel.Width;
+          AEdit.Top := ALabel.Top - 3;
+          AEdit.Text := '';
+          AEdit.Hint := cdsBillFindList.FieldByName('FFieldNameOrTableName').AsString;
+        end;
+      end;
+      cdsBillFindList.Next;
+    end;
+  end;
+end;
+
+function GetRealFID(componeName: string): string;
+begin
+  if Length(componeName) > 3 then
+    Result := Copy(componeName, 4, Length(componeName) - 3)
+  else
+    Result := componeName;
+end;
+
+//对于F7类型的参数设置
+procedure TFM_BillListBase.OnF7Down(Sender: TObject; AButtonIndex: Integer);
+var
+  rstvalue: string;
+  DgType: string;
+  oldval:string;
+  dataSet:TDataSet;
+  FisRadioSelect:Integer;
+  isBase:Boolean;
+  aclientdataset: TClientDataSet;
+begin
+  try
+    oldval:= Trim(TcxButtonEdit(Sender).Text);
+    dataSet := TDataSet.Create(nil);
+    if cdsBillFindList.Locate('FID', GetRealFID(TcxButtonEdit(Sender).Name), []) then
+    begin
+      if trim(cdsBillFindList.FieldByName('FFindValue').AsString) <> '' then
+      begin
+        rstvalue := GetBillQueryFindVal(aclientdataset,trim(cdsBillFindList.FieldByName('FFindValue').AsString),oldval);
+        if rstvalue <> '' then
+        begin
+          TcxButtonEdit(Sender).Text := trim(rstvalue);
+        end;
+      end
+      else
+      if trim(cdsBillFindList.FieldByName('FDialogType').AsString) <> '' then
+      begin
+        //物料档案 款号档案 客户档案 供应商档案 操作员 部门档案
+        DgType := trim(cdsBillFindList.FieldByName('FDialogType').AsString);
+        FisRadioSelect := cdsBillFindList.FieldByName('FisRadioSelect').AsInteger;
+        isBase := False;
+        if DgType = '成品' then
+        begin
+          isBase := True;
+          dataSet := Select_Material(oldval,'',FisRadioSelect);
+        end
+        else
+        if DgType = '原材料' then
+        begin
+          isBase := True;
+          dataSet := Select_RawMaterials(oldval,'',FisRadioSelect);
+        end
+        else
+        if DgType = '客户' then
+        begin
+          isBase := True;
+          dataSet := Select_Customer(oldval,'','',FisRadioSelect);
+        end
+        else
+        if DgType = '供应商' then
+        begin
+          isBase := True;
+          dataSet:=Select_Suppliers(oldval,'','',FisRadioSelect);
+        end
+        else
+        if DgType = '店铺' then
+        begin
+          isBase := True;
+          dataSet:=Select_shop(oldval,'',FisRadioSelect);
+        end
+        else
+        if DgType = '仓库' then
+        begin
+          isBase := True;
+          dataSet:=Select_Warehouse(oldval,'',FisRadioSelect);
+        end
+        //FOrgType : 0 行政组织，1 财务组织，2 销售组织 ， 3 库存组织 ，4 采购组织 ，5 成本中心 ，6 HR组织  7 利润中心
+        else
+        if DgType = '行政组织' then
+        begin
+          isBase := True;
+          dataSet:=Select_Branch(oldval,'',0,FisRadioSelect);
+        end
+        else
+        if DgType = '财务组织' then
+        begin
+          isBase := True;
+          dataSet:=Select_Branch(oldval,'',1,FisRadioSelect);
+        end
+        else
+        if DgType = '销售组织' then
+        begin
+          isBase := True;
+          dataSet:=Select_Branch(oldval,'',2,FisRadioSelect);
+        end
+        else
+        if DgType = '库存组织' then
+        begin
+          isBase := True;
+          dataSet:=Select_Branch(oldval,'',3,FisRadioSelect);
+        end
+        else
+        if DgType = '采购组织' then
+        begin
+          isBase := True;
+          dataSet:=Select_Branch(oldval,'',4,FisRadioSelect);
+        end
+        else
+        if DgType = '成本中心' then
+        begin
+          isBase := True;
+          dataSet:=Select_Branch(oldval,'',5,FisRadioSelect);
+        end
+        else
+        if DgType = 'HR组织' then
+        begin
+          isBase := True;
+          dataSet:=Select_Branch(oldval,'',6,FisRadioSelect);
+        end
+        else
+        if DgType = '利润中心' then
+        begin
+          isBase := True;
+          dataSet:=Select_Branch(oldval,'',7,FisRadioSelect);
+        end;
+        //得到选择值
+        if isBase then
+        begin
+          rstvalue := '';
+          if not dataSet.IsEmpty  then
+          begin
+            dataSet.First;
+            while not dataSet.Eof do
+            begin
+              if rstvalue = '' then
+              rstvalue := dataSet.fieldbyname('fnumber').AsString
+              else
+              rstvalue :=rstvalue+','+ dataSet.fieldbyname('fnumber').AsString;
+              dataSet.Next;
+            end;
+          end;
+        end;
+        if trim(rstvalue) <> '' then
+        begin
+          TcxButtonEdit(Sender).Text := trim(rstvalue);
+          if dataSet.RecordCount >1 then
+          begin
+            cdsBillFindList.Edit;
+            cdsBillFindList.FieldByName('FCompareType').AsString := '包含';
+            cdsBillFindList.Post;
+          end;
+        end;
+      end;
+    end;
+  finally
+    dataSet.free;
+  end;
+end;
+
+function GetCp(Val:String):String;
+begin
+  if Val = '等于' then    Result := '='
+  else
+  if Val = '大于等于' then   Result := '>='
+  else
+  if Val = '小于' then  Result := '<'
+  else
+  if Val = '大于' then   Result := '>'
+  else
+  if Val = '小于等于' then    Result := '<='
+  else
+  if Val = '不等于' then   Result := '<>'
+  else
+  if Val = '前部分等于' then  Result := '前部分等于'
+  else
+  if Val = '后部分等于' then  Result := '后部分等于'
+  else
+  if Val = '包含' then    Result := 'in'
+  else
+  if Val = '相似' then    Result := 'like';
+end;
+
+function getSqlStr(str: string): string;
+var i: Integer;
+  rest: string;
+  list: Tstringlist;
+begin
+  result := '';
+  try
+      list := Tstringlist.Create;
+      list.Delimiter := ',';
+      list.DelimitedText := str;
+      rest := '';
+      if List.Count = 0 then Exit;
+      for i := 0 to List.Count - 1 do
+      begin
+        rest := rest + '''' + trim(List[i]) + ''',';
+      end;
+      rest := Copy(rest, 1, Length(trim(rest)) - 1);
+      if rest <> '' then
+        result := rest;
+  finally
+      list.Free;
+  end;
+end;
+
+procedure TFM_BillListBase.cxButton1Click(Sender: TObject);
+var
+  i: Integer;
+  strWhere: string;
+  rst, val: string;
+begin
+  rst := '';
+  //组织WHERE语句
+  if trim(cdsBillQuery.FieldByName('FBaseSQL').AsString) <> '' then
+  begin
+    rst := rst + trim(cdsBillQuery.FieldByName('FBaseSQL').AsString) + ' ';
+    val := '';
+    for i := 0 to pnTop.ComponentCount - 1 do
+    begin
+      if (pnTop.Components[i] is TcxDateEdit) and (Trim(TcxDateEdit(pnTop.Components[i]).Text)<> '') then
+      begin
+        if cdsBillFindList.Locate('FID',GetRealFID(pnTop.Components[i].Name), []) then
+        begin
+          if val = '' then
+          begin
+            if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
+              val := ' '
+            else
+              val := ' where 1=1  ';
+          end;
+          if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('Date')) then
+          begin
+            val := ' ' + val + ' and convert(varchar(10),'
+                    + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',120)  '
+                    + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
+                    + ''''+TcxDateEdit(pnTop.Components[i]).Text +'''';
+          end;
+        end;
+      end
+      else
+      if (pnTop.Components[i] is TcxTextEdit) and (Trim(TcxTextEdit(pnTop.Components[i]).Text)<> '') then
+      begin
+        if cdsBillFindList.Locate('FID',GetRealFID(pnTop.Components[i].Name), []) then
+        begin
+          if val = '' then
+          begin
+            if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
+              val := ' '
+            else
+              val := ' where 1=1  ';
+          end;
+          if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('string'))  then
+          begin
+            val := ' ' + val + ' and IsNull('
+              + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
+              + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
+              + '''' + trim(TcxTextEdit(pnTop.Components[i]).Text) + '''';
+          end
+          else
+          begin
+            val := ' ' + val + ' and IsNull('
+                + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
+                + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
+                + trim(TcxTextEdit(pnTop.Components[i]).Text);
+          end;
+        end;
+      end
+      else
+      if (pnTop.Components[i] is TcxButtonEdit) and (Trim(TcxButtonEdit(pnTop.Components[i]).Text)<> '') then
+      begin
+        if cdsBillFindList.Locate('FID',GetRealFID(pnTop.Components[i].Name), []) then
+        begin
+          if val = '' then
+          begin
+            if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
+              val := ' '
+            else
+              val := ' where 1=1  ';
+          end;
+
+          if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('string'))  then
+          begin
+            if GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString)) = 'like' then
+              val := ' ' + val + ' and ' + 'upper(IsNull( '
+                + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
+                + 'like ''%'
+                + UpperCase(trim(TcxButtonEdit(pnTop.Components[i]).Text)) + '%'''
+            else
+            if GetCp(Trim(cdsBillFindList.FieldByName('FcompareType').AsString)) = 'in'   then
+              val := ' ' + val + ' and ' + 'upper(IsNull( '
+                + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
+                + 'in ('
+                + getSqlStr(UpperCase(trim(TcxButtonEdit(pnTop.Components[i]).Text))) + ')'
+
+            else
+              val := ' ' + val + ' and IsNull('
+                + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
+                + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
+                + '''' + trim(TcxButtonEdit(pnTop.Components[i]).Text) + '''';
+          end
+          else
+            val := ' ' + val + ' and IsNull('
+              + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
+              + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
+              + trim(TcxButtonEdit(pnTop.Components[i]).Text);
+        end;
+//          strWhere := strWhere + ' and ' + cdsBillFindList.FieldByName('FFieldNameOrTableName').AsString
+//                      + ' ' + GetCp(cdsBillFindList.FieldByName('FCompareType').AsString);
+      end;
+    end;
+    rst := rst + ' ' + val + ' ';
+    rst := rst + ' ' + trim( cdsBillQuery.FieldByName('FGroupSql').AsString) + ' ';
+  end;
+  
+  if rst <> '' then
+  begin
+    //传入变量--- StringReplace(原来的字符串，需要被替换的部分，替换后的部分，[rfReplaceAll])
+    while PosEx(uppercase('@User_ID'), uppercase(rst)) > 0 do
+    begin
+      rst := StringReplace(rst, '@User_ID', '''' + UserInfo.LoginUser_FID + '''', [rfReplaceAll]);
+    end;
+    while PosEx(uppercase('@Branch_ID'), uppercase(rst)) > 0 do
+    begin
+      rst := StringReplace(rst, '@Branch_ID', '''' + UserInfo.Branch_ID + '''', [rfReplaceAll]);
+    end;
+    while PosEx(uppercase('@Defined'), uppercase(rst)) > 0 do
+    begin
+      rst := StringReplace(rst, '@Defined', '''' + self.FDefined+ '''', [rfReplaceAll]);
+    end;
+//    result := rst;
+  end;
+  FBillQuerySQL := rst;
+  if  Trim(FBillQuerySQL) <> '' then
+    self.Open;
+  if cdsList.Active then
+    CreateGridColumn(cdsList,dbgList);
 end;
 
 end.

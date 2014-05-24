@@ -22,23 +22,23 @@ object SelectDataFrm: TSelectDataFrm
     Left = 0
     Top = 61
     Width = 1
-    Height = 341
+    Height = 348
   end
   object pl: TPanel
     Left = 0
-    Top = 402
-    Width = 729
+    Top = 409
+    Width = 737
     Height = 41
     Align = alBottom
     Color = 16511980
     TabOrder = 4
     DesignSize = (
-      729
+      737
       41)
     object lb: TLabel
       Left = 16
       Top = 16
-      Width = 6
+      Width = 9
       Height = 12
       Visible = False
     end
@@ -68,7 +68,7 @@ object SelectDataFrm: TSelectDataFrm
   object Panel1: TPanel
     Left = 0
     Top = 28
-    Width = 729
+    Width = 737
     Height = 33
     Align = alTop
     Color = 16511980
@@ -114,8 +114,8 @@ object SelectDataFrm: TSelectDataFrm
   object Panel2: TPanel
     Left = 1
     Top = 61
-    Width = 351
-    Height = 341
+    Width = 359
+    Height = 348
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel1'
@@ -123,8 +123,8 @@ object SelectDataFrm: TSelectDataFrm
     object cxGrid3: TcxGrid
       Left = 0
       Top = 0
-      Width = 351
-      Height = 341
+      Width = 359
+      Height = 348
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 0
@@ -170,10 +170,10 @@ object SelectDataFrm: TSelectDataFrm
     end
   end
   object Panel3: TPanel
-    Left = 352
+    Left = 360
     Top = 61
     Width = 377
-    Height = 341
+    Height = 348
     Align = alRight
     BevelOuter = bvNone
     Caption = 'Panel3'
@@ -182,7 +182,7 @@ object SelectDataFrm: TSelectDataFrm
       Left = 32
       Top = 0
       Width = 345
-      Height = 341
+      Height = 348
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
@@ -225,7 +225,7 @@ object SelectDataFrm: TSelectDataFrm
       Left = 0
       Top = 0
       Width = 32
-      Height = 341
+      Height = 348
       Align = alLeft
       BevelOuter = bvNone
       Color = 16511980
@@ -309,7 +309,7 @@ object SelectDataFrm: TSelectDataFrm
   object p_top: TPanel
     Left = 0
     Top = 0
-    Width = 729
+    Width = 737
     Height = 28
     Align = alTop
     Caption = 'p_top'
@@ -317,7 +317,7 @@ object SelectDataFrm: TSelectDataFrm
     object Image1: TImage
       Left = 1
       Top = 1
-      Width = 727
+      Width = 735
       Height = 26
       Align = alClient
       Picture.Data = {

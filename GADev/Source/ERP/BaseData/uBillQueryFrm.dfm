@@ -440,6 +440,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 Width = 120
               end
               object cxFiledListFLSH: TcxGridDBColumn
+                Caption = #39034#24207#21495
                 DataBinding.FieldName = 'FLSH'
                 Options.Editing = False
                 Options.Filtering = False
@@ -447,14 +448,17 @@ inherited BillQueryFrm: TBillQueryFrm
                 Width = 37
               end
               object cxFiledListFIELDNAME: TcxGridDBColumn
+                Caption = #23383#27573#21517
                 DataBinding.FieldName = 'FIELDNAME'
                 Width = 120
               end
               object cxFiledListFIELDCHNAME: TcxGridDBColumn
+                Caption = #23383#27573#20013#25991#21517
                 DataBinding.FieldName = 'FIELDCHNAME'
                 Width = 120
               end
               object cxFiledListFISVISIBLE: TcxGridDBColumn
+                Caption = #21487#35265
                 DataBinding.FieldName = 'FISVISIBLE'
                 PropertiesClassName = 'TcxCheckBoxProperties'
                 Properties.NullStyle = nssUnchecked
@@ -463,6 +467,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 Width = 42
               end
               object cxFiledListFISFILTER: TcxGridDBColumn
+                Caption = #36807#28388
                 DataBinding.FieldName = 'FISFILTER'
                 PropertiesClassName = 'TcxCheckBoxProperties'
                 Properties.NullStyle = nssUnchecked
@@ -471,6 +476,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 Width = 43
               end
               object cxFiledListFISSORT: TcxGridDBColumn
+                Caption = #25490#24207
                 DataBinding.FieldName = 'FISSORT'
                 PropertiesClassName = 'TcxCheckBoxProperties'
                 Properties.NullStyle = nssUnchecked
@@ -479,6 +485,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 Width = 47
               end
               object cxFiledListFISGROUP: TcxGridDBColumn
+                Caption = #20998#32452
                 DataBinding.FieldName = 'FISGROUP'
                 PropertiesClassName = 'TcxCheckBoxProperties'
                 Properties.NullStyle = nssUnchecked
@@ -487,6 +494,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 Width = 46
               end
               object cxFiledListFISBARSHOW: TcxGridDBColumn
+                Caption = #20132#21449#34920#22836#26174#31034
                 DataBinding.FieldName = 'FISBARSHOW'
                 PropertiesClassName = 'TcxCheckBoxProperties'
                 Properties.NullStyle = nssUnchecked
@@ -495,6 +503,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 Width = 71
               end
               object cxFiledListFISMERGE: TcxGridDBColumn
+                Caption = #21512#24182
                 DataBinding.FieldName = 'FISMERGE'
                 PropertiesClassName = 'TcxCheckBoxProperties'
                 Properties.NullStyle = nssUnchecked
@@ -503,6 +512,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 Width = 76
               end
               object cxFiledListColumnFisPyFilter: TcxGridDBColumn
+                Caption = #25340#38899#36807#28388
                 DataBinding.FieldName = 'FisPyFilter'
                 PropertiesClassName = 'TcxCheckBoxProperties'
                 Properties.NullStyle = nssUnchecked
@@ -510,14 +520,17 @@ inherited BillQueryFrm: TBillQueryFrm
                 Properties.ValueUnchecked = 0
               end
               object cxFiledListFDEFWIDTH: TcxGridDBColumn
+                Caption = #40664#35748#23485#24230
                 DataBinding.FieldName = 'FDEFWIDTH'
                 Width = 65
               end
               object cxFiledListFFORMATCOUNT: TcxGridDBColumn
+                Caption = #23567#25968#20301#25968
                 DataBinding.FieldName = 'FFORMATCOUNT'
                 Width = 51
               end
               object cxFiledListFSTATTYPE: TcxGridDBColumn
+                Caption = #32479#35745#31867#22411
                 DataBinding.FieldName = 'FSTATTYPE'
                 PropertiesClassName = 'TcxComboBoxProperties'
                 Properties.DropDownListStyle = lsFixedList
@@ -531,6 +544,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 Width = 65
               end
               object cxFiledListFSYSTEMPARA_NAME: TcxGridDBColumn
+                Caption = #26597#30475#26435#38480
                 DataBinding.FieldName = 'FSYSTEMPARA_NAME'
                 PropertiesClassName = 'TcxComboBoxProperties'
                 Properties.DropDownListStyle = lsFixedList
@@ -588,19 +602,23 @@ inherited BillQueryFrm: TBillQueryFrm
                 Width = 100
               end
               object cxFindListFFIELDNAME: TcxGridDBColumn
+                Caption = #23383#27573#21517
                 DataBinding.FieldName = 'FFIELDNAME'
                 PropertiesClassName = 'TcxComboBoxProperties'
                 Width = 78
               end
               object cxFindListFFIELDNAMEORTABLENAME: TcxGridDBColumn
+                Caption = #23383#27573#24102#34920#21517
                 DataBinding.FieldName = 'FFIELDNAMEORTABLENAME'
                 Width = 100
               end
               object cxFindListFFIELDCHNAME: TcxGridDBColumn
+                Caption = #23383#27573#20013#25991#21517
                 DataBinding.FieldName = 'FFIELDCHNAME'
                 Width = 100
               end
               object cxFindListFDATATYPE: TcxGridDBColumn
+                Caption = #25968#25454#31867#22411
                 DataBinding.FieldName = 'FDATATYPE'
                 PropertiesClassName = 'TcxComboBoxProperties'
                 Properties.DropDownListStyle = lsFixedList
@@ -612,6 +630,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 Width = 83
               end
               object cxFindListFFINDVALUE: TcxGridDBColumn
+                Caption = #26597#25214#20540#36873#25321
                 DataBinding.FieldName = 'FFINDVALUE'
                 PropertiesClassName = 'TcxButtonEditProperties'
                 Properties.Buttons = <
@@ -621,29 +640,59 @@ inherited BillQueryFrm: TBillQueryFrm
                   end>
                 Properties.ClickKey = 118
                 Properties.OnButtonClick = cxFindListFFINDVALUEPropertiesButtonClick
-                Width = 268
+                Width = 109
               end
               object cxFindListFDIALOGTYPE: TcxGridDBColumn
+                Caption = #22522#30784#36164#26009
                 DataBinding.FieldName = 'FDIALOGTYPE'
                 PropertiesClassName = 'TcxComboBoxProperties'
                 Properties.DropDownListStyle = lsFixedList
-                Width = 107
+                Width = 72
               end
               object cxFindListFISINPUT: TcxGridDBColumn
+                Caption = #24517#22635
                 DataBinding.FieldName = 'FISINPUT'
                 PropertiesClassName = 'TcxCheckBoxProperties'
                 Properties.NullStyle = nssUnchecked
                 Properties.ValueChecked = 1
                 Properties.ValueUnchecked = 0
-                Width = 49
+                Width = 39
               end
               object cxFindListFISRADIOSELECT: TcxGridDBColumn
+                Caption = #21333#36873
                 DataBinding.FieldName = 'FISRADIOSELECT'
                 PropertiesClassName = 'TcxCheckBoxProperties'
                 Properties.NullStyle = nssUnchecked
                 Properties.ValueChecked = 1
                 Properties.ValueUnchecked = 0
                 Width = 34
+              end
+              object cxFindListFVisbleInFastQuery: TcxGridDBColumn
+                Caption = #24555#36895#26597#35810
+                DataBinding.FieldName = 'FVisbleInFastQuery'
+                PropertiesClassName = 'TcxCheckBoxProperties'
+                Width = 72
+              end
+              object cxFindListFVisbleOnlyInFastQuery: TcxGridDBColumn
+                Caption = #20165#24555#36895#26597#35810
+                DataBinding.FieldName = 'FVisbleOnlyInFastQuery'
+                PropertiesClassName = 'TcxCheckBoxProperties'
+                Width = 75
+              end
+              object cxFindListFCompareType: TcxGridDBColumn
+                Caption = #27604#36739#20540#31867#22411
+                DataBinding.FieldName = 'FCompareType'
+                PropertiesClassName = 'TcxComboBoxProperties'
+                Properties.DropDownListStyle = lsFixedList
+                Properties.Items.Strings = (
+                  #31561#20110
+                  #22823#20110#31561#20110
+                  #22823#20110
+                  #23567#20110#31561#20110
+                  #23567#20110
+                  #31867#20284
+                  #21253#21547)
+                Width = 68
               end
             end
             object cxGridLevel2: TcxGridLevel
@@ -1734,6 +1783,16 @@ inherited BillQueryFrm: TBillQueryFrm
     end
     object cdsFindListFISRADIOSELECT: TIntegerField
       FieldName = 'FISRADIOSELECT'
+    end
+    object cdsFindListFCompareType: TWideStringField
+      FieldName = 'FCompareType'
+      Size = 10
+    end
+    object cdsFindListFVisbleOnlyInFastQuery: TBooleanField
+      FieldName = 'FVisbleOnlyInFastQuery'
+    end
+    object cdsFindListFVisbleInFastQuery: TBooleanField
+      FieldName = 'FVisbleInFastQuery'
     end
   end
   object dsFindList: TDataSource

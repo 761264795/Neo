@@ -10,7 +10,16 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxPC,
   cxLookAndFeelPainters, cxContainer, cxGroupBox, cxCheckBox, cxDBEdit,
   cxMaskEdit, cxDropDownEdit, cxCalendar, cxTextEdit, StdCtrls, cxMemo,
-  Series, TeEngine, TeeProcs, Chart, DbChart, DBClient, cxButtonEdit;
+  Series, TeEngine, TeeProcs, Chart, DbChart, DBClient, cxButtonEdit,
+  dxSkinsCore, dxSkinBlack, dxSkinBlue, dxSkinCaramel, dxSkinCoffee,
+  dxSkinDarkRoom, dxSkinDarkSide, dxSkinFoggy, dxSkinGlassOceans,
+  dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky,
+  dxSkinMcSkin, dxSkinMoneyTwins, dxSkinOffice2007Black,
+  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver, dxSkinPumpkin, dxSkinSeven, dxSkinSharp,
+  dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
+  dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue,
+  dxSkinscxPCPainter;
 
 type
   TBillQueryFrm = class(TListFormBaseFrm)
@@ -198,6 +207,12 @@ type
     cdsReportListFREPORTID: TWideStringField;
     cdsReportListFReportNumber: TStringField;
     cdsReportListFReportName: TStringField;
+    cdsFindListFCompareType: TWideStringField;
+    cdsFindListFVisbleOnlyInFastQuery: TBooleanField;
+    cdsFindListFVisbleInFastQuery: TBooleanField;
+    cxFindListFCompareType: TcxGridDBColumn;
+    cxFindListFVisbleOnlyInFastQuery: TcxGridDBColumn;
+    cxFindListFVisbleInFastQuery: TcxGridDBColumn;
     procedure FormShow(Sender: TObject);
     procedure btn_SaveClick(Sender: TObject);
     procedure cxBillTypeFocusedRecordChanged(
@@ -477,6 +492,7 @@ begin
   inherited;
   DataSet.FieldByName('FID').AsString       := Get_Guid;
   DataSet.FindField('FParentID').AsString   := cdsMater.fieldbyname('FID').AsString;
+  DataSet.FieldByName('FCompareType').AsString := 'µÈÓÚ';
 end;
 
 procedure TBillQueryFrm.cdsReportListNewRecord(DataSet: TDataSet);

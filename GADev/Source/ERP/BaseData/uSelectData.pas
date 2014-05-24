@@ -14,7 +14,15 @@ uses
   cxClasses, cxControls, cxStyles, dxSkinsCore, dxSkinOffice2007Black,
   dxSkinscxPCPainter, cxCustomData, cxGraphics, cxFilter, cxData,
   cxDataStorage, cxEdit, cxDBData, cxContainer, cxTextEdit,uBaseEditFrm,
-  Menus, cxLookAndFeelPainters, cxButtons, jpeg,uAssDataItemEditFrm,uListFormBaseFrm,StringUtilClass;
+  Menus, cxLookAndFeelPainters, cxButtons, jpeg,uAssDataItemEditFrm,uListFormBaseFrm,StringUtilClass,
+  dxSkinBlack, dxSkinBlue, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom,
+  dxSkinDarkSide, dxSkinFoggy, dxSkinGlassOceans, dxSkiniMaginary,
+  dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin,
+  dxSkinMoneyTwins, dxSkinOffice2007Blue, dxSkinOffice2007Green,
+  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinPumpkin, dxSkinSeven,
+  dxSkinSharp, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
+  dxSkinSummer2008, dxSkinsDefaultPainters, dxSkinValentine,
+  dxSkinXmas2008Blue;
 
 type
   TSelectDataFrm = class(TSTBaseEdit)
@@ -135,7 +143,8 @@ begin
     end
     else
     begin
-      while not SelectDataFrm.adsSelect.IsEmpty do SelectDataFrm.adsSelect.Delete;
+      while not SelectDataFrm.adsSelect.IsEmpty do
+        SelectDataFrm.adsSelect.Delete;
       Result.Data := SelectDataFrm.adsSelect.Data;
     end;
   finally

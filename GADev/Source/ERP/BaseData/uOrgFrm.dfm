@@ -18,23 +18,23 @@ object OrgFrm: TOrgFrm
   object Pl: TPanel
     Left = 0
     Top = 33
-    Width = 788
-    Height = 384
+    Width = 796
+    Height = 392
     Align = alClient
     Ctl3D = True
     ParentCtl3D = False
     TabOrder = 0
     object Splitter1: TSplitter
-      Left = 413
+      Left = 421
       Top = 1
-      Height = 382
+      Height = 390
       Align = alRight
     end
     object dbTree: TcxDBTreeList
       Left = 1
       Top = 1
-      Width = 412
-      Height = 382
+      Width = 420
+      Height = 390
       Align = alClient
       Bands = <
         item
@@ -122,10 +122,10 @@ object OrgFrm: TOrgFrm
       end
     end
     object Panel1: TPanel
-      Left = 416
+      Left = 424
       Top = 1
       Width = 371
-      Height = 382
+      Height = 390
       Align = alRight
       BevelOuter = bvNone
       Caption = 'Panel1'
@@ -134,7 +134,7 @@ object OrgFrm: TOrgFrm
         Left = 0
         Top = 0
         Width = 32
-        Height = 382
+        Height = 390
         Align = alLeft
         BevelOuter = bvNone
         Color = 16511980
@@ -218,7 +218,7 @@ object OrgFrm: TOrgFrm
         Left = 32
         Top = 0
         Width = 339
-        Height = 382
+        Height = 390
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 1
@@ -280,15 +280,15 @@ object OrgFrm: TOrgFrm
   end
   object PlBt: TPanel
     Left = 0
-    Top = 417
-    Width = 788
+    Top = 425
+    Width = 796
     Height = 43
     Align = alBottom
     Color = 16511980
     ParentBackground = False
     TabOrder = 1
     DesignSize = (
-      788
+      796
       43)
     object btYes: TcxButton
       Left = 609
@@ -388,7 +388,7 @@ object OrgFrm: TOrgFrm
   object p_top: TPanel
     Left = 0
     Top = 0
-    Width = 788
+    Width = 796
     Height = 33
     Align = alTop
     Caption = 'p_top'
@@ -396,7 +396,7 @@ object OrgFrm: TOrgFrm
     object Image1: TImage
       Left = 1
       Top = 1
-      Width = 786
+      Width = 794
       Height = 31
       Align = alClient
       Picture.Data = {

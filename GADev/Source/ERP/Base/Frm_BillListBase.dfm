@@ -1,6 +1,6 @@
 object FM_BillListBase: TFM_BillListBase
-  Left = 147
-  Top = 29
+  Left = 209
+  Top = 31
   Align = alClient
   BorderStyle = bsNone
   Caption = #26597#35810#21015#34920#22522#31867
@@ -185,17 +185,25 @@ object FM_BillListBase: TFM_BillListBase
       BevelOuter = bvNone
       Caption = 'Panel3'
       TabOrder = 1
+      object Splitter1: TSplitter
+        Left = 0
+        Top = 89
+        Width = 888
+        Height = 8
+        Cursor = crVSplit
+        Align = alTop
+      end
       object pnTop: TPanel
         Left = 0
         Top = 0
         Width = 888
-        Height = 30
+        Height = 89
         Align = alTop
         Color = 16511980
         TabOrder = 0
         DesignSize = (
           888
-          30)
+          89)
         object lb_MaterialID: TLabel
           Left = 831
           Top = 10
@@ -204,66 +212,44 @@ object FM_BillListBase: TFM_BillListBase
           AutoSize = False
           Visible = False
         end
-        object Label2: TLabel
-          Left = 4
-          Top = 8
-          Width = 43
-          Height = 13
-          AutoSize = False
-          Caption = #36807#28388'(&L)'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label3: TLabel
-          Left = 230
-          Top = 8
-          Width = 155
-          Height = 13
-          AutoSize = False
-          Caption = #25552#31034':'#25903#25345#25340#38899#39318#23383#27597#36807#28388
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clNavy
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          Font.Style = []
-          ParentFont = False
-        end
         object lb_Report: TLabel
-          Left = 865
-          Top = 6
+          Left = 867
+          Top = 1
           Width = 20
-          Height = 18
+          Height = 87
           Cursor = crHandPoint
-          Anchors = [akTop, akRight]
+          Align = alRight
           AutoSize = False
+          BiDiMode = bdLeftToRight
           Caption = '>>'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -16
           Font.Name = #23435#20307
           Font.Style = []
+          ParentBiDiMode = False
           ParentFont = False
+          Layout = tlCenter
           OnClick = lb_ReportClick
           OnMouseEnter = lb_ReportMouseEnter
           OnMouseLeave = lb_ReportMouseLeave
         end
-        object txt_Filter: TcxTextEdit
-          Left = 45
-          Top = 5
-          Properties.OnChange = txt_FilterPropertiesChange
+        object cxButton1: TcxButton
+          Left = 768
+          Top = 16
+          Width = 75
+          Height = 25
+          Anchors = [akTop, akRight]
+          Caption = #26597#35810
           TabOrder = 0
-          Width = 175
+          OnClick = cxButton1Click
         end
       end
       object cxPage: TcxPageControl
         Left = 0
-        Top = 30
+        Top = 97
         Width = 888
-        Height = 602
+        Height = 535
         ActivePage = tb_Grid
         Align = alClient
         Color = 16511980
@@ -272,7 +258,7 @@ object FM_BillListBase: TFM_BillListBase
         TabOrder = 1
         TabPosition = tpBottom
         OnChange = cxPageChange
-        ClientRectBottom = 584
+        ClientRectBottom = 517
         ClientRectRight = 888
         ClientRectTop = 0
         object tb_Grid: TcxTabSheet
@@ -282,7 +268,7 @@ object FM_BillListBase: TFM_BillListBase
             Left = 0
             Top = 0
             Width = 888
-            Height = 584
+            Height = 517
             Align = alClient
             PopupMenu = pmDetail
             TabOrder = 0
@@ -659,7 +645,7 @@ object FM_BillListBase: TFM_BillListBase
             Left = 0
             Top = 34
             Width = 888
-            Height = 550
+            Height = 483
             BackWall.Brush.Color = clWhite
             Foot.AdjustFrame = False
             Foot.Visible = False
@@ -2127,12 +2113,12 @@ object FM_BillListBase: TFM_BillListBase
     Top = 306
     object cdsReportListFID: TWideStringField
       FieldName = 'FID'
-      Size = 80
+      Size = 44
     end
-    object cdsReportListFReportName: TWideStringField
+    object cdsReportListFReportName: TStringField
       DisplayLabel = #25253#34920#21517#31216
       FieldName = 'FReportName'
-      Size = 200
+      Size = 100
     end
   end
   object dsReportList: TDataSource
@@ -2250,5 +2236,11 @@ object FM_BillListBase: TFM_BillListBase
       AssignedValues = [svColor]
       Color = 16511980
     end
+  end
+  object cdsBillFindList: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 465
+    Top = 70
   end
 end

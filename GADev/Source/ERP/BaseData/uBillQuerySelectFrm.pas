@@ -8,7 +8,15 @@ uses
   cxFilter, cxData, cxDataStorage, cxEdit, cxDBData, ADODB, Buttons,
   cxGridLevel, cxClasses, cxControls, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,
-  StdCtrls, ExtCtrls, cxContainer, cxTextEdit;
+  StdCtrls, ExtCtrls, cxContainer, cxTextEdit, dxSkinsCore, dxSkinBlack,
+  dxSkinBlue, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide,
+  dxSkinFoggy, dxSkinGlassOceans, dxSkiniMaginary, dxSkinLilian,
+  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMoneyTwins,
+  dxSkinOffice2007Black, dxSkinOffice2007Blue, dxSkinOffice2007Green,
+  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinPumpkin, dxSkinSeven,
+  dxSkinSharp, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
+  dxSkinSummer2008, dxSkinsDefaultPainters, dxSkinValentine,
+  dxSkinXmas2008Blue, dxSkinscxPCPainter;
 
 type
   TBillQuerySelectFrm = class(TSTBaseEdit)
@@ -146,7 +154,8 @@ begin
     Panel3.Visible:=False;
     while not adsSelect.IsEmpty do  adsSelect.Delete;
   end;
-  ValList.Columns[0].Width:=150;
+  if ValList.ColumnCount > 0 then
+    ValList.Columns[0].Width:=150;
 end;
 procedure TBillQuerySelectFrm.getResultVal;
 var bk:TBookmarkStr;
