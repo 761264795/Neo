@@ -196,3 +196,27 @@ GO
 if not exists(select * from syscolumns where id=object_id('T_PM_RolePerm') and name='FType') 
     alter table T_PM_RolePerm add FType numeric(2)
 GO
+
+if not exists(select * from syscolumns where id=object_id('T_PM_User') and name='CFUserType') 
+	alter table T_PM_User add CFUserType varchar(100) null
+GO
+if not exists(select * from syscolumns where id=object_id('T_PM_User') and name='CFMaxRepairDiscountRate') 
+	alter table T_PM_User add CFMaxRepairDiscountRate [decimal](5, 2) null
+GO
+if not exists(select * from syscolumns where id=object_id('T_PM_User') and name='CFMaxRetailDiscountRate') 
+	alter table T_PM_User add CFMaxRetailDiscountRate [decimal](5, 2) null
+GO
+if not exists(select * from syscolumns where id=object_id('T_PM_User') and name='REPORTPSWD') 
+	alter table T_PM_User add REPORTPSWD nvarchar(80) null
+GO
+
+if not exists(select * from syscolumns where id=object_id('T_PM_UserRoleOrg') and name='FID') 
+	alter table T_PM_UserRoleOrg add FID nvarchar(44) 
+GO
+
+if not exists(select * from syscolumns where id=object_id('T_BD_BILLQUERYFINDLIST') and name='FCompareType') 
+	ALTER TABLE dbo.T_BD_BILLQUERYFINDLIST ADD
+				FCompareType nchar(10) NULL default N'µÈÓÚ',
+				FVisbleInFastQuery bit NULL default 0,
+				FVisbleOnlyInFastQuery bit NULL default 0
+GO
