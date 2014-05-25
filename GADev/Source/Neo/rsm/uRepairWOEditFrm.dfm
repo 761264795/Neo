@@ -1,50 +1,73 @@
 inherited RepairWOEditFrm: TRepairWOEditFrm
-  Left = 282
-  Top = 194
-  Width = 1014
-  Height = 503
+  Left = 96
+  Top = 169
+  Width = 1232
+  Height = 487
   Caption = #32500#20462#24037#21333
   PixelsPerInch = 96
   TextHeight = 12
   inherited p_bt: TPanel
-    Top = 434
-    Width = 998
+    Top = 424
+    Width = 1216
+    Height = 24
+    inherited Label1: TLabel
+      Top = 6
+    end
+    inherited Label6: TLabel
+      Top = 6
+    end
     inherited Label3: TLabel
       Left = 336
+      Top = 6
       Width = 73
     end
+    inherited Label4: TLabel
+      Top = 6
+    end
+    inherited Label8: TLabel
+      Top = 6
+    end
+    inherited Label9: TLabel
+      Top = 6
+    end
     inherited cxFCreatorName: TcxDBMaskEdit
+      Top = 1
       DataBinding.DataSource = dsMaster
     end
     inherited cxFCreatorDate: TcxDBMaskEdit
+      Top = 1
       DataBinding.DataSource = dsMaster
     end
     inherited cxFAUDITORName: TcxDBMaskEdit
+      Top = 1
       DataBinding.DataSource = dsMaster
     end
     inherited cxFAUDITORdate: TcxDBMaskEdit
+      Top = 1
       DataBinding.DataSource = dsMaster
     end
     inherited cxFmodifieridName: TcxDBMaskEdit
+      Top = 1
       DataBinding.DataSource = dsMaster
     end
     inherited Fmodificationtime: TcxDBMaskEdit
+      Top = 1
       DataBinding.DataSource = dsMaster
     end
   end
   object panelHead: TPanel [1]
     Left = 0
     Top = 53
-    Width = 998
+    Width = 1216
     Height = 175
     Align = alTop
     TabOrder = 5
     object cxHeadPage1: TcxPageControl
       Left = 1
       Top = 42
-      Width = 996
+      Width = 1214
       Height = 110
-      ActivePage = cxtbsht1
+      ActivePage = cxtbsht2
       Align = alClient
       LookAndFeel.Kind = lfUltraFlat
       ShowFrame = True
@@ -52,7 +75,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
       TabOrder = 0
       ClientRectBottom = 109
       ClientRectLeft = 1
-      ClientRectRight = 995
+      ClientRectRight = 1213
       ClientRectTop = 18
       object cxtbsht1: TcxTabSheet
         Caption = #19994#21153#20449#24687
@@ -147,7 +170,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
               Default = True
               Kind = bkEllipsis
             end>
-          Properties.OnButtonClick = cxdbEditVinPropertiesButtonClick
+          Properties.OnButtonClick = cxdbEditPlateNumPropertiesButtonClick
           TabOrder = 13
           OnKeyPress = cxdbEditVinKeyPress
           Width = 160
@@ -458,7 +481,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
     object Panel2: TPanel
       Left = 1
       Top = 1
-      Width = 996
+      Width = 1214
       Height = 41
       Align = alTop
       BevelOuter = bvNone
@@ -523,13 +546,13 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
     object Panel3: TPanel
       Left = 1
       Top = 152
-      Width = 996
+      Width = 1214
       Height = 22
       Align = alBottom
       BevelOuter = bvNone
       TabOrder = 2
       DesignSize = (
-        996
+        1214
         22)
       object cxLabel4: TcxLabel
         Left = 17
@@ -562,7 +585,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
         Width = 244
       end
       object cxBtnlAllocateLine: TcxButton
-        Left = 862
+        Left = 1080
         Top = 2
         Width = 65
         Height = 20
@@ -571,7 +594,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
         TabOrder = 3
       end
       object cxBtnRemoveLine: TcxButton
-        Left = 928
+        Left = 1146
         Top = 2
         Width = 61
         Height = 20
@@ -585,15 +608,15 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
   object Panel1: TPanel [2]
     Left = 0
     Top = 228
-    Width = 998
-    Height = 206
+    Width = 1216
+    Height = 196
     Align = alClient
     TabOrder = 6
     object cxGrid1: TcxGrid
       Left = 1
       Top = 1
-      Width = 996
-      Height = 204
+      Width = 1214
+      Height = 194
       Align = alClient
       TabOrder = 0
       LookAndFeel.Kind = lfOffice11
@@ -607,6 +630,8 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
         DataController.Summary.DefaultGroupSummaryItems = <>
         DataController.Summary.FooterSummaryItems = <>
         DataController.Summary.SummaryGroups = <>
+        OptionsCustomize.ColumnSorting = False
+        OptionsView.Footer = True
         OptionsView.GroupByBox = False
         object cxdbColSeq: TcxGridDBColumn
           Caption = #24207#21495
@@ -832,10 +857,13 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
     Top = 264
   end
   inherited actlst1: TActionList
-    Left = 931
-    Top = 34
+    Left = 1147
+    Top = 18
     inherited actSaveBill: TAction
       OnExecute = actSaveBillExecute
+    end
+    inherited actPush: TAction
+      OnExecute = actPushExecute
     end
   end
   inherited dxBarManager1: TdxBarManager
@@ -843,8 +871,8 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
       2)
     Categories.Visibles = (
       True)
-    Left = 896
-    Top = 39
+    Left = 1072
+    Top = 15
     DockControlHeights = (
       0
       0
@@ -955,16 +983,20 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
     inherited btn_uAudit: TdxBarButton
       Visible = ivNever
     end
+    inherited dxBarbtnPull: TdxBarButton
+      Visible = ivNever
+    end
   end
   inherited cdsMaster: TClientDataSet
     BeforePost = cdsMasterBeforePost
     BeforeDelete = cdsMasterBeforeDelete
     OnCalcFields = cdsMasterCalcFields
     OnNewRecord = cdsMasterNewRecord
-    Left = 115
-    Top = 50
+    Left = 147
+    Top = 58
     object cdsMasterFCreatorID: TStringField
       FieldName = 'FCreatorID'
+      OnChange = cdsMasterFCreatorIDChange
       Size = 44
     end
     object cdsMasterFCreateTime: TDateTimeField
@@ -972,6 +1004,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
     end
     object cdsMasterFLastUpdateUserID: TStringField
       FieldName = 'FLastUpdateUserID'
+      OnChange = cdsMasterFLastUpdateUserIDChange
       Size = 44
     end
     object cdsMasterFLastUpdateTime: TDateTimeField
@@ -1003,6 +1036,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
     end
     object cdsMasterFAuditorID: TStringField
       FieldName = 'FAuditorID'
+      OnChange = cdsMasterFAuditorIDChange
       Size = 44
     end
     object cdsMasterFSourceBillID: TWideStringField
@@ -1291,20 +1325,16 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
       OnChange = cdsMasterCFBizPersonIDChange
       Size = 44
     end
-    object cdsMasterFCreatorName: TStringField
-      FieldKind = fkCalculated
+    object cdsMasterFCreatorName: TWideStringField
       FieldName = 'FCreatorName'
-      Calculated = True
     end
-    object cdsMasterFAuditorName: TStringField
+    object cdsMasterFAuditorName: TWideStringField
       FieldKind = fkCalculated
       FieldName = 'FAuditorName'
       Calculated = True
     end
-    object cdsMasterCFModifierName: TStringField
-      FieldKind = fkCalculated
+    object cdsMasterCFModifierName: TWideStringField
       FieldName = 'CFModifierName'
-      Calculated = True
     end
     object cdsMasterCFGaBillStatusName: TStringField
       FieldKind = fkCalculated
@@ -1856,7 +1886,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
     Aggregates = <>
     Params = <>
     Left = 288
-    Top = 64
+    Top = 56
     object cdsMaster_SaveFCreatorID: TStringField
       FieldName = 'FCreatorID'
       Size = 44
@@ -2180,8 +2210,8 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
   object cdsGABillStatus: TClientDataSet
     Aggregates = <>
     Params = <>
-    Left = 608
-    Top = 72
+    Left = 672
+    Top = 56
     object cdsGABillStatusFNumber: TStringField
       FieldName = 'FNumber'
       Size = 100
@@ -2193,7 +2223,142 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
   end
   object dsGABillStatus: TDataSource
     DataSet = cdsGABillStatus
-    Left = 744
-    Top = 56
+    Left = 696
+    Top = 64
+  end
+  object dsWarrRemind: TDataSource
+    DataSet = cdsWarrRemind
+    Left = 432
+    Top = 80
+  end
+  object cdsWarrRemind: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    OnNewRecord = cdsWarrRemindNewRecord
+    Left = 480
+    Top = 80
+    object cdsWarrRemindFCreatorID: TStringField
+      FieldName = 'FCreatorID'
+      Size = 44
+    end
+    object cdsWarrRemindFCreateTime: TDateTimeField
+      FieldName = 'FCreateTime'
+    end
+    object cdsWarrRemindFLastUpdateUserID: TStringField
+      FieldName = 'FLastUpdateUserID'
+      Size = 44
+    end
+    object cdsWarrRemindFLastUpdateTime: TDateTimeField
+      FieldName = 'FLastUpdateTime'
+    end
+    object cdsWarrRemindFControlUnitID: TStringField
+      FieldName = 'FControlUnitID'
+      Size = 44
+    end
+    object cdsWarrRemindFNumber: TWideStringField
+      FieldName = 'FNumber'
+      Size = 80
+    end
+    object cdsWarrRemindFBizDate: TDateTimeField
+      FieldName = 'FBizDate'
+    end
+    object cdsWarrRemindFHandlerID: TStringField
+      FieldName = 'FHandlerID'
+      Size = 44
+    end
+    object cdsWarrRemindFDescription: TWideStringField
+      FieldName = 'FDescription'
+      Size = 80
+    end
+    object cdsWarrRemindFHasEffected: TIntegerField
+      FieldName = 'FHasEffected'
+    end
+    object cdsWarrRemindFAuditorID: TStringField
+      FieldName = 'FAuditorID'
+      Size = 44
+    end
+    object cdsWarrRemindFSourceBillID: TWideStringField
+      FieldName = 'FSourceBillID'
+      Size = 80
+    end
+    object cdsWarrRemindFSourceFunction: TWideStringField
+      FieldName = 'FSourceFunction'
+      Size = 80
+    end
+    object cdsWarrRemindFID: TStringField
+      FieldName = 'FID'
+      Size = 44
+    end
+    object cdsWarrRemindFAuditTime: TDateTimeField
+      FieldName = 'FAuditTime'
+    end
+    object cdsWarrRemindFBrandID: TStringField
+      FieldName = 'FBrandID'
+      Size = 44
+    end
+    object cdsWarrRemindFOrgUnitID: TStringField
+      FieldName = 'FOrgUnitID'
+      Size = 44
+    end
+    object cdsWarrRemindFRepairWOID: TStringField
+      FieldName = 'FRepairWOID'
+      Size = 44
+    end
+    object cdsWarrRemindFVehicleID: TStringField
+      FieldName = 'FVehicleID'
+      Size = 44
+    end
+    object cdsWarrRemindFReturnTime: TDateTimeField
+      FieldName = 'FReturnTime'
+    end
+    object cdsWarrRemindFNextWarrMile: TFloatField
+      FieldName = 'FNextWarrMile'
+    end
+    object cdsWarrRemindFIsEffect: TIntegerField
+      FieldName = 'FIsEffect'
+    end
+    object cdsWarrRemindFNextWarrTime: TDateTimeField
+      FieldName = 'FNextWarrTime'
+    end
+    object cdsWarrRemindFReturnMile: TFloatField
+      FieldName = 'FReturnMile'
+    end
+  end
+  object cdsRepairRemark: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    OnNewRecord = cdsRepairRemarkNewRecord
+    Left = 960
+    Top = 64
+    object cdsRepairRemarkFID: TStringField
+      FieldName = 'FID'
+      Size = 44
+    end
+    object cdsRepairRemarkFSeq: TIntegerField
+      FieldName = 'FSeq'
+    end
+    object cdsRepairRemarkFParentID: TStringField
+      FieldName = 'FParentID'
+      Size = 44
+    end
+    object cdsRepairRemarkCFSeq: TIntegerField
+      FieldName = 'CFSeq'
+    end
+    object cdsRepairRemarkCFRemark: TWideStringField
+      FieldName = 'CFRemark'
+      Size = 255
+    end
+    object cdsRepairRemarkCFRepairWOID: TStringField
+      FieldName = 'CFRepairWOID'
+      Size = 44
+    end
+    object cdsRepairRemarkCFCreateTime: TDateTimeField
+      FieldName = 'CFCreateTime'
+    end
+  end
+  object dsRepairRemark: TDataSource
+    DataSet = cdsRepairRemark
+    Left = 896
+    Top = 64
   end
 end
