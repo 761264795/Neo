@@ -7,7 +7,7 @@ uses
   Dialogs, dxBar, ActnList, cxDBEdit,
   ExtCtrls, StdCtrls, 
   DB, DBClient,ShellAPI, 
-  cxGridLevel, 
+  cxGridLevel,
   cxGridDBTableView, cxGrid, 
   cxDBData, 
   cxGridCustomTableView, cxGridTableView, uI3BaseFrm, cxStyles,

@@ -189,7 +189,7 @@ object FM_BillListBase: TFM_BillListBase
         Left = 0
         Top = 89
         Width = 888
-        Height = 8
+        Height = 6
         Cursor = crVSplit
         Align = alTop
       end
@@ -234,22 +234,36 @@ object FM_BillListBase: TFM_BillListBase
           OnMouseEnter = lb_ReportMouseEnter
           OnMouseLeave = lb_ReportMouseLeave
         end
-        object cxButton1: TcxButton
+        object btnSearch: TcxButton
           Left = 768
-          Top = 16
+          Top = 40
           Width = 75
           Height = 25
           Anchors = [akTop, akRight]
           Caption = #26597#35810
           TabOrder = 0
-          OnClick = cxButton1Click
+          OnClick = btnSearchClick
+        end
+        object recCount: TcxComboBox
+          Left = 768
+          Top = 8
+          Anchors = [akTop, akRight]
+          Properties.DropDownListStyle = lsFixedList
+          Properties.Items.Strings = (
+            '100'#34892
+            '500'#34892
+            '1000'#34892
+            #20840#37096)
+          TabOrder = 1
+          Text = '100'#34892
+          Width = 75
         end
       end
       object cxPage: TcxPageControl
         Left = 0
-        Top = 97
+        Top = 95
         Width = 888
-        Height = 535
+        Height = 537
         ActivePage = tb_Grid
         Align = alClient
         Color = 16511980
@@ -258,7 +272,7 @@ object FM_BillListBase: TFM_BillListBase
         TabOrder = 1
         TabPosition = tpBottom
         OnChange = cxPageChange
-        ClientRectBottom = 517
+        ClientRectBottom = 519
         ClientRectRight = 888
         ClientRectTop = 0
         object tb_Grid: TcxTabSheet
@@ -268,7 +282,7 @@ object FM_BillListBase: TFM_BillListBase
             Left = 0
             Top = 0
             Width = 888
-            Height = 517
+            Height = 519
             Align = alClient
             PopupMenu = pmDetail
             TabOrder = 0
@@ -645,7 +659,7 @@ object FM_BillListBase: TFM_BillListBase
             Left = 0
             Top = 34
             Width = 888
-            Height = 483
+            Height = 485
             BackWall.Brush.Color = clWhite
             Foot.AdjustFrame = False
             Foot.Visible = False
@@ -2111,15 +2125,6 @@ object FM_BillListBase: TFM_BillListBase
     Params = <>
     Left = 952
     Top = 306
-    object cdsReportListFID: TWideStringField
-      FieldName = 'FID'
-      Size = 44
-    end
-    object cdsReportListFReportName: TWideStringField
-      DisplayLabel = #25253#34920#21517#31216
-      FieldName = 'FReportName'
-      Size = 100
-    end
   end
   object dsReportList: TDataSource
     DataSet = cdsReportList
@@ -2242,5 +2247,69 @@ object FM_BillListBase: TFM_BillListBase
     Params = <>
     Left = 465
     Top = 70
+  end
+  object cdsQueryCondition: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    Left = 650
+    Top = 64
+    Data = {
+      730100009619E0BD01000000180000000B00000000000300000073010C464649
+      454C4443484E414D4501004A000000010005574944544802000200C80007434F
+      4D5041524501004A00000001000557494454480200020028000C434F4D504152
+      4556414C554504004B0000000200075355425459504502004900050054657874
+      0005574944544802000200B80B054C4F47494301004A00000001000557494454
+      480200020028000A464669656C644E616D650100490000000100055749445448
+      02000200500015464669656C644E616D654F525461626C654E616D6501004900
+      0000010005574944544802000200640009464461746154797065010049000000
+      01000557494454480200020028000A4646696E6456616C756502004900000001
+      0005574944544802000200B80B0B464469616C6F675479706501004900000001
+      00055749445448020002001E0008466973496E70757404000100000000000E46
+      6973526164696F53656C65637404000100000000000000}
+    object cdsQueryConditionFFIELDNAME: TWideStringField
+      FieldName = 'FFIELDCHNAME'
+      Size = 100
+    end
+    object cdsQueryConditionCOMPARE: TWideStringField
+      DisplayLabel = #27604#36739#31526
+      FieldName = 'COMPARE'
+    end
+    object cdsQueryConditionCOMPAREVALUE: TMemoField
+      DisplayLabel = #27604#36739#20540
+      FieldName = 'COMPAREVALUE'
+      BlobType = ftMemo
+      Size = 3000
+    end
+    object cdsQueryConditionLOGIC: TWideStringField
+      DisplayLabel = #36923#36753#31526
+      FieldName = 'LOGIC'
+    end
+    object cdsQueryConditionFFieldName2: TStringField
+      FieldName = 'FFieldName'
+      Size = 80
+    end
+    object cdsQueryConditionFFieldNameORTableName: TStringField
+      FieldName = 'FFieldNameORTableName'
+      Size = 100
+    end
+    object cdsQueryConditionFDataType: TStringField
+      FieldName = 'FDataType'
+      Size = 40
+    end
+    object cdsQueryConditionFFindValue: TStringField
+      FieldName = 'FFindValue'
+      Size = 3000
+    end
+    object cdsQueryConditionFDialogType: TStringField
+      FieldName = 'FDialogType'
+      Size = 30
+    end
+    object cdsQueryConditionFisInput: TIntegerField
+      FieldName = 'FisInput'
+    end
+    object cdsQueryConditionFisRadioSelect: TIntegerField
+      FieldName = 'FisRadioSelect'
+    end
   end
 end

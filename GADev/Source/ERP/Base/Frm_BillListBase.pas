@@ -143,11 +143,22 @@ type
     cxStyle5: TcxStyle;
     SpeedButton6: TSpeedButton;
     SpeedButton7: TSpeedButton;
-    cdsReportListFID: TWideStringField;
-    cdsReportListFReportName: TWideStringField;
-    cxButton1: TcxButton;
+    btnSearch: TcxButton;
     Splitter1: TSplitter;
     cdsBillFindList: TClientDataSet;
+    cdsQueryCondition: TClientDataSet;
+    cdsQueryConditionFFIELDNAME: TWideStringField;
+    cdsQueryConditionCOMPARE: TWideStringField;
+    cdsQueryConditionCOMPAREVALUE: TMemoField;
+    cdsQueryConditionLOGIC: TWideStringField;
+    cdsQueryConditionFFieldName2: TStringField;
+    cdsQueryConditionFFieldNameORTableName: TStringField;
+    cdsQueryConditionFDataType: TStringField;
+    cdsQueryConditionFFindValue: TStringField;
+    cdsQueryConditionFDialogType: TStringField;
+    cdsQueryConditionFisInput: TIntegerField;
+    cdsQueryConditionFisRadioSelect: TIntegerField;
+    recCount: TcxComboBox;
     procedure dbgListDblClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure excel1Click(Sender: TObject);
@@ -189,7 +200,7 @@ type
     procedure spt_PrintClick(Sender: TObject);
     procedure spt_upQueryClick(Sender: TObject);
     procedure spt_DownQueryClick(Sender: TObject);
-    procedure cxButton1Click(Sender: TObject);
+    procedure btnSearchClick(Sender: TObject);
   private
     { Private declarations }
     FBill_Sign: string;
@@ -200,6 +211,10 @@ type
     procedure SetBill_Sign(const Value: string);
     procedure SetBillKeyFields(const Value: string);
     procedure OnF7Down(Sender: TObject; AButtonIndex: Integer);
+  protected
+    function IsUserDefine: Boolean; virtual;
+    function GetWhereSQL: string; virtual;
+    procedure SetCondition; virtual;
   public
     { Public declarations }
     //单据类型FID（Create时赋值）
@@ -225,7 +240,7 @@ type
     function  getChartField: string;
     procedure LoadGridFormat; //加载网格格式
     procedure GetBillQueryInfo;
-    procedure CreateFastQuery;
+    procedure CreateFastQuery; virtual;  //创建快速查询控件  可重载在此做一些控制
     function  getParaRight(para:string):Boolean;
     procedure QueryBillData;
     procedure OpenReport(KeyFID,Title:string);
@@ -1249,13 +1264,13 @@ begin
   end;
 
   _sql :=' select a.* from T_BD_BillQueryFindList a left join T_BD_BillQuery b on a.fparentid=b.fid   '
-        +' where a.FVisbleInFastQuery = 1 and b.fbilltypeid= '+ Quotedstr(self.FBillTypeFID);
+        +' where a.FVisbleInFastQuery = 1 and b.fbilltypeid= '+ Quotedstr(self.FBillTypeFID)
+        + ' Order by FSortFlag ';
   if not CliDM.Get_OpenSQL(cdsBillFindList,_sql,ErrMsg) then
   begin
     ShowMsg(self.Handle,'打开T_BD_BillQueryFindList表失败!'+ErrMsg,[]);
     Abort;
   end;
-
 end;
 
 procedure TFM_BillListBase.GridGetDisplayText(
@@ -1295,8 +1310,11 @@ begin
   inherited;
   //获取查询配置信息
   GetBillQueryInfo;
+  if not cdsQueryCondition.Active then
+    cdsQueryCondition.CreateDataSet;
   //创建快速查询面板控件
-  CreateFastQuery;
+  if not IsUserDefine then
+    CreateFastQuery;
   if Self.FisOpenFilter then QueryBillData;
   //txt_Filter.SetFocus;
 end;
@@ -1722,8 +1740,8 @@ begin
       ALabel.Caption := cdsBillFindList.FieldByName('FFieldCHName').AsString;
       ALabel.Hint := ALabel.Caption;
       ALabel.Name := 'lbl' + cdsBillFindList.FieldByName('FID').AsString;
-      if Length(ALabel.Caption) < 6 then
-        ALabel.Caption := ALabel.Caption + GetSpaceStr(6-Length(ALabel.Caption));
+      if Length(ALabel.Caption) < 12 then
+        ALabel.Caption := ALabel.Caption + GetSpaceStr(12-Length(ALabel.Caption));
       //计算控件应处在第几列  一行共三列
       iColIndex := i mod 3;  //1 第一列  2 第二列  0 第三列
       //计算控件应处在第几行  从第0行开始
@@ -1735,7 +1753,7 @@ begin
         2: ALabel.Left := 280;
         0: ALabel.Left := 544;
       end;
-      ALabel.Top := (iRowIndex + 1) * 16 + iRowIndex * 20;
+      ALabel.Top := (iRowIndex + 1) * 8 + iRowIndex * 20;
       /////////////////////////////////////////////////////////////////////////
       sDataType := cdsBillFindList.FieldByName('FDataType').AsString;
       if sDataType = 'Date' then
@@ -1744,7 +1762,7 @@ begin
         ADateEdit.Name := 'dat' + cdsBillFindList.FieldByName('FID').AsString;  //因为name的首字不能为数字，怕FID首字可能为数字，所以全都加前缀
         ADateEdit.Parent := pnTop;
         ADateEdit.Left := ALabel.Left + ALabel.Width;
-        ADateEdit.Top := ALabel.Top - 3;
+        ADateEdit.Top := ALabel.Top - 4;
         ADateEdit.Hint := cdsBillFindList.FieldByName('FFieldNameOrTableName').AsString;
       end
       else //String 、int 、float 等数据类型
@@ -1756,7 +1774,7 @@ begin
           AButtonEdit.Name := 'but' + cdsBillFindList.FieldByName('FID').AsString;
           AButtonEdit.Parent := pnTop;
           AButtonEdit.Left := ALabel.Left + ALabel.Width;
-          AButtonEdit.Top := ALabel.Top - 3;
+          AButtonEdit.Top := ALabel.Top - 4;
           AButtonEdit.Text := '';
           AButtonEdit.Hint := cdsBillFindList.FieldByName('FFieldNameOrTableName').AsString;
           AButtonEdit.Properties.OnButtonClick := OnF7Down;
@@ -1767,7 +1785,7 @@ begin
           AEdit.Name := 'edt' + cdsBillFindList.FieldByName('FID').AsString;
           AEdit.Parent := pnTop;
           AEdit.Left := ALabel.Left + ALabel.Width;
-          AEdit.Top := ALabel.Top - 3;
+          AEdit.Top := ALabel.Top - 4;
           AEdit.Text := '';
           AEdit.Hint := cdsBillFindList.FieldByName('FFieldNameOrTableName').AsString;
         end;
@@ -1957,6 +1975,7 @@ begin
   if Val = '相似' then    Result := 'like';
 end;
 
+//以逗号做为分隔符，将字符串先拆出来一个个字符串，再加上引号重组（组织多选时的in语句用的）
 function getSqlStr(str: string): string;
 var i: Integer;
   rest: string;
@@ -1981,7 +2000,7 @@ begin
   end;
 end;
 
-procedure TFM_BillListBase.cxButton1Click(Sender: TObject);
+procedure TFM_BillListBase.btnSearchClick(Sender: TObject);
 var
   i: Integer;
   strWhere: string;
@@ -1992,100 +2011,116 @@ begin
   if trim(cdsBillQuery.FieldByName('FBaseSQL').AsString) <> '' then
   begin
     rst := rst + trim(cdsBillQuery.FieldByName('FBaseSQL').AsString) + ' ';
-    val := '';
-    for i := 0 to pnTop.ComponentCount - 1 do
-    begin
-      if (pnTop.Components[i] is TcxDateEdit) and (Trim(TcxDateEdit(pnTop.Components[i]).Text)<> '') then
-      begin
-        if cdsBillFindList.Locate('FID',GetRealFID(pnTop.Components[i].Name), []) then
-        begin
-          if val = '' then
-          begin
-            if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
-              val := ' '
-            else
-              val := ' where 1=1  ';
-          end;
-          if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('Date')) then
-          begin
-            val := ' ' + val + ' and convert(varchar(10),'
-                    + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',120)  '
-                    + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
-                    + ''''+TcxDateEdit(pnTop.Components[i]).Text +'''';
-          end;
-        end;
-      end
-      else
-      if (pnTop.Components[i] is TcxTextEdit) and (Trim(TcxTextEdit(pnTop.Components[i]).Text)<> '') then
-      begin
-        if cdsBillFindList.Locate('FID',GetRealFID(pnTop.Components[i].Name), []) then
-        begin
-          if val = '' then
-          begin
-            if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
-              val := ' '
-            else
-              val := ' where 1=1  ';
-          end;
-          if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('string'))  then
-          begin
-            val := ' ' + val + ' and IsNull('
-              + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
-              + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
-              + '''' + trim(TcxTextEdit(pnTop.Components[i]).Text) + '''';
-          end
-          else
-          begin
-            val := ' ' + val + ' and IsNull('
-                + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
-                + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
-                + trim(TcxTextEdit(pnTop.Components[i]).Text);
-          end;
-        end;
-      end
-      else
-      if (pnTop.Components[i] is TcxButtonEdit) and (Trim(TcxButtonEdit(pnTop.Components[i]).Text)<> '') then
-      begin
-        if cdsBillFindList.Locate('FID',GetRealFID(pnTop.Components[i].Name), []) then
-        begin
-          if val = '' then
-          begin
-            if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
-              val := ' '
-            else
-              val := ' where 1=1  ';
-          end;
-
-          if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('string'))  then
-          begin
-            if GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString)) = 'like' then
-              val := ' ' + val + ' and ' + 'upper(IsNull( '
-                + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
-                + 'like ''%'
-                + UpperCase(trim(TcxButtonEdit(pnTop.Components[i]).Text)) + '%'''
-            else
-            if GetCp(Trim(cdsBillFindList.FieldByName('FcompareType').AsString)) = 'in'   then
-              val := ' ' + val + ' and ' + 'upper(IsNull( '
-                + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
-                + 'in ('
-                + getSqlStr(UpperCase(trim(TcxButtonEdit(pnTop.Components[i]).Text))) + ')'
-
-            else
-              val := ' ' + val + ' and IsNull('
-                + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
-                + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
-                + '''' + trim(TcxButtonEdit(pnTop.Components[i]).Text) + '''';
-          end
-          else
-            val := ' ' + val + ' and IsNull('
-              + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
-              + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
-              + trim(TcxButtonEdit(pnTop.Components[i]).Text);
-        end;
-//          strWhere := strWhere + ' and ' + cdsBillFindList.FieldByName('FFieldNameOrTableName').AsString
-//                      + ' ' + GetCp(cdsBillFindList.FieldByName('FCompareType').AsString);
-      end;
-    end;
+    val := GetWhereSQL;
+//    if IsUserDefine and (GetWhereSQL <> '') then
+//      val := GetWhereSQL
+//    else
+//    begin
+//      for i := 0 to pnTop.ComponentCount - 1 do
+//      begin
+//        if (pnTop.Components[i] is TcxDateEdit) and (Trim(TcxDateEdit(pnTop.Components[i]).Text)<> '') then
+//        begin
+//          if cdsBillFindList.Locate('FID',GetRealFID(pnTop.Components[i].Name), []) then
+//          begin
+//            if val = '' then
+//            begin
+//              if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
+//                val := ' '
+//              else
+//                val := ' where 1=1  ';
+//            end;
+//            if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('Date')) then
+//            begin
+//              val := ' ' + val + ' and convert(varchar(10),'
+//                      + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',120)  '
+//                      + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
+//                      + ''''+TcxDateEdit(pnTop.Components[i]).Text +'''';
+//            end;
+//          end;
+//        end
+//        else
+//        if (pnTop.Components[i] is TcxTextEdit) and (Trim(TcxTextEdit(pnTop.Components[i]).Text)<> '') then
+//        begin
+//          if cdsBillFindList.Locate('FID',GetRealFID(pnTop.Components[i].Name), []) then
+//          begin
+//            if val = '' then
+//            begin
+//              if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
+//                val := ' '
+//              else
+//                val := ' where 1=1  ';
+//            end;
+//            if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('string'))  then
+//            begin
+//              if GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString)) = 'like' then
+//                val := ' ' + val + ' and ' + 'upper(IsNull( '
+//                  + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
+//                  + 'like ''%'
+//                  + UpperCase(trim(TcxButtonEdit(pnTop.Components[i]).Text)) + '%'''
+//              else
+//              if GetCp(Trim(cdsBillFindList.FieldByName('FcompareType').AsString)) = 'in'   then
+//                val := ' ' + val + ' and ' + 'upper(IsNull( '
+//                  + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
+//                  + 'in ('
+//                  + getSqlStr(UpperCase(trim(TcxButtonEdit(pnTop.Components[i]).Text))) + ')'
+//              else
+//                val := ' ' + val + ' and IsNull('
+//                  + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
+//                  + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
+//                  + '''' + trim(TcxTextEdit(pnTop.Components[i]).Text) + '''';
+//            end
+//            else
+//            begin
+//              val := ' ' + val + ' and IsNull('
+//                  + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
+//                  + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
+//                  + trim(TcxTextEdit(pnTop.Components[i]).Text);
+//            end;
+//          end;
+//        end
+//        else
+//        if (pnTop.Components[i] is TcxButtonEdit) and (Trim(TcxButtonEdit(pnTop.Components[i]).Text)<> '') then
+//        begin
+//          if cdsBillFindList.Locate('FID',GetRealFID(pnTop.Components[i].Name), []) then
+//          begin
+//            if val = '' then
+//            begin
+//              if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
+//                val := ' '
+//              else
+//                val := ' where 1=1  ';
+//            end;
+//
+//            if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('string'))  then
+//            begin
+//              if GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString)) = 'like' then
+//                val := ' ' + val + ' and ' + 'upper(IsNull( '
+//                  + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
+//                  + 'like ''%'
+//                  + UpperCase(trim(TcxButtonEdit(pnTop.Components[i]).Text)) + '%'''
+//              else
+//              if GetCp(Trim(cdsBillFindList.FieldByName('FcompareType').AsString)) = 'in'   then
+//                val := ' ' + val + ' and ' + 'upper(IsNull( '
+//                  + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
+//                  + 'in ('
+//                  + getSqlStr(UpperCase(trim(TcxButtonEdit(pnTop.Components[i]).Text))) + ')'
+//              else
+//                val := ' ' + val + ' and IsNull('
+//                  + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
+//                  + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
+//                  + '''' + trim(TcxButtonEdit(pnTop.Components[i]).Text) + '''';
+//            end
+//            else
+//              val := ' ' + val + ' and IsNull('
+//                + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
+//                + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
+//                + trim(TcxButtonEdit(pnTop.Components[i]).Text);
+//          end;
+//  //          strWhere := strWhere + ' and ' + cdsBillFindList.FieldByName('FFieldNameOrTableName').AsString
+//  //                      + ' ' + GetCp(cdsBillFindList.FieldByName('FCompareType').AsString);
+//        end;
+//      end;
+//    end;
     rst := rst + ' ' + val + ' ';
     rst := rst + ' ' + trim( cdsBillQuery.FieldByName('FGroupSql').AsString) + ' ';
   end;
@@ -2105,13 +2140,180 @@ begin
     begin
       rst := StringReplace(rst, '@Defined', '''' + self.FDefined+ '''', [rfReplaceAll]);
     end;
-//    result := rst;
   end;
   FBillQuerySQL := rst;
+  case recCount.ItemIndex of
+    0: FBillQuerySQL := 'Select Top 100 * from (' + FBillQuerySQL + ') X';
+    1: FBillQuerySQL := 'Select Top 500 * from (' + FBillQuerySQL + ') X';
+    2: FBillQuerySQL := 'Select Top 1000 * from (' + FBillQuerySQL + ') X';
+  end;
+  
   if  Trim(FBillQuerySQL) <> '' then
     self.Open;
   if cdsList.Active then
     CreateGridColumn(cdsList,dbgList);
+end;
+
+
+function TFM_BillListBase.GetWhereSQL: string;
+begin
+  Result := '';
+  SetCondition;
+  if cdsQueryCondition.State in DB.dsEditModes then cdsQueryCondition.Post;
+  if not cdsQueryCondition.IsEmpty then
+  begin
+    cdsQueryCondition.Last;
+    while not cdsQueryCondition.Bof do
+    begin
+      if (Trim(cdsQueryCondition.FieldByName('compareValue').AsString)='') then
+      begin
+        cdsQueryCondition.Edit;
+        cdsQueryCondition.FieldByName('LOGIC').AsString:='';
+        cdsQueryCondition.post;
+      end
+      else
+      begin
+        if  trim(cdsQueryCondition.FieldByName('LOGIC').AsString)='' then
+        begin
+          cdsQueryCondition.Edit;
+          cdsQueryCondition.FieldByName('LOGIC').AsString:='AND';
+          cdsQueryCondition.post;
+        end;
+      end;
+      if cdsQueryCondition.FieldByName('FFIELDCHNAME').AsString = '' then
+      begin
+        showmsg(Self.Handle, '字段名称不能出现空值!  ',[]);
+        Exit;
+      end;
+      if cdsQueryCondition.FieldByName('compare').AsString = '' then
+      begin
+        showmsg(Self.Handle,'比较字段不能出现空值!  ',[]);
+        Exit;
+      end;
+      if (Trim(cdsQueryCondition.FieldByName('compareValue').AsString)='') and (cdsQueryCondition.FieldByName('FisInput').asinteger = 1) then
+      begin
+        showmsg(Self.Handle,'必输字段【'+cdsQueryCondition.fieldbyname('FFIELDCHNAME').AsString+'】不允许出现空值!  ',[]);
+        Exit;
+      end;
+
+      cdsQueryCondition.Prior;
+    end;
+  end;
+//  Result := getQuerySql;
+  if not cdsQueryCondition.IsEmpty then
+  begin
+    try
+      cdsQueryCondition.DisableControls;
+      cdsQueryCondition.First;
+      while not cdsQueryCondition.Eof do
+      begin
+        if (cdsQueryCondition.FieldByName('compareValue').AsString <> '') then
+        begin
+          if Result = '' then
+          if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
+            Result := ' and ('
+          else
+            Result := ' where (1=1 and  ';
+          if (uppercase(trim(cdsQueryCondition.fieldbyname('FDataType').AsString)) = uppercase('Date')) then
+          begin
+            Result := ' ' + Result + 'convert(varchar(10),'
+                    + trim(cdsQueryCondition.FieldByName('FFieldNameORTableName').AsString) + ',120)  '
+                    + GetCp(trim(cdsQueryCondition.FieldByName('compare').AsString))
+                    + ''''+UpperCase(trim(cdsQueryCondition.FieldByName('compareValue').AsString)) +''''
+                    + '  '+trim(cdsQueryCondition.FieldByName('logic').AsString) + ' ';
+          end
+          else
+          if (uppercase(trim(cdsQueryCondition.fieldbyname('FDataType').AsString)) = uppercase('string'))  then
+          begin
+            if GetCp(trim(cdsQueryCondition.FieldByName('compare').AsString)) = 'like' then
+              Result := ' ' + Result + 'upper(IsNull( '
+                + trim(cdsQueryCondition.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
+                + GetCp(trim(cdsQueryCondition.FieldByName('compare').AsString)) + '''%'
+                + UpperCase(trim(cdsQueryCondition.FieldByName('compareValue').AsString)) + '%'''
+                + '  '+trim(cdsQueryCondition.FieldByName('logic').AsString) + ' '
+            else
+              if GetCp(Trim(cdsQueryCondition.FieldByName('compare').AsString)) = 'in'   then
+                Result := ' ' + Result + 'upper(IsNull( '
+                  + trim(cdsQueryCondition.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
+                  + 'in ('
+                  + getSqlStr(UpperCase(trim(cdsQueryCondition.FieldByName('compareValue').AsString))) + ')'
+                  + '  '+trim(cdsQueryCondition.FieldByName('logic').AsString) + ' '
+              else
+                Result := ' ' + Result + 'upper(IsNull( '
+                  + trim(cdsQueryCondition.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
+                  + GetCp(trim(cdsQueryCondition.FieldByName('compare').AsString)) + ''''
+                  + UpperCase(trim(cdsQueryCondition.FieldByName('compareValue').AsString)) + ''''
+                  + '  '+trim(cdsQueryCondition.FieldByName('logic').AsString) + ' '
+          end
+          else
+            Result := ' ' + Result + 'IsNull('
+              + trim(cdsQueryCondition.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
+              + GetCp(trim(cdsQueryCondition.FieldByName('compare').AsString))
+              + trim(cdsQueryCondition.FieldByName('compareValue').AsString)
+              + '  '+trim(cdsQueryCondition.FieldByName('logic').AsString) + ' ';
+        end;
+        cdsQueryCondition.Next;
+      end;
+      if Trim(Result)<>'' then
+      begin
+        Result := Copy(Result,1,Length(Result)-4);
+        Result:=Result+')'
+      end;
+    finally
+      cdsQueryCondition.EnableControls;
+    end;
+  end;
+end;
+
+function TFM_BillListBase.IsUserDefine: Boolean;
+begin
+  Result := false;
+end;
+
+procedure TFM_BillListBase.SetCondition;
+begin
+  //以下是非用户自定义 自动插入的查询条件
+  //如果要自定义查询条件，则按以下的格式插入cdsQueryCondition各个相应的字段
+  if (cdsBillFindList.RecordCount> 0) and cdsQueryCondition.Active and not IsUserDefine then
+  begin
+    cdsQueryCondition.EmptyDataSet;
+    cdsBillFindList.First;
+    while not cdsBillFindList.Eof do
+    begin
+      cdsQueryCondition.Append;
+      //字段名
+      cdsQueryCondition.FieldByName('FFieldName').Value := cdsBillFindList.fieldbyname('FFieldName').Value;
+      //字段中文名（方便调试查看，可不填）
+      cdsQueryCondition.FieldByName('FFIELDCHNAME').Value := cdsBillFindList.fieldbyname('FFIELDCHNAME').Value;
+      //带表名的字段名
+      cdsQueryCondition.FieldByName('FFieldNameORTableName').Value := cdsBillFindList.fieldbyname('FFieldNameORTableName').Value;
+      //字段类型 String   Date   Int   Float
+      cdsQueryCondition.FieldByName('FDataType').Value := cdsBillFindList.fieldbyname('FDataType').Value;
+      //自定义F7查询语句
+      cdsQueryCondition.FieldByName('FFindValue').Value := cdsBillFindList.fieldbyname('FFindValue').Value;
+      //系统预设的基础资料类型   物料、组织、部门等。。
+      cdsQueryCondition.FieldByName('FDialogType').Value := cdsBillFindList.fieldbyname('FDialogType').Value;
+      //是否必填
+      cdsQueryCondition.FieldByName('FisInput').Value := cdsBillFindList.fieldbyname('FisInput').Value;
+      //是否单选
+      cdsQueryCondition.FieldByName('FisRadioSelect').Value := cdsBillFindList.fieldbyname('FisRadioSelect').Value;
+      //逻辑比较符
+      cdsQueryCondition.FieldByName('COMPARE').Value := cdsBillFindList.FieldByName('FCompareType').Value;
+      //查询字段值
+      if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('Date')) then
+        cdsQueryCondition.FieldByName('COMPAREVALUE').Asstring := TcxDateEdit(pnTop.FindComponent('dat' + cdsBillFindList.FieldByName('FID').AsString)).Text
+      else if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('String')) then
+      begin
+        if (Trim(cdsBillFindList.FieldByName('FFindValue').AsString) <> '')
+            or (Trim(cdsBillFindList.FieldByName('FDialogType').AsString) <> '') then
+          cdsQueryCondition.FieldByName('COMPAREVALUE').Asstring := TcxDateEdit(pnTop.FindComponent('but' + cdsBillFindList.FieldByName('FID').AsString)).Text
+        else
+          cdsQueryCondition.FieldByName('COMPAREVALUE').Asstring := TcxDateEdit(pnTop.FindComponent('edt' + cdsBillFindList.FieldByName('FID').AsString)).Text;
+      end;
+      cdsQueryCondition.Post;
+      cdsBillFindList.Next;
+    end;
+  end;
 end;
 
 end.

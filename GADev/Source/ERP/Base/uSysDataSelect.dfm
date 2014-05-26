@@ -21,8 +21,8 @@ object SysDataSelectFrm: TSysDataSelectFrm
   object cxGrid1: TcxGrid
     Left = 0
     Top = 27
-    Width = 530
-    Height = 373
+    Width = 538
+    Height = 381
     Align = alClient
     TabOrder = 0
     LookAndFeel.Kind = lfOffice11
@@ -46,7 +46,7 @@ object SysDataSelectFrm: TSysDataSelectFrm
   object Panel6: TPanel
     Left = 0
     Top = 0
-    Width = 530
+    Width = 538
     Height = 27
     Align = alTop
     Color = clGradientInactiveCaption

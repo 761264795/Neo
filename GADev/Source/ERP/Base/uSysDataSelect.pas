@@ -10,7 +10,15 @@ uses
   cxGridTableView, cxGridDBTableView, cxGrid, StdCtrls, Buttons, ExtCtrls,
   cxDropDownEdit, cxStyles, cxCustomData, cxGraphics, cxFilter, cxData,
   cxDataStorage, cxEdit, cxDBData, cxContainer, cxTextEdit, cxMaskEdit,
-  cxClasses, cxControls, dxSkinOffice2007Black, DBClient,FrmCliDM;
+  cxClasses, cxControls, dxSkinOffice2007Black, DBClient,FrmCliDM,
+  dxSkinsCore, dxSkinBlack, dxSkinBlue, dxSkinCaramel, dxSkinCoffee,
+  dxSkinDarkRoom, dxSkinDarkSide, dxSkinFoggy, dxSkinGlassOceans,
+  dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky,
+  dxSkinMcSkin, dxSkinMoneyTwins, dxSkinOffice2007Blue,
+  dxSkinOffice2007Green, dxSkinOffice2007Pink, dxSkinOffice2007Silver,
+  dxSkinPumpkin, dxSkinSeven, dxSkinSharp, dxSkinSilver, dxSkinSpringTime,
+  dxSkinStardust, dxSkinSummer2008, dxSkinsDefaultPainters,
+  dxSkinValentine, dxSkinXmas2008Blue, dxSkinscxPCPainter;
 
 type
   TSysDataSelectFrm = class(TForm)
@@ -52,7 +60,7 @@ type
     gReturnType:Integer;
     gdbClickFlag:Boolean;
     gShareSelectReturnStr : string;
-    procedure InitCxgrid(fdEnglishList, fdChineseList: string; ColWidth: Integer); 
+    procedure InitCxgrid(fdEnglishList, fdChineseList: string; ColWidth: Integer);
     procedure SetDataValueInfo;
     procedure SearchInfo(TextStr: string); //用户模糊查找
     procedure SetDataValueInfoExt(ReturnType:integer);

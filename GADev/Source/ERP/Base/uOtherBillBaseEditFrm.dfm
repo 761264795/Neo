@@ -11,14 +11,14 @@ inherited OtherBillBaseEditFrm: TOtherBillBaseEditFrm
   TextHeight = 12
   object p_bt: TPanel [0]
     Left = 0
-    Top = 504
-    Width = 1008
+    Top = 512
+    Width = 1016
     Height = 30
     Align = alBottom
     Color = 16511980
     TabOrder = 4
     DesignSize = (
-      1008
+      1016
       30)
     object Label1: TLabel
       Left = 1

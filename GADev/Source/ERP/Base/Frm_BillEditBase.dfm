@@ -25,8 +25,8 @@ object FM_BillEditBase: TFM_BillEditBase
   object pnlDetail: TPanel
     Left = 0
     Top = 182
-    Width = 1004
-    Height = 285
+    Width = 1012
+    Height = 293
     Align = alClient
     BevelOuter = bvNone
     Color = 16511980
@@ -34,14 +34,14 @@ object FM_BillEditBase: TFM_BillEditBase
     object cxPageDetail: TcxPageControl
       Left = 0
       Top = 0
-      Width = 1004
-      Height = 285
+      Width = 1012
+      Height = 293
       ActivePage = cxTabDetail
       Align = alClient
       Style = 10
       TabOrder = 0
-      ClientRectBottom = 285
-      ClientRectRight = 1004
+      ClientRectBottom = 293
+      ClientRectRight = 1012
       ClientRectTop = 18
       object cxTabDetail: TcxTabSheet
         Caption = #21333#25454#26126#32454
@@ -49,8 +49,8 @@ object FM_BillEditBase: TFM_BillEditBase
         object cxGrid1: TcxGrid
           Left = 0
           Top = 30
-          Width = 1004
-          Height = 237
+          Width = 1012
+          Height = 245
           Align = alClient
           TabOrder = 1
           LookAndFeel.Kind = lfOffice11
@@ -108,7 +108,7 @@ object FM_BillEditBase: TFM_BillEditBase
         object Panel3: TPanel
           Left = 0
           Top = 0
-          Width = 1004
+          Width = 1012
           Height = 30
           Align = alTop
           BevelOuter = bvNone
@@ -241,8 +241,8 @@ object FM_BillEditBase: TFM_BillEditBase
         object cxGrid4: TcxGrid
           Left = 0
           Top = 27
-          Width = 1004
-          Height = 240
+          Width = 1012
+          Height = 248
           Align = alClient
           TabOrder = 1
           LookAndFeel.Kind = lfOffice11
@@ -269,7 +269,7 @@ object FM_BillEditBase: TFM_BillEditBase
         object Panel4: TPanel
           Left = 0
           Top = 0
-          Width = 1004
+          Width = 1012
           Height = 27
           Align = alTop
           BevelOuter = bvNone
@@ -443,14 +443,14 @@ object FM_BillEditBase: TFM_BillEditBase
   end
   object p_bt: TPanel
     Left = 0
-    Top = 601
-    Width = 1004
+    Top = 609
+    Width = 1012
     Height = 30
     Align = alBottom
     Color = 16511980
     TabOrder = 8
     DesignSize = (
-      1004
+      1012
       30)
     object Label1: TLabel
       Left = 1
@@ -636,7 +636,7 @@ object FM_BillEditBase: TFM_BillEditBase
   object pnl_top: TPanel
     Left = 0
     Top = 53
-    Width = 1004
+    Width = 1012
     Height = 129
     Align = alTop
     Caption = 'pnl_top'
@@ -645,7 +645,7 @@ object FM_BillEditBase: TFM_BillEditBase
     object pnlCodeSM: TPanel
       Left = 1
       Top = 83
-      Width = 1002
+      Width = 1010
       Height = 45
       Align = alBottom
       BevelOuter = bvNone
@@ -1700,7 +1700,7 @@ object FM_BillEditBase: TFM_BillEditBase
     object HeadPageCtrl: TcxPageControl
       Left = 1
       Top = 1
-      Width = 1002
+      Width = 1010
       Height = 82
       ActivePage = cxTabBaseInfo
       Align = alClient
@@ -1709,14 +1709,14 @@ object FM_BillEditBase: TFM_BillEditBase
       Style = 10
       TabOrder = 0
       ClientRectBottom = 82
-      ClientRectRight = 1002
+      ClientRectRight = 1010
       ClientRectTop = 0
       object cxTabBaseInfo: TcxTabSheet
         ImageIndex = 0
         object pnlTop: TPanel
           Left = 0
           Top = 0
-          Width = 1002
+          Width = 1010
           Height = 82
           Align = alClient
           BevelOuter = bvNone
@@ -1729,10 +1729,10 @@ object FM_BillEditBase: TFM_BillEditBase
           ParentFont = False
           TabOrder = 0
           DesignSize = (
-            1002
+            1010
             82)
           object im_Audit: TImage
-            Left = 928
+            Left = 936
             Top = 3
             Width = 56
             Height = 32
@@ -1777,7 +1777,7 @@ object FM_BillEditBase: TFM_BillEditBase
             Transparent = True
           end
           object img_NewBill: TImage
-            Left = 928
+            Left = 936
             Top = 3
             Width = 56
             Height = 32
@@ -2299,7 +2299,7 @@ object FM_BillEditBase: TFM_BillEditBase
             Visible = False
           end
           object imgTJ: TImage
-            Left = 928
+            Left = 936
             Top = 3
             Width = 56
             Height = 32
@@ -2343,7 +2343,7 @@ object FM_BillEditBase: TFM_BillEditBase
               C7949CC91A8E410000000049454E44AE426082}
           end
           object imgGB: TImage
-            Left = 928
+            Left = 936
             Top = 3
             Width = 56
             Height = 32
@@ -2470,8 +2470,8 @@ object FM_BillEditBase: TFM_BillEditBase
   end
   object pnlStock: TPanel
     Left = 0
-    Top = 467
-    Width = 1004
+    Top = 475
+    Width = 1012
     Height = 134
     Align = alBottom
     BevelOuter = bvNone
@@ -2912,7 +2912,7 @@ object FM_BillEditBase: TFM_BillEditBase
     object Panel2: TPanel
       Left = 513
       Top = 0
-      Width = 491
+      Width = 499
       Height = 134
       Align = alClient
       Color = 16053228
@@ -2920,14 +2920,14 @@ object FM_BillEditBase: TFM_BillEditBase
       object cxpageReceive: TcxPageControl
         Left = 1
         Top = 1
-        Width = 489
+        Width = 497
         Height = 132
         ActivePage = cxTabRecStock
         Align = alClient
         Style = 10
         TabOrder = 0
         ClientRectBottom = 132
-        ClientRectRight = 489
+        ClientRectRight = 497
         ClientRectTop = 18
         object cxTabRecStock: TcxTabSheet
           Caption = #25910#36135#26041#24211#23384
@@ -2940,7 +2940,7 @@ object FM_BillEditBase: TFM_BillEditBase
           object cxGrid5: TcxGrid
             Left = 3
             Top = 0
-            Width = 486
+            Width = 494
             Height = 114
             Align = alClient
             TabOrder = 0
