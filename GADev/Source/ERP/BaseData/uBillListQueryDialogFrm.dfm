@@ -2518,7 +2518,6 @@ inherited BillListQueryDialogFrm: TBillListQueryDialogFrm
       DisplayLabel = #27604#36739#20540
       FieldName = 'COMPAREVALUE'
       BlobType = ftMemo
-      Size = 3000
     end
     object cdsQuerySchemeEntryLOGIC: TWideStringField
       DisplayLabel = #36923#36753#31526

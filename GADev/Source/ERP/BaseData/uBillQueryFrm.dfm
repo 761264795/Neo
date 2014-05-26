@@ -494,7 +494,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 Width = 46
               end
               object cxFiledListFISBARSHOW: TcxGridDBColumn
-                Caption = #20132#21449#34920#22836#26174#31034
+                Caption = #25302#21160#20998#32452
                 DataBinding.FieldName = 'FISBARSHOW'
                 PropertiesClassName = 'TcxCheckBoxProperties'
                 Properties.NullStyle = nssUnchecked
@@ -601,6 +601,10 @@ inherited BillQueryFrm: TBillQueryFrm
                 Visible = False
                 Width = 100
               end
+              object cxFindListFSortFlag: TcxGridDBColumn
+                DataBinding.FieldName = 'FSortFlag'
+                Width = 50
+              end
               object cxFindListFFIELDNAME: TcxGridDBColumn
                 Caption = #23383#27573#21517
                 DataBinding.FieldName = 'FFIELDNAME'
@@ -690,7 +694,7 @@ inherited BillQueryFrm: TBillQueryFrm
                   #22823#20110
                   #23567#20110#31561#20110
                   #23567#20110
-                  #31867#20284
+                  #30456#20284
                   #21253#21547)
                 Width = 68
               end
@@ -1793,6 +1797,10 @@ inherited BillQueryFrm: TBillQueryFrm
     end
     object cdsFindListFVisbleInFastQuery: TBooleanField
       FieldName = 'FVisbleInFastQuery'
+    end
+    object cdsFindListFSortFlag: TIntegerField
+      DisplayLabel = #39034#24207#21495
+      FieldName = 'FSortFlag'
     end
   end
   object dsFindList: TDataSource

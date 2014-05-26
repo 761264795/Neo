@@ -963,7 +963,7 @@ begin
             if (uppercase(trim(cdsQuerySchemeEntry.fieldbyname('FDataType').AsString)) = uppercase('string'))  then
             begin
               if GetCp(trim(cdsQuerySchemeEntry.FieldByName('compare').AsString)) = 'like' then
-                val := ' ' + val + trim(cdsQuerySchemeEntry.FieldByName('LeftBracket').AsString) + 'upper(nvl( '
+                val := ' ' + val + trim(cdsQuerySchemeEntry.FieldByName('LeftBracket').AsString) + 'upper(IsNull( '
                   + trim(cdsQuerySchemeEntry.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
                   + GetCp(trim(cdsQuerySchemeEntry.FieldByName('compare').AsString)) + '''%'
                   + UpperCase(trim(cdsQuerySchemeEntry.FieldByName('compareValue').AsString)) + '%'''
@@ -971,7 +971,7 @@ begin
                   + '  '+trim(cdsQuerySchemeEntry.FieldByName('logic').AsString) + ' '
               else
                 if GetCp(Trim(cdsQuerySchemeEntry.FieldByName('compare').AsString)) = 'in'   then
-                  val := ' ' + val + trim(cdsQuerySchemeEntry.FieldByName('LeftBracket').AsString) + 'upper(nvl( '
+                  val := ' ' + val + trim(cdsQuerySchemeEntry.FieldByName('LeftBracket').AsString) + 'upper(IsNull( '
                     + trim(cdsQuerySchemeEntry.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
                     + 'in ('
                     + getSqlStr(UpperCase(trim(cdsQuerySchemeEntry.FieldByName('compareValue').AsString))) + ')'
@@ -979,7 +979,7 @@ begin
                     + '  '+trim(cdsQuerySchemeEntry.FieldByName('logic').AsString) + ' '
                 else
                   if trim(cdsQuerySchemeEntry.FieldByName('compare').AsString) = '前部分等于' then
-                    val := ' ' + val + trim(cdsQuerySchemeEntry.FieldByName('LeftBracket').AsString) + 'upper(nvl( '
+                    val := ' ' + val + trim(cdsQuerySchemeEntry.FieldByName('LeftBracket').AsString) + 'upper(IsNull( '
                       + trim(cdsQuerySchemeEntry.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
                       + ' like ' + ''''
                       + UpperCase(trim(cdsQuerySchemeEntry.FieldByName('compareValue').AsString)) + '%'''
@@ -987,14 +987,14 @@ begin
                       + '  '+trim(cdsQuerySchemeEntry.FieldByName('logic').AsString) + ' '
                   else
                     if trim(cdsQuerySchemeEntry.FieldByName('compare').AsString) = '后部分等于' then
-                      val := ' ' + val + trim(cdsQuerySchemeEntry.FieldByName('LeftBracket').AsString) + 'upper(nvl( '
+                      val := ' ' + val + trim(cdsQuerySchemeEntry.FieldByName('LeftBracket').AsString) + 'upper(IsNull( '
                         + trim(cdsQuerySchemeEntry.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
                         + ' like ' + '''%'
                         + UpperCase(trim(cdsQuerySchemeEntry.FieldByName('compareValue').AsString)) + ''''
                         + trim(cdsQuerySchemeEntry.FieldByName('rightBracket').AsString)
                         + '  '+trim(cdsQuerySchemeEntry.FieldByName('logic').AsString) + ' '
                     else
-                      val := ' ' + val + trim(cdsQuerySchemeEntry.FieldByName('LeftBracket').AsString) + 'upper(nvl( '
+                      val := ' ' + val + trim(cdsQuerySchemeEntry.FieldByName('LeftBracket').AsString) + 'upper(IsNull( '
                         + trim(cdsQuerySchemeEntry.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
                         + GetCp(trim(cdsQuerySchemeEntry.FieldByName('compare').AsString)) + ''''
                         + UpperCase(trim(cdsQuerySchemeEntry.FieldByName('compareValue').AsString)) + ''''
@@ -1002,7 +1002,7 @@ begin
                         + '  '+trim(cdsQuerySchemeEntry.FieldByName('logic').AsString) + ' '
             end
             else
-                    val := ' ' + val + trim(cdsQuerySchemeEntry.FieldByName('LeftBracket').AsString) + 'nvl('
+                    val := ' ' + val + trim(cdsQuerySchemeEntry.FieldByName('LeftBracket').AsString) + 'IsNull('
                       + trim(cdsQuerySchemeEntry.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
                       + GetCp(trim(cdsQuerySchemeEntry.FieldByName('compare').AsString))
                       + trim(cdsQuerySchemeEntry.FieldByName('compareValue').AsString)

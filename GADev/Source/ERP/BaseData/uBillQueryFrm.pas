@@ -213,6 +213,8 @@ type
     cxFindListFCompareType: TcxGridDBColumn;
     cxFindListFVisbleOnlyInFastQuery: TcxGridDBColumn;
     cxFindListFVisbleInFastQuery: TcxGridDBColumn;
+    cdsFindListFSortFlag: TIntegerField;
+    cxFindListFSortFlag: TcxGridDBColumn;
     procedure FormShow(Sender: TObject);
     procedure btn_SaveClick(Sender: TObject);
     procedure cxBillTypeFocusedRecordChanged(
@@ -306,10 +308,10 @@ begin
     Items.Add('成本中心');
     Items.Add('利润中心');
     Items.Add('HR组织');
-    Items.Add('颜色');
-    Items.Add('尺码');
-    Items.Add('内长');
-    Items.Add('配码');
+//    Items.Add('颜色');
+//    Items.Add('尺码');
+//    Items.Add('内长');
+//    Items.Add('配码');
   end;
   if not  cdsBillType.IsEmpty  then OpenData(GetFID);
 end;
