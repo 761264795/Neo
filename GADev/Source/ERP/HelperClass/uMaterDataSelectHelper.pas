@@ -48,7 +48,7 @@ implementation
  end;
  function Select_RawMaterials(oldValue,SelecttWhereStr:string;isRadioSelect:Integer=1):TADODataSet;    //原材料
  begin
-   Result := getMsterData(TSelectMaterialFrm,'原材料',oldValue,'t_bd_material',SelecttWhereStr,'',2,False,isRadioSelect);
+   Result := getMsterData(TSelectMaterialFrm,'物料',oldValue,'t_bd_material',SelecttWhereStr,'',2,False,isRadioSelect);
  end;
  //FOrgType : 0 行政组织，1 财务组织，2 销售组织 ， 3 库存组织 ，4 采购组织 ，5 成本中心 ，6 HR组织  7 利润中心
  function Select_Branch(oldValue,SelecttWhereStr:string;FOrgType:Integer=0;isRadioSelect:Integer=1):TADODataSet;    //选择组织

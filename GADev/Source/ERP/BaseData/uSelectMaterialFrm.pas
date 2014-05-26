@@ -21,7 +21,13 @@ uses
   cxTLdxBarBuiltInMenu, cxLookAndFeelPainters, DBClient, jpeg, cxContainer,
   cxTextEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit,
   cxDBLookupComboBox, cxCheckBox, Dialogs, dxSkinOffice2007Blue,
-  dxSkinOffice2007Green, dxSkinOffice2007Pink, dxSkinOffice2007Silver;
+  dxSkinOffice2007Green, dxSkinOffice2007Pink, dxSkinOffice2007Silver,
+  dxSkinBlack, dxSkinBlue, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom,
+  dxSkinDarkSide, dxSkinFoggy, dxSkinGlassOceans, dxSkiniMaginary,
+  dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin,
+  dxSkinMoneyTwins, dxSkinPumpkin, dxSkinSeven, dxSkinSharp, dxSkinSilver,
+  dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
+  dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue;
 
 type
   TSelectMaterialFrm = class(TSelecDataBaseFrm)
@@ -61,7 +67,7 @@ begin
   _sql:= 'select a.fid,a.fname_l2 ,a.fstandardtype from T_BD_MaterialGroupStandard a where nvl(Cftype,0)=0'
   else
   if self.mType=2 then
-  _sql:= 'select a.fid,a.fname_l2,a.fstandardtype from T_BD_MaterialGroupStandard a where nvl(Cftype,0)<>0';
+  _sql:= 'select a.fid,a.fname_l2,a.fstandardtype from T_BD_MaterialGroupStandard a';
   _index:=0;
   CliDM.Get_OpenSQL(cdsTypeList,_sql,ErrMsg);
   with cdsTypeList do
@@ -125,8 +131,9 @@ begin
     end
     else     
     begin
-      _sqlList:='select A.FID,a.fnumber,a.fname_l2, '
-              +' a.CFUnityPrice as 吊牌价,a.cfdistributeprice as 标准价 '
+      _sqlList:='select ';
+      if chkTop100.Checked then  _sqlList := _sqlList + ' top 100 ';
+      _sqlList:=_sqlList + ' A.FID,a.fnumber,a.fname_l2'
               +' from t_bd_material a  '
               +' left join T_BD_MaterialGroupDetial md on a.fid  =md.fmaterialid  '
               +' left join T_BD_MaterialGroup mg on md.fmaterialgroupid  =mg.fid ';
@@ -134,7 +141,7 @@ begin
       if Self.FSelecttWhereStr <> '' then
       _sqlList := _sqlList  +' and ' +self.FSelecttWhereStr;
     end;
-    if chkTop100.Checked then   _sqlList:=_sqlList+' and rownum <=100 ' ;
+  //  if chkTop100.Checked then   _sqlList:=_sqlList+ ;
     if MgNumber<>'' then   _sqlList:=_sqlList+ ' and mg.flongnumber like '''+longNumber+'%'''
     else
     begin
@@ -159,7 +166,7 @@ begin
         begin
           vallist.GetColumnByFieldName('fnumber').Width:=140;
           vallist.GetColumnByFieldName('fname_l2').Width:=180;
-          vallist.GetColumnByFieldName('吊牌价').Width:=70;
+       //   vallist.GetColumnByFieldName('吊牌价').Width:=70;
         end
         else
         for i:=0 to  vallist.ColumnCount-1 do

@@ -13,7 +13,7 @@ inherited GroupStandardFrm: TGroupStandardFrm
     Left = 0
     Top = 0
     Width = 502
-    Height = 314
+    Height = 313
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel3'
@@ -22,7 +22,7 @@ inherited GroupStandardFrm: TGroupStandardFrm
       Left = 0
       Top = 28
       Width = 502
-      Height = 286
+      Height = 285
       Align = alClient
       TabOrder = 1
       LookAndFeel.Kind = lfOffice11

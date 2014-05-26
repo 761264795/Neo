@@ -10,7 +10,12 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,
   dxSkinsCore, dxSkinOffice2007Black, dxSkinOffice2007Blue,
   dxSkinOffice2007Green, dxSkinOffice2007Pink, dxSkinOffice2007Silver,
-  dxSkinscxPCPainter;
+  dxSkinscxPCPainter, dxSkinBlack, dxSkinBlue, dxSkinCaramel, dxSkinCoffee,
+  dxSkinDarkRoom, dxSkinDarkSide, dxSkinFoggy, dxSkinGlassOceans,
+  dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky,
+  dxSkinMcSkin, dxSkinMoneyTwins, dxSkinPumpkin, dxSkinSeven, dxSkinSharp,
+  dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
+  dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue;
 
 type
   TGroupStandardFrm = class(TSTBaseEdit)
@@ -71,7 +76,7 @@ var _sql,errMsg:String;
 begin
   _sql := 'select * from '+FTableName+'  order by fnumber';
   if (UpperCase(FTableName) = UpperCase('T_BD_MaterialGroupStandard')) then
-  _sql := 'select * from '+FTableName+' where CFTYPE='+inttostr(mType)+' order by fnumber'
+  _sql := 'select * from '+FTableName+' order by fnumber'
   else
   if (mType = 5) then
   _sql := 'select * from '+FTableName+' where  ftype=1 order by fnumber'
