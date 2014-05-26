@@ -493,7 +493,9 @@ uses FrmCliDM, FrmLogin, Pub_Fun, uPOSEditFrm,uDayBalanceFrm
   ,uOtherBillBaseEditFrm,uTicketRequisitionList,uTicketRequisition,uBillPromotion
   ,uMallCompareListFrm,uMallCompareFrm,uBatchCancelAllocationFrm,uBatchAlterOrderColorFrm
   ,uBatchCloseOrderFrm,uOrderAllocateFrm,uBillListPromtion,uRepairListFrm,uRepairEditFrm,
-  uBatchAddOrderMaterialFrm,uMaterDataSelectHelper,uRepairWOEditFrm,uRepairWoListFrm;
+  uBatchAddOrderMaterialFrm,uMaterDataSelectHelper,uRepairWOEditFrm,uRepairWoListFrm,
+  uDMoveInWareshListFrm,uDMoveIssueListFrm,uDOtherInWareshListFrm,uDOtherIssueListFrm,uDPurInwareshListFrm,
+  uDSaleIssueListFrm,uDStockTransferListFrm;
 
 var RTL:TQueryThread;
 {$R *.dfm}
@@ -1964,6 +1966,8 @@ begin
       CreatePageList(TFM_BillListPurOrder,opt) ;
       Exit;
     end;
+
+
     //------------------------维修管理  begin----------------------------------------
     if (Fromkey='D78CE9D874144BAFBE1E772E8A87C119') then
     begin
@@ -1974,12 +1978,66 @@ begin
     if Fromkey = '56C22177C2CD48BEA11904A9D63560D3' then
     begin
       opt.Caption := title;
-      CreatePageList(TRepairWOListFrm,opt)
+      CreatePageList(TRepairWOListFrm,opt);
+      Exit;
     end;
-
 
     //------------------------维修管理- end -----------------------------------------------------
 
+    //-------------------------精品采销 begin------------------------------------
+    //精品采购入库查询
+    if Fromkey = '55FA69B0A1994BABBA81D46E7FC4748D' then
+    begin
+      opt.Caption := title;
+      CreatePageList(TDPurInWareshListFrm,opt);
+      Exit;
+    end;
+    //精品销售出库查询
+    if Fromkey = '774C2715CA56427E9353831CC32552FF' then
+    begin
+      opt.Caption := title;
+      CreatePageList(TDSaleIssueListFrm,opt);
+      Exit;
+    end;
+    //精品其他入库查询
+    if Fromkey = '02937E1A0BC94D42AD5EF56468C8F197' then
+    begin
+      opt.Caption := title;
+      CreatePageList(TDOtherInWareshListFrm,opt);
+      Exit;
+    end;
+    //精品其他出库查询
+    if Fromkey = '379AB53788034C8E8CA1C6C981DBAE02' then
+    begin
+      opt.Caption := title;
+      CreatePageList(TDOtherIssueListFrm,opt);
+      Exit;
+    end;
+    //精品库存调拨查询
+    if Fromkey = '3DD149568BB743398D2B91E9D17514BA' then
+    begin
+      opt.Caption := title;
+      CreatePageList(TDStockTransferListFrm,opt);
+      Exit;
+    end;
+    //精品调拨入库查询
+    if Fromkey = '96DF362BFAF14AE7AAE26F3671F26F66' then
+    begin
+      opt.Caption := title;
+      CreatePageList(TDMoveInwareshListFrm,opt);
+      Exit;
+    end;
+    //精品调拨出库查询
+    if Fromkey = 'E63A6AE35B58427DBB5DC806634AB1B9' then
+    begin
+      opt.Caption := title;
+      CreatePageList(TDMoveIssueListFrm,opt);
+      Exit;
+    end;
+
+
+
+    //-------------------------精品采销 end------------------------------------
 
     //采购入库单
     if (FromKey = '0BC41C7E61F04D8F9B273E80A4EDCA4B') then
