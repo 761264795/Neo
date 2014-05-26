@@ -220,3 +220,7 @@ if not exists(select * from syscolumns where id=object_id('T_BD_BILLQUERYFINDLIS
 				FVisbleInFastQuery bit NULL default 0,
 				FVisbleOnlyInFastQuery bit NULL default 0
 GO
+if not exists(select * from syscolumns where id=object_id('T_BD_BILLQUERYFINDLIST') and name='FSortFlag') 
+	ALTER TABLE dbo.T_BD_BILLQUERYFINDLIST 
+		ADD FSortFlag int
+GO
