@@ -295,7 +295,14 @@ uses
   uSelectDataEx in 'Base\uSelectDataEx.pas' {SelectDataExFrm},
   uTransferBillSelDlg in 'Base\uTransferBillSelDlg.pas' {TransferBillSelFrm},
   uTransferBillBaseFrm in 'Base\uTransferBillBaseFrm.pas' {TransferBillBaseFrm},
-  uRepairWoToSaleIssue in 'rsm\uRepairWoToSaleIssue.pas' {RepairWoToSaleIssueFrm};
+  uRepairWoToSaleIssue in 'rsm\uRepairWoToSaleIssue.pas' {RepairWoToSaleIssueFrm},
+  uDPurInwareshListFrm in 'scm\uDPurInwareshListFrm.pas' {DPurInWareshListFrm},
+  uDSaleIssueListFrm in 'scm\uDSaleIssueListFrm.pas' {DSaleIssueListFrm},
+  uDStockTransferListFrm in 'scm\uDStockTransferListFrm.pas' {DStockTransferListFrm},
+  uDOtherIssueListFrm in 'scm\uDOtherIssueListFrm.pas' {DOtherIssueListFrm},
+  uDOtherInWareshListFrm in 'scm\uDOtherInWareshListFrm.pas' {DOtherInWareshListFrm},
+  uDMoveInWareshListFrm in 'scm\uDMoveInWareshListFrm.pas' {DMoveInwareshListFrm},
+  uDMoveIssueListFrm in 'scm\uDMoveIssueListFrm.pas' {DMoveIssueListFrm};
 
 {$R *.res}
 {$I- } //不产生I/O异常类而是把错误代码返回到预定义变量IOResult中
