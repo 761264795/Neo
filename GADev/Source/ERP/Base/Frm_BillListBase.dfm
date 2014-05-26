@@ -2115,7 +2115,7 @@ object FM_BillListBase: TFM_BillListBase
       FieldName = 'FID'
       Size = 44
     end
-    object cdsReportListFReportName: TStringField
+    object cdsReportListFReportName: TWideStringField
       DisplayLabel = #25253#34920#21517#31216
       FieldName = 'FReportName'
       Size = 100

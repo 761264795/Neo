@@ -144,7 +144,7 @@ type
     SpeedButton6: TSpeedButton;
     SpeedButton7: TSpeedButton;
     cdsReportListFID: TWideStringField;
-    cdsReportListFReportName: TStringField;
+    cdsReportListFReportName: TWideStringField;
     cxButton1: TcxButton;
     Splitter1: TSplitter;
     cdsBillFindList: TClientDataSet;
