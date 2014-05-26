@@ -159,6 +159,7 @@ type
     cdsQueryConditionFisInput: TIntegerField;
     cdsQueryConditionFisRadioSelect: TIntegerField;
     recCount: TcxComboBox;
+    cdsQueryConditionFID: TStringField;
     procedure dbgListDblClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure excel1Click(Sender: TObject);
@@ -1271,6 +1272,35 @@ begin
     ShowMsg(self.Handle,'打开T_BD_BillQueryFindList表失败!'+ErrMsg,[]);
     Abort;
   end;
+
+  if (cdsBillFindList.RecordCount> 0) and cdsQueryCondition.Active then
+  begin
+    cdsBillFindList.First;
+    while not cdsBillFindList.Eof do
+    begin
+      cdsQueryCondition.Append;
+      //字段名
+      cdsQueryCondition.FieldByName('FFieldName').Value := cdsBillFindList.fieldbyname('FFieldName').Value;
+      //字段中文名（方便调试查看，可不填）
+      cdsQueryCondition.FieldByName('FFIELDCHNAME').Value := cdsBillFindList.fieldbyname('FFIELDCHNAME').Value;
+      //带表名的字段名
+      cdsQueryCondition.FieldByName('FFieldNameORTableName').Value := cdsBillFindList.fieldbyname('FFieldNameORTableName').Value;
+      //字段类型 String   Date   Int   Float
+      cdsQueryCondition.FieldByName('FDataType').Value := cdsBillFindList.fieldbyname('FDataType').Value;
+      //自定义F7查询语句
+      cdsQueryCondition.FieldByName('FFindValue').Value := cdsBillFindList.fieldbyname('FFindValue').Value;
+      //系统预设的基础资料类型   物料、组织、部门等。。
+      cdsQueryCondition.FieldByName('FDialogType').Value := cdsBillFindList.fieldbyname('FDialogType').Value;
+      //是否必填
+      cdsQueryCondition.FieldByName('FisInput').Value := cdsBillFindList.fieldbyname('FisInput').Value;
+      //是否单选
+      cdsQueryCondition.FieldByName('FisRadioSelect').Value := cdsBillFindList.fieldbyname('FisRadioSelect').Value;
+      //逻辑比较符
+      cdsQueryCondition.FieldByName('COMPARE').Value := cdsBillFindList.FieldByName('FCompareType').Value;
+      cdsQueryCondition.Post;
+      cdsBillFindList.Next;
+    end;
+  end;
 end;
 
 procedure TFM_BillListBase.GridGetDisplayText(
@@ -1812,7 +1842,6 @@ var
   dataSet:TDataSet;
   FisRadioSelect:Integer;
   isBase:Boolean;
-  aclientdataset: TClientDataSet;
 begin
   try
     oldval:= Trim(TcxButtonEdit(Sender).Text);
@@ -1821,7 +1850,8 @@ begin
     begin
       if trim(cdsBillFindList.FieldByName('FFindValue').AsString) <> '' then
       begin
-        rstvalue := GetBillQueryFindVal(aclientdataset,trim(cdsBillFindList.FieldByName('FFindValue').AsString),oldval);
+        cdsQueryCondition.Locate('FID', cdsBillFindList.FieldByName('FID').AsString, []);
+        rstvalue := GetBillQueryFindVal(cdsQueryCondition,trim(cdsBillFindList.FieldByName('FFindValue').AsString),oldval);
         if rstvalue <> '' then
         begin
           TcxButtonEdit(Sender).Text := trim(rstvalue);
@@ -2280,25 +2310,30 @@ begin
     cdsBillFindList.First;
     while not cdsBillFindList.Eof do
     begin
-      cdsQueryCondition.Append;
-      //字段名
-      cdsQueryCondition.FieldByName('FFieldName').Value := cdsBillFindList.fieldbyname('FFieldName').Value;
-      //字段中文名（方便调试查看，可不填）
-      cdsQueryCondition.FieldByName('FFIELDCHNAME').Value := cdsBillFindList.fieldbyname('FFIELDCHNAME').Value;
-      //带表名的字段名
-      cdsQueryCondition.FieldByName('FFieldNameORTableName').Value := cdsBillFindList.fieldbyname('FFieldNameORTableName').Value;
-      //字段类型 String   Date   Int   Float
-      cdsQueryCondition.FieldByName('FDataType').Value := cdsBillFindList.fieldbyname('FDataType').Value;
-      //自定义F7查询语句
-      cdsQueryCondition.FieldByName('FFindValue').Value := cdsBillFindList.fieldbyname('FFindValue').Value;
-      //系统预设的基础资料类型   物料、组织、部门等。。
-      cdsQueryCondition.FieldByName('FDialogType').Value := cdsBillFindList.fieldbyname('FDialogType').Value;
-      //是否必填
-      cdsQueryCondition.FieldByName('FisInput').Value := cdsBillFindList.fieldbyname('FisInput').Value;
-      //是否单选
-      cdsQueryCondition.FieldByName('FisRadioSelect').Value := cdsBillFindList.fieldbyname('FisRadioSelect').Value;
-      //逻辑比较符
-      cdsQueryCondition.FieldByName('COMPARE').Value := cdsBillFindList.FieldByName('FCompareType').Value;
+      if not cdsQueryCondition.Locate('FID', cdsBillFindList.FieldByName('FID').AsString, []) then
+      begin
+        cdsQueryCondition.Append;
+        //字段名
+        cdsQueryCondition.FieldByName('FFieldName').Value := cdsBillFindList.fieldbyname('FFieldName').Value;
+        //字段中文名（方便调试查看，可不填）
+        cdsQueryCondition.FieldByName('FFIELDCHNAME').Value := cdsBillFindList.fieldbyname('FFIELDCHNAME').Value;
+        //带表名的字段名
+        cdsQueryCondition.FieldByName('FFieldNameORTableName').Value := cdsBillFindList.fieldbyname('FFieldNameORTableName').Value;
+        //字段类型 String   Date   Int   Float
+        cdsQueryCondition.FieldByName('FDataType').Value := cdsBillFindList.fieldbyname('FDataType').Value;
+        //自定义F7查询语句
+        cdsQueryCondition.FieldByName('FFindValue').Value := cdsBillFindList.fieldbyname('FFindValue').Value;
+        //系统预设的基础资料类型   物料、组织、部门等。。
+        cdsQueryCondition.FieldByName('FDialogType').Value := cdsBillFindList.fieldbyname('FDialogType').Value;
+        //是否必填
+        cdsQueryCondition.FieldByName('FisInput').Value := cdsBillFindList.fieldbyname('FisInput').Value;
+        //是否单选
+        cdsQueryCondition.FieldByName('FisRadioSelect').Value := cdsBillFindList.fieldbyname('FisRadioSelect').Value;
+        //逻辑比较符
+        cdsQueryCondition.FieldByName('COMPARE').Value := cdsBillFindList.FieldByName('FCompareType').Value;
+      end
+      else
+        cdsQueryCondition.Edit;
       //查询字段值
       if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('Date')) then
         cdsQueryCondition.FieldByName('COMPAREVALUE').Asstring := TcxDateEdit(pnTop.FindComponent('dat' + cdsBillFindList.FieldByName('FID').AsString)).Text
