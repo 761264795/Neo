@@ -829,6 +829,8 @@ procedure TFMCliMain.mainPgDblClick(Sender: TObject);
 begin
   if (mainPg.ActivePageIndex<>0) and (mainPg.ActivePageIndex<>1) then
     mainPg.ActivePage.Free;
+  if mainPg.ActivePageIndex=1 then
+    mainPg.ActivePageIndex := 0;
 end;
 
 procedure TFMCliMain.kingdeeURLClick(Sender: TObject);
@@ -1981,6 +1983,12 @@ begin
       CreatePageList(TRepairWOListFrm,opt);
       Exit;
     end;
+    if (fromkey='56C22177C2CD48BEA11904A9D63560D3') then
+    begin
+      opt.Caption := title;
+      CreatePageList(TRepairWOListFrm, opt);
+      Exit;
+    end;
 
     //------------------------维修管理- end -----------------------------------------------------
 
@@ -2054,6 +2062,12 @@ begin
       Exit;
     end;
 
+    if (FromKey = '02937E1A0BC94D42AD5EF56468C8F197') then
+    begin
+      opt.Caption := title;
+      CreatePageList(TFM_BillListOtherInwarehsbill, opt);
+      exit;
+    end;
     //----------------------------------------------------------------------------
     //报表相关
 //    if (Fromkey='BE0D0EAADEAC4D6C82F60B8A679C503D') then //报表设计器
