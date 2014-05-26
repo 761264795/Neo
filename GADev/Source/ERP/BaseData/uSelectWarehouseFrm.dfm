@@ -6,13 +6,13 @@ inherited SelectWarehouseFrm: TSelectWarehouseFrm
   inherited Pl: TPanel
     inherited Panel1: TPanel
       inherited Splitter2: TSplitter
-        Left = 530
+        Left = 522
       end
       inherited cxGrid1: TcxGrid
-        Width = 530
+        Width = 522
       end
       inherited Panel2: TPanel
-        Left = 533
+        Left = 525
         Width = 269
         inherited cxGrid3: TcxGrid
           Width = 237
@@ -21,14 +21,6 @@ inherited SelectWarehouseFrm: TSelectWarehouseFrm
       inherited Panel3: TPanel
         inherited chkTop100: TcxCheckBox
           Width = 125
-        end
-        object CheckBox1: TcxCheckBox
-          Left = 552
-          Top = 2
-          Caption = #21253#25324#24215#38138
-          TabOrder = 2
-          OnClick = CheckBox1Click
-          Width = 121
         end
       end
     end

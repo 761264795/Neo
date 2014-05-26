@@ -20,11 +20,17 @@ uses
   cxFilter, cxData, cxDataStorage, cxEdit, cxDBData, cxMaskEdit,
   cxTLdxBarBuiltInMenu, cxLookAndFeelPainters, DBClient, jpeg, cxContainer,
   cxTextEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox, cxCheckBox, Dialogs;
+  cxDBLookupComboBox, cxCheckBox, Dialogs, dxSkinBlack, dxSkinBlue,
+  dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide, dxSkinFoggy,
+  dxSkinGlassOceans, dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky,
+  dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMoneyTwins,
+  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver, dxSkinPumpkin, dxSkinSeven, dxSkinSharp,
+  dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
+  dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue;
 
 type
   TSelectWarehouseFrm = class(TSelecDataBaseFrm)
-    CheckBox1: TcxCheckBox;
     procedure FormShow(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
@@ -113,12 +119,12 @@ begin
       if Self.FSelecttWhereStr <> '' then
       _sqlList := _sqlList  +' and ' +self.FSelecttWhereStr;
     end;
-    if (not CheckBox1.Checked) then
+ {   if (not CheckBox1.Checked) then
     begin
       if  mType=3 then _sqlList:=_sqlList+' and cfofficestock=1 ' ;
       if  mType=4 then _sqlList:=_sqlList+' and cfofficestock<>1 ' ;
     end;
-
+  }
     if MgNumber<>'' then   _sqlList:=_sqlList+ ' and b.flongnumber like '''+longNumber+'%'''
     else
     begin
@@ -165,9 +171,9 @@ end;
 procedure TSelectWarehouseFrm.FormShow(Sender: TObject);
 begin
   inherited;
-  if Self._IsEdit then CheckBox1.Checked := True;
+  {if Self._IsEdit then CheckBox1.Checked := True;
   if mType=3 then CheckBox1.Caption:='°üÀ¨²Ö¿â';
-  if mType=4 then CheckBox1.Caption:='°üÀ¨µêÆÌ';
+  if mType=4 then CheckBox1.Caption:='°üÀ¨µêÆÌ'; }
   cxDBTreeList1cxDBTreeListColumn3.Caption.Text:='¿â´æ×éÖ¯';
 end;
 
