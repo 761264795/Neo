@@ -16,15 +16,14 @@ uses
   dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinPumpkin, dxSkinSeven,
   dxSkinSharp, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
   dxSkinSummer2008, dxSkinsDefaultPainters, dxSkinValentine,
-  dxSkinXmas2008Blue, dxSkinscxPCPainter;
+  dxSkinXmas2008Blue, dxSkinscxPCPainter, Menus, cxLookAndFeelPainters,
+  cxButtons;
 
 type
   TBillQuerySelectFrm = class(TSTBaseEdit)
     Splitter1: TSplitter;
     pl: TPanel;
     lb: TLabel;
-    btYes: TBitBtn;
-    btCancel: TBitBtn;
     Panel1: TPanel;
     Label1: TLabel;
     Panel2: TPanel;
@@ -46,14 +45,16 @@ type
     txt_Filter: TcxTextEdit;
     QryFind: TClientDataSet;
     Label2: TLabel;
+    btnYes: TcxButton;
+    btnCancel: TcxButton;
     procedure FormShow(Sender: TObject);
     procedure SpeedButton4Click(Sender: TObject);
     procedure SpeedButton5Click(Sender: TObject);
     procedure SpeedButton10Click(Sender: TObject);
     procedure SpeedButton6Click(Sender: TObject);
-    procedure btYesClick(Sender: TObject);
     procedure QryFindFilterRecord(DataSet: TDataSet; var Accept: Boolean);
     procedure txt_FilterPropertiesChange(Sender: TObject);
+    procedure btnYesClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -294,34 +295,13 @@ begin
   if  not adsSelect.IsEmpty then adsSelect.Delete;
 end;
 
-procedure TBillQuerySelectFrm.btYesClick(Sender: TObject);
-begin
-  inherited;
-  if _isRadioSelect =1 then
-  begin
-    SpeedButton5.OnClick(Sender);
-  end;
-  getResultVal;
-  if ResultVal='' then
-  begin
-    ShowMsg(self.Handle,'请选择数据!    ',[]);
-    Exit;
-  end;
-  if Length(ResultVal)>10000 then
-  begin
-    ShowMsg(self.Handle,'选择数据超过10000了,请重新选择!',[]);
-    Exit;
-  end;
-  self.ModalResult:=mrok;
-end;
-
 procedure TBillQuerySelectFrm.QryFindFilterRecord(DataSet: TDataSet;
   var Accept: Boolean);
   var inputTxt : string;
 begin
   inherited;
   inputTxt :=  Trim(UpperCase(txt_Filter.Text));
-  if  (DataSet.Fields[0] <> nil) and  (DataSet.Fields[1] <> nil)  and   (DataSet.Fields[2] <> nil) then
+  if (DataSet.FieldCount>= 3) and (DataSet.Fields[0] <> nil) and (DataSet.Fields[1] <> nil) and (DataSet.Fields[2] <> nil) then
   begin
     Accept:=((Pos(inputTxt,UpperCase(DataSet.Fields[0].AsString))>0) or
             (Pos(inputTxt,UpperCase(DataSet.Fields[1].AsString))>0) or
@@ -333,7 +313,7 @@ begin
     Exit;
   end
   else
-  if  (DataSet.Fields[0] <> nil) and  (DataSet.Fields[1] <> nil) then
+  if (DataSet.FieldCount>= 2) and (DataSet.Fields[0] <> nil) and (DataSet.Fields[1] <> nil) then
   begin
     Accept:=((Pos(inputTxt,UpperCase(DataSet.Fields[0].AsString))>0) or
             (Pos(inputTxt,UpperCase(DataSet.Fields[1].AsString))>0) or
@@ -361,6 +341,27 @@ begin
   QryFind.Filtered := True
   else
   QryFind.Filtered := False;
+end;
+
+procedure TBillQuerySelectFrm.btnYesClick(Sender: TObject);
+begin
+  inherited;
+  if _isRadioSelect =1 then
+  begin
+    SpeedButton5.OnClick(Sender);
+  end;
+  getResultVal;
+  if ResultVal='' then
+  begin
+    ShowMsg(self.Handle,'请选择数据!    ',[]);
+    Exit;
+  end;
+  if Length(ResultVal)>10000 then
+  begin
+    ShowMsg(self.Handle,'选择数据超过10000了,请重新选择!',[]);
+    Exit;
+  end;
+  self.ModalResult:=mrok;
 end;
 
 end.
