@@ -22,10 +22,17 @@ uses
 
 type
   TDSaleIssueListFrm = class(TFM_BillListBase)
+    procedure FormCreate(Sender: TObject);
+
+
+
   private
     { Private declarations }
+
+
   public
     { Public declarations }
+
   end;
 
 var
@@ -34,5 +41,26 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TDSaleIssueListFrm.FormCreate(Sender: TObject);
+begin
+  Self.Bill_Sign := 'T_IM_SaleIssueBill';
+  Self.BillKeyFields := 'FID';
+  Self.FBillTypeFID := '50957179-0105-1000-e000-015bc0a812fd463ED552';
+  sIniBillFlag := 'SO' ;
+  sSPPack :='INV';
+  FNotScmBill := True;
+  
+  inherited;
+
+  btn_NewBill.Visible := False;
+  btn_DelBill.Visible := False;
+  spt_Audit.Visible := False;
+  spt_uAudit.Visible := False;
+  SpeedButton6.Visible := False; //拉单
+  SpeedButton7.Visible := false; //推单
+  
+
+end;
 
 end.

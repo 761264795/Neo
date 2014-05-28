@@ -595,6 +595,7 @@ type
     procedure cdsMasterFLastUpdateUserIDChange(Sender: TField);
     procedure cdsWarrRemindNewRecord(DataSet: TDataSet);
     procedure cdsRepairRemarkNewRecord(DataSet: TDataSet);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     procedure GetVehicleRepairRemarkList;
@@ -2958,6 +2959,16 @@ begin
     FieldByName('CFCREATETIME').AsDateTime := CliDM.Get_ServerTime;
 
   end;
+end;
+
+procedure TRepairWOEditFrm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  //
+  if not (RepairWOEditFrm = nil) then
+    RepairWOEditFrm.Free;
+  RepairWOEditFrm := nil;
 end;
 
 end.

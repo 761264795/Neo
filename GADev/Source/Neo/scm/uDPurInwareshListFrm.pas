@@ -22,6 +22,7 @@ uses
 
 type
   TDPurInWareshListFrm = class(TFM_BillListBase)
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,5 +35,18 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TDPurInWareshListFrm.FormCreate(Sender: TObject);
+begin
+  Self.Bill_Sign := 'T_IM_PurInwaresh';
+  Self.BillKeyFields := 'FID';
+  Self.FBillTypeFID := '50957179-0105-1000-e000-015fc0a812fd463ED552';
+  sIniBillFlag := 'PUR' ;
+  sSPPack :='INV';
+  FNotScmBill := True;
+
+  inherited;
+
+end;
 
 end.

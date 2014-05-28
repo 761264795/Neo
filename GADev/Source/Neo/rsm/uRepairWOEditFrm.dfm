@@ -1,6 +1,6 @@
 inherited RepairWOEditFrm: TRepairWOEditFrm
-  Left = 96
-  Top = 169
+  Left = 84
+  Top = 218
   Width = 1232
   Height = 487
   Caption = #32500#20462#24037#21333
@@ -67,7 +67,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
       Top = 42
       Width = 1214
       Height = 110
-      ActivePage = cxtbsht2
+      ActivePage = cxtbsht1
       Align = alClient
       LookAndFeel.Kind = lfUltraFlat
       ShowFrame = True

@@ -22,6 +22,7 @@ uses
 
 type
   TDStockTransferListFrm = class(TFM_BillListBase)
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,5 +35,17 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TDStockTransferListFrm.FormCreate(Sender: TObject);
+begin
+  Self.Bill_Sign := 'T_IM_StockTransferBill';
+  Self.BillKeyFields := 'FID';
+  Self.FBillTypeFID := '50957179-0105-1000-e003-3152c0a812fd463ED552';
+  sIniBillFlag := 'ST' ;
+  sSPPack :='INV';
+  FNotScmBill := True;
+  inherited;
+
+end;
 
 end.

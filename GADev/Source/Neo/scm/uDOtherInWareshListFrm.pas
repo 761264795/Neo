@@ -22,6 +22,7 @@ uses
 
 type
   TDOtherInWareshListFrm = class(TFM_BillListBase)
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,5 +35,18 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TDOtherInWareshListFrm.FormCreate(Sender: TObject);
+begin
+  Self.Bill_Sign := 'T_IM_OtherInWarehsBill';
+  Self.BillKeyFields := 'FID';
+  Self.FBillTypeFID := '50957179-0105-1000-e000-017bc0a812fd463ED552';
+  sIniBillFlag := 'OI' ;
+  sSPPack :='INV';
+  FNotScmBill := True;
+
+  inherited;
+
+end;
 
 end.

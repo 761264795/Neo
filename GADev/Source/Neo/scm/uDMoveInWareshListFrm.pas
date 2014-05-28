@@ -22,6 +22,7 @@ uses
 
 type
   TDMoveInwareshListFrm = class(TFM_BillListBase)
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,5 +35,23 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TDMoveInwareshListFrm.FormCreate(Sender: TObject);
+begin
+  Self.Bill_Sign := 'T_IM_MoveInWarehsBill';
+  Self.BillKeyFields := 'FID';
+  Self.FBillTypeFID := '50957179-0105-1000-e000-0172c0a812fd463ED552';
+  sIniBillFlag := 'MI' ;
+  sSPPack :='INV';
+  FNotScmBill := True;
+  inherited;
+
+  btn_NewBill.Visible := False;
+  btn_DelBill.Visible := False;
+  spt_Audit.Visible := False;
+  spt_uAudit.Visible := False;
+  SpeedButton6.Visible := False; //拉单
+  SpeedButton7.Visible := false; //推单
+end;
 
 end.

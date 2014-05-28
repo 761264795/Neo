@@ -22,6 +22,7 @@ uses
 
 type
   TDOtherIssueListFrm = class(TFM_BillListBase)
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,5 +35,18 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TDOtherIssueListFrm.FormCreate(Sender: TObject);
+begin
+  Self.Bill_Sign := 'T_IM_OtherIssueBill';
+  Self.BillKeyFields := 'FID';
+  Self.FBillTypeFID := '50957179-0105-1000-e000-0177c0a812fd463ED552';
+  sIniBillFlag := 'OO' ;
+  sSPPack :='INV';
+  FNotScmBill := True;
+
+  inherited;
+
+end;
 
 end.
