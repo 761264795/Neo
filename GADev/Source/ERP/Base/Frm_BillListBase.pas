@@ -1106,7 +1106,7 @@ begin
     list.Clear;
     for i := 0 to dbgList.ColumnCount - 1 do  dbgList.Columns[i].Visible := False;
     dbgList.OptionsView.GroupByBox := (cdsBillQuery.fieldByname('Fis_Drag').AsInteger=1);
-    cxPage.HideTabs := not ( cdsBillQuery.fieldByname('FIS_CHART').AsInteger=1);
+//    cxPage.HideTabs := not ( cdsBillQuery.fieldByname('FIS_CHART').AsInteger=1);
     cxPage.Align := alNone;
     cxPage.Align := alClient;
     FilterFieldList.Clear;
@@ -1148,6 +1148,7 @@ begin
                 end;
               end;
               dbgList.GetColumnByFieldName(fieldbyname('FieldName').AsString).Options.CellMerging:=(fieldbyname('FisMerge').AsInteger=1);
+              //dbgList.GetColumnByFieldName(fieldbyname('FieldName').AsString).Properties.Alignment.Vert := taVCenter;
               if (fieldbyname('FisBarShow').AsInteger=1) then
               begin
                  dbcol:=dbgList.GetColumnByFieldName(fieldbyname('FieldName').AsString);
@@ -1773,15 +1774,16 @@ begin
       if Length(ALabel.Caption) < 12 then
         ALabel.Caption := ALabel.Caption + GetSpaceStr(12-Length(ALabel.Caption));
       //计算控件应处在第几列  一行共三列
-      iColIndex := i mod 3;  //1 第一列  2 第二列  0 第三列
+      iColIndex := i mod 4;  //1 第一列  2 第二列  0 第三列
       //计算控件应处在第几行  从第0行开始
-      iRowIndex := i div 3;
+      iRowIndex := i div 4;
       if iColIndex = 0 then
         iRowIndex := iRowIndex - 1;
       case iColIndex of
         1: ALabel.Left := 16;
         2: ALabel.Left := 280;
-        0: ALabel.Left := 544;
+        3: ALabel.Left := 544;
+        0: ALabel.Left := 808;
       end;
       ALabel.Top := (iRowIndex + 1) * 8 + iRowIndex * 20;
       /////////////////////////////////////////////////////////////////////////
@@ -2042,115 +2044,6 @@ begin
   begin
     rst := rst + trim(cdsBillQuery.FieldByName('FBaseSQL').AsString) + ' ';
     val := GetWhereSQL;
-//    if IsUserDefine and (GetWhereSQL <> '') then
-//      val := GetWhereSQL
-//    else
-//    begin
-//      for i := 0 to pnTop.ComponentCount - 1 do
-//      begin
-//        if (pnTop.Components[i] is TcxDateEdit) and (Trim(TcxDateEdit(pnTop.Components[i]).Text)<> '') then
-//        begin
-//          if cdsBillFindList.Locate('FID',GetRealFID(pnTop.Components[i].Name), []) then
-//          begin
-//            if val = '' then
-//            begin
-//              if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
-//                val := ' '
-//              else
-//                val := ' where 1=1  ';
-//            end;
-//            if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('Date')) then
-//            begin
-//              val := ' ' + val + ' and convert(varchar(10),'
-//                      + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',120)  '
-//                      + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
-//                      + ''''+TcxDateEdit(pnTop.Components[i]).Text +'''';
-//            end;
-//          end;
-//        end
-//        else
-//        if (pnTop.Components[i] is TcxTextEdit) and (Trim(TcxTextEdit(pnTop.Components[i]).Text)<> '') then
-//        begin
-//          if cdsBillFindList.Locate('FID',GetRealFID(pnTop.Components[i].Name), []) then
-//          begin
-//            if val = '' then
-//            begin
-//              if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
-//                val := ' '
-//              else
-//                val := ' where 1=1  ';
-//            end;
-//            if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('string'))  then
-//            begin
-//              if GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString)) = 'like' then
-//                val := ' ' + val + ' and ' + 'upper(IsNull( '
-//                  + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
-//                  + 'like ''%'
-//                  + UpperCase(trim(TcxButtonEdit(pnTop.Components[i]).Text)) + '%'''
-//              else
-//              if GetCp(Trim(cdsBillFindList.FieldByName('FcompareType').AsString)) = 'in'   then
-//                val := ' ' + val + ' and ' + 'upper(IsNull( '
-//                  + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
-//                  + 'in ('
-//                  + getSqlStr(UpperCase(trim(TcxButtonEdit(pnTop.Components[i]).Text))) + ')'
-//              else
-//                val := ' ' + val + ' and IsNull('
-//                  + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
-//                  + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
-//                  + '''' + trim(TcxTextEdit(pnTop.Components[i]).Text) + '''';
-//            end
-//            else
-//            begin
-//              val := ' ' + val + ' and IsNull('
-//                  + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
-//                  + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
-//                  + trim(TcxTextEdit(pnTop.Components[i]).Text);
-//            end;
-//          end;
-//        end
-//        else
-//        if (pnTop.Components[i] is TcxButtonEdit) and (Trim(TcxButtonEdit(pnTop.Components[i]).Text)<> '') then
-//        begin
-//          if cdsBillFindList.Locate('FID',GetRealFID(pnTop.Components[i].Name), []) then
-//          begin
-//            if val = '' then
-//            begin
-//              if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
-//                val := ' '
-//              else
-//                val := ' where 1=1  ';
-//            end;
-//
-//            if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('string'))  then
-//            begin
-//              if GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString)) = 'like' then
-//                val := ' ' + val + ' and ' + 'upper(IsNull( '
-//                  + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
-//                  + 'like ''%'
-//                  + UpperCase(trim(TcxButtonEdit(pnTop.Components[i]).Text)) + '%'''
-//              else
-//              if GetCp(Trim(cdsBillFindList.FieldByName('FcompareType').AsString)) = 'in'   then
-//                val := ' ' + val + ' and ' + 'upper(IsNull( '
-//                  + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ','''' )) '
-//                  + 'in ('
-//                  + getSqlStr(UpperCase(trim(TcxButtonEdit(pnTop.Components[i]).Text))) + ')'
-//              else
-//                val := ' ' + val + ' and IsNull('
-//                  + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
-//                  + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
-//                  + '''' + trim(TcxButtonEdit(pnTop.Components[i]).Text) + '''';
-//            end
-//            else
-//              val := ' ' + val + ' and IsNull('
-//                + trim(cdsBillFindList.FieldByName('FFieldNameORTableName').AsString) + ',0)  '
-//                + GetCp(trim(cdsBillFindList.FieldByName('FcompareType').AsString))
-//                + trim(TcxButtonEdit(pnTop.Components[i]).Text);
-//          end;
-//  //          strWhere := strWhere + ' and ' + cdsBillFindList.FieldByName('FFieldNameOrTableName').AsString
-//  //                      + ' ' + GetCp(cdsBillFindList.FieldByName('FCompareType').AsString);
-//        end;
-//      end;
-//    end;
     rst := rst + ' ' + val + ' ';
     rst := rst + ' ' + trim( cdsBillQuery.FieldByName('FGroupSql').AsString) + ' ';
   end;
@@ -2173,9 +2066,24 @@ begin
   end;
   FBillQuerySQL := rst;
   case recCount.ItemIndex of
-    0: FBillQuerySQL := 'Select Top 100 * from (' + FBillQuerySQL + ') X';
-    1: FBillQuerySQL := 'Select Top 500 * from (' + FBillQuerySQL + ') X';
-    2: FBillQuerySQL := 'Select Top 1000 * from (' + FBillQuerySQL + ') X';
+    0:
+    begin
+      i := PosEx(FBillQuerySQL, 'Select');
+      if i >= 0 then
+        FBillQuerySQL := Copy(FBillQuerySQL, 0, i + 6) + ' Top 100 ' + Copy(FBillQuerySQL, i + 7, Length(FBillQuerySQL) - i-6);//* from (' + FBillQuerySQL + ') X';
+    end;
+    1: //FBillQuerySQL := 'Select Top 500 * from (' + FBillQuerySQL + ') X';
+    begin
+      i := PosEx(FBillQuerySQL, 'Select');
+      if i >= 0 then
+        FBillQuerySQL := Copy(FBillQuerySQL, 0, i + 6) + ' Top 500 ' + Copy(FBillQuerySQL, i + 7, Length(FBillQuerySQL) - i-6);//* from (' + FBillQuerySQL + ') X';
+    end;
+    2: //FBillQuerySQL := 'Select Top 1000 * from (' + FBillQuerySQL + ') X';
+    begin
+      i := PosEx(FBillQuerySQL, 'Select');
+      if i >= 0 then
+        FBillQuerySQL := Copy(FBillQuerySQL, 0, i + 6) + ' Top 1000 ' + Copy(FBillQuerySQL, i + 7, Length(FBillQuerySQL) - i-6);//* from (' + FBillQuerySQL + ') X';
+    end;
   end;
   
   if  Trim(FBillQuerySQL) <> '' then

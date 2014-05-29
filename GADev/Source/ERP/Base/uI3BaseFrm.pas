@@ -17,7 +17,6 @@ uses
   cxGridTableView, cxGridDBTableView,  cxGridCustomView,
    cxCheckBox,cxButtonEdit, Menus,cxGridExportLink;
 
-
 Const InputColor : TColor = $00CAFFFF;
 Const InputTag   : Integer = 100;
 type
