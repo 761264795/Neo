@@ -248,7 +248,7 @@ object FM_BillListBase: TFM_BillListBase
         end
         object recCount: TcxComboBox
           Left = 784
-          Top = 8
+          Top = 12
           Anchors = [akTop, akRight]
           Properties.DropDownListStyle = lsFixedList
           Properties.Items.Strings = (

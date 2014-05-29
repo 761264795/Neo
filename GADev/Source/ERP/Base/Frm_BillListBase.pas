@@ -209,6 +209,7 @@ type
     FilterFieldList : TStringList;
     FX_Field,FY_Field : String;
     ChartType : Integer;
+    FIsLoading: Boolean;
     procedure SetBill_Sign(const Value: string);
     procedure SetBillKeyFields(const Value: string);
     procedure OnF7Down(Sender: TObject; AButtonIndex: Integer);
@@ -266,9 +267,13 @@ uses FrmCliDM,Pub_Fun,cxGridExportLink,uGridStyleSet,uSysDataSelect,IniFiles,
 { TFM_BillListBase }
 
 procedure TFM_BillListBase.Open;
-var ErrMsg : string;
+var ErrMsg, sql : string;
 begin
-  if not CliDM.Get_OpenSQL(cdsList,Self.FBillQuerySQL,ErrMsg) then
+  if FIsLoading then
+    sql := 'Select * from (' + Self.FBillQuerySQL + ') X Where 1=2'
+  else
+    sql := Self.FBillQuerySQL;
+  if not CliDM.Get_OpenSQL(cdsList,sql,ErrMsg) then
   begin
     ShowMsg(self.Handle,'查询列表数据出错：'+ErrMsg,[]);
     Abort;
@@ -1336,6 +1341,7 @@ end;
 procedure TFM_BillListBase.FormShow(Sender: TObject);
 var FilePath : string;
 begin
+  FIsLoading := true;
   FilePath := ExtractFilePath(paramstr(0))+'\Img\Tool_bk.jpg';
   if not LoadImage(FilePath,Image2) then  Gio.AddShow('图片路径不存在：'+FilePath);
   inherited;
@@ -1348,6 +1354,8 @@ begin
     CreateFastQuery;
   if Self.FisOpenFilter then QueryBillData;
   //txt_Filter.SetFocus;
+  btnSearch.Click;
+  FIsLoading := false;
 end;
 
 procedure TFM_BillListBase.Btn_QueryClick(Sender: TObject);
@@ -2148,10 +2156,10 @@ begin
         if (cdsQueryCondition.FieldByName('compareValue').AsString <> '') then
         begin
           if Result = '' then
-          if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
-            Result := ' and ('
-          else
-            Result := ' where (1=1 and  ';
+            if cdsBillQuery.FieldByName('FisWhere').AsInteger=1 then
+              Result := ' and ('
+            else
+              Result := ' where (1=1 and  ';
           if (uppercase(trim(cdsQueryCondition.fieldbyname('FDataType').AsString)) = uppercase('Date')) then
           begin
             Result := ' ' + Result + 'convert(varchar(10),'
