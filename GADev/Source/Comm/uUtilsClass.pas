@@ -3,10 +3,11 @@ unit uUtilsClass;
 interface
 
 type
-  TStringUtilsCls = class
+  TCodeRuleUtilsCls = class
 
   public
-  
+    function getNumber(billTypeId:string;branchId:string;prefix:string):string;
+
   end;
 
   TPermUtilsCls = class
@@ -46,6 +47,11 @@ begin
   begin
     Result := not cdsTmp.Eof
   end;
+end;
+
+function TCodeRuleUtilsCls.getNumber(billTypeId:string;branchId:string;prefix:string):string;
+begin
+  Result := 'number00001';
 end;
 
 end.
