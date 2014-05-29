@@ -329,3 +329,12 @@ create table CT_BD_LockBill
   FIslock       numeric(2) default 0,
   constraint PK_LockBill primary key (FID)
 )
+
+create table GOLAB_ENUM_VIEW (
+  FID           VARCHAR(44) COLLATE Chinese_PRC_CS_AS,
+  FENUM_NAME    VARCHAR(200) COLLATE Chinese_PRC_CS_AS,
+  FNAME_CHINESE VARCHAR(50) COLLATE Chinese_PRC_CS_AS,
+  FITEM_NAME    VARCHAR(50) COLLATE Chinese_PRC_CS_AS,
+  FALIAS_NAME   VARCHAR(50) COLLATE Chinese_PRC_CS_AS,
+  FITEM_VALUE   VARCHAR(50) COLLATE Chinese_PRC_CS_AS
+)
