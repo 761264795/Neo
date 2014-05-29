@@ -8,7 +8,15 @@ uses
   cxData, cxDataStorage, cxEdit, DB, cxDBData, Buttons, cxGridLevel,
   cxClasses, cxControls, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, cxTextEdit, cxContainer,
-  cxLabel, ExtCtrls, DBClient, ADODB;
+  cxLabel, ExtCtrls, DBClient, ADODB, dxSkinsCore, dxSkinBlack, dxSkinBlue,
+  dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide, dxSkinFoggy,
+  dxSkinGlassOceans, dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky,
+  dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMoneyTwins,
+  dxSkinOffice2007Black, dxSkinOffice2007Blue, dxSkinOffice2007Green,
+  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinPumpkin, dxSkinSeven,
+  dxSkinSharp, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
+  dxSkinSummer2008, dxSkinsDefaultPainters, dxSkinValentine,
+  dxSkinXmas2008Blue, dxSkinscxPCPainter;
 
 type
   TFM_AllocUserRole = class(TSTBaseEdit)
@@ -32,6 +40,7 @@ type
     cdsuserRoleFUserID: TStringField;
     cdsuserRoleFRoleID: TStringField;
     cdsuserRoleFOrgID: TStringField;
+    cdsuserRoleFID: TStringField;
     procedure btn_ExitClick(Sender: TObject);
     procedure btn_NewRowClick(Sender: TObject);
     procedure cdsuserRoleAfterInsert(DataSet: TDataSet);

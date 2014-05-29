@@ -1,5 +1,6 @@
 inherited FM_AllocUserRole: TFM_AllocUserRole
-  Top = 183
+  Left = 584
+  Top = 182
   Caption = #20998#37197#29992#25143#35282#33394
   OldCreateOrder = True
   PixelsPerInch = 96
@@ -246,6 +247,10 @@ inherited FM_AllocUserRole: TFM_AllocUserRole
     end
     object cdsuserRoleFOrgID: TStringField
       FieldName = 'FOrgID'
+      Size = 44
+    end
+    object cdsuserRoleFID: TStringField
+      FieldName = 'FID'
       Size = 44
     end
   end

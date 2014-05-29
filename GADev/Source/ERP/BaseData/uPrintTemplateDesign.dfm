@@ -1,6 +1,6 @@
 inherited PrintTemplateDesign: TPrintTemplateDesign
-  Left = 238
-  Top = 180
+  Left = 174
+  Top = 197
   Caption = #25171#21360#27169#26495#35774#35745
   ClientWidth = 1033
   OldCreateOrder = True
@@ -123,11 +123,13 @@ inherited PrintTemplateDesign: TPrintTemplateDesign
             Width = 120
           end
           object cxgridMaterListFSTATE: TcxGridDBColumn
+            Caption = #29366#24577
             DataBinding.FieldName = 'FSTATE'
             Options.Editing = False
             Width = 66
           end
           object cxgridMaterListFNAME_L2: TcxGridDBColumn
+            Caption = #27169#26495#21517#31216
             DataBinding.FieldName = 'FNAME_L2'
             Width = 180
           end
@@ -149,6 +151,7 @@ inherited PrintTemplateDesign: TPrintTemplateDesign
             Width = 141
           end
           object cxgridMaterListFDESCRIPTION_L2: TcxGridDBColumn
+            Caption = #22791#27880
             DataBinding.FieldName = 'FDESCRIPTION_L2'
             Width = 120
           end
@@ -164,6 +167,7 @@ inherited PrintTemplateDesign: TPrintTemplateDesign
             Width = 80
           end
           object cxgridMaterListFCREATETIME: TcxGridDBColumn
+            Caption = #21019#24314#26102#38388
             DataBinding.FieldName = 'FCREATETIME'
             Options.Editing = False
             Width = 83
@@ -180,6 +184,7 @@ inherited PrintTemplateDesign: TPrintTemplateDesign
             Width = 120
           end
           object cxgridMaterListFLASTUPDATETIME: TcxGridDBColumn
+            Caption = #26368#21518#20462#25913#26102#38388
             DataBinding.FieldName = 'FLASTUPDATETIME'
             Options.Editing = False
             Width = 120

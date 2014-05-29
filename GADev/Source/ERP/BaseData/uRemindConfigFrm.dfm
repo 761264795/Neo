@@ -289,7 +289,9 @@ inherited RemindConfigFrm: TRemindConfigFrm
           Visible = False
         end
         object cxListFNAME_L2: TcxGridDBColumn
+          Caption = #25552#37266#21517#31216
           DataBinding.FieldName = 'FNAME_L2'
+          HeaderAlignmentHorz = taCenter
           Width = 160
         end
         object cxListFDES: TcxGridDBColumn

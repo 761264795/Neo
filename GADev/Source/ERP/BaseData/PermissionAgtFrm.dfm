@@ -657,12 +657,10 @@ inherited PermissionAssignmentFrm: TPermissionAssignmentFrm
     end
     object cdsExistsListfname_l2: TWideStringField
       FieldName = 'fname_l2'
-      ReadOnly = True
       Size = 255
     end
     object cdsExistsListFimgIndex: TIntegerField
       FieldName = 'FimgIndex'
-      ReadOnly = True
     end
     object cdsExistsListftype: TIntegerField
       FieldName = 'ftype'

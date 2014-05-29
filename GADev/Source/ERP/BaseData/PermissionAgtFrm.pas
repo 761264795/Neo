@@ -17,7 +17,7 @@ uses
   dxSkinOffice2007Green, dxSkinOffice2007Pink, dxSkinOffice2007Silver,
   dxSkinPumpkin, dxSkinSeven, dxSkinSharp, dxSkinSilver, dxSkinSpringTime,
   dxSkinStardust, dxSkinSummer2008, dxSkinsDefaultPainters,
-  dxSkinscxPCPainter;
+  dxSkinscxPCPainter, dxSkinValentine, dxSkinXmas2008Blue;
 
 type
   TPermissionAssignmentFrm = class(TSTBaseEdit)

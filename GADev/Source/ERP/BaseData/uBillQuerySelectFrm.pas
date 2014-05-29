@@ -55,6 +55,8 @@ type
     procedure QryFindFilterRecord(DataSet: TDataSet; var Accept: Boolean);
     procedure txt_FilterPropertiesChange(Sender: TObject);
     procedure btnYesClick(Sender: TObject);
+    procedure ValListDblClick(Sender: TObject);
+    procedure selectTvDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -362,6 +364,22 @@ begin
     Exit;
   end;
   self.ModalResult:=mrok;
+end;
+
+procedure TBillQuerySelectFrm.ValListDblClick(Sender: TObject);
+begin
+  inherited;
+  if _isRadioSelect=1 then //如果是单选模式,就直接确定了
+  begin
+    btnYes.OnClick(Sender);
+  end
+  else SpeedButton5.OnClick(Sender);
+end;
+
+procedure TBillQuerySelectFrm.selectTvDblClick(Sender: TObject);
+begin
+  inherited;
+  SpeedButton6.OnClick(Sender);
 end;
 
 end.

@@ -330,8 +330,8 @@ begin
     if FID <> '' then
     begin
       _SQL[0] := 'select * from T_BD_BillQuery where fid='+quotedstr(FID);
-      _SQL[1] := 'select * from T_BD_BillQueryFieldList where FParentID='+quotedstr(FID);
-      _SQL[2] := 'select * from T_BD_BillQueryFindList where FParentID='+quotedstr(FID);
+      _SQL[1] := 'select * from T_BD_BillQueryFieldList where FParentID='+quotedstr(FID) + ' Order by FLSH';
+      _SQL[2] := 'select * from T_BD_BillQueryFindList where FParentID='+quotedstr(FID) + ' Order By FSortFlag';
       _SQL[3] := 'select * from T_BD_BillQueryReportList where FParentID='+quotedstr(FID);
     end
     else

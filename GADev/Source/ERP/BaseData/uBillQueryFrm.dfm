@@ -391,7 +391,7 @@ inherited BillQueryFrm: TBillQueryFrm
         Top = 1
         Width = 855
         Height = 198
-        ActivePage = tb_FindList
+        ActivePage = tb_FieldList
         Align = alClient
         Style = 10
         TabOrder = 0
@@ -432,16 +432,19 @@ inherited BillQueryFrm: TBillQueryFrm
               object cxFiledListFID: TcxGridDBColumn
                 DataBinding.FieldName = 'FID'
                 Visible = False
+                HeaderAlignmentHorz = taCenter
                 Width = 120
               end
               object cxFiledListFPARENTID: TcxGridDBColumn
                 DataBinding.FieldName = 'FPARENTID'
                 Visible = False
+                HeaderAlignmentHorz = taCenter
                 Width = 120
               end
               object cxFiledListFLSH: TcxGridDBColumn
                 Caption = #39034#24207#21495
                 DataBinding.FieldName = 'FLSH'
+                HeaderAlignmentHorz = taCenter
                 Options.Editing = False
                 Options.Filtering = False
                 Options.Sorting = False
@@ -450,11 +453,13 @@ inherited BillQueryFrm: TBillQueryFrm
               object cxFiledListFIELDNAME: TcxGridDBColumn
                 Caption = #23383#27573#21517
                 DataBinding.FieldName = 'FIELDNAME'
+                HeaderAlignmentHorz = taCenter
                 Width = 120
               end
               object cxFiledListFIELDCHNAME: TcxGridDBColumn
                 Caption = #23383#27573#20013#25991#21517
                 DataBinding.FieldName = 'FIELDCHNAME'
+                HeaderAlignmentHorz = taCenter
                 Width = 120
               end
               object cxFiledListFISVISIBLE: TcxGridDBColumn
@@ -464,6 +469,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 Properties.NullStyle = nssUnchecked
                 Properties.ValueChecked = 1
                 Properties.ValueUnchecked = 0
+                HeaderAlignmentHorz = taCenter
                 Width = 42
               end
               object cxFiledListFISFILTER: TcxGridDBColumn
@@ -473,6 +479,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 Properties.NullStyle = nssUnchecked
                 Properties.ValueChecked = 1
                 Properties.ValueUnchecked = 0
+                HeaderAlignmentHorz = taCenter
                 Width = 43
               end
               object cxFiledListFISSORT: TcxGridDBColumn
@@ -482,6 +489,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 Properties.NullStyle = nssUnchecked
                 Properties.ValueChecked = 1
                 Properties.ValueUnchecked = 0
+                HeaderAlignmentHorz = taCenter
                 Width = 47
               end
               object cxFiledListFISGROUP: TcxGridDBColumn
@@ -491,15 +499,17 @@ inherited BillQueryFrm: TBillQueryFrm
                 Properties.NullStyle = nssUnchecked
                 Properties.ValueChecked = 1
                 Properties.ValueUnchecked = 0
+                HeaderAlignmentHorz = taCenter
                 Width = 46
               end
               object cxFiledListFISBARSHOW: TcxGridDBColumn
-                Caption = #25302#21160#20998#32452
+                Caption = #26174#31034#36827#24230#26465
                 DataBinding.FieldName = 'FISBARSHOW'
                 PropertiesClassName = 'TcxCheckBoxProperties'
                 Properties.NullStyle = nssUnchecked
                 Properties.ValueChecked = 1
                 Properties.ValueUnchecked = 0
+                HeaderAlignmentHorz = taCenter
                 Width = 71
               end
               object cxFiledListFISMERGE: TcxGridDBColumn
@@ -509,6 +519,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 Properties.NullStyle = nssUnchecked
                 Properties.ValueChecked = 1
                 Properties.ValueUnchecked = 0
+                HeaderAlignmentHorz = taCenter
                 Width = 76
               end
               object cxFiledListColumnFisPyFilter: TcxGridDBColumn
@@ -518,19 +529,22 @@ inherited BillQueryFrm: TBillQueryFrm
                 Properties.NullStyle = nssUnchecked
                 Properties.ValueChecked = 1
                 Properties.ValueUnchecked = 0
+                HeaderAlignmentHorz = taCenter
               end
               object cxFiledListFDEFWIDTH: TcxGridDBColumn
                 Caption = #40664#35748#23485#24230
                 DataBinding.FieldName = 'FDEFWIDTH'
+                HeaderAlignmentHorz = taCenter
                 Width = 65
               end
               object cxFiledListFFORMATCOUNT: TcxGridDBColumn
                 Caption = #23567#25968#20301#25968
                 DataBinding.FieldName = 'FFORMATCOUNT'
+                HeaderAlignmentHorz = taCenter
                 Width = 51
               end
               object cxFiledListFSTATTYPE: TcxGridDBColumn
-                Caption = #32479#35745#31867#22411
+                Caption = #32479#35745#26041#24335
                 DataBinding.FieldName = 'FSTATTYPE'
                 PropertiesClassName = 'TcxComboBoxProperties'
                 Properties.DropDownListStyle = lsFixedList
@@ -541,6 +555,7 @@ inherited BillQueryFrm: TBillQueryFrm
                   'MAX'
                   'MIN'
                   'AVE')
+                HeaderAlignmentHorz = taCenter
                 Width = 65
               end
               object cxFiledListFSYSTEMPARA_NAME: TcxGridDBColumn
@@ -554,6 +569,7 @@ inherited BillQueryFrm: TBillQueryFrm
                   #26597#30475#37329#39069
                   #26597#30475#25104#26412
                   #39044#30041)
+                HeaderAlignmentHorz = taCenter
                 Width = 106
               end
             end
@@ -594,31 +610,37 @@ inherited BillQueryFrm: TBillQueryFrm
               object cxFindListFID: TcxGridDBColumn
                 DataBinding.FieldName = 'FID'
                 Visible = False
+                HeaderAlignmentHorz = taCenter
                 Width = 100
               end
               object cxFindListFPARENTID: TcxGridDBColumn
                 DataBinding.FieldName = 'FPARENTID'
                 Visible = False
+                HeaderAlignmentHorz = taCenter
                 Width = 100
               end
               object cxFindListFSortFlag: TcxGridDBColumn
                 DataBinding.FieldName = 'FSortFlag'
+                HeaderAlignmentHorz = taCenter
                 Width = 50
               end
               object cxFindListFFIELDNAME: TcxGridDBColumn
                 Caption = #23383#27573#21517
                 DataBinding.FieldName = 'FFIELDNAME'
                 PropertiesClassName = 'TcxComboBoxProperties'
+                HeaderAlignmentHorz = taCenter
                 Width = 78
               end
               object cxFindListFFIELDNAMEORTABLENAME: TcxGridDBColumn
                 Caption = #23383#27573#24102#34920#21517
                 DataBinding.FieldName = 'FFIELDNAMEORTABLENAME'
+                HeaderAlignmentHorz = taCenter
                 Width = 100
               end
               object cxFindListFFIELDCHNAME: TcxGridDBColumn
                 Caption = #23383#27573#20013#25991#21517
                 DataBinding.FieldName = 'FFIELDCHNAME'
+                HeaderAlignmentHorz = taCenter
                 Width = 100
               end
               object cxFindListFDATATYPE: TcxGridDBColumn
@@ -631,6 +653,7 @@ inherited BillQueryFrm: TBillQueryFrm
                   'Float'
                   'Int'
                   'Date')
+                HeaderAlignmentHorz = taCenter
                 Width = 83
               end
               object cxFindListFFINDVALUE: TcxGridDBColumn
@@ -644,6 +667,7 @@ inherited BillQueryFrm: TBillQueryFrm
                   end>
                 Properties.ClickKey = 118
                 Properties.OnButtonClick = cxFindListFFINDVALUEPropertiesButtonClick
+                HeaderAlignmentHorz = taCenter
                 Width = 109
               end
               object cxFindListFDIALOGTYPE: TcxGridDBColumn
@@ -651,6 +675,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 DataBinding.FieldName = 'FDIALOGTYPE'
                 PropertiesClassName = 'TcxComboBoxProperties'
                 Properties.DropDownListStyle = lsFixedList
+                HeaderAlignmentHorz = taCenter
                 Width = 72
               end
               object cxFindListFISINPUT: TcxGridDBColumn
@@ -660,6 +685,7 @@ inherited BillQueryFrm: TBillQueryFrm
                 Properties.NullStyle = nssUnchecked
                 Properties.ValueChecked = 1
                 Properties.ValueUnchecked = 0
+                HeaderAlignmentHorz = taCenter
                 Width = 39
               end
               object cxFindListFISRADIOSELECT: TcxGridDBColumn
@@ -669,18 +695,21 @@ inherited BillQueryFrm: TBillQueryFrm
                 Properties.NullStyle = nssUnchecked
                 Properties.ValueChecked = 1
                 Properties.ValueUnchecked = 0
+                HeaderAlignmentHorz = taCenter
                 Width = 34
               end
               object cxFindListFVisbleInFastQuery: TcxGridDBColumn
                 Caption = #24555#36895#26597#35810
                 DataBinding.FieldName = 'FVisbleInFastQuery'
                 PropertiesClassName = 'TcxCheckBoxProperties'
+                HeaderAlignmentHorz = taCenter
                 Width = 72
               end
               object cxFindListFVisbleOnlyInFastQuery: TcxGridDBColumn
                 Caption = #20165#24555#36895#26597#35810
                 DataBinding.FieldName = 'FVisbleOnlyInFastQuery'
                 PropertiesClassName = 'TcxCheckBoxProperties'
+                HeaderAlignmentHorz = taCenter
                 Width = 75
               end
               object cxFindListFCompareType: TcxGridDBColumn
@@ -696,6 +725,7 @@ inherited BillQueryFrm: TBillQueryFrm
                   #23567#20110
                   #30456#20284
                   #21253#21547)
+                HeaderAlignmentHorz = taCenter
                 Width = 68
               end
             end
@@ -1104,8 +1134,8 @@ inherited BillQueryFrm: TBillQueryFrm
           object Label3: TLabel
             Left = 0
             Top = 0
-            Width = 762
-            Height = 48
+            Width = 855
+            Height = 180
             Align = alClient
             Caption = 
               #13#10'1'#12289#22522#26412#35821#21477#21644#33258#23450#20041#23545#35805#26694'SQL'#37324#21487#20197#20256#20837#21464#37327','#30331#24405#29992#25143'FID'#30340#21464#37327#20026'"@User_ID",'#30331#24405#20998#25903#26426#26500'FID'#20026'"@Bran' +

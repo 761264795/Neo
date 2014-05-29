@@ -1020,7 +1020,7 @@ inherited FM_UserEditForm: TFM_UserEditForm
         Top = 27
         Width = 609
         Height = 295
-        ActivePage = cxTabSheet3
+        ActivePage = cxTabSheet1
         Align = alClient
         LookAndFeel.Kind = lfOffice11
         Style = 10

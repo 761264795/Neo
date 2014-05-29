@@ -112,6 +112,7 @@ inherited BillQuerySelectFrm: TBillQuerySelectFrm
       LookAndFeel.Kind = lfOffice11
       LookAndFeel.SkinName = 'Office2007Black'
       object ValList: TcxGridDBTableView
+        OnDblClick = ValListDblClick
         NavigatorButtons.ConfirmDelete = False
         DataController.DataSource = DsFind
         DataController.Summary.DefaultGroupSummaryItems = <
@@ -167,6 +168,7 @@ inherited BillQuerySelectFrm: TBillQuerySelectFrm
       LookAndFeel.Kind = lfOffice11
       LookAndFeel.SkinName = 'Office2007Black'
       object selectTv: TcxGridDBTableView
+        OnDblClick = selectTvDblClick
         NavigatorButtons.ConfirmDelete = False
         DataController.DataSource = dsSelect
         DataController.Summary.DefaultGroupSummaryItems = <

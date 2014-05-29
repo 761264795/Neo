@@ -11,7 +11,13 @@ uses
   cxDropDownEdit, dxSkinsCore, dxSkinOffice2007Black, dxSkinOffice2007Blue,
   dxSkinOffice2007Green, dxSkinOffice2007Pink, dxSkinOffice2007Silver,
   dxSkinscxPCPainter, ppDB, ppDBPipe, ppRelatv, ppProd, ppClass, ppReport,
-  ppComm, ppEndUsr, ppDBBDE, ppParameter, ppBands, ppCache;
+  ppComm, ppEndUsr, ppDBBDE, ppParameter, ppBands, ppCache, dxSkinBlack,
+  dxSkinBlue, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide,
+  dxSkinFoggy, dxSkinGlassOceans, dxSkiniMaginary, dxSkinLilian,
+  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMoneyTwins,
+  dxSkinPumpkin, dxSkinSeven, dxSkinSharp, dxSkinSilver, dxSkinSpringTime,
+  dxSkinStardust, dxSkinSummer2008, dxSkinsDefaultPainters,
+  dxSkinValentine, dxSkinXmas2008Blue;
 
 type
   TPrintTemplateDesign = class(TListFormBaseFrm)
