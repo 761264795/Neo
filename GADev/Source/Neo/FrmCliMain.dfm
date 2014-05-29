@@ -1,6 +1,6 @@
 object FMCliMain: TFMCliMain
-  Left = 163
-  Top = 104
+  Left = 155
+  Top = 71
   AutoScroll = False
   Caption = 'GA'#38598#22242'ERP'#31995#32479
   ClientHeight = 648
@@ -22509,7 +22509,7 @@ object FMCliMain: TFMCliMain
               object lb_APP: TLabel
                 Left = 272
                 Top = 70
-                Width = 190
+                Width = 204
                 Height = 21
                 Alignment = taCenter
                 Anchors = [akLeft, akRight]

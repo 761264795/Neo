@@ -61,6 +61,7 @@ type
     procedure SpeedButton6Click(Sender: TObject);
     procedure ValListDblClick(Sender: TObject);
     procedure selectTvDblClick(Sender: TObject);
+    procedure edSearchKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
     fdAimList,strType: string;
@@ -289,7 +290,7 @@ begin
   end;
   sqlstr := sqlstr + QuerySQL + ') X ';
   if Trim(TextStr) <> '' then
-    sqlstr := sqlstr + ' Where ' + cmbCode.Text + ' like ''%' + TextStr + '%''';
+    sqlstr := sqlstr + ' Where Upper(' + cmbCode.Text + ') like ''%' + UpperCase(TextStr) + '%''';
   try
     QryFind.DisableControls;
     if not clidm.Get_OpenSQL(QryFind, sqlstr,errmsg) then
@@ -446,7 +447,8 @@ begin
   end;
   try
     Screen.Cursor := crHourGlass;
-    _sql := 'Select * from (' + _sql + ') X Where 1=2';  //创建表结构
+    if oldVal = '' then
+      _sql := 'Select * from (' + _sql + ') X Where 1=2';  //创建表结构
     if not CliDM.Get_OpenSQL(QryFind,_sql,Errmsg) then
     begin
       ShowMsg(Self.Handle,'打开数据出错:'+ErrMsg,[]);
@@ -630,5 +632,13 @@ end;
 //  end;
 //  initCxgrid(fdEnglishList, fdChineseList, ColWidth);
 //end;
+
+procedure TSelectDataExFrm.edSearchKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  inherited;
+  if Key = Chr(13) then
+    sbSearch.Click;
+end;
 
 end.

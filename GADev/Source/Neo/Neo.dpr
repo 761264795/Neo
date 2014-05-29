@@ -302,7 +302,8 @@ uses
   uDOtherIssueListFrm in 'scm\uDOtherIssueListFrm.pas' {DOtherIssueListFrm},
   uDOtherInWareshListFrm in 'scm\uDOtherInWareshListFrm.pas' {DOtherInWareshListFrm},
   uDMoveInWareshListFrm in 'scm\uDMoveInWareshListFrm.pas' {DMoveInwareshListFrm},
-  uDMoveIssueListFrm in 'scm\uDMoveIssueListFrm.pas' {DMoveIssueListFrm};
+  uDMoveIssueListFrm in 'scm\uDMoveIssueListFrm.pas' {DMoveIssueListFrm},
+  uReportQueryFrm in 'Base\uReportQueryFrm.pas' {ReportQueryFrm};
 
 {$R *.res}
 {$I- } //不产生I/O异常类而是把错误代码返回到预定义变量IOResult中
@@ -317,6 +318,7 @@ begin
     Application.Title := 'GA集团ERP系统';
   Application.CreateForm(TCliDM, CliDM);
   Application.CreateForm(TFMCliMain, FMCliMain);
+  Application.CreateForm(TReportQueryFrm, ReportQueryFrm);
   Application.Run;
   end;
 end.

@@ -280,6 +280,7 @@ inherited SelectDataExFrm: TSelectDataExFrm
       Height = 20
       ImeName = #20013#25991' - QQ'#20116#31508#36755#20837#27861
       TabOrder = 1
+      OnKeyPress = edSearchKeyPress
     end
     object cmbName: TcxComboBox
       Left = 4
