@@ -13,7 +13,7 @@ uses
   Menus, Buttons,
 
 
-  
+
   IdIcmpClient, 
 
   cxDBRichEdit, cxDBEdit,
@@ -41,7 +41,7 @@ uses
   dxSkinSharp, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
   dxSkinSummer2008, dxSkinsDefaultPainters, dxSkinsdxStatusBarPainter,
   dxSkinscxPCPainter, dxSkinsdxBarPainter,uI3BaseFrm, ComCtrls, RzListVw,
-  RzGroupBar, dxSkinValentine, dxSkinXmas2008Blue;
+  RzGroupBar, dxSkinValentine, dxSkinXmas2008Blue, XPMenu;
 
 
 type TFormClass   =   class   of   TListFormBaseFrm;
@@ -53,14 +53,8 @@ type
     dxBarButton5: TdxBarButton;
     dxbrsbtm1: TdxBarSubItem;
     AppEvents: TApplicationEvents;
-    dxBarButton1: TdxBarButton;
-    dxBarButton2: TdxBarButton;
     ADOStoredProc1: TADOStoredProc;
-    P_top: TPanel;
     dxStatusBar1: TdxStatusBar;
-    Image1: TImage;
-    Image7: TImage;
-    lblUserInifo: TLabel;
     ImageList1: TImageList;
     Image11: TImage;
     tmrDownData: TTimer;
@@ -97,9 +91,6 @@ type
     cxStyle2: TcxStyle;
     cxStyleRepository3: TcxStyleRepository;
     cxStyle3: TcxStyle;
-    Image10: TImage;
-    Txt_helpCode: TcxTextEdit;
-    Image13: TImage;
     N_AddMain: TMenuItem;
     cdsTX: TClientDataSet;
     dsTX: TDataSource;
@@ -114,10 +105,6 @@ type
     cdsMenufHelpCode: TWideStringField;
     dsFilterMenu: TDataSource;
     cdsFilterMenu: TClientDataSet;
-    FilterGrid: TcxGrid;
-    tv_FilterMenu: TcxGridDBTableView;
-    cxGridDBColumn1: TcxGridDBColumn;
-    cxGridLevel4: TcxGridLevel;
     cxStyleRepository5: TcxStyleRepository;
     cxStyle5: TcxStyle;
     dsType: TDataSource;
@@ -152,9 +139,6 @@ type
     X1: TMenuItem;
     A1: TMenuItem;
     N3: TMenuItem;
-    
-    cxComboBox1: TcxComboBox;
-    cxLabel5: TcxLabel;
     mainPg: TcxPageControl;
     cxTabSheet1: TcxTabSheet;
     Splitter1: TSplitter;
@@ -244,52 +228,28 @@ type
     RzGroup2: TRzGroup;
     RzGroup4: TRzGroup;
     RzGroup6: TRzGroup;
-    cxTabSheet4: TcxTabSheet;
-    Panel2: TPanel;
-    cxpgcntrl1: TcxPageControl;
-    cxtbsht1: TcxTabSheet;
-    cxGrid1: TcxGrid;
-    NMGrid: TcxGridDBTableView;
-    NMGridColumn1: TcxGridDBColumn;
-    NMGridColumn2: TcxGridDBColumn;
-    NMGridColumn3: TcxGridDBColumn;
-    NMGridColumn4: TcxGridDBColumn;
-    cxGrid1Level1: TcxGridLevel;
-    Panel12: TPanel;
-    img6: TImage;
-    bt_send: TSpeedButton;
-    bt_rec: TSpeedButton;
-    bt_fFead: TSpeedButton;
-    bt_nRead: TSpeedButton;
-    cxLabel2: TcxLabel;
-    cxLabel3: TcxLabel;
-    btn1: TcxButton;
-    dBegin: TcxDateEdit;
-    Dend: TcxDateEdit;
-    cxtbsht2: TcxTabSheet;
-    cxGrid2: TcxGrid;
-    OMGrid: TcxGridDBTableView;
-    OMGridColumn1: TcxGridDBColumn;
-    OMGridColumn2: TcxGridDBColumn;
-    OMGridColumn3: TcxGridDBColumn;
-    OMGridColumn4: TcxGridDBColumn;
-    cxGridLevel1: TcxGridLevel;
-    cxtbsht3: TcxTabSheet;
-    Panel4: TPanel;
-    GroupBox4: TGroupBox;
-    cxDBRichEdit1: TcxDBRichEdit;
-    Panel1: TPanel;
-    img1: TImage;
-    cxtxBT: TcxDBTextEdit;
-    cxLabel1: TcxLabel;
-    GroupBox3: TGroupBox;
-    cxGrid3: TcxGrid;
-    cxAttachmentlist: TcxGridDBTableView;
-    cxAttachmentlistColumn1: TcxGridDBColumn;
-    cxAttachmentlistColumn2: TcxGridDBColumn;
-    cxAttachmentlistColumn3: TcxGridDBColumn;
-    cxGridLevel2: TcxGridLevel;
-    RzGroup5: TRzGroup;procedure dxBarButton5Click(Sender: TObject);
+    RzGroup5: TRzGroup;
+    FilterGrid: TcxGrid;
+    tv_FilterMenu: TcxGridDBTableView;
+    cxGridDBColumn1: TcxGridDBColumn;
+    cxGridLevel4: TcxGridLevel;
+    P_top: TPanel;
+    Image1: TImage;
+    Image7: TImage;
+    lblUserInifo: TLabel;
+    Image10: TImage;
+    Image13: TImage;
+    Txt_helpCode: TcxTextEdit;
+    cxComboBox1: TcxComboBox;
+    cxLabel5: TcxLabel;
+    dxBarSubItem1: TdxBarSubItem;
+    dxBarButton1: TdxBarButton;
+    dxBarButton2: TdxBarButton;
+    dxBarButton4: TdxBarButton;
+    dxBarButton6: TdxBarButton;
+    dxBarSeparator1: TdxBarSeparator;
+    XPMenu1: TXPMenu;
+    Splitter2: TSplitter;procedure dxBarButton5Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -556,7 +516,7 @@ begin
     if mainPg.Pages[i].Name = 'ts'+ frmclass.ClassName+opt.FrmKey then
     begin
        tabsheet := mainPg.Pages[i];          
-       tabsheet.ImageIndex:=3;
+       tabsheet.ImageIndex:=714;
        FormBool := True;
        mainPg.ActivePage := tabsheet;
        Result := TForm(tabsheet.Controls[0]);
@@ -566,7 +526,7 @@ begin
   if FormBool then Exit;
   tabsheet := TcxTabSheet.Create(mainPg);
   tabsheet.Name := 'ts'+ frmclass.ClassName+opt.FrmKey;
-  tabsheet.ImageIndex:=3;
+  tabsheet.ImageIndex:=714;
   tabsheet.PageControl := mainPg;
   tmBaseList := frmclass.Create(Tabsheet);
   tmBaseList.Caption := opt.Caption;
@@ -623,7 +583,7 @@ begin
     CliDM.SckCon.Host := ServerIP;
     CliDM.SckCon.Port := SerPort;
     CliDM.SckCon.Open;
-    dxStatusBar1.Panels[1].Text := ServerIP + ',' + IntToStr(SerPort);
+    //dxStatusBar1.Panels[1].Text := ServerIP + ',' + IntToStr(SerPort);
     CliDM.SckThread.Close;
     CliDM.SckThread.Host := ServerIP;
     CliDM.SckThread.Port := SerPort;
@@ -663,7 +623,7 @@ begin
   Self.WindowState := wsMaximized;
   self.DoubleBuffered:=true;
   mainPg.Images := CliDM.ImageList16;
-  cxpgcntrl1.Images :=  CliDM.ImageList16;
+  //cxpgcntrl1.Images :=  CliDM.ImageList16;
 end;
 
 procedure TFMCliMain.FormDestroy(Sender: TObject);
@@ -762,13 +722,13 @@ var ini:TIniFile;
     isrestart:Boolean;
     onLine:string;
 begin
-  dBegin.Date:=dateutils.IncDay(Date,-30);
-  Dend.Date:=Date;
+  //dBegin.Date:=dateutils.IncDay(Date,-30);
+  //Dend.Date:=Date;
   repaitImg;
-  if Ping_Ser then
-    dxStatusBar1.Panels[0].Text := '网络：正常'
-  else
-    dxStatusBar1.Panels[0].Text := '网络：异常';
+//  if Ping_Ser then
+//    dxStatusBar1.Panels[0].Text := '网络：正常'
+//  else
+//    dxStatusBar1.Panels[0].Text := '网络：异常';
 
   DevicCaps := GetDeviceCaps(GetDC(Self.Handle),HORZRES);
   FilePath:=ExtractFilePath(Application.ExeName)+userinfo.LoginUser;
@@ -786,7 +746,7 @@ begin
   dxStatusBar1.Images := CliDM.ImageList16;
   ReportTree.Images := CliDM.ImageList16;
   GetData(0);
-  dxStatusBar1.Panels[2].Text := '登录组织：' + UserInfo.Branch_Name;
+  dxStatusBar1.Panels[0].Text := '登录组织：' + UserInfo.Branch_Name;
   Txt_helpCode.Properties.AutoSelect :=False;
   Txt_helpCode.SelLength:=1;
   Txt_helpCode.SelStart :=1;
@@ -798,9 +758,10 @@ begin
   GetTxItem;
   FilterGrid.Width := Image10.Width;
   FilterGrid.Left := Image10.Left;
-  FilterGrid.Top  := Image10.Top+Image10.Height;
+  FilterGrid.Top  := P_top.Top + Image10.Top+Image10.Height;
 //  ReportInit;//初始化报表
   GetMainInfo;
+//  mainPg.Tabs[1].Visible := False;
 end;
 
 procedure TFMCliMain.setMsgBox;
@@ -821,13 +782,13 @@ end;
 procedure TFMCliMain.mainPgCanClose(Sender: TObject;
   var ACanClose: Boolean);
 begin
-  if (mainPg.ActivePageIndex=0) or (mainPg.ActivePageIndex=1) then
+  if (mainPg.ActivePageIndex=0) then  //or (mainPg.ActivePageIndex=1) then
     ACanClose:=False;
 end;
 
 procedure TFMCliMain.mainPgDblClick(Sender: TObject);
 begin
-  if (mainPg.ActivePageIndex<>0) and (mainPg.ActivePageIndex<>1) then
+  if (mainPg.ActivePageIndex<>0) then  //and (mainPg.ActivePageIndex<>1) then
     mainPg.ActivePage.Free;
   if mainPg.ActivePageIndex=1 then
     mainPg.ActivePageIndex := 0;
@@ -869,10 +830,10 @@ end;
 procedure TFMCliMain.SetIs_DownData(const Value: Boolean);
 begin
   FIs_DownData := Value;
-  if FIs_DownData then
-    dxStatusBar1.Panels[4].Text := '正在同步数据，请稍候...'
-  else
-    dxStatusBar1.Panels[4].Text := '';
+//  if FIs_DownData then
+//    dxStatusBar1.Panels[4].Text := '正在同步数据，请稍候...'
+//  else
+//    dxStatusBar1.Panels[4].Text := '';
   if tmrDownData.Enabled <> FIs_DownData then
     tmrDownData.Enabled := FIs_DownData;
 end;
@@ -884,14 +845,14 @@ begin
   tmrDownData.Enabled := False;
   Application.ProcessMessages;
   _FIs_DownData := FindProcess('DownData.exe');
-  if _FIs_DownData then
-  begin
-    if dxStatusBar1.Panels[4].PanelStyle.Font.Color = clBlue then
-      dxStatusBar1.Panels[4].PanelStyle.Font.Color := clRed
-    else
-      dxStatusBar1.Panels[4].PanelStyle.Font.Color := clBlue;
-    tmrDownData.Enabled := True;
-  end;
+//  if _FIs_DownData then
+//  begin
+//    if dxStatusBar1.Panels[4].PanelStyle.Font.Color = clBlue then
+//      dxStatusBar1.Panels[4].PanelStyle.Font.Color := clRed
+//    else
+//      dxStatusBar1.Panels[4].PanelStyle.Font.Color := clBlue;
+//    tmrDownData.Enabled := True;
+//  end;
 
   if _FIs_DownData <> FIs_DownData then
   begin
@@ -934,16 +895,16 @@ end;
 procedure TFMCliMain.SetIs_SysOnline(const Value: Boolean);
 begin
   FIs_SysOnline := Value;
-  if FIs_SysOnline then
-  begin
-    dxStatusBar1.Panels[0].Text := '联机' ;
-    TdxStatusBarTextPanelStyle(dxStatusBar1.Panels[0].PanelStyle).imageindex:=113;
-  end
-  else
-  begin
-    dxStatusBar1.Panels[0].Text := '离线';
-    TdxStatusBarTextPanelStyle(dxStatusBar1.Panels[0].PanelStyle).imageindex:=117;
-  end;
+//  if FIs_SysOnline then
+//  begin
+//    dxStatusBar1.Panels[0].Text := '联机' ;
+//    TdxStatusBarTextPanelStyle(dxStatusBar1.Panels[0].PanelStyle).imageindex:=113;
+//  end
+//  else
+//  begin
+//    dxStatusBar1.Panels[0].Text := '离线';
+//    TdxStatusBarTextPanelStyle(dxStatusBar1.Panels[0].PanelStyle).imageindex:=117;
+//  end;
 end;
 
 function TFMCliMain.GetClientTag: string;
@@ -1072,7 +1033,7 @@ end;
 procedure TFMCliMain.lb_setClick(Sender: TObject);
 begin
   show_sysConfig;
-  dxStatusBar1.Panels[2].Text := '分支机构：' + UserInfo.Branch_Name;
+//  dxStatusBar1.Panels[2].Text := '分支机构：' + UserInfo.Branch_Name;
 end;
 
 procedure TFMCliMain.Pm_exitClick(Sender: TObject);
@@ -1197,10 +1158,10 @@ procedure TFMCliMain.tmrPingTimer(Sender: TObject);
 begin
   tmrPing.Enabled := False;
   try
-    if Ping_Ser then
-      dxStatusBar1.Panels[0].Text := '网络：正常'
-    else
-      dxStatusBar1.Panels[0].Text := '网络：异常';
+//    if Ping_Ser then
+//      dxStatusBar1.Panels[0].Text := '网络：正常'
+//    else
+//      dxStatusBar1.Panels[0].Text := '网络：异常';
   finally
     tmrPing.Enabled := True;
   end;
@@ -1258,7 +1219,7 @@ end;
 procedure TFMCliMain.FormCanResize(Sender: TObject; var NewWidth,
   NewHeight: Integer; var Resize: Boolean);
 begin
-  Image7.Left := P_top.Width - (Length(Trim(lblUserInifo.Caption))*6+40);
+  //Image7.Left := P_top.Width - (Length(Trim(lblUserInifo.Caption))*6+40);
 end;
 
 function TFMCliMain.CheckBaseData: boolean;
@@ -1325,44 +1286,44 @@ end;
 
 procedure TFMCliMain.cxpgcntrl1Change(Sender: TObject);
 begin
-  if cxpgcntrl1.ActivePageIndex = 0 then
-  begin
-     cxtxBT.DataBinding.DataSource := dsNew;
-     cxDBRichEdit1.DataBinding.DataSource := dsNew;
-     Panel2.Parent:=cxtbsht1;
-     bt_fFead.Font.Color:=clBlack;
-     bt_nRead.Font.Color:=clScrollBar;
-  end
-  else
-  if cxpgcntrl1.ActivePageIndex = 1 then
-  begin
-    omgrid.GetColumnByFieldName('发件人').Caption:='发件人';
-    dsOldMessage.Close;
-    cxtxBT.DataBinding.DataSource := dsOld;
-    cxDBRichEdit1.DataBinding.DataSource := dsOld;
-    Panel2.Parent:=cxtbsht2;
-    cxGrid2.Parent:=cxtbsht2;
-    bt_fFead.Font.Color:=clScrollBar;
-    bt_nRead.Font.Color:=clBlack;
-  end
-  else
-  begin
-    omgrid.GetColumnByFieldName('发件人').Caption:='收件人';
-    dsOldMessage.Close;
-    cxtxBT.DataBinding.DataSource := dsOld;
-    cxDBRichEdit1.DataBinding.DataSource := dsOld;
-    Panel2.Parent:=cxtbsht3;
-    cxGrid2.Parent:=cxtbsht3;
-  end;
-  cxLabel2.Visible:=not (cxpgcntrl1.ActivePageIndex = 0);
-  dBegin.Visible:=not (cxpgcntrl1.ActivePageIndex = 0);
-  cxLabel3.Visible:=not (cxpgcntrl1.ActivePageIndex = 0);
-  Dend.Visible:=not (cxpgcntrl1.ActivePageIndex = 0);
-  btn1.Visible:=not (cxpgcntrl1.ActivePageIndex = 0);
-  bt_fFead.Visible:= not (cxpgcntrl1.ActivePageIndex = 2);
-  bt_send.Visible:= not (cxpgcntrl1.ActivePageIndex = 2);
-  bt_nread.Visible:= not( cxpgcntrl1.ActivePageIndex = 2);
-  bt_rec.Visible:=  not (cxpgcntrl1.ActivePageIndex = 2);
+//  if cxpgcntrl1.ActivePageIndex = 0 then
+//  begin
+//     cxtxBT.DataBinding.DataSource := dsNew;
+//     cxDBRichEdit1.DataBinding.DataSource := dsNew;
+//     Panel2.Parent:=cxtbsht1;
+//     bt_fFead.Font.Color:=clBlack;
+//     bt_nRead.Font.Color:=clScrollBar;
+//  end
+//  else
+//  if cxpgcntrl1.ActivePageIndex = 1 then
+//  begin
+//    omgrid.GetColumnByFieldName('发件人').Caption:='发件人';
+//    dsOldMessage.Close;
+//    cxtxBT.DataBinding.DataSource := dsOld;
+//    cxDBRichEdit1.DataBinding.DataSource := dsOld;
+//    Panel2.Parent:=cxtbsht2;
+//    cxGrid2.Parent:=cxtbsht2;
+//    bt_fFead.Font.Color:=clScrollBar;
+//    bt_nRead.Font.Color:=clBlack;
+//  end
+//  else
+//  begin
+//    omgrid.GetColumnByFieldName('发件人').Caption:='收件人';
+//    dsOldMessage.Close;
+//    cxtxBT.DataBinding.DataSource := dsOld;
+//    cxDBRichEdit1.DataBinding.DataSource := dsOld;
+//    Panel2.Parent:=cxtbsht3;
+//    cxGrid2.Parent:=cxtbsht3;
+//  end;
+//  cxLabel2.Visible:=not (cxpgcntrl1.ActivePageIndex = 0);
+//  dBegin.Visible:=not (cxpgcntrl1.ActivePageIndex = 0);
+//  cxLabel3.Visible:=not (cxpgcntrl1.ActivePageIndex = 0);
+//  Dend.Visible:=not (cxpgcntrl1.ActivePageIndex = 0);
+//  btn1.Visible:=not (cxpgcntrl1.ActivePageIndex = 0);
+//  bt_fFead.Visible:= not (cxpgcntrl1.ActivePageIndex = 2);
+//  bt_send.Visible:= not (cxpgcntrl1.ActivePageIndex = 2);
+//  bt_nread.Visible:= not( cxpgcntrl1.ActivePageIndex = 2);
+//  bt_rec.Visible:=  not (cxpgcntrl1.ActivePageIndex = 2);
 end;
 
 procedure TFMCliMain.btn1Click(Sender: TObject);
@@ -1374,27 +1335,27 @@ begin
     Abort
   end;
     //消息
-  if  cxpgcntrl1.ActivePageIndex=1 then
-  begin
-    sqlstr:='SELECT a.FID,a.FSENDER_L2 AS 发件人, a.FSENDTIME AS 发件时间, a.FTITLE_L2 AS 标题, '
-             + ' a.FBODY_L2 AS 内容 '
-           +'FROM T_BAS_MESSAGE A  '
-           +' WHERE isnull(a.FSENDER_L2,'' '')<>'' '' and isnull(a.FSENDER_L2,'' '')<>''后台事物'' and isnull(a.FSENDER_L2,'' '')<>''服务器'' and A.FRECEIVER = '+QuotedStr(UserInfo.LoginUser_FID)
-           +' AND to_char(FSENDTIME,''YYYY-MM-DD'') >= '+QuotedStr(FormatDateTime('yyyy-mm-dd',dBegin.Date))
-           +' AND to_char(FSENDTIME,''YYYY-MM-DD'') <= '+QuotedStr(FormatDateTime('yyyy-mm-dd',Dend.Date))
-           +' and FSTATUS=10 order by A.FSENDTIME desc';
-  end
-  else
-  begin
-    sqlstr:='SELECT a.FID,u.fname_l2 AS 发件人, a.FSENDTIME AS 发件时间, a.FTITLE_L2 AS 标题, '
-             + ' a.FBODY_L2 AS 内容 '
-           +'FROM T_BAS_MESSAGE A  left join t_pm_user u on a.FRECEIVER=u.fid'
-           +' WHERE 1=1'
-           +' AND to_char(FSENDTIME,''YYYY-MM-DD'') >= '+QuotedStr(FormatDateTime('yyyy-mm-dd',dBegin.Date))
-           +' AND to_char(FSENDTIME,''YYYY-MM-DD'') <= '+QuotedStr(FormatDateTime('yyyy-mm-dd',Dend.Date))
-           +' and exists(select 1 from T_BAS_MsgSendRecord rec where a.fid=rec.Fsourceid and Fsenderid='+QuotedStr(UserInfo.LoginUser_FID)+')'
-           +' order by A.FSENDTIME desc';
-  end;
+//  if  cxpgcntrl1.ActivePageIndex=1 then
+//  begin
+//    sqlstr:='SELECT a.FID,a.FSENDER_L2 AS 发件人, a.FSENDTIME AS 发件时间, a.FTITLE_L2 AS 标题, '
+//             + ' a.FBODY_L2 AS 内容 '
+//           +'FROM T_BAS_MESSAGE A  '
+//           +' WHERE isnull(a.FSENDER_L2,'' '')<>'' '' and isnull(a.FSENDER_L2,'' '')<>''后台事物'' and isnull(a.FSENDER_L2,'' '')<>''服务器'' and A.FRECEIVER = '+QuotedStr(UserInfo.LoginUser_FID)
+//           +' AND to_char(FSENDTIME,''YYYY-MM-DD'') >= '+QuotedStr(FormatDateTime('yyyy-mm-dd',dBegin.Date))
+//           +' AND to_char(FSENDTIME,''YYYY-MM-DD'') <= '+QuotedStr(FormatDateTime('yyyy-mm-dd',Dend.Date))
+//           +' and FSTATUS=10 order by A.FSENDTIME desc';
+//  end
+//  else
+//  begin
+//    sqlstr:='SELECT a.FID,u.fname_l2 AS 发件人, a.FSENDTIME AS 发件时间, a.FTITLE_L2 AS 标题, '
+//             + ' a.FBODY_L2 AS 内容 '
+//           +'FROM T_BAS_MESSAGE A  left join t_pm_user u on a.FRECEIVER=u.fid'
+//           +' WHERE 1=1'
+//           +' AND to_char(FSENDTIME,''YYYY-MM-DD'') >= '+QuotedStr(FormatDateTime('yyyy-mm-dd',dBegin.Date))
+//           +' AND to_char(FSENDTIME,''YYYY-MM-DD'') <= '+QuotedStr(FormatDateTime('yyyy-mm-dd',Dend.Date))
+//           +' and exists(select 1 from T_BAS_MsgSendRecord rec where a.fid=rec.Fsourceid and Fsenderid='+QuotedStr(UserInfo.LoginUser_FID)+')'
+//           +' order by A.FSENDTIME desc';
+//  end;
    if not CliDM.Get_OpenSQL(dsOldMessage,sqlstr,errmsg) then
    begin
       Gio.AddShow(sqlstr+'查询出错');
@@ -1478,30 +1439,30 @@ begin
     ShowMsg(Handle, '本功能只能在线时使用！',[]);
     Abort
   end;
-  if cxpgcntrl1.ActivePageIndex=0 then
-  begin
-    if dsNewMessage.IsEmpty then
-    begin
-      ShowMsg(Handle, '无消息可回复!    ',[]);
-      exit;
-    end;
-    SendMessage(userinfo.LoginUser_FID,userinfo.LoginUser_Name,
-       dsNewMessage.fieldbyname('FID').AsString,
-       dsNewMessage.fieldbyname('发件人').AsString,
-       dsNewMessage.fieldbyname('标题').AsString,true);
-  end
-  else
-  begin
-    if dsOldMessage.IsEmpty then
-    begin
-      ShowMsg(Handle, '无消息可回复!    ',[]);
-      exit;
-    end;
-    SendMessage(userinfo.LoginUser_FID,userinfo.LoginUser_Name,
-    dsOldMessage.fieldbyname('FID').AsString,
-    dsOldMessage.fieldbyname('发件人').AsString,
-    dsOldMessage.fieldbyname('标题').AsString,true);
-  end;
+//  if cxpgcntrl1.ActivePageIndex=0 then
+//  begin
+//    if dsNewMessage.IsEmpty then
+//    begin
+//      ShowMsg(Handle, '无消息可回复!    ',[]);
+//      exit;
+//    end;
+//    SendMessage(userinfo.LoginUser_FID,userinfo.LoginUser_Name,
+//       dsNewMessage.fieldbyname('FID').AsString,
+//       dsNewMessage.fieldbyname('发件人').AsString,
+//       dsNewMessage.fieldbyname('标题').AsString,true);
+//  end
+//  else
+//  begin
+//    if dsOldMessage.IsEmpty then
+//    begin
+//      ShowMsg(Handle, '无消息可回复!    ',[]);
+//      exit;
+//    end;
+//    SendMessage(userinfo.LoginUser_FID,userinfo.LoginUser_Name,
+//    dsOldMessage.fieldbyname('FID').AsString,
+//    dsOldMessage.fieldbyname('发件人').AsString,
+//    dsOldMessage.fieldbyname('标题').AsString,true);
+//  end;
 end;
 
 procedure TFMCliMain.bt_fFeadClick(Sender: TObject);
@@ -1512,7 +1473,7 @@ begin
     ShowMsg(Handle, '本功能只能在线时使用！',[]);
     Abort
   end;
-  if cxpgcntrl1.ActivePageIndex=1 then exit;
+//  if cxpgcntrl1.ActivePageIndex=1 then exit;
   if dsNewMessage.IsEmpty then
   begin
     exit;
@@ -1530,7 +1491,7 @@ begin
     ShowMsg(Handle, '本功能只能在线时使用！',[]);
     Abort
   end;
-  if cxpgcntrl1.ActivePageIndex=0 then exit;
+//  if cxpgcntrl1.ActivePageIndex=0 then exit;
   if dsOldMessage.IsEmpty then
   begin
     exit;
@@ -2169,11 +2130,11 @@ begin
   sbt.Name :=_Frmkey;
   sbt.Width := sptWidth;
   sbt.Height := sptHeight;
-  sbt.Top := 4;
+  sbt.Top := 16;
   sbt.Left := leftWidth;
 //  if ScrollBox1.Width < sptWidth * iCount then
-  sbt.Top := (sptWidth * iCount div ScrollBox1.Width) * (sptHeight + SpaceWidth);
-  sbt.Left := (sptWidth * iCount mod ScrollBox1.Width) div sptWidth * (sptWidth + SpaceWidth);
+//  sbt.Top := (sptWidth * iCount div ScrollBox1.Width) * (sptHeight + SpaceWidth);
+//  sbt.Left := (sptWidth * iCount mod ScrollBox1.Width) div sptWidth * (sptWidth + SpaceWidth);
   sbt.Layout := blGlyphTop;
   if Length(_Caption)>12 then
     sbt.Caption := Copy(_Caption,1,12)+'...'
@@ -2841,7 +2802,7 @@ begin
       UserInfo.Branch_Number := fieldbyname('fnumber').asstring;
       UserInfo.Branch_Name   := fieldbyname('fname_l2').asstring;
       UserInfo.Branch_Flag   := fieldbyname('cfbranchflag').asstring;
-      dxStatusBar1.Panels[2].Text := '登录组织：' + UserInfo.Branch_Name;
+      dxStatusBar1.Panels[0].Text := '登录组织：' + UserInfo.Branch_Name;
     end;
   end;
 end;

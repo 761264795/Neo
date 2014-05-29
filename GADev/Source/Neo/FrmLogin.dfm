@@ -136,7 +136,7 @@ object FMLotin: TFMLotin
     MaxLength = 50
     ParentCtl3D = False
     TabOrder = 0
-    Text = 'user'
+    Text = 'zzy'
     OnKeyDown = edtUserIDKeyDown
   end
   object edtUserPwd: TEdit
@@ -150,7 +150,6 @@ object FMLotin: TFMLotin
     ParentCtl3D = False
     PasswordChar = '*'
     TabOrder = 1
-    Text = 'kduser'
     OnKeyDown = edtUserPwdKeyDown
   end
   object actList: TActionList
