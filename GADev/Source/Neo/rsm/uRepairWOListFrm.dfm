@@ -1,14 +1,22 @@
 inherited RepairWOListFrm: TRepairWOListFrm
-  Left = 165
-  Top = 226
+  Left = -8
+  Top = -8
   Caption = #32500#20462#24037#21333
+  ClientHeight = 705
+  ClientWidth = 1366
   OldCreateOrder = True
   PixelsPerInch = 96
   TextHeight = 12
   inherited Panel1: TPanel
+    Width = 1366
+    Height = 677
     inherited pl_right: TPanel
+      Left = 1196
+      Height = 677
       inherited Panel5: TPanel
+        Height = 647
         inherited cxGrid2: TcxGrid
+          Height = 645
           inherited cxReport: TcxGridDBTableView
             inherited cxReportFReportName: TcxGridDBColumn
               Properties.Prefix = ''
@@ -18,104 +26,125 @@ inherited RepairWOListFrm: TRepairWOListFrm
       end
     end
     inherited Panel3: TPanel
+      Width = 1196
+      Height = 677
       inherited Splitter1: TSplitter
-        Top = 105
+        Top = 81
+        Width = 1196
       end
       inherited pnTop: TPanel
-        Height = 105
+        Width = 1196
+        Height = 81
         inherited lb_Report: TLabel
-          Height = 103
+          Left = 1175
+          Height = 79
         end
         inherited btnSearch: TcxButton
-          Left = 776
+          Left = 1028
           Top = 48
         end
         inherited recCount: TcxComboBox
-          Left = 784
+          Left = 1024
+          Top = 0
+          Width = 79
         end
         object cxLabel1: TcxLabel
           Left = 8
           Top = 9
           Caption = #32500#20462#24037#21333#21495
+          ParentFont = False
+          Style.Font.Charset = GB2312_CHARSET
+          Style.Font.Color = clWindowText
+          Style.Font.Height = -12
+          Style.Font.Name = #23435#20307
+          Style.Font.Style = []
+          Style.IsFontAssigned = True
         end
         object cxLabel2: TcxLabel
-          Left = 294
+          Left = 366
           Top = 9
           Caption = #36710#29260#21495
         end
         object cxLabel3: TcxLabel
-          Left = 552
+          Left = 696
           Top = 9
           Caption = #24213#30424#21495
         end
         object cxLabel4: TcxLabel
-          Left = 294
-          Top = 29
+          Left = 366
+          Top = 33
           Caption = #33267
         end
         object cxLabel5: TcxLabel
           Left = 8
-          Top = 29
+          Top = 33
           Caption = #36827#21378#26102#38388
         end
         object cxLabel6: TcxLabel
-          Left = 552
-          Top = 29
+          Left = 696
+          Top = 33
           Caption = #21333#25454#29366#24577
         end
         object cxLabel7: TcxLabel
           Left = 8
-          Top = 49
+          Top = 57
           Caption = #21697#29260
         end
         object cxLabel8: TcxLabel
-          Left = 294
-          Top = 49
+          Left = 366
+          Top = 57
           Caption = #26381#21153#39038#38382
         end
         object cxLabel9: TcxLabel
-          Left = 552
-          Top = 49
+          Left = 696
+          Top = 57
           Caption = #32467#31639#25171#21360
         end
         object cxtxtNum: TcxTextEdit
           Left = 72
-          Top = 9
+          Top = 5
+          ParentFont = False
           Style.Color = clWindow
+          Style.Font.Charset = GB2312_CHARSET
+          Style.Font.Color = clWindowText
+          Style.Font.Height = -12
+          Style.Font.Name = #23435#20307
+          Style.Font.Style = []
+          Style.IsFontAssigned = True
           TabOrder = 11
           OnKeyPress = VehicleKeyPress
-          Width = 145
+          Width = 200
         end
         object cxtxtPlateNum: TcxTextEdit
-          Left = 352
-          Top = 9
+          Left = 424
+          Top = 5
           Style.Color = clWindow
           TabOrder = 12
           OnKeyPress = VehicleKeyPress
-          Width = 145
+          Width = 200
         end
         object cxtxtVin: TcxTextEdit
-          Left = 616
-          Top = 9
+          Left = 760
+          Top = 5
           Style.Color = clWindow
           TabOrder = 13
           OnKeyPress = VehicleKeyPress
-          Width = 145
+          Width = 200
         end
         object cxdtCometimeFrom: TcxDateEdit
           Left = 72
           Top = 29
           TabOrder = 14
-          Width = 145
+          Width = 200
         end
         object cxdtCometimeTo: TcxDateEdit
-          Left = 352
+          Left = 424
           Top = 29
           TabOrder = 15
-          Width = 145
+          Width = 200
         end
         object cbbStatus: TcxLookupComboBox
-          Left = 616
+          Left = 760
           Top = 29
           Properties.KeyFieldNames = 'FNumber'
           Properties.ListColumns = <
@@ -125,11 +154,11 @@ inherited RepairWOListFrm: TRepairWOListFrm
           Properties.ListOptions.ShowHeader = False
           Properties.ListSource = dsStatus
           TabOrder = 16
-          Width = 145
+          Width = 200
         end
         object cbbIsPrinted: TcxLookupComboBox
-          Left = 616
-          Top = 49
+          Left = 760
+          Top = 53
           Properties.KeyFieldNames = 'FNumber'
           Properties.ListColumns = <
             item
@@ -138,11 +167,11 @@ inherited RepairWOListFrm: TRepairWOListFrm
           Properties.ListOptions.ShowHeader = False
           Properties.ListSource = dsIsSettlePrinted
           TabOrder = 17
-          Width = 145
+          Width = 200
         end
         object cxEditSA: TcxButtonEdit
-          Left = 352
-          Top = 49
+          Left = 424
+          Top = 53
           Properties.Buttons = <
             item
               Default = True
@@ -151,11 +180,11 @@ inherited RepairWOListFrm: TRepairWOListFrm
           Properties.OnButtonClick = cxEditSAPropertiesButtonClick
           TabOrder = 18
           OnKeyPress = cxEditSAKeyPress
-          Width = 145
+          Width = 200
         end
         object cxEditBrand: TcxButtonEdit
           Left = 72
-          Top = 49
+          Top = 53
           Properties.Buttons = <
             item
               Default = True
@@ -164,16 +193,19 @@ inherited RepairWOListFrm: TRepairWOListFrm
           Properties.OnButtonClick = cxEditBrandPropertiesButtonClick
           TabOrder = 19
           OnKeyPress = cxEditBrandKeyPress
-          Width = 145
+          Width = 200
         end
       end
       inherited cxPage: TcxPageControl
-        Top = 111
-        Height = 521
-        ClientRectBottom = 503
+        Top = 87
+        Width = 1196
+        Height = 590
+        ClientRectBottom = 572
+        ClientRectRight = 1196
         inherited tb_Grid: TcxTabSheet
           inherited cxGrid1: TcxGrid
-            Height = 503
+            Width = 1196
+            Height = 572
           end
         end
         inherited tb_chart: TcxTabSheet
@@ -199,6 +231,10 @@ inherited RepairWOListFrm: TRepairWOListFrm
     end
   end
   inherited p_top: TPanel
+    Width = 1366
+    inherited Image2: TImage
+      Width = 1364
+    end
     inherited btn_NewBill: TSpeedButton
       OnClick = btn_NewBillClick
     end
@@ -246,29 +282,28 @@ inherited RepairWOListFrm: TRepairWOListFrm
     Top = 160
   end
   inherited cdsBillFindList: TClientDataSet
-    Left = 841
-    Top = 86
+    Left = 1033
+    Top = 110
   end
   inherited cdsQueryCondition: TClientDataSet
-    Left = 858
-    Top = 48
+    Left = 970
+    Top = 88
   end
   object dsStatus: TDataSource
     DataSet = cdsStatus
-    Left = 512
-    Top = 32
+    Left = 688
   end
   object dsIsSettlePrinted: TDataSource
     DataSet = cdsIsSettlePrinted
-    Left = 536
-    Top = 96
+    Left = 544
+    Top = 80
   end
   object cdsStatus: TClientDataSet
     Aggregates = <>
     Params = <>
     OnFilterRecord = cdsListFilterRecord
-    Left = 592
-    Top = 32
+    Left = 744
+    Top = 65528
     object cdsStatusFNumber: TWideStringField
       FieldName = 'FNumber'
       Size = 100
@@ -282,8 +317,8 @@ inherited RepairWOListFrm: TRepairWOListFrm
     Aggregates = <>
     Params = <>
     OnFilterRecord = cdsListFilterRecord
-    Left = 600
-    Top = 96
+    Left = 640
+    Top = 72
     object cdsIsSettlePrintedFNumber: TWideStringField
       FieldName = 'FNumber'
       Size = 100

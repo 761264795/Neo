@@ -2965,8 +2965,7 @@ procedure TRepairWOEditFrm.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
-  //
-  if not (RepairWOEditFrm = nil) then
+  if RepairWOEditFrm <> nil then
     RepairWOEditFrm.Free;
   RepairWOEditFrm := nil;
 end;

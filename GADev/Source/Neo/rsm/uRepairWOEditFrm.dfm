@@ -1,6 +1,6 @@
 inherited RepairWOEditFrm: TRepairWOEditFrm
-  Left = 84
-  Top = 218
+  Left = 173
+  Top = 56
   Width = 1232
   Height = 487
   Caption = #32500#20462#24037#21333
@@ -59,21 +59,21 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
     Left = 0
     Top = 53
     Width = 1216
-    Height = 175
+    Height = 212
     Align = alTop
     TabOrder = 5
     object cxHeadPage1: TcxPageControl
       Left = 1
       Top = 42
       Width = 1214
-      Height = 110
+      Height = 147
       ActivePage = cxtbsht1
       Align = alClient
       LookAndFeel.Kind = lfUltraFlat
       ShowFrame = True
       Style = 10
       TabOrder = 0
-      ClientRectBottom = 109
+      ClientRectBottom = 146
       ClientRectLeft = 1
       ClientRectRight = 1213
       ClientRectTop = 18
@@ -86,58 +86,58 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
           Caption = #36710#29260#21495
         end
         object cxlbl5: TcxLabel
-          Left = 264
+          Left = 326
           Top = 9
           Caption = #24213#30424#21495
         end
         object cxlbl6: TcxLabel
-          Left = 548
+          Left = 665
           Top = 9
           Caption = #36710#22411
         end
         object cxlbl7: TcxLabel
-          Left = 860
+          Left = 1023
           Top = 9
           Caption = #19994#21153#31867#22411
         end
         object cxlbl8: TcxLabel
           Left = 10
-          Top = 29
+          Top = 33
           Caption = #26381#21153#39038#38382
         end
         object cxlbl9: TcxLabel
-          Left = 264
-          Top = 29
+          Left = 326
+          Top = 33
           Caption = #36865#20462#20154
         end
         object cxlbl10: TcxLabel
-          Left = 548
-          Top = 29
+          Left = 665
+          Top = 33
           Caption = #36865#20462#30005#35805
         end
         object cxlbl11: TcxLabel
-          Left = 860
-          Top = 29
+          Left = 1023
+          Top = 33
           Caption = #36134#25143#20195#30721
         end
         object cxlbl12: TcxLabel
           Left = 10
-          Top = 49
+          Top = 57
           Caption = #36827#21378#26102#38388
         end
         object cxlbl13: TcxLabel
-          Left = 264
-          Top = 49
+          Left = 326
+          Top = 57
           Caption = #39044#35745#20986#21378#26102#38388
         end
         object cxlbl14: TcxLabel
-          Left = 548
-          Top = 49
+          Left = 665
+          Top = 57
           Caption = #36827#21378#34892#39542#37324#31243#25968
         end
         object cxlbl15: TcxLabel
           Left = 10
-          Top = 69
+          Top = 81
           Caption = #39318#30331#26085#26399
         end
         object cxdbEditPlateNum: TcxDBButtonEdit
@@ -158,10 +158,10 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
           StyleHot.LookAndFeel.Kind = lfUltraFlat
           TabOrder = 12
           OnKeyPress = cxdbEditPlateNumKeyPress
-          Width = 160
+          Width = 200
         end
         object cxdbEditVin: TcxDBButtonEdit
-          Left = 351
+          Left = 413
           Top = 5
           DataBinding.DataField = 'FVin'
           DataBinding.DataSource = dsMaster
@@ -173,10 +173,10 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
           Properties.OnButtonClick = cxdbEditPlateNumPropertiesButtonClick
           TabOrder = 13
           OnKeyPress = cxdbEditVinKeyPress
-          Width = 160
+          Width = 200
         end
         object cxdbEditBizType: TcxDBButtonEdit
-          Left = 925
+          Left = 1088
           Top = 5
           DataBinding.DataField = 'repairBizTypeName'
           DataBinding.DataSource = dsMaster
@@ -188,11 +188,11 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
           Properties.OnButtonClick = cxdbEditBizTypePropertiesButtonClick
           TabOrder = 14
           OnKeyPress = cxdbEditBizTypeKeyPress
-          Width = 160
+          Width = 200
         end
         object cxdbEditSA: TcxDBButtonEdit
           Left = 74
-          Top = 25
+          Top = 29
           DataBinding.DataField = 'saName'
           DataBinding.DataSource = dsMaster
           Properties.Buttons = <
@@ -203,11 +203,11 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
           Properties.OnButtonClick = cxdbEditSAPropertiesButtonClick
           TabOrder = 15
           OnKeyPress = cxdbEditSAKeyPress
-          Width = 160
+          Width = 200
         end
         object cxdbEditSender: TcxDBButtonEdit
-          Left = 351
-          Top = 25
+          Left = 413
+          Top = 29
           DataBinding.DataField = 'FRepairSender'
           DataBinding.DataSource = dsMaster
           Properties.Buttons = <
@@ -217,19 +217,19 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
             end>
           Properties.OnButtonClick = cxdbEditSenderPropertiesButtonClick
           TabOrder = 16
-          Width = 160
+          Width = 200
         end
         object cxdbTxtTel: TcxDBTextEdit
-          Left = 654
-          Top = 25
+          Left = 771
+          Top = 29
           DataBinding.DataField = 'FTel'
           DataBinding.DataSource = dsMaster
           TabOrder = 17
-          Width = 160
+          Width = 200
         end
         object cxdbEditAccountCode: TcxDBButtonEdit
-          Left = 925
-          Top = 25
+          Left = 1088
+          Top = 29
           DataBinding.DataField = 'customerAccountName'
           DataBinding.DataSource = dsMaster
           Properties.Buttons = <
@@ -240,62 +240,62 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
           Properties.OnButtonClick = cxdbEditAccountCodePropertiesButtonClick
           TabOrder = 18
           OnKeyPress = cxdbEditAccountCodeKeyPress
-          Width = 160
+          Width = 200
         end
         object cxdbDateComeTime: TcxDBDateEdit
           Left = 74
-          Top = 45
+          Top = 53
           DataBinding.DataField = 'FComeTime'
           DataBinding.DataSource = dsMaster
           Properties.DateButtons = [btnClear, btnNow, btnToday]
           Properties.Kind = ckDateTime
           TabOrder = 19
-          Width = 160
+          Width = 200
         end
         object cxLabel1: TcxLabel
-          Left = 264
-          Top = 69
+          Left = 326
+          Top = 81
           Caption = #19994#21153#21592
         end
         object cxLabel2: TcxLabel
-          Left = 548
-          Top = 69
+          Left = 665
+          Top = 81
           Caption = #22791#27880
         end
         object cxLabel3: TcxLabel
-          Left = 861
-          Top = 64
+          Left = 1024
+          Top = 81
           Caption = #23458#25143#20449#24687
         end
         object cxdbDateIntendDeliveryTime: TcxDBDateEdit
-          Left = 351
-          Top = 45
+          Left = 413
+          Top = 53
           DataBinding.DataField = 'FIntendDeliveryTime'
           DataBinding.DataSource = dsMaster
           Properties.DateButtons = [btnClear, btnNow, btnToday]
           Properties.Kind = ckDateTime
           TabOrder = 23
-          Width = 160
+          Width = 200
         end
         object cxdbMaskMile: TcxDBMaskEdit
-          Left = 654
-          Top = 45
+          Left = 771
+          Top = 53
           DataBinding.DataField = 'FMile'
           DataBinding.DataSource = dsMaster
           TabOrder = 24
-          Width = 160
+          Width = 200
         end
         object cxdbDateFirstBookInDate: TcxDBDateEdit
           Left = 74
-          Top = 65
+          Top = 77
           DataBinding.DataField = 'CFFirstBookInDate'
           DataBinding.DataSource = dsMaster
           TabOrder = 25
-          Width = 160
+          Width = 200
         end
         object cxdbEditBizPerson: TcxDBButtonEdit
-          Left = 351
-          Top = 65
+          Left = 413
+          Top = 77
           DataBinding.DataField = 'bizPersonName'
           DataBinding.DataSource = dsMaster
           Properties.Buttons = <
@@ -306,34 +306,34 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
           Properties.OnButtonClick = cxdbEditBizPersonPropertiesButtonClick
           TabOrder = 26
           OnKeyPress = cxdbEditBizPersonKeyPress
-          Width = 160
+          Width = 200
         end
         object cxdbMemoWipRemark: TcxDBMemo
-          Left = 654
-          Top = 65
+          Left = 771
+          Top = 77
           DataBinding.DataField = 'CFWipRemark'
           DataBinding.DataSource = dsMaster
           TabOrder = 27
           Height = 20
-          Width = 160
+          Width = 200
         end
         object cxdbMemoCustomerInfo1: TcxDBMemo
-          Left = 925
-          Top = 45
+          Left = 1088
+          Top = 52
           DataBinding.DataField = 'CFCustomerInfo'
           DataBinding.DataSource = dsMaster
           TabOrder = 28
-          Height = 38
-          Width = 160
+          Height = 45
+          Width = 200
         end
         object cxdbTxtModel: TcxDBTextEdit
-          Left = 654
+          Left = 771
           Top = 5
           DataBinding.DataField = 'modelName'
           DataBinding.DataSource = dsMaster
           Properties.ReadOnly = True
           TabOrder = 29
-          Width = 160
+          Width = 200
         end
       end
       object cxtbsht2: TcxTabSheet
@@ -341,65 +341,65 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
         ImageIndex = 1
         object cxLabel6: TcxLabel
           Left = 10
-          Top = 6
+          Top = 10
           Caption = #21457#21160#26426#21495
         end
         object cxLabel7: TcxLabel
           Left = 10
-          Top = 26
+          Top = 34
           Caption = #36710#31995
         end
         object cxLabel8: TcxLabel
           Left = 386
-          Top = 6
+          Top = 10
           Caption = #36710#20027
         end
         object cxLabel9: TcxLabel
           Left = 690
-          Top = 6
+          Top = 10
           Caption = #21697#29260
         end
         object cxLabel10: TcxLabel
           Left = 386
-          Top = 26
+          Top = 34
           Caption = #20844#21496
         end
         object cxLabel11: TcxLabel
           Left = 10
-          Top = 74
+          Top = 81
           Caption = #21382#21490#22791#27880
         end
         object cxLabel12: TcxLabel
           Left = 386
-          Top = 74
+          Top = 81
           Caption = #32500#20462#22791#27880
         end
         object cxLabel13: TcxLabel
           Left = 690
-          Top = 26
+          Top = 34
           Caption = #32500#20462#26041#24335
         end
         object cxLabel14: TcxLabel
           Left = 690
-          Top = 46
+          Top = 58
           Caption = #32500#20462#22806#21253#20844#21496
         end
         object cxdbMemoRemark: TcxDBMemo
           Left = 445
-          Top = 43
+          Top = 54
           DataBinding.DataField = 'FRemark'
           DataBinding.DataSource = dsMaster
           TabOrder = 9
-          Height = 48
-          Width = 185
+          Height = 43
+          Width = 200
         end
         object cxmemoRemarkList: TcxMemo
           Left = 71
-          Top = 46
+          Top = 54
           Properties.ReadOnly = True
           TabOrder = 10
           Height = 43
-          Width = 185
+          Width = 200
         end
         object cxdbTxtEngineNum: TcxDBTextEdit
           Left = 71
@@ -408,47 +408,47 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
           DataBinding.DataSource = dsMaster
           Properties.ReadOnly = True
           TabOrder = 11
-          Width = 185
+          Width = 200
         end
         object cxdbTxtOwner: TcxDBTextEdit
           Left = 445
-          Top = 3
+          Top = 6
           DataBinding.DataField = 'customerName'
           DataBinding.DataSource = dsMaster
           Properties.ReadOnly = True
           TabOrder = 12
-          Width = 185
+          Width = 200
         end
         object cxdbTxtBrand: TcxDBTextEdit
           Left = 773
-          Top = 2
+          Top = 6
           DataBinding.DataField = 'brandName'
           DataBinding.DataSource = dsMaster
           Properties.ReadOnly = True
           TabOrder = 13
-          Width = 185
+          Width = 200
         end
         object cxdbTxtSerise: TcxDBTextEdit
           Left = 71
-          Top = 26
+          Top = 30
           DataBinding.DataField = 'seriesName'
           DataBinding.DataSource = dsMaster
           Properties.ReadOnly = True
           TabOrder = 14
-          Width = 185
+          Width = 200
         end
         object cxdbTxtCompany: TcxDBTextEdit
           Left = 445
-          Top = 23
+          Top = 30
           DataBinding.DataField = 'companyName'
           DataBinding.DataSource = dsMaster
           Properties.ReadOnly = True
           TabOrder = 15
-          Width = 185
+          Width = 200
         end
         object cxdblkpcmbxRepairType: TcxDBLookupComboBox
           Left = 773
-          Top = 23
+          Top = 30
           DataBinding.DataField = 'FRepairWay'
           DataBinding.DataSource = dsMaster
           Properties.KeyFieldNames = 'FNumber'
@@ -460,11 +460,11 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
           Properties.ListSource = dsRepairWay
           Properties.OnChange = cxdblkpcmbxRepairTypePropertiesChange
           TabOrder = 16
-          Width = 185
+          Width = 200
         end
         object cxdbEditSupplier: TcxDBButtonEdit
           Left = 773
-          Top = 43
+          Top = 54
           DataBinding.DataField = 'supplierName'
           DataBinding.DataSource = dsMaster
           Properties.Buttons = <
@@ -474,7 +474,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
             end>
           Properties.OnButtonClick = cxdbEditSupplierPropertiesButtonClick
           TabOrder = 17
-          Width = 185
+          Width = 200
         end
       end
     end
@@ -487,17 +487,17 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
       BevelOuter = bvNone
       TabOrder = 1
       object cxdbComboxStatus: TcxDBComboBox
-        Left = 582
+        Left = 787
         Top = 6
         DataBinding.DataField = 'gaBillStatusName'
         DataBinding.DataSource = dsMaster
         Properties.MaxLength = 0
         Properties.ReadOnly = True
         TabOrder = 0
-        Width = 121
+        Width = 200
       end
       object cxdbChkPrintedSettle: TcxDBCheckBox
-        Left = 759
+        Left = 1131
         Top = 5
         Caption = #32467#31639#25171#21360
         DataBinding.DataField = 'CFIsPrintedSettle'
@@ -510,42 +510,42 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
         Width = 121
       end
       object cxdbTxtNumber1: TcxDBTextEdit
-        Left = 104
+        Left = 100
         Top = 6
         DataBinding.DataField = 'FNumber'
         DataBinding.DataSource = dsMaster
         Properties.ReadOnly = False
         TabOrder = 2
-        Width = 121
+        Width = 200
       end
       object cxdbTxtWipNo1: TcxDBTextEdit
-        Left = 343
+        Left = 444
         Top = 6
         DataBinding.DataField = 'FCompanyNumber'
         DataBinding.DataSource = dsMaster
         Properties.ReadOnly = True
         TabOrder = 3
-        Width = 121
+        Width = 200
       end
       object cxlbl1: TcxLabel
-        Left = 32
+        Left = 28
         Top = 10
         Caption = #32500#20462#24037#21333#21495
       end
       object cxlbl2: TcxLabel
-        Left = 283
+        Left = 375
         Top = 10
         Caption = 'DMS WIP'#21495
       end
       object cxlbl3: TcxLabel
-        Left = 527
+        Left = 731
         Top = 10
         Caption = #21333#25454#29366#24577
       end
     end
     object Panel3: TPanel
       Left = 1
-      Top = 152
+      Top = 189
       Width = 1214
       Height = 22
       Align = alBottom
@@ -607,16 +607,16 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
   end
   object Panel1: TPanel [2]
     Left = 0
-    Top = 228
+    Top = 265
     Width = 1216
-    Height = 196
+    Height = 159
     Align = alClient
     TabOrder = 6
     object cxGrid1: TcxGrid
       Left = 1
       Top = 1
       Width = 1214
-      Height = 194
+      Height = 157
       Align = alClient
       TabOrder = 0
       LookAndFeel.Kind = lfOffice11
@@ -631,29 +631,35 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
         DataController.Summary.FooterSummaryItems = <>
         DataController.Summary.SummaryGroups = <>
         OptionsCustomize.ColumnSorting = False
+        OptionsView.DataRowHeight = 22
         OptionsView.Footer = True
         OptionsView.GroupByBox = False
+        OptionsView.HeaderHeight = 22
         object cxdbColSeq: TcxGridDBColumn
           Caption = #24207#21495
           DataBinding.FieldName = 'FSeq'
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
           Width = 39
         end
         object cxdbColT: TcxGridDBColumn
           Caption = 'T'
           DataBinding.FieldName = 'CFT'
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
           Width = 29
         end
         object cxdbColItemSpNum: TcxGridDBColumn
           Caption = #39033#30446
           DataBinding.FieldName = 'CFItemspNum'
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
           Width = 181
         end
         object cxdbColItemspName: TcxGridDBColumn
           Caption = #35828#26126
           DataBinding.FieldName = 'CFItemspName'
+          HeaderAlignmentHorz = taCenter
           Width = 178
         end
         object cxdbColRepairPkg: TcxGridDBColumn
@@ -666,6 +672,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
               Kind = bkEllipsis
             end>
           Properties.OnButtonClick = cxdbColRepairPkgPropertiesButtonClick
+          HeaderAlignmentHorz = taCenter
           Width = 63
         end
         object cxdbColW: TcxGridDBColumn
@@ -679,6 +686,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
             end>
           Properties.ReadOnly = True
           Properties.OnButtonClick = cxdbColWPropertiesButtonClick
+          HeaderAlignmentHorz = taCenter
           Width = 28
         end
         object cxdbColIsCT: TcxGridDBColumn
@@ -688,54 +696,66 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
           Properties.NullStyle = nssUnchecked
           Properties.ValueChecked = 1
           Properties.ValueUnchecked = 0
+          HeaderAlignmentHorz = taCenter
         end
         object cxdbColQty: TcxGridDBColumn
           Caption = #25968#37327
           DataBinding.FieldName = 'CFQty'
+          HeaderAlignmentHorz = taCenter
         end
         object cxdbColUnIssueQty: TcxGridDBColumn
           Caption = #26410#20986#24211#25968
           DataBinding.FieldName = 'CFUnIssueQty'
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
         end
         object cxdbColIssueQty: TcxGridDBColumn
           Caption = #24050#20986#24211#25968
           DataBinding.FieldName = 'CFIssueQty'
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
         end
         object cxdbColPrice: TcxGridDBColumn
           Caption = #26410#31246#20215#26684
           DataBinding.FieldName = 'CFPrice'
+          HeaderAlignmentHorz = taCenter
         end
         object cxdbColTaxPrice: TcxGridDBColumn
           Caption = #21547#31246#20215#26684
           DataBinding.FieldName = 'CFTaxPrice'
+          HeaderAlignmentHorz = taCenter
         end
         object cxdbColDiscountRate: TcxGridDBColumn
           Caption = #25240#25187'%'
           DataBinding.FieldName = 'CFDiscountRate'
+          HeaderAlignmentHorz = taCenter
         end
         object cxdbColAmount: TcxGridDBColumn
           Caption = #24635#35745
           DataBinding.FieldName = 'CFAmount'
+          HeaderAlignmentHorz = taCenter
         end
         object cxdbColTaxAmount: TcxGridDBColumn
           Caption = #21547#31246#24635#35745
           DataBinding.FieldName = 'CFTaxAmount'
+          HeaderAlignmentHorz = taCenter
         end
         object cxdbColTaxRate: TcxGridDBColumn
           Caption = #31246#29575'%'
           DataBinding.FieldName = 'CFTaxRate'
+          HeaderAlignmentHorz = taCenter
         end
         object cxdbColI: TcxGridDBColumn
           Caption = #36134#21333#29366#24577
           DataBinding.FieldName = 'CFI'
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
           Width = 70
         end
         object cxdbColSettleDate: TcxGridDBColumn
           Caption = #32467#36134#26085#26399
           DataBinding.FieldName = 'CFSettleDate'
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
         end
         object cxdbColIsAPSettle: TcxGridDBColumn
@@ -745,11 +765,13 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
           Properties.NullStyle = nssUnchecked
           Properties.ValueChecked = 1
           Properties.ValueUnchecked = 0
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
         end
         object cxdbColAllocateExenseRate: TcxGridDBColumn
           Caption = #36153#29992#20998#25285'%'
           DataBinding.FieldName = 'CFAllocateExenseRate'
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
         end
         object cxdbColPerson: TcxGridDBColumn
@@ -762,21 +784,25 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
               Kind = bkEllipsis
             end>
           Properties.OnButtonClick = cxdbColPersonPropertiesButtonClick
+          HeaderAlignmentHorz = taCenter
           Width = 53
         end
         object cxdbColWorkTimeQty: TcxGridDBColumn
           Caption = #24037#26102#25968#37327
           DataBinding.FieldName = 'CFWorktimeQty'
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
         end
         object cxdbColWorktimePrice: TcxGridDBColumn
           Caption = #24037#26102#21333#20215
           DataBinding.FieldName = 'CFWorktimePrice'
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
         end
         object cxdbColWorktimeCost: TcxGridDBColumn
           Caption = #24037#26102#25104#26412
           DataBinding.FieldName = 'CFWorktimeCost'
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
         end
         object cxdbColGiftDept: TcxGridDBColumn
@@ -790,6 +816,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
             end>
           Properties.ClickKey = 118
           Properties.OnButtonClick = cxdbColGiftDeptPropertiesButtonClick
+          HeaderAlignmentHorz = taCenter
           Width = 70
         end
         object cxdbColRepairWay: TcxGridDBColumn
@@ -803,6 +830,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
             end>
           Properties.ListOptions.ShowHeader = False
           Properties.ListSource = dsRepairWayEntry
+          HeaderAlignmentHorz = taCenter
           Width = 89
         end
         object cxdbColSupplier: TcxGridDBColumn
@@ -815,16 +843,19 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
               Kind = bkEllipsis
             end>
           Properties.OnButtonClick = cxdbColSupplierPropertiesButtonClick
+          HeaderAlignmentHorz = taCenter
           Width = 124
         end
         object cxdbColWipFactLineNo: TcxGridDBColumn
           Caption = 'DMS'#23454#38469#34892#21495
           DataBinding.FieldName = 'CFWipFactLineNo'
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
         end
         object cxdbColWipLineNo: TcxGridDBColumn
           Caption = 'DMS'#34892#21495
           DataBinding.FieldName = 'CFWipLineNo'
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
         end
         object cxdbColIsDelete: TcxGridDBColumn
@@ -834,11 +865,13 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
           Properties.NullStyle = nssUnchecked
           Properties.ValueChecked = 1
           Properties.ValueUnchecked = 0
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
         end
         object cxdbColSettlementObject: TcxGridDBColumn
           Caption = #32467#31639#23545#35937
           DataBinding.FieldName = 'CFSettlementObject'
+          HeaderAlignmentHorz = taCenter
           Options.Editing = False
           Width = 78
         end

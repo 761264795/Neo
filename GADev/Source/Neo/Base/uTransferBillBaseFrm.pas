@@ -18,7 +18,7 @@ type
 
   public
     { Public declarations }
-      procedure Transfer(var cdsSrcs: array of TClientDataSet);virtual;abstract;
+      procedure Transfer(cdsSrcs: array of TClientDataSet);virtual;abstract;
       procedure OpenDestBillFrm;virtual;abstract;
       procedure SaveDest(var cdsDests: array of TClientDataSet;destTableNames: array of string);
   end;
