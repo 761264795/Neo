@@ -464,32 +464,32 @@ begin
       ShowMsg(self.Handle,'没有找到数据源，请先配置数据源',[]);
       Abort;
     end;
-    SetLength(_Names,SrcMater.RecordCount+1);
-    SetLength(_cds,SrcMater.RecordCount+1);
-    SetLength(_ppl,SrcMater.RecordCount+1);
-    SetLength(_ds,SrcMater.RecordCount+1);
-    //加载尺码组
-    _Names[0]:='尺码组标题';
-    _cds[0]  := TClientDataSet.Create(Self);
-    _ds[0] := TDataSource.Create(Self);
-    _ds[0].DataSet := _cds[0];
-    _ppl[0] := TppDBPipeline.Create(Self);
-    _ppl[0].DataSource := _ds[0];
-    _ppl[0].UserName := 'SizeGroupTitle';
-    _sql := GetSizeGroupSQL(FirstBillFID);
-    if _sql <> '' then
-    begin
-      if   CliDM.Get_OpenSQL(TClientDataSet(_cds[0]),_sql,ErrMsg,False) then
-      begin
-        _cds[0].FieldByName('sizegroupFID').DisplayLabel    := '尺码组FID';
-        _cds[0].FieldByName('sizegroupnumber').DisplayLabel := '尺码组编号';
-        _cds[0].FieldByName('sizegroupname').DisplayLabel   := '尺码组名称';
-        _ppl[0].Fields[_cds[0].FieldByName('sizegroupFID').Index].FieldAlias :='尺码组FID';
-        _ppl[0].Fields[_cds[0].FieldByName('sizegroupnumber').Index].FieldAlias :='尺码组编号';
-        _ppl[0].Fields[_cds[0].FieldByName('sizegroupname').Index].FieldAlias :='尺码组名称';
-      end;
-    end;
-    iCount := 1;
+    SetLength(_Names,SrcMater.RecordCount);
+    SetLength(_cds,SrcMater.RecordCount);
+    SetLength(_ppl,SrcMater.RecordCount);
+    SetLength(_ds,SrcMater.RecordCount);
+//    加载尺码组
+//    _Names[0]:='尺码组标题';
+//    _cds[0]  := TClientDataSet.Create(Self);
+//    _ds[0] := TDataSource.Create(Self);
+//    _ds[0].DataSet := _cds[0];
+//    _ppl[0] := TppDBPipeline.Create(Self);
+//    _ppl[0].DataSource := _ds[0];
+//    _ppl[0].UserName := 'SizeGroupTitle';
+//    _sql := GetSizeGroupSQL(FirstBillFID);
+//    if _sql <> '' then
+//    begin
+//      if   CliDM.Get_OpenSQL(TClientDataSet(_cds[0]),_sql,ErrMsg,False) then
+//      begin
+//        _cds[0].FieldByName('sizegroupFID').DisplayLabel    := '尺码组FID';
+//        _cds[0].FieldByName('sizegroupnumber').DisplayLabel := '尺码组编号';
+//        _cds[0].FieldByName('sizegroupname').DisplayLabel   := '尺码组名称';
+//        _ppl[0].Fields[_cds[0].FieldByName('sizegroupFID').Index].FieldAlias :='尺码组FID';
+//        _ppl[0].Fields[_cds[0].FieldByName('sizegroupnumber').Index].FieldAlias :='尺码组编号';
+//        _ppl[0].Fields[_cds[0].FieldByName('sizegroupname').Index].FieldAlias :='尺码组名称';
+//      end;
+//    end;
+    iCount := 0;
     SrcMater.First;
     while not SrcMater.Eof do
     begin
@@ -608,7 +608,7 @@ begin
   Result := 'NULL';
   if cdsBillType.IsEmpty then Exit;
   try
-    _SQL := 'select FID from '+cdsBillType.fieldbyname('FHeadtable').AsString+ '  where rownum < 2';
+    _SQL := 'select Top 1 FID from '+cdsBillType.fieldbyname('FHeadtable').AsString;
     ErrMsg := '';
     cds := TClientDataSet.Create(nil);
     if not CliDM.Get_OpenSQL(cds,_SQL,ErrMsg) then
