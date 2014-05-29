@@ -45,7 +45,7 @@ object ExportMainFrm: TExportMainFrm
     Left = 0
     Top = 41
     Width = 797
-    Height = 513
+    Height = 512
     Align = alClient
     Color = 16116704
     TabOrder = 1
@@ -53,13 +53,13 @@ object ExportMainFrm: TExportMainFrm
       Left = 1
       Top = 1
       Width = 795
-      Height = 511
+      Height = 510
       ActivePage = cxTabSheet1
       Align = alClient
       HideTabs = True
       Style = 10
       TabOrder = 0
-      ClientRectBottom = 511
+      ClientRectBottom = 510
       ClientRectRight = 795
       ClientRectTop = 0
       object cxTabSheet1: TcxTabSheet
@@ -104,13 +104,13 @@ object ExportMainFrm: TExportMainFrm
           Left = 0
           Top = 97
           Width = 795
-          Height = 414
+          Height = 413
           ActivePage = cxTabSheet2
           Align = alClient
           Style = 10
           TabOrder = 1
           OnChange = cxPageControl1Change
-          ClientRectBottom = 414
+          ClientRectBottom = 413
           ClientRectRight = 795
           ClientRectTop = 18
           object cxTabSheet2: TcxTabSheet
@@ -120,7 +120,7 @@ object ExportMainFrm: TExportMainFrm
               Left = 0
               Top = 29
               Width = 795
-              Height = 367
+              Height = 366
               Align = alClient
               BevelOuter = bvNone
               Color = 16116704
@@ -129,7 +129,7 @@ object ExportMainFrm: TExportMainFrm
                 Left = 391
                 Top = 0
                 Width = 404
-                Height = 367
+                Height = 366
                 Align = alClient
                 BevelOuter = bvNone
                 Color = 16116704
@@ -138,7 +138,7 @@ object ExportMainFrm: TExportMainFrm
                   Left = 0
                   Top = 0
                   Width = 40
-                  Height = 367
+                  Height = 366
                   Align = alLeft
                   Color = 16116704
                   TabOrder = 0
@@ -207,7 +207,7 @@ object ExportMainFrm: TExportMainFrm
                   Left = 40
                   Top = 0
                   Width = 364
-                  Height = 367
+                  Height = 366
                   Align = alClient
                   TabOrder = 1
                   LookAndFeel.Kind = lfOffice11
@@ -249,7 +249,7 @@ object ExportMainFrm: TExportMainFrm
                 Left = 0
                 Top = 0
                 Width = 391
-                Height = 367
+                Height = 366
                 Align = alLeft
                 BevelOuter = bvNone
                 Color = 16116704
@@ -258,7 +258,7 @@ object ExportMainFrm: TExportMainFrm
                   Left = 0
                   Top = 0
                   Width = 391
-                  Height = 367
+                  Height = 366
                   Align = alClient
                   TabOrder = 0
                   LookAndFeel.Kind = lfOffice11
@@ -399,7 +399,7 @@ object ExportMainFrm: TExportMainFrm
               Left = 0
               Top = 41
               Width = 795
-              Height = 355
+              Height = 354
               Align = alClient
               TabOrder = 1
               LookAndFeel.Kind = lfOffice11
@@ -462,7 +462,7 @@ object ExportMainFrm: TExportMainFrm
           StyleHot.LookAndFeel.Kind = lfOffice11
           StyleHot.LookAndFeel.SkinName = 'Office2007Green'
           TabOrder = 0
-          Height = 511
+          Height = 510
           Width = 795
           object mm_log: TcxMemo
             Left = 2
@@ -490,7 +490,7 @@ object ExportMainFrm: TExportMainFrm
             StyleHot.LookAndFeel.Kind = lfOffice11
             StyleHot.LookAndFeel.SkinName = 'Office2007Green'
             TabOrder = 0
-            Height = 488
+            Height = 487
             Width = 791
           end
         end
@@ -499,7 +499,7 @@ object ExportMainFrm: TExportMainFrm
   end
   object Panel3: TPanel
     Left = 0
-    Top = 554
+    Top = 553
     Width = 797
     Height = 41
     Align = alBottom

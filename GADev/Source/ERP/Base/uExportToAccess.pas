@@ -20,7 +20,15 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,ComObj,
   cxCheckListBox, dxSkinsCore, dxSkinOffice2007Green, dxSkinscxPCPainter,
   cxLookAndFeelPainters, cxCustomData, cxGraphics, cxFilter, cxData,
-  cxDataStorage, cxDBData, MConnect, SConnect,uListFormBaseFrm, cxCheckBox;
+  cxDataStorage, cxDBData, MConnect, SConnect,uListFormBaseFrm, cxCheckBox,
+  dxSkinBlack, dxSkinBlue, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom,
+  dxSkinDarkSide, dxSkinFoggy, dxSkinGlassOceans, dxSkiniMaginary,
+  dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin,
+  dxSkinMoneyTwins, dxSkinOffice2007Black, dxSkinOffice2007Blue,
+  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinPumpkin, dxSkinSeven,
+  dxSkinSharp, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
+  dxSkinSummer2008, dxSkinsDefaultPainters, dxSkinValentine,
+  dxSkinXmas2008Blue;
   
  const ImportExportMaxRow : Integer = 10000; 
 type
@@ -353,7 +361,7 @@ begin
         while isExport do
         begin
           Rows := Rows + ImportExportMaxRow;
-          _SQL := 'Select * from '+ FtableName +' where rowNum >'+ IntToStr(Rows-ImportExportMaxRow) +' and rowNum <='+inttostr(Rows);
+          _SQL := 'Select * from '+ FtableName;// +' where rowNum >'+ IntToStr(Rows-ImportExportMaxRow) +' and rowNum <='+inttostr(Rows);
           PubQry.Close;
           PubQry.CommandText := _SQL;
           PubQry.Open;
@@ -613,7 +621,8 @@ begin
       if cdsImportList.FieldByName('selected').AsBoolean then
       begin
         FtableName := cdsImportList.FieldByName('FTable_name').AsString;
-        _SQL := 'select Table_Name from user_tables where Table_Name='+Quotedstr(UpperCase(FtableName));
+        _SQL := Format('select name from sysobjects where name=UPPER(%s) and xtype=''U''',[QuotedStr(FTableName)]);
+        //'select Table_Name from user_tables where Table_Name='+Quotedstr(UpperCase(FtableName));
         CliDM.Get_OpenSQL(Pubqry,_sQL,ErrMsg);
         if PubQry.IsEmpty then
         begin
@@ -741,7 +750,7 @@ end;
 procedure TExportMainFrm.OpenTableList;
 var ErrMsg,_SQL:string;
 begin
-  _SQL :=  'select Table_Name from user_tables';
+  _SQL :=  'select name Table_Name from sysobjects where xtype=''U'''; //'select Table_Name from user_tables';
   if not CliDM.Get_OpenSQL(QryTableList,_SQL,ErrMsg) then
   begin
     ShowMsg(Self.Handle,'打开表名列表出错:'+ErrMsg,[]);
