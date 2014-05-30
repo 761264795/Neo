@@ -516,6 +516,76 @@ type
     cdsRepairRemarkCFRemark: TWideStringField;
     cdsRepairRemarkCFRepairWOID: TStringField;
     cdsRepairRemarkCFCreateTime: TDateTimeField;
+    Panel4: TPanel;
+    cxPageControl1: TcxPageControl;
+    cxTabSheet1: TcxTabSheet;
+    cxLabel5: TcxLabel;
+    cxLabel15: TcxLabel;
+    cxLabel16: TcxLabel;
+    cxLabel17: TcxLabel;
+    cxLabel18: TcxLabel;
+    cxLabel19: TcxLabel;
+    cxLabel20: TcxLabel;
+    cxLabel21: TcxLabel;
+    cxLabel22: TcxLabel;
+    cxLabel23: TcxLabel;
+    cxLabel24: TcxLabel;
+    cxLabel25: TcxLabel;
+    cxDBButtonEdit1: TcxDBButtonEdit;
+    cxDBButtonEdit2: TcxDBButtonEdit;
+    cxDBButtonEdit3: TcxDBButtonEdit;
+    cxDBButtonEdit4: TcxDBButtonEdit;
+    cxDBButtonEdit5: TcxDBButtonEdit;
+    cxDBTextEdit1: TcxDBTextEdit;
+    cxDBButtonEdit6: TcxDBButtonEdit;
+    cxDBDateEdit1: TcxDBDateEdit;
+    cxLabel26: TcxLabel;
+    cxLabel27: TcxLabel;
+    cxLabel28: TcxLabel;
+    cxDBDateEdit2: TcxDBDateEdit;
+    cxDBMaskEdit1: TcxDBMaskEdit;
+    cxDBDateEdit3: TcxDBDateEdit;
+    cxDBButtonEdit7: TcxDBButtonEdit;
+    cxDBMemo1: TcxDBMemo;
+    cxDBMemo2: TcxDBMemo;
+    cxDBTextEdit2: TcxDBTextEdit;
+    cxTabSheet2: TcxTabSheet;
+    cxLabel29: TcxLabel;
+    cxLabel30: TcxLabel;
+    cxLabel31: TcxLabel;
+    cxLabel32: TcxLabel;
+    cxLabel33: TcxLabel;
+    cxLabel34: TcxLabel;
+    cxLabel35: TcxLabel;
+    cxLabel36: TcxLabel;
+    cxLabel37: TcxLabel;
+    cxDBMemo3: TcxDBMemo;
+    cxMemo1: TcxMemo;
+    cxDBTextEdit3: TcxDBTextEdit;
+    cxDBTextEdit4: TcxDBTextEdit;
+    cxDBTextEdit5: TcxDBTextEdit;
+    cxDBTextEdit6: TcxDBTextEdit;
+    cxDBTextEdit7: TcxDBTextEdit;
+    cxDBLookupComboBox1: TcxDBLookupComboBox;
+    cxDBButtonEdit8: TcxDBButtonEdit;
+    Panel5: TPanel;
+    cxDBComboBox1: TcxDBComboBox;
+    cxDBCheckBox1: TcxDBCheckBox;
+    cxDBTextEdit8: TcxDBTextEdit;
+    cxDBTextEdit9: TcxDBTextEdit;
+    cxLabel38: TcxLabel;
+    cxLabel39: TcxLabel;
+    cxLabel40: TcxLabel;
+    Panel6: TPanel;
+    cxLabel41: TcxLabel;
+    cxComboBox1: TcxComboBox;
+    cxButtonEdit1: TcxButtonEdit;
+    cxButton1: TcxButton;
+    cxButton2: TcxButton;
+    dsSelDetail: TDataSource;
+    dsSelMaster: TDataSource;
+    cdsSelMaster: TClientDataSet;
+    cdsSelDetail: TClientDataSet;
     procedure FormCreate(Sender: TObject);
     procedure actSaveBillExecute(Sender: TObject);
     procedure actDeleteExecute(Sender: TObject);
@@ -611,6 +681,8 @@ type
     function CheckRemoveLine:boolean;
     procedure SaveVehicleMile;
     procedure SaveRemark;
+    function CheckBotpForSaleIssue_Bule:boolean;
+
 
 
   public
@@ -635,7 +707,8 @@ implementation
 {$R *.dfm}
 uses
   FrmCliDM,Pub_Fun,uMaterDataSelectHelper, Math,uRepairManFrm,DateUtils,
-  StrUtils,uUtilsClass,uSelectDataEx,uTransferBillSelDlg,uTransferBillBaseFrm,uRepairWoToSaleIssue;
+  StrUtils,uUtilsClass,uSelectDataEx,uTransferBillSelDlg,uTransferBillBaseFrm,uRepairWoToSaleIssue,
+  uDrpHelperClase;
 procedure TRepairWOEditFrm.FormCreate(Sender: TObject);
 var
   sql,errmsg: string;
@@ -749,7 +822,7 @@ begin
   _cds[3] := cdsDetail;
 
   try
-    if not CliDM.Get_OpenClients_E(BillFID,_cds,OpenTables,ErrMsg) then
+    if not CliDM.Get_OpenClients_E('FID',_cds,OpenTables,ErrMsg) then
     begin
       ShowError(Handle, ErrMsg,[]);
       Abort;
@@ -779,7 +852,21 @@ begin
   end
   else
   begin
+    BillStatus.IsEdit := true;
+    if not (cdsMaster.State in db.dsEditModes) then cdsMaster.Edit;
+    cdsMaster.Post;
+
+    cdsDetail.First;
+    while not cdsDetail.Eof do
+    begin
+      if not (cdsDetail.State in db.dsEditModes) then cdsDetail.Edit;
+      cdsDetail.Post;
+      cdsDetail.Next;
+    end;
+    cdsDetail.First;
+    
     BillStatus.IsEdit := False;
+
   end;
 
   if cdsMaster.FieldByName('FBrandID').AsString <> '' then
@@ -2841,39 +2928,89 @@ var
   transferToBill: TTransferBillBaseFrm;
   cdsSrcs: array of TClientDataSet;
   isOpenDestBill: boolean;
+  cdsSelMaster,cdsSelDetail:TClientDataSet;
+  i: integer;
+
 begin
   inherited;
-  transferBillSelFrm := TTransferBillSelFrm.Create(nil);
-  //根据数据添加相应规则
+  try
+    transferBillSelFrm := TTransferBillSelFrm.Create(nil);
+    if cdsMaster.State in db.dsEditModes then  cdsMaster.Post;
+    if cdsDetail.State in db.dsEditModes then  cdsDetail.Post;
 
-  transferBillSelFrm.AddRule('ToSaleIssue','转销售出库单');
-  //transferBillSelFrm.AddRule('ToAP','转应付单');
-  transferBillSelFrm.AddRule('ToOtherIssue','转其他出库单');
-  transferBillSelFrm.SetDefaultRule('ToAP');
-  isOpenDestBill := true;
-  transferBillSelFrm.ShowRuleFrm;
-  runRuleNumber := transferBillSelFrm.GetBeRunRuleNumber;
-  if runRuleNumber ='ToSaleIssue' then
-  begin
-     transferToBill := nil;
-     transferToBill := TRepairWoToSaleIssueFrm.Create(nil);
-     SetLength(cdsSrcs,2);
-     cdsSrcs[0] := cdsMaster;
-     cdsSrcs[1] := cdsDetail;
 
-  end else if runRuleNumber ='ToAP' then
-  begin
+    //根据数据添加相应规则
 
-  end else if runRuleNumber ='ToOtherIssue' then
-  begin
+    if CheckBotpForSaleIssue_Bule then
+        transferBillSelFrm.AddRule('ToSaleIssue','维修工单->销售出库单');
 
+
+    transferBillSelFrm.AddRule('ToAP','转应付单');
+  //  transferBillSelFrm.AddRule('ToOtherIssue','转其他出库单');
+  //  transferBillSelFrm.SetDefaultRule('ToAP');
+    isOpenDestBill := true;
+    transferBillSelFrm.ShowRuleFrm;
+    runRuleNumber := transferBillSelFrm.GetBeRunRuleNumber;
+    if runRuleNumber ='ToSaleIssue' then
+    begin
+       transferToBill := nil;
+       transferToBill := TRepairWoToSaleIssueFrm.Create(nil);
+       SetLength(cdsSrcs,2);
+       cdsSrcs[0] := cdsSelMaster;
+       cdsSrcs[1] := cdsSelDetail;
+    end else if runRuleNumber ='ToAP' then
+    begin
+        Exit;
+    end else if runRuleNumber ='ToOtherIssue' then
+    begin
+       Exit;
+    end else
+    begin
+      ShowMessage('无符合条件的转单规则！');
+      Exit;
+    end;
+    showmessage(cdsSelMaster.FieldByName('FID').asstring);
+    transferToBill.Transfer(cdsSrcs);
+  finally
+    for i := 0 to length(cdsSrcs) - 1 do
+    begin
+        if cdsSrcs[i] <>nil then
+          cdsSrcs[i].Free;
+    end;
+    if cdsSelMaster <> nil then cdsSelMaster.Free;
+    if cdsSelDetail <> nil then cdsSelDetail.Free;
+    if transferToBill <> nil then transferToBill.Free;
   end;
-  transferToBill.Transfer(cdsSrcs);
-  if isOpenDestBill then
-    transferToBill.OpenDestBillFrm
 
 end;
 
+function TRepairWOEditFrm.CheckBotpForSaleIssue_Bule:boolean;
+var
+  qty,unissueQty: double;
+  isCT,isDel: integer;
+  tType: string;
+begin
+  Result := false;
+  CopyDataset(cdsMaster_Save,cdsSelMaster);
+  CopyDatasetStructure(cdsDetail_Save,cdsSelDetail);
+  cdsDetail_Save.First;
+  while not cdsDetail_Save.Eof do
+  begin
+    qty := cdsDetail_Save.FieldByName('CFQty').AsFloat;
+    unissueQty := cdsDetail_Save.FieldByName('CFUnissueQty').AsFloat;
+    isCT := cdsDetail_Save.FieldByName('CFIsCT').AsInteger;
+    isDel := cdsDetail_Save.FieldByName('CFISDELETE').AsInteger;
+    tType := cdsDetail_Save.FieldByName('CFT').AsString;
+    if (qty > 0) and (unissueQty <> 0) and (isCT = 0) and (isDel = 0) and (tType = 'P') then
+    begin
+      CopyDatasetCurRecord(cdsDetail_Save,cdsSelDetail);
+      Result := true;
+    end;
+
+    cdsDetail_Save.Next;
+  end;
+
+end;
 procedure TRepairWOEditFrm.cdsMasterFCreatorIDChange(Sender: TField);
 var
   sql,errmsg:string;

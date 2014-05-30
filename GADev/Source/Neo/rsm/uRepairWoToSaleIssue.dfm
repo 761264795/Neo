@@ -1,8 +1,9 @@
 inherited RepairWoToSaleIssueFrm: TRepairWoToSaleIssueFrm
-  Left = 458
-  Top = 183
+  Left = 431
+  Top = 386
   Caption = #32500#20462#24037#21333#36716#38144#21806#20986#24211#21333
   OldCreateOrder = True
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   inherited dsDestMaster: TDataSource

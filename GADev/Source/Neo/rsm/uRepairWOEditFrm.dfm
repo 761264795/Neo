@@ -1,6 +1,6 @@
 inherited RepairWOEditFrm: TRepairWOEditFrm
-  Left = 173
-  Top = 56
+  Left = 130
+  Top = 78
   Width = 1232
   Height = 487
   Caption = #32500#20462#24037#21333
@@ -542,6 +542,556 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
         Top = 10
         Caption = #21333#25454#29366#24577
       end
+      object Panel4: TPanel
+        Left = 0
+        Top = 0
+        Width = 1214
+        Height = 212
+        Align = alTop
+        TabOrder = 7
+        object cxPageControl1: TcxPageControl
+          Left = 1
+          Top = 42
+          Width = 1212
+          Height = 147
+          ActivePage = cxTabSheet1
+          Align = alClient
+          LookAndFeel.Kind = lfUltraFlat
+          ShowFrame = True
+          Style = 10
+          TabOrder = 0
+          ClientRectBottom = 146
+          ClientRectLeft = 1
+          ClientRectRight = 1211
+          ClientRectTop = 18
+          object cxTabSheet1: TcxTabSheet
+            Caption = #19994#21153#20449#24687
+            ImageIndex = 0
+            object cxLabel5: TcxLabel
+              Left = 10
+              Top = 9
+              Caption = #36710#29260#21495
+            end
+            object cxLabel15: TcxLabel
+              Left = 326
+              Top = 9
+              Caption = #24213#30424#21495
+            end
+            object cxLabel16: TcxLabel
+              Left = 665
+              Top = 9
+              Caption = #36710#22411
+            end
+            object cxLabel17: TcxLabel
+              Left = 1023
+              Top = 9
+              Caption = #19994#21153#31867#22411
+            end
+            object cxLabel18: TcxLabel
+              Left = 10
+              Top = 33
+              Caption = #26381#21153#39038#38382
+            end
+            object cxLabel19: TcxLabel
+              Left = 326
+              Top = 33
+              Caption = #36865#20462#20154
+            end
+            object cxLabel20: TcxLabel
+              Left = 665
+              Top = 33
+              Caption = #36865#20462#30005#35805
+            end
+            object cxLabel21: TcxLabel
+              Left = 1023
+              Top = 33
+              Caption = #36134#25143#20195#30721
+            end
+            object cxLabel22: TcxLabel
+              Left = 10
+              Top = 57
+              Caption = #36827#21378#26102#38388
+            end
+            object cxLabel23: TcxLabel
+              Left = 326
+              Top = 57
+              Caption = #39044#35745#20986#21378#26102#38388
+            end
+            object cxLabel24: TcxLabel
+              Left = 665
+              Top = 57
+              Caption = #36827#21378#34892#39542#37324#31243#25968
+            end
+            object cxLabel25: TcxLabel
+              Left = 10
+              Top = 81
+              Caption = #39318#30331#26085#26399
+            end
+            object cxDBButtonEdit1: TcxDBButtonEdit
+              Left = 74
+              Top = 5
+              DataBinding.DataField = 'FPlateNum'
+              DataBinding.DataSource = dsMaster
+              Properties.Buttons = <
+                item
+                  Default = True
+                  Kind = bkEllipsis
+                end>
+              Properties.ClickKey = 118
+              Properties.OnButtonClick = cxdbEditPlateNumPropertiesButtonClick
+              Style.LookAndFeel.Kind = lfUltraFlat
+              StyleDisabled.LookAndFeel.Kind = lfUltraFlat
+              StyleFocused.LookAndFeel.Kind = lfUltraFlat
+              StyleHot.LookAndFeel.Kind = lfUltraFlat
+              TabOrder = 12
+              OnKeyPress = cxdbEditPlateNumKeyPress
+              Width = 200
+            end
+            object cxDBButtonEdit2: TcxDBButtonEdit
+              Left = 413
+              Top = 5
+              DataBinding.DataField = 'FVin'
+              DataBinding.DataSource = dsMaster
+              Properties.Buttons = <
+                item
+                  Default = True
+                  Kind = bkEllipsis
+                end>
+              Properties.OnButtonClick = cxdbEditPlateNumPropertiesButtonClick
+              TabOrder = 13
+              OnKeyPress = cxdbEditVinKeyPress
+              Width = 200
+            end
+            object cxDBButtonEdit3: TcxDBButtonEdit
+              Left = 1088
+              Top = 5
+              DataBinding.DataField = 'repairBizTypeName'
+              DataBinding.DataSource = dsMaster
+              Properties.Buttons = <
+                item
+                  Default = True
+                  Kind = bkEllipsis
+                end>
+              Properties.OnButtonClick = cxdbEditBizTypePropertiesButtonClick
+              TabOrder = 14
+              OnKeyPress = cxdbEditBizTypeKeyPress
+              Width = 200
+            end
+            object cxDBButtonEdit4: TcxDBButtonEdit
+              Left = 74
+              Top = 29
+              DataBinding.DataField = 'saName'
+              DataBinding.DataSource = dsMaster
+              Properties.Buttons = <
+                item
+                  Default = True
+                  Kind = bkEllipsis
+                end>
+              Properties.OnButtonClick = cxdbEditSAPropertiesButtonClick
+              TabOrder = 15
+              OnKeyPress = cxdbEditSAKeyPress
+              Width = 200
+            end
+            object cxDBButtonEdit5: TcxDBButtonEdit
+              Left = 413
+              Top = 29
+              DataBinding.DataField = 'FRepairSender'
+              DataBinding.DataSource = dsMaster
+              Properties.Buttons = <
+                item
+                  Default = True
+                  Kind = bkEllipsis
+                end>
+              Properties.OnButtonClick = cxdbEditSenderPropertiesButtonClick
+              TabOrder = 16
+              Width = 200
+            end
+            object cxDBTextEdit1: TcxDBTextEdit
+              Left = 771
+              Top = 29
+              DataBinding.DataField = 'FTel'
+              DataBinding.DataSource = dsMaster
+              TabOrder = 17
+              Width = 200
+            end
+            object cxDBButtonEdit6: TcxDBButtonEdit
+              Left = 1088
+              Top = 29
+              DataBinding.DataField = 'customerAccountName'
+              DataBinding.DataSource = dsMaster
+              Properties.Buttons = <
+                item
+                  Default = True
+                  Kind = bkEllipsis
+                end>
+              Properties.OnButtonClick = cxdbEditAccountCodePropertiesButtonClick
+              TabOrder = 18
+              OnKeyPress = cxdbEditAccountCodeKeyPress
+              Width = 200
+            end
+            object cxDBDateEdit1: TcxDBDateEdit
+              Left = 74
+              Top = 53
+              DataBinding.DataField = 'FComeTime'
+              DataBinding.DataSource = dsMaster
+              Properties.DateButtons = [btnClear, btnNow, btnToday]
+              Properties.Kind = ckDateTime
+              TabOrder = 19
+              Width = 200
+            end
+            object cxLabel26: TcxLabel
+              Left = 326
+              Top = 81
+              Caption = #19994#21153#21592
+            end
+            object cxLabel27: TcxLabel
+              Left = 665
+              Top = 81
+              Caption = #22791#27880
+            end
+            object cxLabel28: TcxLabel
+              Left = 1024
+              Top = 81
+              Caption = #23458#25143#20449#24687
+            end
+            object cxDBDateEdit2: TcxDBDateEdit
+              Left = 413
+              Top = 53
+              DataBinding.DataField = 'FIntendDeliveryTime'
+              DataBinding.DataSource = dsMaster
+              Properties.DateButtons = [btnClear, btnNow, btnToday]
+              Properties.Kind = ckDateTime
+              TabOrder = 23
+              Width = 200
+            end
+            object cxDBMaskEdit1: TcxDBMaskEdit
+              Left = 771
+              Top = 53
+              DataBinding.DataField = 'FMile'
+              DataBinding.DataSource = dsMaster
+              TabOrder = 24
+              Width = 200
+            end
+            object cxDBDateEdit3: TcxDBDateEdit
+              Left = 74
+              Top = 77
+              DataBinding.DataField = 'CFFirstBookInDate'
+              DataBinding.DataSource = dsMaster
+              TabOrder = 25
+              Width = 200
+            end
+            object cxDBButtonEdit7: TcxDBButtonEdit
+              Left = 413
+              Top = 77
+              DataBinding.DataField = 'bizPersonName'
+              DataBinding.DataSource = dsMaster
+              Properties.Buttons = <
+                item
+                  Default = True
+                  Kind = bkEllipsis
+                end>
+              Properties.OnButtonClick = cxdbEditBizPersonPropertiesButtonClick
+              TabOrder = 26
+              OnKeyPress = cxdbEditBizPersonKeyPress
+              Width = 200
+            end
+            object cxDBMemo1: TcxDBMemo
+              Left = 771
+              Top = 77
+              DataBinding.DataField = 'CFWipRemark'
+              DataBinding.DataSource = dsMaster
+              TabOrder = 27
+              Height = 20
+              Width = 200
+            end
+            object cxDBMemo2: TcxDBMemo
+              Left = 1088
+              Top = 52
+              DataBinding.DataField = 'CFCustomerInfo'
+              DataBinding.DataSource = dsMaster
+              TabOrder = 28
+              Height = 45
+              Width = 200
+            end
+            object cxDBTextEdit2: TcxDBTextEdit
+              Left = 771
+              Top = 5
+              DataBinding.DataField = 'modelName'
+              DataBinding.DataSource = dsMaster
+              Properties.ReadOnly = True
+              TabOrder = 29
+              Width = 200
+            end
+          end
+          object cxTabSheet2: TcxTabSheet
+            Caption = #20854#20182#20449#24687
+            ImageIndex = 1
+            object cxLabel29: TcxLabel
+              Left = 10
+              Top = 10
+              Caption = #21457#21160#26426#21495
+            end
+            object cxLabel30: TcxLabel
+              Left = 10
+              Top = 34
+              Caption = #36710#31995
+            end
+            object cxLabel31: TcxLabel
+              Left = 386
+              Top = 10
+              Caption = #36710#20027
+            end
+            object cxLabel32: TcxLabel
+              Left = 690
+              Top = 10
+              Caption = #21697#29260
+            end
+            object cxLabel33: TcxLabel
+              Left = 386
+              Top = 34
+              Caption = #20844#21496
+            end
+            object cxLabel34: TcxLabel
+              Left = 10
+              Top = 81
+              Caption = #21382#21490#22791#27880
+            end
+            object cxLabel35: TcxLabel
+              Left = 386
+              Top = 81
+              Caption = #32500#20462#22791#27880
+            end
+            object cxLabel36: TcxLabel
+              Left = 690
+              Top = 34
+              Caption = #32500#20462#26041#24335
+            end
+            object cxLabel37: TcxLabel
+              Left = 690
+              Top = 58
+              Caption = #32500#20462#22806#21253#20844#21496
+            end
+            object cxDBMemo3: TcxDBMemo
+              Left = 445
+              Top = 54
+              DataBinding.DataField = 'FRemark'
+              DataBinding.DataSource = dsMaster
+              TabOrder = 9
+              Height = 43
+              Width = 200
+            end
+            object cxMemo1: TcxMemo
+              Left = 71
+              Top = 54
+              Properties.ReadOnly = True
+              TabOrder = 10
+              Height = 43
+              Width = 200
+            end
+            object cxDBTextEdit3: TcxDBTextEdit
+              Left = 71
+              Top = 6
+              DataBinding.DataField = 'FEngineNum'
+              DataBinding.DataSource = dsMaster
+              Properties.ReadOnly = True
+              TabOrder = 11
+              Width = 200
+            end
+            object cxDBTextEdit4: TcxDBTextEdit
+              Left = 445
+              Top = 6
+              DataBinding.DataField = 'customerName'
+              DataBinding.DataSource = dsMaster
+              Properties.ReadOnly = True
+              TabOrder = 12
+              Width = 200
+            end
+            object cxDBTextEdit5: TcxDBTextEdit
+              Left = 773
+              Top = 6
+              DataBinding.DataField = 'brandName'
+              DataBinding.DataSource = dsMaster
+              Properties.ReadOnly = True
+              TabOrder = 13
+              Width = 200
+            end
+            object cxDBTextEdit6: TcxDBTextEdit
+              Left = 71
+              Top = 30
+              DataBinding.DataField = 'seriesName'
+              DataBinding.DataSource = dsMaster
+              Properties.ReadOnly = True
+              TabOrder = 14
+              Width = 200
+            end
+            object cxDBTextEdit7: TcxDBTextEdit
+              Left = 445
+              Top = 30
+              DataBinding.DataField = 'companyName'
+              DataBinding.DataSource = dsMaster
+              Properties.ReadOnly = True
+              TabOrder = 15
+              Width = 200
+            end
+            object cxDBLookupComboBox1: TcxDBLookupComboBox
+              Left = 773
+              Top = 30
+              DataBinding.DataField = 'FRepairWay'
+              DataBinding.DataSource = dsMaster
+              Properties.KeyFieldNames = 'FNumber'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'FName'
+                end>
+              Properties.ListOptions.ShowHeader = False
+              Properties.ListSource = dsRepairWay
+              Properties.OnChange = cxdblkpcmbxRepairTypePropertiesChange
+              TabOrder = 16
+              Width = 200
+            end
+            object cxDBButtonEdit8: TcxDBButtonEdit
+              Left = 773
+              Top = 54
+              DataBinding.DataField = 'supplierName'
+              DataBinding.DataSource = dsMaster
+              Properties.Buttons = <
+                item
+                  Default = True
+                  Kind = bkEllipsis
+                end>
+              Properties.OnButtonClick = cxdbEditSupplierPropertiesButtonClick
+              TabOrder = 17
+              Width = 200
+            end
+          end
+        end
+        object Panel5: TPanel
+          Left = 1
+          Top = 1
+          Width = 1212
+          Height = 41
+          Align = alTop
+          BevelOuter = bvNone
+          TabOrder = 1
+          object cxDBComboBox1: TcxDBComboBox
+            Left = 787
+            Top = 6
+            DataBinding.DataField = 'gaBillStatusName'
+            DataBinding.DataSource = dsMaster
+            Properties.MaxLength = 0
+            Properties.ReadOnly = True
+            TabOrder = 0
+            Width = 200
+          end
+          object cxDBCheckBox1: TcxDBCheckBox
+            Left = 1131
+            Top = 5
+            Caption = #32467#31639#25171#21360
+            DataBinding.DataField = 'CFIsPrintedSettle'
+            DataBinding.DataSource = dsMaster
+            Properties.NullStyle = nssUnchecked
+            Properties.ReadOnly = True
+            Properties.ValueChecked = 1
+            Properties.ValueUnchecked = 0
+            TabOrder = 1
+            Width = 121
+          end
+          object cxDBTextEdit8: TcxDBTextEdit
+            Left = 100
+            Top = 6
+            DataBinding.DataField = 'FNumber'
+            DataBinding.DataSource = dsMaster
+            Properties.ReadOnly = False
+            TabOrder = 2
+            Width = 200
+          end
+          object cxDBTextEdit9: TcxDBTextEdit
+            Left = 444
+            Top = 6
+            DataBinding.DataField = 'FCompanyNumber'
+            DataBinding.DataSource = dsMaster
+            Properties.ReadOnly = True
+            TabOrder = 3
+            Width = 200
+          end
+          object cxLabel38: TcxLabel
+            Left = 28
+            Top = 10
+            Caption = #32500#20462#24037#21333#21495
+          end
+          object cxLabel39: TcxLabel
+            Left = 375
+            Top = 10
+            Caption = 'DMS WIP'#21495
+          end
+          object cxLabel40: TcxLabel
+            Left = 731
+            Top = 10
+            Caption = #21333#25454#29366#24577
+          end
+        end
+        object Panel6: TPanel
+          Left = 1
+          Top = 189
+          Width = 1212
+          Height = 22
+          Align = alBottom
+          BevelOuter = bvNone
+          TabOrder = 2
+          DesignSize = (
+            1212
+            22)
+          object cxLabel41: TcxLabel
+            Left = 17
+            Top = 2
+            Caption = 'T'
+          end
+          object cxComboBox1: TcxComboBox
+            Left = 28
+            Top = 1
+            Properties.DropDownListStyle = lsEditFixedList
+            Properties.Items.Strings = (
+              'P'
+              'L')
+            Properties.ReadOnly = False
+            Properties.OnChange = cxComboxTPropertiesChange
+            TabOrder = 1
+            Text = 'P'
+            Width = 33
+          end
+          object cxButtonEdit1: TcxButtonEdit
+            Left = 69
+            Top = 1
+            Properties.Buttons = <
+              item
+                Default = True
+                Kind = bkEllipsis
+              end>
+            Properties.OnButtonClick = cxEditItemSPPropertiesButtonClick
+            TabOrder = 2
+            Width = 244
+          end
+          object cxButton1: TcxButton
+            Left = 1080
+            Top = 2
+            Width = 65
+            Height = 20
+            Anchors = [akTop, akRight]
+            Caption = #34892#20998#25285
+            TabOrder = 3
+          end
+          object cxButton2: TcxButton
+            Left = 1146
+            Top = 2
+            Width = 61
+            Height = 20
+            Anchors = [akTop, akRight]
+            Caption = #21024#38500#34892
+            TabOrder = 4
+            OnClick = cxBtnRemoveLineClick
+          end
+        end
+      end
     end
     object Panel3: TPanel
       Left = 1
@@ -989,10 +1539,10 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
         end>
     end
     inherited dxBarManager1Bar1: TdxBar
-      FloatLeft = 1290
-      FloatTop = 162
+      FloatLeft = 872
+      FloatTop = 358
       FloatClientWidth = 57
-      FloatClientHeight = 92
+      FloatClientHeight = 69
       ItemLinks = <
         item
           Visible = True
@@ -1919,7 +2469,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
     Aggregates = <>
     Params = <>
     Left = 288
-    Top = 56
+    Top = 64
     object cdsMaster_SaveFCreatorID: TStringField
       FieldName = 'FCreatorID'
       Size = 44
@@ -2261,14 +2811,14 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
   end
   object dsWarrRemind: TDataSource
     DataSet = cdsWarrRemind
-    Left = 432
+    Left = 504
     Top = 80
   end
   object cdsWarrRemind: TClientDataSet
     Aggregates = <>
     Params = <>
     OnNewRecord = cdsWarrRemindNewRecord
-    Left = 480
+    Left = 552
     Top = 80
     object cdsWarrRemindFCreatorID: TStringField
       FieldName = 'FCreatorID'
@@ -2393,5 +2943,27 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
     DataSet = cdsRepairRemark
     Left = 896
     Top = 64
+  end
+  object dsSelDetail: TDataSource
+    DataSet = cdsSelDetail
+    Left = 144
+    Top = 296
+  end
+  object dsSelMaster: TDataSource
+    DataSet = cdsSelMaster
+    Left = 352
+    Top = 72
+  end
+  object cdsSelMaster: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 408
+    Top = 80
+  end
+  object cdsSelDetail: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 200
+    Top = 280
   end
 end
