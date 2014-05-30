@@ -108,10 +108,10 @@ begin
       if not CliDM.Get_ExecSQL(Format('Insert into CT_BD_ReportList (FID,FReportNumber,FReportName) Values(%s,%s,%s)',
           [cdsBillType.FieldByName('FID').AsString,
            cdsBillType.FieldByName('FReportNumber').AsString,
-           cdsBillType.FieldByName('FReportName').AsString), ErrMsg) then
+           cdsBillType.FieldByName('FReportName').AsString]), ErrMsg) then
       begin
         cdsBillType.Delete;
-        ShowMsg(Self, ErrMsg,[]);
+        ShowMsg(Self.Handle, ErrMsg,[]);
       end;
 
     end;
@@ -127,7 +127,7 @@ begin
   begin
     FID := cdsBillType.FieldByName('FID').AsString;
     if not CliDM.Get_ExecSQL('Delete from CT_BD_ReportList Where FID = ' + QuotedStr(FID), ErrMsg) then
-      ShowMsg(Self, ErrMsg, [])
+      ShowMsg(Self.Handle, ErrMsg, [])
     else
     begin
       CliDM.Get_ExecSQL('Delete from T_BD_BillQueryFieldList A ' +
