@@ -21,6 +21,7 @@ type
       procedure Transfer(cdsSrcs: array of TClientDataSet);virtual;abstract;
       procedure OpenDestBillFrm;virtual;abstract;
       procedure SaveDest(var cdsDests: array of TClientDataSet;destTableNames: array of string);
+      function IsOpenDestBill:boolean;virtual;
   end;
 
 var
@@ -67,5 +68,9 @@ begin
   end;
 end;
 
+function TTransferBillBaseFrm.IsOpenDestBill:boolean;
+begin
+  Result := true;
+end;
 
 end.
