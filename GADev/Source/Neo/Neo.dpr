@@ -318,7 +318,6 @@ begin
     Application.Title := 'GA集团ERP系统';
   Application.CreateForm(TCliDM, CliDM);
   Application.CreateForm(TFMCliMain, FMCliMain);
-  Application.CreateForm(TReportQueryFrm, ReportQueryFrm);
   Application.Run;
   end;
 end.
