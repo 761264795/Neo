@@ -88,6 +88,8 @@ interface
   procedure IniBIllCONSTInfo;
   procedure IniSysParamInfo(var ErrMsg :string);//初始化系统参数
   procedure CopyDataset(src,dec:TClientDataSet);
+  procedure CopyDatasetStructure(src,dec:TClientDataSet);
+  procedure CopyDatasetCurRecord(src,dec:TClientDataSet);
   //-----------------多线程方法-----------------------------
   Procedure Thread_OpenSQL(_PHandle: LongWord;var cdsPub: TClientDataSet;SQL:String;RstNumber:integer);
   Procedure Thread_ExecSQL(_PHandle: LongWord;SQL:String;RstNumber:integer);
@@ -723,17 +725,21 @@ procedure CopyDataset(src,dec:TClientDataSet);
 var i:Integer;
     field:TField;
 begin
-  dec.Fields.Clear;
-  for i:=0 to src.FieldCount-1 do
+  if dec.FieldCount = 0 then
   begin
-    with dec.FieldDefs.AddFieldDef do
+    dec.Fields.Clear;
+    for i:=0 to src.FieldCount-1 do
     begin
-      DataType := src.Fields[i].DataType;
-      size     := src.Fields[i].Size;
-      Name     := src.Fields[i].FieldName;
+      with dec.FieldDefs.AddFieldDef do
+      begin
+        DataType := src.Fields[i].DataType;
+        size     := src.Fields[i].Size;
+        Name     := src.Fields[i].FieldName;
+      end;
     end;
+    dec.CreateDataSet;
   end;
-  dec.CreateDataSet;
+  dec.EmptyDataSet;
   src.First;
   while not src.Eof do
   begin
@@ -746,6 +752,42 @@ begin
     src.Next;
   end;
 end;
+
+procedure CopyDatasetStructure(src,dec:TClientDataSet);
+var i:Integer;
+    field:TField;
+begin
+  if dec.FieldCount = 0 then
+  begin
+    dec.Fields.Clear;
+    for i:=0 to src.FieldCount-1 do
+    begin
+      with dec.FieldDefs.AddFieldDef do
+      begin
+        DataType := src.Fields[i].DataType;
+        size     := src.Fields[i].Size;
+        Name     := src.Fields[i].FieldName;
+      end;
+    end;
+    dec.CreateDataSet;
+  end;
+  dec.EmptyDataSet;
+end;
+procedure CopyDatasetCurRecord(src,dec:TClientDataSet);
+var
+  i: integer;
+begin
+  if not src.Eof then
+  begin
+    dec.Append;
+    for i := 0 to src.FieldCount -1 do
+    begin
+      dec.FieldByName(src.Fields[i].FieldName).Value := src.Fields[i].Value;
+    end;
+    dec.Post;
+  end;
+end;
+
 procedure Get_UserBizOrg(sTable : string;var ErrMsg:string;cds:TClientDataSet;IsCloseConn :Boolean=True);
 var
   strSql : string;
