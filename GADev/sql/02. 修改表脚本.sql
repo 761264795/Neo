@@ -226,3 +226,9 @@ if not exists(select * from syscolumns where id=object_id('T_BD_BILLQUERYFINDLIS
 GO
 if not exists(select * from syscolumns where id=object_id('T_BD_Customer') and name='FhelpCode') 
    alter table T_BD_Customer add FhelpCode varchar(40) COLLATE Chinese_PRC_CS_AS null
+
+if not exists(select * from syscolumns where id=object_id('T_BD_BILLQUERY') and name='FProcName') 
+	ALTER TABLE dbo.T_BD_BILLQUERY ADD
+		FProcName nvarchar(80) NULL,
+		FIsReport bit NULL
+GO

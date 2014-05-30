@@ -329,6 +329,8 @@ create table CT_BD_LockBill
   FIslock       numeric(2) default 0,
   constraint PK_LockBill primary key (FID)
 )
+GO
+
 
 create table GOLAB_ENUM_VIEW (
   FID           VARCHAR(44) COLLATE Chinese_PRC_CS_AS,
@@ -338,3 +340,15 @@ create table GOLAB_ENUM_VIEW (
   FALIAS_NAME   VARCHAR(50) COLLATE Chinese_PRC_CS_AS,
   FITEM_VALUE   VARCHAR(50) COLLATE Chinese_PRC_CS_AS
 )
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'CT_BD_ReportList') and type='U')
+	CREATE TABLE [dbo].[CT_BD_ReportList](
+		[FID] [varchar](44) NOT NULL,
+		[FReportNumber] [varchar](80) NULL,
+		[FReportName] [nvarchar](100) NULL,
+	 CONSTRAINT [PK_CT_BD_ReportList] PRIMARY KEY CLUSTERED 
+	(
+		[FID] ASC
+	)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+GO
