@@ -303,7 +303,8 @@ uses
   uDOtherInWareshListFrm in 'scm\uDOtherInWareshListFrm.pas' {DOtherInWareshListFrm},
   uDMoveInWareshListFrm in 'scm\uDMoveInWareshListFrm.pas' {DMoveInwareshListFrm},
   uDMoveIssueListFrm in 'scm\uDMoveIssueListFrm.pas' {DMoveIssueListFrm},
-  uReportQueryFrm in 'Base\uReportQueryFrm.pas' {ReportQueryFrm};
+  uReportQueryFrm in 'Base\uReportQueryFrm.pas' {ReportQueryFrm},
+  uAddNewRpt in 'Base\uAddNewRpt.pas' {frmAddNewRpt};
 
 {$R *.res}
 {$I- } //不产生I/O异常类而是把错误代码返回到预定义变量IOResult中
