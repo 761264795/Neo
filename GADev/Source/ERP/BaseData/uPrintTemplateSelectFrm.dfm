@@ -11,8 +11,8 @@ inherited PrintTemplateSelectFrm: TPrintTemplateSelectFrm
   object right_P: TPanel [0]
     Left = 0
     Top = 0
-    Width = 787
-    Height = 456
+    Width = 795
+    Height = 463
     Align = alClient
     BevelOuter = bvNone
     Color = 16511980
@@ -20,16 +20,16 @@ inherited PrintTemplateSelectFrm: TPrintTemplateSelectFrm
     object Panel7: TPanel
       Left = 0
       Top = 25
-      Width = 787
-      Height = 431
+      Width = 795
+      Height = 438
       Align = alClient
       Caption = 'Panel7'
       TabOrder = 1
       object cxGrid3: TcxGrid
         Left = 1
         Top = 30
-        Width = 785
-        Height = 361
+        Width = 793
+        Height = 368
         Align = alClient
         TabOrder = 1
         LookAndFeel.Kind = lfOffice11
@@ -59,16 +59,18 @@ inherited PrintTemplateSelectFrm: TPrintTemplateSelectFrm
             Width = 120
           end
           object cxgridMaterListFSTATE: TcxGridDBColumn
+            Caption = #29366#24577' '
             DataBinding.FieldName = 'FSTATE'
             Options.Editing = False
             Width = 66
           end
           object cxgridMaterListFNAME_L2: TcxGridDBColumn
+            Caption = #27169#26495#25991#20214#21517#31216' '
             DataBinding.FieldName = 'FNAME_L2'
             Width = 180
           end
           object cxgridMaterListFFILEExt: TcxGridDBColumn
-            Caption = #27169#26495#31867#22411
+            Caption = #27169#26495#31867#22411' '
             DataBinding.FieldName = 'FFILEExt'
             PropertiesClassName = 'TcxComboBoxProperties'
             Properties.DropDownListStyle = lsFixedList
@@ -79,12 +81,13 @@ inherited PrintTemplateSelectFrm: TPrintTemplateSelectFrm
             Width = 70
           end
           object cxgridMaterListFileDec: TcxGridDBColumn
-            Caption = #27169#26495#31867#22411#35828#26126
+            Caption = #27169#26495#31867#22411#35828#26126' '
             DataBinding.FieldName = 'FileDec'
             Options.Editing = False
             Width = 141
           end
           object cxgridMaterListFDESCRIPTION_L2: TcxGridDBColumn
+            Caption = #22791#27880' '
             DataBinding.FieldName = 'FDESCRIPTION_L2'
             Width = 120
           end
@@ -95,11 +98,13 @@ inherited PrintTemplateSelectFrm: TPrintTemplateSelectFrm
             Width = 120
           end
           object cxgridMaterListctName: TcxGridDBColumn
+            Caption = #21019#24314#20154' '
             DataBinding.FieldName = 'ctName'
             Options.Editing = False
             Width = 80
           end
           object cxgridMaterListFCREATETIME: TcxGridDBColumn
+            Caption = #21019#24314#26102#38388' '
             DataBinding.FieldName = 'FCREATETIME'
             Options.Editing = False
             Width = 83
@@ -111,11 +116,13 @@ inherited PrintTemplateSelectFrm: TPrintTemplateSelectFrm
             Width = 120
           end
           object cxgridMaterListalName: TcxGridDBColumn
+            Caption = #26368#21518#20462#25913#20154' '
             DataBinding.FieldName = 'alName'
             Options.Editing = False
             Width = 120
           end
           object cxgridMaterListFLASTUPDATETIME: TcxGridDBColumn
+            Caption = #26368#21518#20462#25913#26102#38388' '
             DataBinding.FieldName = 'FLASTUPDATETIME'
             Options.Editing = False
             Width = 120
@@ -128,7 +135,7 @@ inherited PrintTemplateSelectFrm: TPrintTemplateSelectFrm
       object Panel1: TPanel
         Left = 1
         Top = 1
-        Width = 785
+        Width = 793
         Height = 29
         Align = alTop
         BevelOuter = bvNone
@@ -175,15 +182,15 @@ inherited PrintTemplateSelectFrm: TPrintTemplateSelectFrm
       end
       object Panel2: TPanel
         Left = 1
-        Top = 391
-        Width = 785
+        Top = 398
+        Width = 793
         Height = 39
         Align = alBottom
         BevelOuter = bvNone
         Color = 16511980
         TabOrder = 2
         DesignSize = (
-          785
+          793
           39)
         object lb_Hide: TLabel
           Left = 7
@@ -217,7 +224,7 @@ inherited PrintTemplateSelectFrm: TPrintTemplateSelectFrm
     object Panel8: TPanel
       Left = 0
       Top = 0
-      Width = 787
+      Width = 795
       Height = 25
       Align = alTop
       BevelOuter = bvNone
@@ -225,7 +232,7 @@ inherited PrintTemplateSelectFrm: TPrintTemplateSelectFrm
       object Image2: TImage
         Left = 0
         Top = 0
-        Width = 787
+        Width = 795
         Height = 25
         Align = alClient
         Stretch = True
@@ -722,45 +729,6 @@ inherited PrintTemplateSelectFrm: TPrintTemplateSelectFrm
     OnNewRecord = cdsMaterNewRecord
     Left = 416
     Top = 148
-    object cdsMaterFID: TWideStringField
-      FieldName = 'FID'
-      Size = 44
-    end
-    object cdsMaterFBILLTYPEID: TWideStringField
-      FieldName = 'FBILLTYPEID'
-      Size = 44
-    end
-    object cdsMaterFNAME_L2: TWideStringField
-      DisplayLabel = #27169#26495#25991#20214#21517#31216
-      FieldName = 'FNAME_L2'
-      Size = 510
-    end
-    object cdsMaterFDESCRIPTION_L2: TWideStringField
-      DisplayLabel = #22791#27880
-      FieldName = 'FDESCRIPTION_L2'
-      Size = 510
-    end
-    object cdsMaterFSTATE: TIntegerField
-      DisplayLabel = #29366#24577
-      FieldName = 'FSTATE'
-      OnGetText = cdsMaterFSTATEGetText
-    end
-    object cdsMaterFCREATORID: TWideStringField
-      FieldName = 'FCREATORID'
-      Size = 44
-    end
-    object cdsMaterFCREATETIME: TDateTimeField
-      DisplayLabel = #21019#24314#26102#38388
-      FieldName = 'FCREATETIME'
-    end
-    object cdsMaterFLASTUPDATEUSERID: TWideStringField
-      FieldName = 'FLASTUPDATEUSERID'
-      Size = 44
-    end
-    object cdsMaterFLASTUPDATETIME: TDateTimeField
-      DisplayLabel = #26368#21518#20462#25913#26102#38388
-      FieldName = 'FLASTUPDATETIME'
-    end
     object cdsMaterctName: TStringField
       DisplayLabel = #21019#24314#20154
       FieldKind = fkCalculated
@@ -775,17 +743,49 @@ inherited PrintTemplateSelectFrm: TPrintTemplateSelectFrm
       Size = 80
       Calculated = True
     end
-    object cdsMaterFFILEExt: TWideStringField
-      DisplayLabel = #25991#20214#25193#23637#21517
-      FieldName = 'FFILEExt'
-      Size = 80
-    end
     object cdsMaterFileDec: TStringField
       DisplayLabel = #25253#34920#31867#22411#35828#26126
       FieldKind = fkCalculated
       FieldName = 'FileDec'
       Size = 50
       Calculated = True
+    end
+    object cdsMaterFID: TWideStringField
+      FieldName = 'FID'
+      Size = 44
+    end
+    object cdsMaterFBillTypeID: TWideStringField
+      FieldName = 'FBillTypeID'
+      Size = 44
+    end
+    object cdsMaterFNAME_L2: TMemoField
+      FieldName = 'FNAME_L2'
+      BlobType = ftMemo
+    end
+    object cdsMaterFDESCRIPTION_L2: TMemoField
+      FieldName = 'FDESCRIPTION_L2'
+      BlobType = ftMemo
+    end
+    object cdsMaterFState: TIntegerField
+      FieldName = 'FState'
+    end
+    object cdsMaterFCREATORID: TWideStringField
+      FieldName = 'FCREATORID'
+      Size = 44
+    end
+    object cdsMaterFCREATETIME: TDateTimeField
+      FieldName = 'FCREATETIME'
+    end
+    object cdsMaterFLASTUPDATEUSERID: TWideStringField
+      FieldName = 'FLASTUPDATEUSERID'
+      Size = 44
+    end
+    object cdsMaterFLASTUPDATETIME: TDateTimeField
+      FieldName = 'FLASTUPDATETIME'
+    end
+    object cdsMaterFFILEExt: TWideStringField
+      FieldName = 'FFILEExt'
+      Size = 100
     end
   end
   object cdsPrint: TClientDataSet
@@ -799,32 +799,5 @@ inherited PrintTemplateSelectFrm: TPrintTemplateSelectFrm
     Params = <>
     Left = 64
     Top = 316
-    object cdsBillTypeFID: TWideStringField
-      FieldName = 'FID'
-      Size = 44
-    end
-    object cdsBillTypeFNUMBER: TWideStringField
-      DisplayLabel = #31867#22411#32534#21495
-      FieldName = 'Fnumber'
-      Size = 80
-    end
-    object cdsBillTypeFNAME_L2: TWideStringField
-      DisplayLabel = #21333#25454#31867#22411
-      FieldName = 'FNAME_L2'
-      Size = 510
-    end
-    object cdsBillTypeFBOSTYPE: TWideStringField
-      DisplayLabel = #21333#25454#26631#35782
-      FieldName = 'FBOSTYPE'
-      Size = 8
-    end
-    object cdsBillTypeFHeadtable: TWideStringField
-      FieldName = 'FHeadtable'
-      Size = 150
-    end
-    object cdsBillTypefentrytable: TWideStringField
-      FieldName = 'fentrytable'
-      Size = 100
-    end
   end
 end

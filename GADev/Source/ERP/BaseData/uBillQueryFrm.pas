@@ -155,10 +155,6 @@ type
     cdsChart: TClientDataSet;
     SpeedButton6: TSpeedButton;
     cxFiledListColumnFisPyFilter: TcxGridDBColumn;
-    cdsBillTypeFID: TStringField;
-    cdsBillTypefnumber: TWideStringField;
-    cdsBillTypefname_l2: TWideStringField;
-    cdsBillTypefbostype: TStringField;
     cdsMaterAlName: TStringField;
     cdsMaterCtName: TStringField;
     cdsMaterFID: TWideStringField;
@@ -248,11 +244,13 @@ type
     { Private declarations }
     spTem : TSpeedButton;
     Focused_Field :string;
+  protected
+    function GetIsReport: Boolean; virtual;
   public
     { Public declarations }
     function OpenData(FID:String):Boolean;
     function ST_save:Boolean;
-    function GetFID:String;
+    function GetFID:String;virtual;
     function CHK_Data:Boolean;
     procedure setChartData;
     procedure UpdateSEQ;
@@ -275,7 +273,10 @@ begin
   try
     cxBillType.OnFocusedRecordChanged := nil;
     if not CliDM.ConnectSckCon(ErrMsg)  then Exit;
-    _sql := 'select FID,fnumber,fname_l2,fbostype from T_SCM_BILLTYPE order by fnumber';
+    if GetIsReport then
+      _sql := 'Select FID,FNumber,FName from CT_BD_ReportList Order by FNumber'
+    else
+      _sql := 'select FID,fnumber,fname_l2,fbostype from T_SCM_BILLTYPE order by fnumber';
     if not CliDM.Get_OpenSQL(cdsBilltype,_sql,ErrMsg,False) then
     begin
       ShowMsg(self.Handle,'打开单据类型表出错:'+ErrMsg,[]);
@@ -349,7 +350,8 @@ begin
       Abort;
     end;
     cxPage.ActivePage := tb_FieldList;
-    if cdsMater.IsEmpty then  cdsMater.Append;
+    if cdsMater.IsEmpty then
+      cdsMater.Append;
     mm_FBASESQL.SetFocus;
     self.spTem := SpeedButton1;
     case cdsMater.FieldByName('FChartType').AsInteger of
@@ -451,7 +453,8 @@ begin
 end;
 
 function TBillQueryFrm.GetFID: String;
-var BillTypeID,_sql,ErrMsg:string;
+var
+  BillTypeID,_sql,ErrMsg:string;
 begin
   Result := '';
   if cdsBillType.IsEmpty then Exit;
@@ -1254,6 +1257,11 @@ begin
     CliDM.CloseSckCon;
   end;
 
+end;
+
+function TBillQueryFrm.GetIsReport: Boolean;
+begin
+  Result := false;
 end;
 
 end.

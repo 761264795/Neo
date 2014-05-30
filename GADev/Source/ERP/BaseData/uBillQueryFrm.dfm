@@ -114,14 +114,17 @@ inherited BillQueryFrm: TBillQueryFrm
           Visible = False
         end
         object cxBillTypeFnumber: TcxGridDBColumn
+          Caption = #31867#22411#32534#21495
           DataBinding.FieldName = 'Fnumber'
           Width = 61
         end
         object cxBillTypeFNAME_L2: TcxGridDBColumn
+          Caption = #21333#25454#21517#31216
           DataBinding.FieldName = 'FNAME_L2'
           Width = 95
         end
         object cxBillTypeFBOSTYPE: TcxGridDBColumn
+          Caption = #21333#25454#26631#35782
           DataBinding.FieldName = 'FBOSTYPE'
           Width = 58
         end
@@ -1134,8 +1137,8 @@ inherited BillQueryFrm: TBillQueryFrm
           object Label3: TLabel
             Left = 0
             Top = 0
-            Width = 855
-            Height = 180
+            Width = 762
+            Height = 48
             Align = alClient
             Caption = 
               #13#10'1'#12289#22522#26412#35821#21477#21644#33258#23450#20041#23545#35805#26694'SQL'#37324#21487#20197#20256#20837#21464#37327','#30331#24405#29992#25143'FID'#30340#21464#37327#20026'"@User_ID",'#30331#24405#20998#25903#26426#26500'FID'#20026'"@Bran' +
@@ -1603,25 +1606,6 @@ inherited BillQueryFrm: TBillQueryFrm
     Params = <>
     Left = 64
     Top = 412
-    object cdsBillTypeFID: TStringField
-      FieldName = 'FID'
-      Size = 44
-    end
-    object cdsBillTypefnumber: TWideStringField
-      DisplayLabel = #31867#22411#32534#21495
-      FieldName = 'fnumber'
-      Size = 80
-    end
-    object cdsBillTypefname_l2: TWideStringField
-      DisplayLabel = #21333#25454#21517#31216
-      FieldName = 'fname_l2'
-      Size = 255
-    end
-    object cdsBillTypefbostype: TStringField
-      DisplayLabel = #21333#25454#26631#35782
-      FieldName = 'fbostype'
-      Size = 8
-    end
   end
   object dsBillType: TDataSource
     DataSet = cdsBillType
@@ -1884,6 +1868,8 @@ inherited BillQueryFrm: TBillQueryFrm
     Top = 348
   end
   object cxStyleRepository1: TcxStyleRepository
+    Left = 64
+    Top = 48
     PixelsPerInch = 96
     object cxStyle1: TcxStyle
       AssignedValues = [svColor]

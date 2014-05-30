@@ -17,7 +17,13 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxClasses,
   cxControls, cxGridCustomView, cxGrid, ppDB, ppDBPipe, ppParameter,
   ppRelatv, ppProd, ppClass, ppReport, ppComm, ppEndUsr, cxContainer,
-  cxTextEdit, StdCtrls, Menus, cxLookAndFeelPainters, cxButtons;
+  cxTextEdit, StdCtrls, Menus, cxLookAndFeelPainters, cxButtons,
+  dxSkinBlack, dxSkinBlue, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom,
+  dxSkinDarkSide, dxSkinFoggy, dxSkinGlassOceans, dxSkiniMaginary,
+  dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin,
+  dxSkinMoneyTwins, dxSkinPumpkin, dxSkinSeven, dxSkinSharp, dxSkinSilver,
+  dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
+  dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue;
 
 type
   TPrintTemplateSelectFrm = class(TSTBaseEdit)
@@ -37,18 +43,8 @@ type
     dsUserInfo: TDataSource;
     dsMater: TDataSource;
     cdsMater: TClientDataSet;
-    cdsMaterFID: TWideStringField;
-    cdsMaterFBILLTYPEID: TWideStringField;
-    cdsMaterFNAME_L2: TWideStringField;
-    cdsMaterFDESCRIPTION_L2: TWideStringField;
-    cdsMaterFSTATE: TIntegerField;
-    cdsMaterFCREATORID: TWideStringField;
-    cdsMaterFCREATETIME: TDateTimeField;
-    cdsMaterFLASTUPDATEUSERID: TWideStringField;
-    cdsMaterFLASTUPDATETIME: TDateTimeField;
     cdsMaterctName: TStringField;
     cdsMateralName: TStringField;
-    cdsMaterFFILEExt: TWideStringField;
     cdsMaterFileDec: TStringField;
     cdsPrint: TClientDataSet;
     right_P: TPanel;
@@ -79,12 +75,6 @@ type
     spt_Bear: TSpeedButton;
     spt_uBear: TSpeedButton;
     cdsBillType: TClientDataSet;
-    cdsBillTypeFID: TWideStringField;
-    cdsBillTypeFNUMBER: TWideStringField;
-    cdsBillTypeFNAME_L2: TWideStringField;
-    cdsBillTypeFBOSTYPE: TWideStringField;
-    cdsBillTypeFHeadtable: TWideStringField;
-    cdsBillTypefentrytable: TWideStringField;
     Panel1: TPanel;
     Label1: TLabel;
     Edit1: TcxTextEdit;
@@ -93,6 +83,16 @@ type
     Panel2: TPanel;
     btYes: TcxButton;
     lb_Hide: TLabel;
+    cdsMaterFID: TWideStringField;
+    cdsMaterFBillTypeID: TWideStringField;
+    cdsMaterFNAME_L2: TMemoField;
+    cdsMaterFDESCRIPTION_L2: TMemoField;
+    cdsMaterFState: TIntegerField;
+    cdsMaterFCREATORID: TWideStringField;
+    cdsMaterFCREATETIME: TDateTimeField;
+    cdsMaterFLASTUPDATEUSERID: TWideStringField;
+    cdsMaterFLASTUPDATETIME: TDateTimeField;
+    cdsMaterFFILEExt: TWideStringField;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btn_NewClick(Sender: TObject);
