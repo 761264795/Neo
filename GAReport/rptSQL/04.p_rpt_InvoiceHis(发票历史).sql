@@ -2,29 +2,33 @@ if exists (select 1 from sysobjects where name=UPPER('p_rpt_InvoiceHis') and xty
 	drop procedure p_rpt_InvoiceHis;
 go
 create procedure p_rpt_InvoiceHis
-  @BeginWIP varchar(100),
-  @EndWIP varchar(100),
-  @BeginDate varchar(100),
-  @EndDate varchar(100),
-  @ExtRptCurrentOrgUnitID varchar(100),
+  @ReportParamID varchar(44),
   @ReturnValue int = 1 output,
   @ErrMsg varchar(400) output
 as
 declare
-
+   @ParamName varchar(100),
+   @ParamValue varchar(400),
    @WhereStr varchar(2000)=''
-
-         if @BeginWIP <> null--WIP单号 从
-            set @WhereStr=@WhereStr+' and r.FNumber >='''+@BeginWIP+''''
-         if @EndWIP <> null--WIP单号 至
-            set @WhereStr=@WhereStr+' and r.FNumber <='''+@EndWIP+''''
-         if @BeginDate <> null--结账日期 从
-            set @WhereStr=@WhereStr+' and re.CFSettleDate >=cast('''+@BeginDate+''' as datetime)'
-         if @EndDate <> null--结账日期 至
-            set @WhereStr=@WhereStr+' and re.CFSettleDate <cast('''+@EndDate+''' as datetime)+1'
-         if @ExtRptCurrentOrgUnitID <> null--当前用户登录的组织ID
-            set @WhereStr=@WhereStr+' and r.FOrgUnitID =(case when ''00000000-0000-0000-0000-000000000000CCE7AED4''='''+@ExtRptCurrentOrgUnitID+''' then r.FOrgUnitID else '''+@ExtRptCurrentOrgUnitID+''' end)'
-
+declare Param_cur cursor for select fparamname,fparamvalue from ct_reportparams where fid=@ReportParamID
+   open Param_cur
+   fetch Param_cur into @ParamName,@ParamValue
+     while(@@FETCH_STATUS=0)
+       begin
+         if UPPER(@ParamName)=UPPER('BeginWIP')--WIP单号 从
+            set @WhereStr=@WhereStr+' and r.FNumber >='''+@ParamValue+''''
+         if UPPER(@ParamName)=UPPER('EndWIP')--WIP单号 至
+            set @WhereStr=@WhereStr+' and r.FNumber <='''+@ParamValue+''''
+         if UPPER(@ParamName)=UPPER('BeginDate')--结账日期 从
+            set @WhereStr=@WhereStr+' and re.CFSettleDate >=cast('''+@ParamValue+''' as datetime)'
+         if UPPER(@ParamName)=UPPER('EndDate')--结账日期 至
+            set @WhereStr=@WhereStr+' and re.CFSettleDate <cast('''+@ParamValue+''' as datetime)+1'
+         if UPPER(@ParamName)=UPPER('ExtRptCurrentOrgUnitID')--当前用户登录的组织ID
+            set @WhereStr=@WhereStr+' and r.FOrgUnitID =(case when ''00000000-0000-0000-0000-000000000000CCE7AED4''='''+@ParamValue+''' then r.FOrgUnitID else '''+@ParamValue+''' end)'
+	     fetch next from Param_cur into @ParamName,@ParamValue
+	   end
+   close Param_cur
+   DEALLOCATE Param_cur
 
 declare @sqlstr varchar(4000) ='
 select b.FName_l2 M,re.CFSaleType 发票类型,r.cfgadept 部门,r.FNumber WIP单

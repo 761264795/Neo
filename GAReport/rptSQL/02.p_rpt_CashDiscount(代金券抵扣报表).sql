@@ -2,31 +2,35 @@ if exists (select 1 from sysobjects where name=UPPER('p_rpt_CashDiscount') and x
 	drop procedure p_rpt_CashDiscount;
 go
 create procedure p_rpt_CashDiscount
-  @gdh varchar(100),
-  @xmh varchar(100),
-  @W varchar(100),
-  @BeginDate varchar(100),
-  @EndDate varchar(100),
-  @ExtRptCurrentOrgUnitID varchar(100),
+  @ReportParamID varchar(44),
   @ReturnValue int = 1 output,
   @ErrMsg varchar(400) output
 as
 declare
+   @ParamName varchar(100),
+   @ParamValue varchar(400),
    @WhereStr varchar(2000)=''
-
-         if @gdh <> null--维修工单号
-            set @WhereStr=@WhereStr+' and r.FNumber like ''%'+@gdh+'%'''
-         if @xmh <> null--项目号
-            set @WhereStr=@WhereStr+' and re.CFItemspNum like ''%'+@xmh+'%'''
-	 if @W <> null--W代码
-            set @WhereStr=@WhereStr+' and w.FNumber like ''%'+@W+'%'''
-         if @BeginDate <> null--工单日期 从
-            set @WhereStr=@WhereStr+' and r.FCreateTime >=cast('''+@BeginDate+''' as datetime)'
-         if @EndDate <> null--工单日期 至
-            set @WhereStr=@WhereStr+' and r.FCreateTime <cast('''+@EndDate+''' as datetime)+1'
-         if @ExtRptCurrentOrgUnitID <> null--当前用户登录的组织ID
-            set @WhereStr=@WhereStr+' and r.FOrgUnitID =(case when ''00000000-0000-0000-0000-000000000000CCE7AED4''='''+@ExtRptCurrentOrgUnitID+''' then r.FOrgUnitID else '''+@ExtRptCurrentOrgUnitID+''' end)'
-
+declare Param_cur cursor for select fparamname,fparamvalue from ct_reportparams where fid=@ReportParamID
+   open Param_cur
+   fetch Param_cur into @ParamName,@ParamValue
+     while(@@FETCH_STATUS=0)
+       begin
+         if UPPER(@ParamName)=UPPER('gdh')--维修工单号
+            set @WhereStr=@WhereStr+' and r.FNumber like ''%'+@ParamValue+'%'''
+         if UPPER(@ParamName)=UPPER('xmh')--项目号
+            set @WhereStr=@WhereStr+' and re.CFItemspNum like ''%'+@ParamValue+'%'''
+		 if UPPER(@ParamName)=UPPER('W')--W代码
+            set @WhereStr=@WhereStr+' and w.FNumber like ''%'+@ParamValue+'%'''
+         if UPPER(@ParamName)=UPPER('BeginDate')--工单日期 从
+            set @WhereStr=@WhereStr+' and r.FCreateTime >=cast('''+@ParamValue+''' as datetime)'
+         if UPPER(@ParamName)=UPPER('EndDate')--工单日期 至
+            set @WhereStr=@WhereStr+' and r.FCreateTime <cast('''+@ParamValue+''' as datetime)+1'
+         if UPPER(@ParamName)=UPPER('ExtRptCurrentOrgUnitID')--当前用户登录的组织ID
+            set @WhereStr=@WhereStr+' and r.FOrgUnitID =(case when ''00000000-0000-0000-0000-000000000000CCE7AED4''='''+@ParamValue+''' then r.FOrgUnitID else '''+@ParamValue+''' end)'
+	     fetch next from Param_cur into @ParamName,@ParamValue
+	   end
+   close Param_cur
+   DEALLOCATE Param_cur
 
 declare @sqlstr varchar(4000) ='
 select r.FNumber,CONVERT(varchar(100),r.FCreateTime,23) FBizDate
