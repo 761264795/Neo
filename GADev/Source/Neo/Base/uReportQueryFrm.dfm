@@ -7,6 +7,18 @@ inherited ReportQueryFrm: TReportQueryFrm
       Visible = False
       inherited cxBillType: TcxGridDBTableView
         DataController.DataSource = nil
+        inherited cxBillTypeFID: TcxGridDBColumn
+          DataBinding.FieldName = ''
+        end
+        inherited cxBillTypeFnumber: TcxGridDBColumn
+          DataBinding.FieldName = ''
+        end
+        inherited cxBillTypeFNAME_L2: TcxGridDBColumn
+          DataBinding.FieldName = ''
+        end
+        inherited cxBillTypeFBOSTYPE: TcxGridDBColumn
+          DataBinding.FieldName = ''
+        end
       end
     end
     object cxGrid5: TcxGrid
@@ -31,16 +43,11 @@ inherited ReportQueryFrm: TReportQueryFrm
         OptionsData.DeletingConfirmation = False
         OptionsData.Editing = False
         OptionsData.Inserting = False
-        OptionsSelection.CellSelect = False
         OptionsView.DataRowHeight = 22
         OptionsView.GroupByBox = False
         OptionsView.HeaderHeight = 22
         OptionsView.Indicator = True
         Styles.Inactive = cxStyle1
-        object cxGridDBColumn1: TcxGridDBColumn
-          DataBinding.FieldName = 'FID'
-          Visible = False
-        end
         object cxGridDBColumn2: TcxGridDBColumn
           Caption = #25253#34920#32534#21495
           DataBinding.FieldName = 'FReportNumber'
@@ -51,6 +58,10 @@ inherited ReportQueryFrm: TReportQueryFrm
           DataBinding.FieldName = 'FReportName'
           Width = 95
         end
+        object cxGridDBColumn1: TcxGridDBColumn
+          Caption = #25253#34920#26631#35782
+          DataBinding.FieldName = 'FID'
+        end
       end
       object cxGridLevel4: TcxGridLevel
         GridView = cxGridDBTableView1
@@ -60,6 +71,9 @@ inherited ReportQueryFrm: TReportQueryFrm
   inherited right_P: TPanel
     inherited Panel1: TPanel
       inherited Panel3: TPanel
+        inherited Label1: TLabel
+          Caption = #25253#34920#21517#31216
+        end
         inherited Label2: TLabel
           Left = 206
         end
@@ -75,10 +89,14 @@ inherited ReportQueryFrm: TReportQueryFrm
           Left = 263
           Width = 582
         end
+        inherited txt_FNAME_L2: TcxDBTextEdit
+          DataBinding.DataField = 'FReportName'
+        end
         object Proc_Name: TcxDBComboBox
           Left = 60
           Top = 25
           DataBinding.DataField = 'FProcName'
+          DataBinding.DataSource = dsMater
           Properties.OnInitPopup = Proc_NamePropertiesInitPopup
           Style.BorderStyle = ebsOffice11
           Style.LookAndFeel.Kind = lfUltraFlat
@@ -95,16 +113,10 @@ inherited ReportQueryFrm: TReportQueryFrm
       end
     end
   end
-  inherited cdsMater: TClientDataSet
-    object cdsMaterFProcName: TStringField
-      FieldName = 'FProcName'
-      Size = 80
-    end
-    object cdsMaterFIsReport: TBooleanField
-      FieldName = 'FIsReport'
-    end
+  inherited dsBillType: TDataSource
+    DataSet = ClientDataSet1
   end
-  object PopupMenu1: TPopupMenu
+  object PopupMenu1: TPopupMenu [17]
     Left = 64
     Top = 217
     object mnuSearch: TMenuItem

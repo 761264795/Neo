@@ -304,7 +304,9 @@ uses
   uDMoveInWareshListFrm in 'scm\uDMoveInWareshListFrm.pas' {DMoveInwareshListFrm},
   uDMoveIssueListFrm in 'scm\uDMoveIssueListFrm.pas' {DMoveIssueListFrm},
   uReportQueryFrm in 'Base\uReportQueryFrm.pas' {ReportQueryFrm},
-  uAddNewRpt in 'Base\uAddNewRpt.pas' {frmAddNewRpt};
+  uAddNewRpt in 'Base\uAddNewRpt.pas' {frmAddNewRpt},
+  Frm_ReportListBase in '..\ERP\Base\Frm_ReportListBase.pas' {FM_ReportListBase},
+  uPartSaleRpt in 'rsm\uPartSaleRpt.pas' {FM_PartSaleRpt};
 
 {$R *.res}
 {$I- } //不产生I/O异常类而是把错误代码返回到预定义变量IOResult中
@@ -319,6 +321,8 @@ begin
     Application.Title := 'GA集团ERP系统';
   Application.CreateForm(TCliDM, CliDM);
   Application.CreateForm(TFMCliMain, FMCliMain);
+  Application.CreateForm(TFM_ReportListBase, FM_ReportListBase);
+  Application.CreateForm(TFM_PartSaleRpt, FM_PartSaleRpt);
   Application.Run;
   end;
 end.

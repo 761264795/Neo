@@ -455,7 +455,7 @@ uses FrmCliDM, FrmLogin, Pub_Fun, uPOSEditFrm,uDayBalanceFrm
   ,uBatchCloseOrderFrm,uOrderAllocateFrm,uBillListPromtion,uRepairListFrm,uRepairEditFrm,
   uBatchAddOrderMaterialFrm,uMaterDataSelectHelper,uRepairWOEditFrm,uRepairWoListFrm,
   uDMoveInWareshListFrm,uDMoveIssueListFrm,uDOtherInWareshListFrm,uDOtherIssueListFrm,uDPurInwareshListFrm,
-  uDSaleIssueListFrm,uDStockTransferListFrm;
+  uDSaleIssueListFrm,uDStockTransferListFrm,uReportQueryFrm,uPartSaleRpt;
 
 var RTL:TQueryThread;
 {$R *.dfm}
@@ -1811,6 +1811,23 @@ begin
       CreatePageList(TBillQueryFrm,opt) ;
       Exit;
     end;
+    //add by cjx 2014-05-31 ==============================================
+    //报表配置
+    if (Fromkey = '884DB07AAF344908BD572475C10C6B20') then
+    begin
+      opt.Caption := title;
+      CreatePageList(TReportQueryFrm, opt);
+      Exit;
+    end;
+    //报表测试
+    if (Fromkey = 'B79613993D884D4D83DC6EAE88F206AA') then
+    begin
+      opt.Caption := title;
+      CreatePageList(TFM_PartSaleRpt, opt);
+      Exit;
+    end;
+    //add by cjx end 2014-05-31============================================
+
     //短信平台配置
     if (Fromkey='BD1ECCBC246D4C89B8348CB883CDB3EB') then
     begin
@@ -2029,6 +2046,7 @@ begin
       CreatePageList(TFM_BillListOtherInwarehsbill, opt);
       exit;
     end;
+
     //----------------------------------------------------------------------------
     //报表相关
 //    if (Fromkey='BE0D0EAADEAC4D6C82F60B8A679C503D') then //报表设计器

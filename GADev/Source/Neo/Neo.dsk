@@ -1,42 +1,29 @@
 [Closed Files]
-File_0=SourceModule,'E:\GA2\Print\Source\ERP\BaseData\uPrintTemplateSelectFrm.pas',0,1,1,41,7,0,0
-File_1=SourceModule,'E:\GA2\Print\Source\ERP\Base\uBaseEditFrm.pas',0,1,1,1,1,0,0
-File_2=SourceModule,'E:\GA2\Print\Source\ERP\Base\uI3BaseFrm.pas',0,1,1,1,1,0,0
-File_3=SourceModule,'E:\GA2\Print\Source\ERP\FrmCliDM.pas',0,1,891,19,895,1,0
-File_4=SourceModule,'E:\GA2\Print\Source\ERP\BaseData\uPrintTemplateSelectFrm.dfm',0,1,1,1,1,0,0
-File_5=SourceModule,'E:\GA2\NeoDev\trunk\GADev\Source\ERP\FrmCliDM.pas',0,1,1,1,9,0,0
-File_6=SourceModule,'E:\GA2\NeoDev\trunk\GADev\Source\ERP\BaseData\uPrintTemplateDesign.pas',0,1,555,48,562,0,0
-File_7=SourceModule,'E:\GA2\NeoDev\trunk\GADev\Source\ERP\BaseData\uPrintQueryFrm.pas',0,1,1,1,1,0,0
-File_8=SourceModule,'E:\GA2\NeoDev\trunk\GADev\Source\Neo\rsm\uRepairWOEditFrm.pas',0,1,1,58,4,1,0
-File_9=SourceModule,'E:\GA2\NeoDev\GAReport\ReportClient\uReportView_R.pas',0,1,822,33,835,0,0
+File_0=SourceModule,'E:\GA2\NeoDev\trunk\GADev\Source\Comm\Pub_Fun.pas',0,1,971,5,979,0,0
+File_1=SourceModule,'E:\GA2\NeoDev\GAReport\ReportClient\DMPublic_R.pas',0,1,1,1,1,0,0
+File_2=SourceModule,'E:\GA2\NeoDev\GAReport\ReportClient\uReportEdit_R.pas',0,1,462,51,465,1,0
+File_3=SourceModule,'E:\GA2\NeoDev\GAReport\ReportClient\uReportType_R.pas',0,1,317,6,323,1,0
+File_4=SourceModule,'E:\GA2\Print\Source\ERP\BaseData\uPrintTemplateSelectFrm.pas',0,1,1,41,7,0,0
+File_5=SourceModule,'E:\GA2\Print\Source\ERP\Base\uBaseEditFrm.pas',0,1,1,1,1,0,0
+File_6=SourceModule,'E:\GA2\Print\Source\ERP\Base\uI3BaseFrm.pas',0,1,1,1,1,0,0
+File_7=SourceModule,'E:\GA2\Print\Source\ERP\FrmCliDM.pas',0,1,891,19,895,1,0
+File_8=SourceModule,'E:\GA2\Print\Source\ERP\BaseData\uPrintTemplateSelectFrm.dfm',0,1,1,1,1,0,0
+File_9=SourceModule,'E:\GA2\NeoDev\trunk\GADev\Source\ERP\BaseData\uPrintTemplateDesign.pas',0,1,555,48,562,0,0
 
 [Modules]
-Module0=E:\GA2\NeoDev\trunk\GADev\Source\ERP\BaseData\uPrintTemplateSelectFrm.pas
-Module1=E:\GA2\NeoDev\trunk\GADev\Source\ERP\Base\uOtherBillBaseEditFrm.pas
+Module0=E:\GA2\NeoDev\trunk\GADev\Source\Neo\Base\uReportQueryFrm.pas
+Module1=E:\GA2\NeoDev\trunk\GADev\Source\Neo\FrmCliMain.pas
 Module2=E:\GA2\NeoDev\trunk\GADev\Source\ERP\BaseData\uBillQueryFrm.pas
-Module3=E:\GA2\NeoDev\trunk\GADev\Source\Neo\Base\uReportQueryFrm.pas
-Module4=E:\GA2\NeoDev\trunk\GADev\Source\Neo\FrmCliMain.pas
-Count=5
+Module3=E:\GA2\NeoDev\trunk\GADev\Source\Neo\Base\uAddNewRpt.pas
+Module4=E:\GA2\NeoDev\trunk\GADev\Source\ERP\Base\uOtherBillBaseEditFrm.pas
+Module5=E:\GA2\NeoDev\trunk\GADev\Source\ERP\BaseData\uPrintTemplateSelectFrm.pas
+Module6=E:\GA2\NeoDev\trunk\GADev\Source\ERP\FrmCliDM.pas
+Count=7
 EditWindowCount=1
-
-[E:\GA2\NeoDev\trunk\GADev\Source\ERP\BaseData\uPrintTemplateSelectFrm.pas]
-ModuleType=SourceModule
-FormState=0
-FormOnTop=0
-
-[E:\GA2\NeoDev\trunk\GADev\Source\ERP\Base\uOtherBillBaseEditFrm.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
-
-[E:\GA2\NeoDev\trunk\GADev\Source\ERP\BaseData\uBillQueryFrm.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
 
 [E:\GA2\NeoDev\trunk\GADev\Source\Neo\Base\uReportQueryFrm.pas]
 ModuleType=SourceModule
-FormState=0
+FormState=1
 FormOnTop=0
 
 [E:\GA2\NeoDev\trunk\GADev\Source\Neo\FrmCliMain.pas]
@@ -44,11 +31,36 @@ ModuleType=SourceModule
 FormState=0
 FormOnTop=0
 
-[E:\GA2\NeoDev\workspace.bpg]
+[E:\GA2\NeoDev\trunk\GADev\Source\ERP\BaseData\uBillQueryFrm.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[E:\GA2\NeoDev\trunk\GADev\Source\Neo\Base\uAddNewRpt.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[E:\GA2\NeoDev\trunk\GADev\Source\ERP\Base\uOtherBillBaseEditFrm.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[E:\GA2\NeoDev\trunk\GADev\Source\ERP\BaseData\uPrintTemplateSelectFrm.pas]
+ModuleType=SourceModule
 FormState=0
 FormOnTop=0
 
+[E:\GA2\NeoDev\trunk\GADev\Source\ERP\FrmCliDM.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
 [E:\GA2\NeoDev\trunk\GADev\Source\Neo\Neo.dpr]
+FormState=0
+FormOnTop=0
+
+[D:\Program Files (x86)\Borland\Delphi7\Bin\ProjectGroup1.bpg]
 FormState=0
 FormOnTop=0
 
@@ -65,13 +77,15 @@ FormState=0
 FormOnTop=0
 
 [EditWindow0]
-ViewCount=5
-CurrentView=4
+ViewCount=7
+CurrentView=2
 View0=0
 View1=1
 View2=2
 View3=3
 View4=4
+View5=5
+View6=6
 CodeExplorer=CodeExplorer@EditWindow0
 MessageView=MessageView@EditWindow0
 Create=1
@@ -97,37 +111,51 @@ BottomPanelData=0000040000000000000000000000000000000000000000000001000000000000
 
 [View0]
 Module=E:\GA2\NeoDev\trunk\GADev\Source\Neo\FrmCliMain.pas
-CursorX=51
-CursorY=1860
-TopLine=1842
+CursorX=34
+CursorY=677
+TopLine=665
 LeftCol=1
 
 [View1]
 Module=E:\GA2\NeoDev\trunk\GADev\Source\ERP\BaseData\uBillQueryFrm.pas
-CursorX=51
-CursorY=275
-TopLine=266
+CursorX=24
+CursorY=187
+TopLine=176
 LeftCol=1
 
 [View2]
 Module=E:\GA2\NeoDev\trunk\GADev\Source\Neo\Base\uReportQueryFrm.pas
-CursorX=5
-CursorY=5
-TopLine=1
+CursorX=84
+CursorY=136
+TopLine=125
 LeftCol=1
 
 [View3]
+Module=E:\GA2\NeoDev\trunk\GADev\Source\Neo\Base\uAddNewRpt.pas
+CursorX=33
+CursorY=45
+TopLine=29
+LeftCol=1
+
+[View4]
 Module=E:\GA2\NeoDev\trunk\GADev\Source\ERP\Base\uOtherBillBaseEditFrm.pas
 CursorX=39
 CursorY=164
 TopLine=146
 LeftCol=1
 
-[View4]
+[View5]
 Module=E:\GA2\NeoDev\trunk\GADev\Source\ERP\BaseData\uPrintTemplateSelectFrm.pas
-CursorX=91
-CursorY=205
-TopLine=202
+CursorX=48
+CursorY=247
+TopLine=241
+LeftCol=1
+
+[View6]
+Module=E:\GA2\NeoDev\trunk\GADev\Source\ERP\FrmCliDM.pas
+CursorX=57
+CursorY=2919
+TopLine=2916
 LeftCol=1
 
 [Watches]
@@ -251,8 +279,8 @@ LRDockWidth=190
 Dockable=1
 SplitPos=78
 ArrangeBy=Name
-SelectedItem=Name
-ExpandedItems=Bands,EditLabel,KeyOptions,Page,Title
+SelectedItem=OnFocusedRecordChanged
+ExpandedItems=Bands,DataBinding,EditLabel,KeyOptions,Page,Title
 HiddenCategories=
 
 [ObjectTree]
