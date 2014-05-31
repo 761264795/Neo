@@ -78,7 +78,7 @@ begin
             + Format(SQL, [QuotedStr(param),
                            QuotedStr(cdsBillFindList.FieldByName('FFieldName').AsString),
                            QuotedStr(TcxDateEdit(pnTop.FindComponent('dat' + cdsBillFindList.FieldByName('FID').AsString)).Text)]);
-          batchSQL := batchSQL + sEnter + ' GO ';
+          batchSQL := batchSQL + sEnter + ' ; ';
         end
         else if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('String')) then
         begin
@@ -89,7 +89,7 @@ begin
               + Format(SQL, [QuotedStr(param),
                              QuotedStr(cdsBillFindList.FieldByName('FFieldName').AsString),
                              QuotedStr(TcxButtonEdit(pnTop.FindComponent('but' + cdsBillFindList.FieldByName('FID').AsString)).Text)]);
-            batchSQL := batchSQL + sEnter + ' GO ';
+            batchSQL := batchSQL + sEnter + ' ; ';
           end
           else
           begin
@@ -97,7 +97,7 @@ begin
               + Format(SQL, [QuotedStr(param),
                              QuotedStr(cdsBillFindList.FieldByName('FFieldName').AsString),
                              QuotedStr(TcxTextEdit(pnTop.FindComponent('edt' + cdsBillFindList.FieldByName('FID').AsString)).Text)]);
-            batchSQL := batchSQL + sEnter + ' GO ';
+            batchSQL := batchSQL + sEnter + ' ; ';
           end;
         end;
         cdsBillFindList.Next;
@@ -155,27 +155,34 @@ begin
   dsResult := CliDM.Client_QuerySQL(FBillQuerySQL);
   IF dsResult.Active then
   begin
-    cdsList.Fields.Clear;
-    for i:=0 to dsResult.FieldCount-1 do
-    begin
-      with cdsList.FieldDefs.AddFieldDef do
+    cdsList.DisableControls;
+    try
+      if cdsList.Active then
+        cdsList.Close;
+      cdsList.FieldDefs.Clear; //.Fields.Clear;
+      for i:=0 to dsResult.FieldCount-1 do
       begin
-        DataType := dsResult.Fields[i].DataType;
-        size     := dsResult.Fields[i].Size;
-        Name     := dsResult.Fields[i].FieldName;
+        with cdsList.FieldDefs.AddFieldDef do
+        begin
+          DataType := dsResult.Fields[i].DataType;
+          size     := dsResult.Fields[i].Size;
+          Name     := dsResult.Fields[i].FieldName;
+        end;
       end;
-    end;
-    cdsList.CreateDataSet;
-    dsResult.First;
-    while not dsResult.Eof do
-    begin
-      cdsList.Append;
-      for i := 0 to dsResult.FieldCount -1 do
+      cdsList.CreateDataSet;
+      dsResult.First;
+      while not dsResult.Eof do
       begin
-        cdsList.FieldByName(dsResult.Fields[i].FieldName).Value := dsResult.Fields[i].Value;
+        cdsList.Append;
+        for i := 0 to dsResult.FieldCount -1 do
+        begin
+          cdsList.FieldByName(dsResult.Fields[i].FieldName).Value := dsResult.Fields[i].Value;
+        end;
+        cdsList.Post;
+        dsResult.Next;
       end;
-      cdsList.Post;
-      dsResult.Next;
+    finally
+      cdsList.EnableControls;
     end;
   end;
 end;
