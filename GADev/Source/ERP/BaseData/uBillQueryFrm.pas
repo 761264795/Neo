@@ -211,6 +211,9 @@ type
     cxFindListFVisbleInFastQuery: TcxGridDBColumn;
     cdsFindListFSortFlag: TIntegerField;
     cxFindListFSortFlag: TcxGridDBColumn;
+    cdsMaterFProcName: TWideStringField;
+    cdsMaterFIsReport: TBooleanField;
+    ClientDataSet1: TClientDataSet;
     procedure FormShow(Sender: TObject);
     procedure btn_SaveClick(Sender: TObject);
     procedure cxBillTypeFocusedRecordChanged(
@@ -251,7 +254,7 @@ type
     function OpenData(FID:String):Boolean;
     function ST_save:Boolean;
     function GetFID:String;virtual;
-    function CHK_Data:Boolean;
+    function CHK_Data:Boolean; virtual;
     procedure setChartData;
     procedure UpdateSEQ;
   end;
@@ -273,9 +276,14 @@ begin
   try
     cxBillType.OnFocusedRecordChanged := nil;
     if not CliDM.ConnectSckCon(ErrMsg)  then Exit;
-    if GetIsReport then
-      _sql := 'Select FID,FNumber,FName from CT_BD_ReportList Order by FNumber'
-    else
+//    if GetIsReport then
+    _sql := 'Select FID,FReportNumber,FReportName from CT_BD_ReportList Order by FReportNumber';
+    if not CliDM.Get_OpenSQL(ClientDataSet1,_sql,ErrMsg,False) then
+    begin
+      ShowMsg(self.Handle,'打开报表类型表出错:'+ErrMsg,[]);
+      Abort;
+    end;
+//    else
       _sql := 'select FID,fnumber,fname_l2,fbostype from T_SCM_BILLTYPE order by fnumber';
     if not CliDM.Get_OpenSQL(cdsBilltype,_sql,ErrMsg,False) then
     begin
@@ -314,7 +322,16 @@ begin
 //    Items.Add('内长');
 //    Items.Add('配码');
   end;
-  if not  cdsBillType.IsEmpty  then OpenData(GetFID);
+  if GetIsReport then
+  begin
+    if not ClientDataSet1.IsEmpty then
+      OpenData(GetFID);
+  end
+  else
+  begin
+    if not cdsBillType.IsEmpty then
+      OpenData(GetFID);
+  end;
 end;
 
 function TBillQueryFrm.OpenData(FID: String): Boolean;
@@ -457,8 +474,18 @@ var
   BillTypeID,_sql,ErrMsg:string;
 begin
   Result := '';
-  if cdsBillType.IsEmpty then Exit;
-  BillTypeID := cdsBillType.fieldbyname('FID').AsString;
+  if GetIsReport then
+  begin
+    if ClientDataSet1.IsEmpty then
+      Exit;
+    BillTypeID := ClientDataSet1.fieldbyname('FID').AsString;
+  end
+  else
+  begin
+    if cdsBillType.IsEmpty then
+      Exit;
+    BillTypeID := cdsBillType.fieldbyname('FID').AsString;
+  end;
   _sql := 'select FID from  T_BD_BillQuery where  FBillTypeID='+Quotedstr(BillTypeID);
   Result := string(CliDM.Get_QueryReturn(_sql,ErrMsg));
 end;
@@ -467,7 +494,10 @@ procedure TBillQueryFrm.cdsMaterNewRecord(DataSet: TDataSet);
 begin
   inherited;
   DataSet.FieldByName('FID').AsString := Get_Guid;
-  DataSet.FindField('FBILLTYPEID').AsString   := cdsBillType.fieldbyname('FID').AsString;
+  if GetIsReport then
+    DataSet.FindField('FBILLTYPEID').AsString := ClientDataSet1.fieldbyname('FID').AsString
+  else
+    DataSet.FindField('FBILLTYPEID').AsString := cdsBillType.fieldbyname('FID').AsString;
   if DataSet.FindField('fcreatorid') <> nil then
   DataSet.FieldByName('fcreatorid').AsString   := UserInfo.LoginUser_FID;
   if DataSet.FindField('fcreatetime') <> nil then
@@ -515,6 +545,7 @@ var
   ErrorMsg:string;
 begin
   try
+    dsFieldLoad :=  TClientDataSet.Create(nil);
     if Trim(mm_FBASESQL.Text) = '' then
     begin
       ShowMsg(self.Handle,'基本语句不能为空!',[]);
@@ -528,7 +559,6 @@ begin
       Exit;
     end;
     Screen.Cursor := crHourGlass;
-    dsFieldLoad :=  TClientDataSet.Create(nil);
     sql := mm_FBASESQL.Text +'  '+mm_FGROUPSQL.Text;
     //传入变量--- StringReplace(原来的字符串，需要被替换的部分，替换后的部分，[rfReplaceAll])
     while PosEx(uppercase('@User_ID'), uppercase(sql)) > 0 do
@@ -557,7 +587,7 @@ begin
         cdsFieldList.Append;
         cdsFieldList.FieldByName('FIELDNAME').AsString := Fields[i].FieldName;
         OlgFieldName := string(CliDM.Get_QueryReturn('select FieldChName from T_BD_BillQueryFieldList where FieldName='+Quotedstr(Fields[i].FieldName),ErrorMsg,False));
-        if Trim(OlgFieldName) <> ''  then 
+        if Trim(OlgFieldName) <> ''  then
         cdsFieldList.FieldByName('FIELDCHNAME').AsString := OlgFieldName
         else
         cdsFieldList.FieldByName('FIELDCHNAME').AsString := Fields[i].FieldName;
@@ -570,6 +600,7 @@ begin
     end;
   finally
     CliDM.CloseSckCon;
+    dsFieldLoad.Free;
     Screen.Cursor := crDefault;
   end;
 
@@ -747,7 +778,7 @@ function TBillQueryFrm.CHK_Data: Boolean;
 var isFID,isFBaseStatus : Boolean;
 begin
   Result := True;
-  if Trim(mm_FBASESQL.Text) = '' then
+  if not GetIsReport and (Trim(mm_FBASESQL.Text) = '') then
   begin
     ShowMsg(self.Handle,'基本语句不能为空!',[]);
     mm_FBASESQL.SetFocus;
@@ -780,19 +811,22 @@ begin
       if  SameText(cdsFieldList.FieldByName('FIELDNAME').AsString,'FBaseStatus') then isFBaseStatus := True;
       cdsFieldList.Next;
     end;
-    if not isFID then
+    if not GetIsReport then
     begin
-      cxPage.ActivePage := tb_FieldList;
-      ShowMsg(self.Handle,'字段列表内没有FID字段!',[]);
-      Result := False;
-      Exit;
-    end;
-    if not isFBaseStatus then
-    begin
-      cxPage.ActivePage := tb_FieldList;
-      ShowMsg(self.Handle,'字段列表内没有FBaseStatus字段!',[]);
-      Result := False;
-      Exit;
+      if not isFID then
+      begin
+        cxPage.ActivePage := tb_FieldList;
+        ShowMsg(self.Handle,'字段列表内没有FID字段!',[]);
+        Result := False;
+        Exit;
+      end;
+      if not isFBaseStatus then
+      begin
+        cxPage.ActivePage := tb_FieldList;
+        ShowMsg(self.Handle,'字段列表内没有FBaseStatus字段!',[]);
+        Result := False;
+        Exit;
+      end;
     end;
     if not cdsFindList.IsEmpty then
     begin

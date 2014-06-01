@@ -1686,6 +1686,13 @@ inherited BillQueryFrm: TBillQueryFrm
     object cdsMaterFLASTUPDATETIME: TDateTimeField
       FieldName = 'FLASTUPDATETIME'
     end
+    object cdsMaterFProcName: TWideStringField
+      FieldName = 'FProcName'
+      Size = 80
+    end
+    object cdsMaterFIsReport: TBooleanField
+      FieldName = 'FIsReport'
+    end
   end
   object dsMater: TDataSource
     DataSet = cdsMater
@@ -1881,5 +1888,11 @@ inherited BillQueryFrm: TBillQueryFrm
     Params = <>
     Left = 688
     Top = 456
+  end
+  object ClientDataSet1: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 128
+    Top = 396
   end
 end
