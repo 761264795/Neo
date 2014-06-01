@@ -71,7 +71,6 @@ type
     Panel5: TPanel;
     Label4: TLabel;
     Image1: TImage;
-    lb_Report: TLabel;
     spt_ZBFX: TSpeedButton;
     cxPage: TcxPageControl;
     tb_Grid: TcxTabSheet;
@@ -160,6 +159,7 @@ type
     cdsQueryConditionFisRadioSelect: TIntegerField;
     recCount: TcxComboBox;
     cdsQueryConditionFID: TStringField;
+    lb_Report: TLabel;
     procedure dbgListDblClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure excel1Click(Sender: TObject);
@@ -216,7 +216,7 @@ type
   protected
     function IsUserDefine: Boolean; virtual;
     function GetWhereSQL: string; virtual;
-    procedure SetCondition; virtual;
+    procedure SetCondition(const param: string = ''); virtual;
   public
     { Public declarations }
     //单据类型FID（Create时赋值）
@@ -253,6 +253,8 @@ type
     function NotScmBillDelBill(BillFID:string;var ErrMsg:string):Boolean;virtual;
     function NotScmBillAuditBill(BillFID:string;var ErrMsg:string):Boolean;virtual;
     function NotScmBillUnAuditBill(BillFID:string;var ErrMsg:string):Boolean;virtual;
+
+    function GetIsReport: Boolean; virtual;
   end;
 
 var
@@ -1345,6 +1347,8 @@ begin
   FilePath := ExtractFilePath(paramstr(0))+'\Img\Tool_bk.jpg';
   if not LoadImage(FilePath,Image2) then  Gio.AddShow('图片路径不存在：'+FilePath);
   inherited;
+  if GetIsReport then
+    p_top.Visible := false;
   //获取查询配置信息
   GetBillQueryInfo;
   if not cdsQueryCondition.Active then
@@ -2216,7 +2220,7 @@ begin
   Result := false;
 end;
 
-procedure TFM_BillListBase.SetCondition;
+procedure TFM_BillListBase.SetCondition(const param: string = '');
 begin
   //以下是非用户自定义 自动插入的查询条件
   //如果要自定义查询条件，则按以下的格式插入cdsQueryCondition各个相应的字段
@@ -2257,14 +2261,19 @@ begin
       begin
         if (Trim(cdsBillFindList.FieldByName('FFindValue').AsString) <> '')
             or (Trim(cdsBillFindList.FieldByName('FDialogType').AsString) <> '') then
-          cdsQueryCondition.FieldByName('COMPAREVALUE').Asstring := TcxDateEdit(pnTop.FindComponent('but' + cdsBillFindList.FieldByName('FID').AsString)).Text
+          cdsQueryCondition.FieldByName('COMPAREVALUE').Asstring := TcxButtonEdit(pnTop.FindComponent('but' + cdsBillFindList.FieldByName('FID').AsString)).Text
         else
-          cdsQueryCondition.FieldByName('COMPAREVALUE').Asstring := TcxDateEdit(pnTop.FindComponent('edt' + cdsBillFindList.FieldByName('FID').AsString)).Text;
+          cdsQueryCondition.FieldByName('COMPAREVALUE').Asstring := TcxTextEdit(pnTop.FindComponent('edt' + cdsBillFindList.FieldByName('FID').AsString)).Text;
       end;
       cdsQueryCondition.Post;
       cdsBillFindList.Next;
     end;
   end;
+end;
+
+function TFM_BillListBase.GetIsReport: Boolean;
+begin
+  Result := False;
 end;
 
 end.

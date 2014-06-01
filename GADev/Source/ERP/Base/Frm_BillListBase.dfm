@@ -200,6 +200,7 @@ object FM_BillListBase: TFM_BillListBase
         Width = 888
         Height = 89
         Align = alTop
+        AutoSize = True
         Color = 16511980
         TabOrder = 0
         DesignSize = (
@@ -207,16 +208,16 @@ object FM_BillListBase: TFM_BillListBase
           89)
         object lb_MaterialID: TLabel
           Left = 831
-          Top = 10
+          Top = 3
           Width = 33
           Height = 13
           AutoSize = False
           Visible = False
         end
         object lb_Report: TLabel
-          Left = 867
+          Left = 871
           Top = 1
-          Width = 20
+          Width = 16
           Height = 87
           Cursor = crHandPoint
           Align = alRight
@@ -238,7 +239,7 @@ object FM_BillListBase: TFM_BillListBase
         end
         object btnSearch: TcxButton
           Left = 784
-          Top = 40
+          Top = 28
           Width = 75
           Height = 25
           Anchors = [akTop, akRight]
@@ -248,7 +249,7 @@ object FM_BillListBase: TFM_BillListBase
         end
         object recCount: TcxComboBox
           Left = 784
-          Top = 12
+          Top = 2
           Anchors = [akTop, akRight]
           Properties.DropDownListStyle = lsFixedList
           Properties.Items.Strings = (
