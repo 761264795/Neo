@@ -1,7 +1,7 @@
 if exists (select 1 from sysobjects where name=UPPER('p_rpt_partSale') and xtype='P')
 	drop procedure p_rpt_partSale;
 create procedure p_rpt_partSale
-  @ReportParams as tp_reportparams readonly,
+  @ReportParamID varchar(44),
   @ReturnValue int = 1 output,
   @ErrMsg varchar(400) output
 as
@@ -9,7 +9,7 @@ declare
    @ParamName varchar(100),
    @ParamValue varchar(400),
    @WhereStr varchar(2000)=''
-declare Param_cur cursor for select * from @ReportParams
+declare Param_cur cursor for select fparamname,fparamvalue from ct_reportparams where fid=@ReportParamID
    open Param_cur
    fetch Param_cur into @ParamName,@ParamValue
      while(@@FETCH_STATUS=0)
