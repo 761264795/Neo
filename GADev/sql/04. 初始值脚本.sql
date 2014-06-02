@@ -60,6 +60,15 @@ if not exists (select 1 from GOLAB_ENUM_VIEW where fid='F2EE81C3-450A-4157-9DEC-
 insert into GOLAB_ENUM_VIEW(FID,FENUM_NAME,FNAME_CHINESE,FITEM_NAME,FALIAS_NAME,FITEM_VALUE)
 values('F2EE81C3-450A-4157-9DEC-E5893D37AF95GANEO012','com.kingdee.eas.ga.rs.RepairWOStatusEnum','RepairWOStatusEnum','AllSettle','È«²¿½áËã',3);
 
+if not exists (select 1 from GOLAB_ENUM_VIEW where fid='D3727B73-647A-4011-AAF5-54022E117933ganeo012')
+insert into GOLAB_ENUM_VIEW(FID,FENUM_NAME,FNAME_CHINESE,FITEM_NAME,FALIAS_NAME,FITEM_VALUE)
+values('D3727B73-647A-4011-AAF5-54022E117933ganeo012','com.kingdee.eas.ga.rs.IEnum','IEnum','notSettle','I','I');
+if not exists (select 1 from GOLAB_ENUM_VIEW where fid='ECDFD9A7-F865-4B6C-9C6E-9AF4DFE4079Aganeo012')
+insert into GOLAB_ENUM_VIEW(FID,FENUM_NAME,FNAME_CHINESE,FITEM_NAME,FALIAS_NAME,FITEM_VALUE)
+values('ECDFD9A7-F865-4B6C-9C6E-9AF4DFE4079Aganeo012','com.kingdee.eas.ga.rs.IEnum','IEnum','partSettle','H','H');
+if not exists (select 1 from GOLAB_ENUM_VIEW where fid='35894E6A-3ABB-4703-94BB-841C40C027E9ganeo012')
+insert into GOLAB_ENUM_VIEW(FID,FENUM_NAME,FNAME_CHINESE,FITEM_NAME,FALIAS_NAME,FITEM_VALUE)
+values('35894E6A-3ABB-4703-94BB-841C40C027E9ganeo012','com.kingdee.eas.ga.rs.IEnum','IEnum','AllSettle','X','X');
 
 
 
