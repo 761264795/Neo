@@ -24606,6 +24606,7 @@ object CliDM: TCliDM
     end
   end
   object ADDField: TADOConnection
+    Connected = True
     ConnectionString = 
       'Provider=SQLOLEDB.1;Password=kingdee;Persist Security Info=True;' +
       'User ID=sa;Initial Catalog=GA4STEST;Data Source=.'
@@ -24615,22 +24616,13 @@ object CliDM: TCliDM
     Top = 260
   end
   object QryAddField: TADOQuery
+    Active = True
     Connection = ADDField
     CursorType = ctStatic
     EnableBCD = False
     Parameters = <>
     SQL.Strings = (
-      ' select a.FID,FPARENTID,FPermID,b.fname_l2,FimgIndex,a.ftype  '
-      ' from T_PM_RolePerm a   '
-      
-        ' left join (select FID,Fnumber,Fname_l2,Fimgageindex as FimgInde' +
-        'x  from t_Db_Mainmenuitem  '
-      ' union  '
-      
-        ' select FID,Fnumber,FNAME_L2,122 as FimgIndex from  CT_BD_Permis' +
-        'sionsItem) b on a.fpermid=b.fid '
-      ' where a.FRoleID='#39'39691031-0106-1000-e002-e9f3c0a8100d13B6732A'#39' '
-      ' order by b.fnumber')
+      'select * from T_AR_OtherBillPlan where 1=2')
     Left = 752
     Top = 260
   end
