@@ -136,13 +136,13 @@ begin
       ShowMsg(Self.Handle, ErrMsg, [])
     else
     begin
-      CliDM.Get_ExecSQL('Delete from T_BD_BillQueryFieldList A ' +
+      CliDM.Get_ExecSQL('Delete a from T_BD_BillQueryFieldList A ' +
                         ' Inner Join T_BD_BillQuery B On A.FParentID = B.FID ' +
                         ' Where B.FBillTypeID = ' + QuotedStr(FID), ErrMsg);
-      CliDM.Get_ExecSQL('Delete from T_BD_BillQueryFindList A ' +
+      CliDM.Get_ExecSQL('Delete a from T_BD_BillQueryFindList A ' +
                         ' Inner Join T_BD_BillQuery B On A.FParentID = B.FID ' +
                         ' Where B.FBillTypeID = ' + QuotedStr(FID), ErrMsg);
-      CliDM.Get_ExecSQL('Delete from T_BD_BillQueryReportList A ' +
+      CliDM.Get_ExecSQL('Delete a from T_BD_BillQueryReportList A ' +
                         ' Inner Join T_BD_BillQuery B On A.FParentID = B.FID ' +
                         ' Where B.FBillTypeID = ' + QuotedStr(FID), ErrMsg);
       CliDM.Get_ExecSQL('Delete from T_BD_BillQuery Where FBillTypeID = ' + QuotedStr(FID), ErrMsg);

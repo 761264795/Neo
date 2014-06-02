@@ -12,16 +12,19 @@ type
     dsDestDetail: TDataSource;
     cdsDestDetail: TClientDataSet;
     cdsDestMaster: TClientDataSet;
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
 
-
+      redBill: boolean;
   public
     { Public declarations }
       procedure Transfer(cdsSrcs: array of TClientDataSet);virtual;abstract;
       procedure OpenDestBillFrm;virtual;abstract;
       procedure SaveDest(var cdsDests: array of TClientDataSet;destTableNames: array of string);
       function IsOpenDestBill:boolean;virtual;
+      function IsRedBill: boolean;
+      procedure SetRedBillFlag(redBillFlag:boolean);
   end;
 
 var
@@ -71,6 +74,20 @@ end;
 function TTransferBillBaseFrm.IsOpenDestBill:boolean;
 begin
   Result := true;
+end;
+
+procedure TTransferBillBaseFrm.FormCreate(Sender: TObject);
+begin
+  self.redBill := false;
+end;
+
+function TTransferBillBaseFrm.IsRedBill: boolean;
+begin
+  Result := redBill;
+end;
+procedure TTransferBillBaseFrm.SetRedBillFlag(redBillFlag:boolean);
+begin
+  redBill := redBillFlag;
 end;
 
 end.
