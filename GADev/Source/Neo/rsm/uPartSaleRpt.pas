@@ -38,7 +38,7 @@ implementation
 
 procedure TFM_PartSaleRpt.FormCreate(Sender: TObject);
 begin
-  Self.FBillTypeFID := 'aaaa';
+  Self.FBillTypeFID := '238055EE90C04688818AA0C29E013BF5';
   inherited;
 end;
 

@@ -1,14 +1,14 @@
 inherited RepairWOEditFrm: TRepairWOEditFrm
-  Left = 130
-  Top = 78
-  Width = 1232
-  Height = 487
+  Left = 122
+  Top = 13
+  Width = 1131
+  Height = 581
   Caption = #32500#20462#24037#21333
   PixelsPerInch = 96
   TextHeight = 12
   inherited p_bt: TPanel
-    Top = 424
-    Width = 1216
+    Top = 518
+    Width = 1115
     Height = 24
     inherited Label1: TLabel
       Top = 6
@@ -58,14 +58,14 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
   object panelHead: TPanel [1]
     Left = 0
     Top = 53
-    Width = 1216
+    Width = 1115
     Height = 212
     Align = alTop
     TabOrder = 5
     object cxHeadPage1: TcxPageControl
       Left = 1
       Top = 42
-      Width = 1214
+      Width = 1113
       Height = 147
       ActivePage = cxtbsht1
       Align = alClient
@@ -75,7 +75,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
       TabOrder = 0
       ClientRectBottom = 146
       ClientRectLeft = 1
-      ClientRectRight = 1213
+      ClientRectRight = 1112
       ClientRectTop = 18
       object cxtbsht1: TcxTabSheet
         Caption = #19994#21153#20449#24687
@@ -481,7 +481,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
     object Panel2: TPanel
       Left = 1
       Top = 1
-      Width = 1214
+      Width = 1113
       Height = 41
       Align = alTop
       BevelOuter = bvNone
@@ -545,14 +545,14 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
       object Panel4: TPanel
         Left = 0
         Top = 0
-        Width = 1214
+        Width = 1113
         Height = 212
         Align = alTop
         TabOrder = 7
         object cxPageControl1: TcxPageControl
           Left = 1
           Top = 42
-          Width = 1212
+          Width = 1111
           Height = 147
           ActivePage = cxTabSheet1
           Align = alClient
@@ -562,7 +562,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
           TabOrder = 0
           ClientRectBottom = 146
           ClientRectLeft = 1
-          ClientRectRight = 1211
+          ClientRectRight = 1110
           ClientRectTop = 18
           object cxTabSheet1: TcxTabSheet
             Caption = #19994#21153#20449#24687
@@ -968,7 +968,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
         object Panel5: TPanel
           Left = 1
           Top = 1
-          Width = 1212
+          Width = 1111
           Height = 41
           Align = alTop
           BevelOuter = bvNone
@@ -1033,13 +1033,13 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
         object Panel6: TPanel
           Left = 1
           Top = 189
-          Width = 1212
+          Width = 1111
           Height = 22
           Align = alBottom
           BevelOuter = bvNone
           TabOrder = 2
           DesignSize = (
-            1212
+            1111
             22)
           object cxLabel41: TcxLabel
             Left = 17
@@ -1072,7 +1072,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
             Width = 244
           end
           object cxButton1: TcxButton
-            Left = 1080
+            Left = 979
             Top = 2
             Width = 65
             Height = 20
@@ -1081,7 +1081,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
             TabOrder = 3
           end
           object cxButton2: TcxButton
-            Left = 1146
+            Left = 1045
             Top = 2
             Width = 61
             Height = 20
@@ -1096,13 +1096,13 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
     object Panel3: TPanel
       Left = 1
       Top = 189
-      Width = 1214
+      Width = 1113
       Height = 22
       Align = alBottom
       BevelOuter = bvNone
       TabOrder = 2
       DesignSize = (
-        1214
+        1113
         22)
       object cxLabel4: TcxLabel
         Left = 17
@@ -1135,7 +1135,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
         Width = 244
       end
       object cxBtnlAllocateLine: TcxButton
-        Left = 1080
+        Left = 979
         Top = 2
         Width = 65
         Height = 20
@@ -1144,7 +1144,7 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
         TabOrder = 3
       end
       object cxBtnRemoveLine: TcxButton
-        Left = 1146
+        Left = 1045
         Top = 2
         Width = 61
         Height = 20
@@ -1158,15 +1158,15 @@ inherited RepairWOEditFrm: TRepairWOEditFrm
   object Panel1: TPanel [2]
     Left = 0
     Top = 265
-    Width = 1216
-    Height = 159
+    Width = 1115
+    Height = 253
     Align = alClient
     TabOrder = 6
     object cxGrid1: TcxGrid
       Left = 1
       Top = 1
-      Width = 1214
-      Height = 157
+      Width = 1113
+      Height = 251
       Align = alClient
       TabOrder = 0
       LookAndFeel.Kind = lfOffice11

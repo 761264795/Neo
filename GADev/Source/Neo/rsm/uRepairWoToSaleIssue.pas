@@ -207,6 +207,7 @@ var
   destTableNames: array[0..1] of string;
 begin
   inherited;
+  destBillTypeId := '50957179-0105-1000-e000-015fc0a812fd463ED552';
   cdsDests[0] := cdsDestMaster;
   cdsDests[1] := cdsDestDetail;
   destTableNames[0] := 'T_IM_SaleIssueBill';
@@ -233,7 +234,9 @@ var
    cdsSrcMaster,cdsSrcDetail,cdsTmp:TClientDataSet;
    seq:integer;
    qty,price,taxprice,taxrate,tax,amount,taxamount,discountRate:double;
+   redBill: boolean;
 begin
+  redBill := IsRedBill;
   codeRuleUtils := TCodeRuleUtilsCls.Create;
   cdsSrcMaster := cdsSrcs[0];
   cdsSrcDetail := cdsSrcs[1];
@@ -257,11 +260,14 @@ begin
 //  cdsDestMaster.FieldByName('FSourceFunction').AsVariant := '';
 //  cdsDestMaster.FieldByName('FAuditTime').AsVariant := '';
   cdsDestMaster.FieldByName('FBaseStatus').AsVariant := '1';  //保存
-  cdsDestMaster.FieldByName('FBizTypeID').AsVariant := 'd8e80652-010e-1000-e000-04c5c0a812202407435C';  //普通销售
+  if redBill then
+    cdsDestMaster.FieldByName('FBizTypeID').AsVariant := 'd8e80652-0110-1000-e000-04c5c0a812202407435C' //普通销售退货
+  else
+    cdsDestMaster.FieldByName('FBizTypeID').AsVariant := 'd8e80652-010e-1000-e000-04c5c0a812202407435C';  //普通销售
   cdsDestMaster.FieldByName('FSourceBillTypeID').AsVariant := 'HM+nytJ+S7izjFHd2/madkY+1VI='; //维修工单
   cdsDestMaster.FieldByName('FBillTypeID').AsVariant := '50957179-0105-1000-e000-015bc0a812fd463ED552'; // 销售出库单
   cdsDestMaster.FieldByName('FYear').AsVariant := YearOf(CliDm.Get_ServerTime);
-  cdsDestMaster.FieldByName('FPeriod').AsVariant := MonthOf(CliDm.Get_ServerTime);;
+  cdsDestMaster.FieldByName('FPeriod').AsVariant := MonthOf(CliDm.Get_ServerTime);
   cdsDestMaster.FieldByName('FStorageOrgUnitID').AsVariant := UserInfo.Branch_ID;
   //cdsDestMaster.FieldByName('FAdminOrgUnitID').AsVariant :='';
   //cdsDestMaster.FieldByName('FStockerID').AsVariant := '';
@@ -272,7 +278,10 @@ begin
   cdsDestMaster.FieldByName('FTotalStandardCost').AsVariant := 0;
   cdsDestMaster.FieldByName('FTotalActualCost').AsVariant := 0;
   cdsDestMaster.FieldByName('FIsReversed').AsVariant := 0;
-  cdsDestMaster.FieldByName('FTransactionTypeID').AsVariant := 'DawAAAAPoAywCNyn';//普通销售出库
+  if redBill then
+    cdsDestMaster.FieldByName('FTransactionTypeID').AsVariant := 'DawAAAAPoA2wCNyn' //普通销售退货
+  else
+    cdsDestMaster.FieldByName('FTransactionTypeID').AsVariant := 'DawAAAAPoAywCNyn';//普通销售出库
   cdsDestMaster.FieldByName('FIsInitBill').AsVariant := 0;
 
   sql := Format('select FStdCustomerID from T_ATS_Customer where FID=%s',[QuotedStr(cdsSrcMaster.FieldByName('FCustomerID').AsString)]);
@@ -388,7 +397,7 @@ begin
     cdsDestDetail.FieldByName('FActualPrice').AsVariant := price;
     cdsDestDetail.FieldByName('FSaleOrgUnitID').AsVariant := UserInfo.Branch_ID;
   //  cdsDestDetail.FieldByName('FSaleGroupID').AsVariant := '';
-    cdsDestDetail.FieldByName('FSalePersonID').AsVariant := cdsSrcDetail.FieldByName('FSAID').AsString;
+    cdsDestDetail.FieldByName('FSalePersonID').AsVariant := cdsSrcMaster.FieldByName('FSAID').AsString;
     cdsDestDetail.FieldByName('FBaseUnitActualcost').AsVariant := 0;
     cdsDestDetail.FieldByName('FUndeliverQty').AsVariant := qty;
     cdsDestDetail.FieldByName('FUndeliverBaseQty').AsVariant := qty;
@@ -436,6 +445,7 @@ begin
     cdsDestDetail.FieldByName('CFCostPrice').AsVariant := cdsSrcDetail.FieldByName('CFCostAmount').AsFloat;
     cdsDestDetail.FieldByName('CFSourceEntryAllocateCount').AsVariant := cdsSrcDetail.FieldByName('CFAllocateCount').AsInteger;
   //  cdsDestDetail.FieldByName('CFLoc').AsVariant := '';
+    cdsSrcDetail.Next;
   end;
 
   cdsDestDetail.Post;

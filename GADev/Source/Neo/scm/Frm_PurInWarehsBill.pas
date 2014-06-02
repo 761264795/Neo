@@ -119,7 +119,7 @@ begin
     FOpenPar := TEditFormPar.Create;
     FOpenPar.BillFID := KeyFields;
     FOpenPar.ListDataset := cdsList;
-    CliDM.OpenSQL(cdsList,' select * from T_IM_PurInWarehsBill where FID=' + quotedstr(KeyValues),ErrMsg);
+    CliDM.Get_OpenSQL(cdsList,' select * from T_IM_PurInWarehsBill where FID=' + quotedstr(KeyValues),ErrMsg);
   end;
   BillTable := 'T_IM_PurInWarehsBill';
   BillEntryTable :='T_IM_PurInWarehsEntry';
@@ -164,10 +164,10 @@ begin
   _cds[1] := cdsMaster;
   _cds[2] := cdsDetail_Save;
   _cds[3] := cdsDetail;
-  CliDM.OpenSQL(cdsMaster_Save,OpenTables[0],ErrMsg);
-  CliDM.OpenSQL(cdsMaster,OpenTables[1],ErrMsg);
-  CliDM.OpenSQL(cdsDetail_Save,OpenTables[2],ErrMsg);
-  CliDM.OpenSQL(cdsDetail,OpenTables[3],ErrMsg);
+  CliDM.Get_OpenSQL(cdsMaster_Save,OpenTables[0],ErrMsg);
+  CliDM.Get_OpenSQL(cdsMaster,OpenTables[1],ErrMsg);
+  CliDM.Get_OpenSQL(cdsDetail_Save,OpenTables[2],ErrMsg);
+  CliDM.Get_OpenSQL(cdsDetail,OpenTables[3],ErrMsg);
   {
   try
     if not CliDM.Get_OpenClients(KeyValues, _cds, OpenTables, ErrMsg) then

@@ -1,6 +1,6 @@
 inherited FM_PurInWarehsBill: TFM_PurInWarehsBill
-  Left = 98
-  Top = 127
+  Left = 322
+  Top = 26
   Caption = 'FM_PurInWarehsBill'
   PixelsPerInch = 96
   TextHeight = 12
@@ -167,6 +167,12 @@ inherited FM_PurInWarehsBill: TFM_PurInWarehsBill
           end
           inherited cxBIZDATE: TcxDBDateEdit
             Left = 396
+            ParentFont = False
+            Style.Font.Height = -15
+            Style.IsFontAssigned = True
+          end
+          inherited cxFNumber: TcxDBMaskEdit
+            Left = 75
           end
           inherited dbimgcmbFBaseStatus: TcxDBImageComboBox
             Left = 707
@@ -290,7 +296,7 @@ inherited FM_PurInWarehsBill: TFM_PurInWarehsBill
     DockControlHeights = (
       0
       0
-      47
+      53
       0)
   end
   inherited cdsMaster: TClientDataSet
@@ -325,8 +331,5 @@ inherited FM_PurInWarehsBill: TFM_PurInWarehsBill
     CommandText = 'select * from T_IM_PurInWarehsEntry'
     ProviderName = 'dsp_Pub'
     RemoteServer = CliDM.SckCon
-  end
-  inherited cdsList: TClientDataSet
-    OnFilterRecord = nil
   end
 end
