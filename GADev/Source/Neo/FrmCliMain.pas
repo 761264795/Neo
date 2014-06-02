@@ -455,7 +455,8 @@ uses FrmCliDM, FrmLogin, Pub_Fun, uPOSEditFrm,uDayBalanceFrm
   ,uBatchCloseOrderFrm,uOrderAllocateFrm,uBillListPromtion,uRepairListFrm,uRepairEditFrm,
   uBatchAddOrderMaterialFrm,uMaterDataSelectHelper,uRepairWOEditFrm,uRepairWoListFrm,
   uDMoveInWareshListFrm,uDMoveIssueListFrm,uDOtherInWareshListFrm,uDOtherIssueListFrm,uDPurInwareshListFrm,
-  uDSaleIssueListFrm,uDStockTransferListFrm,uReportQueryFrm,uPartSaleRpt;
+  uDSaleIssueListFrm,uDStockTransferListFrm,uReportQueryFrm,uPartSaleRpt,uCashDiscountRpt,uInvoiceHisRpt,
+  uProfitRpt,uRepairWoDetailFjzRpt,uRepairWoDetailRpt,uRepairWoDetailShRpt,uRepairWoDetailTcRpt,Frm_PurInWarehsBill;
 
 var RTL:TQueryThread;
 {$R *.dfm}
@@ -1813,17 +1814,73 @@ begin
     end;
     //add by cjx 2014-05-31 ==============================================
     //报表配置
-    if (Fromkey = '884DB07AAF344908BD572475C10C6B20') then
+    if (Fromkey = 'BE0D0EAADEAC4D6C82F60B8A679C503D') then
     begin
       opt.Caption := title;
       CreatePageList(TReportQueryFrm, opt);
       Exit;
     end;
-    //报表测试
-    if (Fromkey = 'B79613993D884D4D83DC6EAE88F206AA') then
+    //利润报表
+    if (Fromkey = '50A625C101264FFE86ABE71958C9167F') then
+    begin
+      opt.Caption := title;
+      CreatePageList(TProfitRpt, opt);
+      Exit;
+    end;
+    //维修工单明细报表_套餐合计
+    if (Fromkey = '7A86B7C2BA2A4101954A32AEEBB372BD') then
+    begin
+      opt.Caption := title;
+      CreatePageList(TRepairWoDetailTcRpt, opt);
+      Exit;
+    end;
+    //代金券抵扣报表
+    if (Fromkey = '8617F1779D8B41D2912015174074EF14') then
+    begin
+      opt.Caption := title;
+      CreatePageList(TCashDiscountRpt,opt);
+      Exit;
+    end;
+    //零件销售报表
+    if (Fromkey = '8CFBC1F06DDA45A0877902F377034217') then
     begin
       opt.Caption := title;
       CreatePageList(TFM_PartSaleRpt, opt);
+      Exit;
+    end;
+    //维修工单明细表
+    if (Fromkey = 'AA3A28EB8EFC4BA793E89628C35C4F2F') then
+    begin
+      opt.Caption := title;
+      CreatePageList(TRepairWoDetailRpt, opt);
+      Exit;
+    end;
+    //发票历史
+    if (Fromkey = 'AC5ECFF0CA764D699E7C37F040510273') then
+    begin
+      opt.Caption := title;
+      CreatePageList(TInvoiceHisRpt, opt);
+      Exit;
+    end;
+    //即时库存查询  ??
+    if (Fromkey = 'F92E1FE96F4C449AADB7C86F29BC57BD') then
+    begin
+      opt.Caption := title;
+      CreatePageList(TFM_PartSaleRpt, opt);
+      Exit;
+    end;
+     //维修工单明细报表_附加值
+    if (Fromkey = '0A927C0B2C9C4B39B6BC86370100B826') then
+    begin
+      opt.Caption := title;
+      CreatePageList(TRepairWoDetailFjzRpt, opt);
+      Exit;
+    end;
+     //维修工单明细报表_售后
+    if (Fromkey = 'BA4F6FE560D04F94A140D10A993744CB') then
+    begin
+      opt.Caption := title;
+      CreatePageList(TRepairWoDetailShRpt, opt);
       Exit;
     end;
     //add by cjx end 2014-05-31============================================
@@ -2026,10 +2083,10 @@ begin
     //-------------------------精品采销 end------------------------------------
 
     //采购入库单
-    if (FromKey = '0BC41C7E61F04D8F9B273E80A4EDCA4B') then
+    if (FromKey = '7820D5295C3149E390061ECE0F1210B7') then
     begin
       opt.Caption := title;
-      CreatePageList(TFM_BillListPurInStock, opt);
+      CreatePageList(TFM_PurInWarehsBill,opt);
       Exit;
     end;                                  
 

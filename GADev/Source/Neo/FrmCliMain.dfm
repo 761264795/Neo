@@ -1,6 +1,6 @@
 object FMCliMain: TFMCliMain
-  Left = 155
-  Top = 71
+  Left = 144
+  Top = 7
   AutoScroll = False
   Caption = 'GA'#38598#22242'ERP'#31995#32479
   ClientHeight = 648
@@ -24256,7 +24256,7 @@ object FMCliMain: TFMCliMain
             CaptionHeight = 30
             CaptionImageIndex = 49
             Items = <>
-            Opened = True
+            Opened = False
             OpenedHeight = 413
             DividerVisible = False
             OnOpen = RzGroup3Open
@@ -24268,7 +24268,7 @@ object FMCliMain: TFMCliMain
               Left = 0
               Top = 30
               Width = 241
-              Height = 383
+              Height = 0
               Align = alClient
               Bands = <
                 item
@@ -24344,7 +24344,7 @@ object FMCliMain: TFMCliMain
             ColorDefault = False
             Items = <>
             Opened = False
-            OpenedHeight = 386
+            OpenedHeight = 413
             DividerVisible = False
             OnOpen = RzGroup3Open
             BiDiMode = bdLeftToRight
@@ -24377,7 +24377,7 @@ object FMCliMain: TFMCliMain
             CaptionImageIndex = 53
             Items = <>
             Opened = False
-            OpenedHeight = 386
+            OpenedHeight = 413
             DividerVisible = False
             OnOpen = RzGroup3Open
             Caption = #36130#21153#32467#31639'    '
@@ -24396,8 +24396,8 @@ object FMCliMain: TFMCliMain
             Color = 15856372
             ColorDefault = False
             Items = <>
-            Opened = False
-            OpenedHeight = 386
+            Opened = True
+            OpenedHeight = 413
             DividerVisible = False
             OnOpen = RzGroup3Open
             Caption = #25253#34920#20013#24515'    '

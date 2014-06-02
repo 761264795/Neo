@@ -306,7 +306,20 @@ uses
   uReportQueryFrm in 'Base\uReportQueryFrm.pas' {ReportQueryFrm},
   uAddNewRpt in 'Base\uAddNewRpt.pas' {frmAddNewRpt},
   Frm_ReportListBase in '..\ERP\Base\Frm_ReportListBase.pas' {FM_ReportListBase},
-  uPartSaleRpt in 'rsm\uPartSaleRpt.pas' {FM_PartSaleRpt};
+  uPartSaleRpt in 'rsm\uPartSaleRpt.pas' {FM_PartSaleRpt},
+  uRepairWoToArBill in 'rsm\uRepairWoToArBill.pas' {RepairWoToArBillFrm},
+  uRepairWoToAPBill in 'rsm\uRepairWoToAPBill.pas' {RepairWoToApBillFrm},
+  uRepairWoToOtherInWaresh in 'rsm\uRepairWoToOtherInWaresh.pas' {RepairWoToOtherInWareshFrm},
+  uRepairWoToReceivingBill in 'rsm\uRepairWoToReceivingBill.pas' {RepairWoToReceivingBillFrm},
+  uCashDiscountRpt in 'rpt\uCashDiscountRpt.pas' {CashDiscountRpt},
+  uProfitRpt in 'rpt\uProfitRpt.pas' {ProfitRpt},
+  uInvoiceHisRpt in 'rpt\uInvoiceHisRpt.pas' {InvoiceHisRpt},
+  uRepairWoDetailRpt in 'rpt\uRepairWoDetailRpt.pas' {RepairWoDetailRpt},
+  uRepairWoDetailTcRpt in 'rpt\uRepairWoDetailTcRpt.pas' {RepairWoDetailTcRpt},
+  uRepairWoDetailFjzRpt in 'rpt\uRepairWoDetailFjzRpt.pas' {RepairWoDetailFjzRpt},
+  uRepairWoDetailShRpt in 'rpt\uRepairWoDetailShRpt.pas' {RepairWoDetailShRpt},
+  Frm_BillEditBaseNew in '..\ERP\Base\Frm_BillEditBaseNew.pas' {FM_BillEditBaseNew},
+  Frm_PurInWarehsBill in 'scm\Frm_PurInWarehsBill.pas' {FM_PurInWarehsBill};
 
 {$R *.res}
 {$I- } //不产生I/O异常类而是把错误代码返回到预定义变量IOResult中
@@ -319,10 +332,9 @@ begin
   begin
     Application.Initialize;
     Application.Title := 'GA集团ERP系统';
-  Application.CreateForm(TCliDM, CliDM);
+    Application.CreateForm(TCliDM, CliDM);
   Application.CreateForm(TFMCliMain, FMCliMain);
-  Application.CreateForm(TFM_ReportListBase, FM_ReportListBase);
-  Application.CreateForm(TFM_PartSaleRpt, FM_PartSaleRpt);
+  Application.CreateForm(TFM_PurInWarehsBill, FM_PurInWarehsBill);
   Application.Run;
   end;
 end.
