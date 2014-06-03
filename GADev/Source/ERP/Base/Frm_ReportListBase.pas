@@ -56,7 +56,7 @@ end;
 
 procedure TFM_ReportListBase.SetCondition(const param: string = '');
 var
-  batchSQL, SQL, ErrMsg: string;
+  paramValue,batchSQL, SQL, ErrMsg: string;
 const
   sEnter = #13#10;
 begin
@@ -74,38 +74,53 @@ begin
         //查询字段值
         if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('Date')) then
         begin
-          batchSQL := batchSQL + sEnter
-            + Format(SQL, [QuotedStr(param),
-                           QuotedStr(cdsBillFindList.FieldByName('FFieldName').AsString),
-                           QuotedStr(TcxDateEdit(pnTop.FindComponent('dat' + cdsBillFindList.FieldByName('FID').AsString)).Text)]);
-          batchSQL := batchSQL + sEnter + ' ; ';
+          paramValue := TcxDateEdit(pnTop.FindComponent('dat' + cdsBillFindList.FieldByName('FID').AsString)).Text;
+          if (Trim(paramValue)<> '') then
+          begin
+            batchSQL := batchSQL + sEnter
+              + Format(SQL, [QuotedStr(param),
+                             QuotedStr(cdsBillFindList.FieldByName('FFieldName').AsString),
+                             QuotedStr(Trim(paramValue))]);
+            batchSQL := batchSQL + sEnter + ' ; ';
+          end;
         end
         else if (uppercase(trim(cdsBillFindList.fieldbyname('FDataType').AsString)) = uppercase('String')) then
         begin
           if (Trim(cdsBillFindList.FieldByName('FFindValue').AsString) <> '')
-              or (Trim(cdsBillFindList.FieldByName('FDialogType').AsString) <> '') then
+            or (Trim(cdsBillFindList.FieldByName('FDialogType').AsString) <> '') then
           begin
-            batchSQL := batchSQL + sEnter
-              + Format(SQL, [QuotedStr(param),
-                             QuotedStr(cdsBillFindList.FieldByName('FFieldName').AsString),
-                             QuotedStr(TcxButtonEdit(pnTop.FindComponent('but' + cdsBillFindList.FieldByName('FID').AsString)).Text)]);
-            batchSQL := batchSQL + sEnter + ' ; ';
+            paramValue := TcxButtonEdit(pnTop.FindComponent('but' + cdsBillFindList.FieldByName('FID').AsString)).Text;
+            if (Trim(paramValue)<> '') then
+            begin
+              batchSQL := batchSQL + sEnter
+                + Format(SQL, [QuotedStr(param),
+                               QuotedStr(cdsBillFindList.FieldByName('FFieldName').AsString),
+                               QuotedStr(Trim(paramValue))]);
+              batchSQL := batchSQL + sEnter + ' ; ';
+            end;
           end
           else
           begin
-            batchSQL := batchSQL + sEnter
-              + Format(SQL, [QuotedStr(param),
-                             QuotedStr(cdsBillFindList.FieldByName('FFieldName').AsString),
-                             QuotedStr(TcxTextEdit(pnTop.FindComponent('edt' + cdsBillFindList.FieldByName('FID').AsString)).Text)]);
-            batchSQL := batchSQL + sEnter + ' ; ';
+            paramValue := TcxTextEdit(pnTop.FindComponent('edt' + cdsBillFindList.FieldByName('FID').AsString)).Text;
+            if (Trim(paramValue)<> '') then
+            begin
+              batchSQL := batchSQL + sEnter
+                + Format(SQL, [QuotedStr(param),
+                               QuotedStr(cdsBillFindList.FieldByName('FFieldName').AsString),
+                               QuotedStr(Trim(paramValue))]);
+              batchSQL := batchSQL + sEnter + ' ; ';
+            end;
           end;
         end;
         cdsBillFindList.Next;
       end;
-    if not CliDM.Get_ExecSQL(batchSQL, ErrMsg) then
+    if (batchSQL <> '') then
     begin
-      ShowMsg(self.Handle,'插入参数值出错：'+ErrMsg,[]);
-      Abort;
+      if not CliDM.Get_ExecSQL(batchSQL, ErrMsg) then
+      begin
+        ShowMsg(self.Handle,'插入参数值出错：'+ErrMsg,[]);
+        Abort;
+      end;
     end;
 //    finally
 //      batchSQL.Free;
